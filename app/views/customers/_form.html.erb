@@ -1,0 +1,100 @@
+<%= form_with(model: customer, local: true) do |form| %>
+  <% if customer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
+
+      <ul>
+      <% customer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone %>
+    <%= form.number_field :phone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cell %>
+    <%= form.number_field :cell %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :affiliate_number %>
+    <%= form.number_field :affiliate_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :img %>
+    <%= form.text_field :img %>
+  </div>
+
+  <div class="field">
+    <%= form.label :age %>
+    <%= form.number_field :age %>
+  </div>
+
+
+
+    <div class="field">
+      <%= form.label :doc_type, "Cedula", :value => "true"  %>
+  <%= form.radio_button :doc_type, true %>
+  <%= form.label :doc_type, "Pasaporte", :value => "false" %>
+  <%= form.radio_button :doc_type, false %>
+
+    </div>
+
+  <div class="field">
+    <%= form.label :doc %>
+    <%= form.text_field :doc %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sector %>
+    <%= form.text_field :sector %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div class="field">
+  <%= form.label :gender, "Male", :value => "true"  %>
+  <%= form.radio_button :gender, true %>
+  <%= form.label :gender, "Female", :value => "false" %>
+  <%= form.radio_button :gender, false %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :autorization_number %>
+    <%= form.number_field :autorization_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :therapies %>
+    <%= form.number_field :therapies %>
+  </div>
+
+  <div class="field">
+    <%= form.label :adress %>
+    <%= form.text_field :adress %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
