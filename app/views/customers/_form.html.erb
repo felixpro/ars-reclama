@@ -49,10 +49,7 @@
 
 
     <div class="field">
-      <%= form.label :doc_type, "Cedula", :value => "true"  %>
-  <%= form.radio_button :doc_type, true %>
-  <%= form.label :doc_type, "Pasaporte", :value => "false" %>
-  <%= form.radio_button :doc_type, false %>
+      <%= form.collection_radio_buttons :doc_type, Customer.doc_types, :first, :first %>
 
     </div>
 
@@ -60,6 +57,8 @@
     <%= form.label :doc %>
     <%= form.text_field :doc %>
   </div>
+
+
 
   <div class="field">
     <%= form.label :sector %>
@@ -72,11 +71,11 @@
   </div>
 
   <div class="field">
-  <%= form.label :gender, "Male", :value => "true"  %>
-  <%= form.radio_button :gender, true %>
-  <%= form.label :gender, "Female", :value => "false" %>
-  <%= form.radio_button :gender, false %>
+
+<%= form.collection_radio_buttons :gender, Customer.genders, :first, :first %>
+
   </div>
+
 
 
   <div class="field">
