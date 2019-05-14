@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @service.customer %>
+</p>
+
+<p>
+  <strong>Process:</strong>
+  <%= @service.process %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @service.code %>
+</p>
+
+<p>
+  <strong>Reclaimed:</strong>
+  <%= @service.reclaimed %>
+</p>
+
+<p>
+  <strong>Authorized:</strong>
+  <%= @service.authorized %>
+</p>
+
+<p>
+  <strong>Difference:</strong>
+  <%= @service.difference %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_service_path(@service) %> |
+<%= link_to 'Back', services_path %>

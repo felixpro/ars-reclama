@@ -1,4 +1,6 @@
 class CustomersController < ApplicationController
+  include ActionController::MimeResponds
+
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
   # GET /customers
@@ -10,6 +12,8 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.json
   def show
+    @customer = Customer.find params[:id]
+    @service = @customer.service.order('created_at DESC').limit(4)
   end
 
   # GET /customers/new
@@ -19,6 +23,8 @@ class CustomersController < ApplicationController
 
   # GET /customers/1/edit
   def edit
+    @customer = Customer.find params[:id]
+
   end
 
   # POST /customers
@@ -40,17 +46,17 @@ class CustomersController < ApplicationController
   # PATCH/PUT /customers/1
   # PATCH/PUT /customers/1.json
   def update
+    @customer = Customer.find(params[:id])
     respond_to do |format|
-      if @customer.update(customer_params)
-        format.html { redirect_to @customer, notice: 'Customer was successfully updated.' }
-        format.json { render :show, status: :ok, location: @customer }
-      else
-        format.html { render :edit }
-        format.json { render json: @customer.errors, status: :unprocessable_entity }
+       if @customer.update(customer_params)
+         format.html { redirect_to customer_url, notice: 'Order updated.' }
+         format.json { head :no_content }
+       else
+         format.html { render action: 'edit' }
+         format.json { render json: @customer.errors, status: :unprocessable_entity }
       end
     end
   end
-
   # DELETE /customers/1
   # DELETE /customers/1.json
   def destroy

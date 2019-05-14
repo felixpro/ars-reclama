@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer: one
+  process: MyString
+  code: 1
+  reclaimed: 1
+  authorized: 1
+  difference: 1
+
+two:
+  customer: two
+  process: MyString
+  code: 1
+  reclaimed: 1
+  authorized: 1
+  difference: 1

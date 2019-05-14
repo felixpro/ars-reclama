@@ -1,99 +1,92 @@
 <%= form_with(model: customer, local: true) do |form| %>
-  <% if customer.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
+<% if customer.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(customer.errors.count, "error") %>
+      prohibited this customer from being saved:</h2>
 
-      <ul>
+    <ul>
       <% customer.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    </ul>
   </div>
+<% end %>
 
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.number_field :phone %>
-  </div>
+<div class="field">
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+</div>
 
-  <div class="field">
-    <%= form.label :cell %>
-    <%= form.number_field :cell %>
-  </div>
+<div class="field">
+  <%= form.label :phone %>
+  <%= form.number_field :phone %>
+</div>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
+<div class="field">
+  <%= form.label :cell %>
+  <%= form.number_field :cell %>
+</div>
 
-  <div class="field">
-    <%= form.label :affiliate_number %>
-    <%= form.number_field :affiliate_number %>
-  </div>
+<div class="field">
+  <%= form.label :email %>
+  <%= form.text_field :email %>
+</div>
 
-  <div class="field">
-    <%= form.label :img %>
-    <%= form.text_field :img %>
-  </div>
+<div class="field">
+  <%= form.label :affiliate_number %>
+  <%= form.number_field :affiliate_number %>
+</div>
 
-  <div class="field">
-    <%= form.label :age %>
-    <%= form.number_field :age %>
-  </div>
+<div class="field">
+  <%= form.label :img %>
+  <%= form.text_field :img %>
+</div>
 
+<div class="field">
+  <%= form.label :age %>
+  <%= form.number_field :age %>
+</div>
 
+<div class="field">
+  <%= form.collection_radio_buttons :doc_type, Customer.doc_types, :first, :first %>
 
-    <div class="field">
-      <%= form.collection_radio_buttons :doc_type, Customer.doc_types, :first, :first %>
+</div>
 
-    </div>
+<div class="field">
+  <%= form.label :doc %>
+  <%= form.text_field :doc %>
+</div>
 
-  <div class="field">
-    <%= form.label :doc %>
-    <%= form.text_field :doc %>
-  </div>
+<div class="field">
+  <%= form.label :sector %>
+  <%= form.text_field :sector %>
+</div>
 
+<div class="field">
+  <%= form.label :city %>
+  <%= form.text_field :city %>
+</div>
 
+<div class="field">
+  <%= form.collection_radio_buttons :gender, Customer.genders, :first, :first %>
+</div>
 
-  <div class="field">
-    <%= form.label :sector %>
-    <%= form.text_field :sector %>
-  </div>
+<div class="field">
+  <%= form.label :autorization_number %>
+  <%= form.number_field :autorization_number %>
+</div>
 
-  <div class="field">
-    <%= form.label :city %>
-    <%= form.text_field :city %>
-  </div>
+<div class="field">
+  <%= form.label :therapies %>
+  <%= form.number_field :therapies %>
+</div>
 
-  <div class="field">
+<div class="field">
+  <%= form.label :adress %>
+  <%= form.text_field :adress %>
+</div>
 
-<%= form.collection_radio_buttons :gender, Customer.genders, :first, :first %>
-
-  </div>
-
-
-
-  <div class="field">
-    <%= form.label :autorization_number %>
-    <%= form.number_field :autorization_number %>
-  </div>
-
-  <div class="field">
-    <%= form.label :therapies %>
-    <%= form.number_field :therapies %>
-  </div>
-
-  <div class="field">
-    <%= form.label :adress %>
-    <%= form.text_field :adress %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<div class="actions">
+  <%= form.submit %>
+</div>
 <% end %>
