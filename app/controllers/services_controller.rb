@@ -21,10 +21,12 @@ class ServicesController < ApplicationController
 
   # GET /services/1/edit
   def edit
-    @customer = Customer.find params[:id]
-
+    @customer = Customer.find(params[:id])
     @service = @customer.services.find(params[:id])
   end
+
+
+
 
   # POST /services
   # POST /services.json
@@ -47,13 +49,12 @@ class ServicesController < ApplicationController
   # PATCH/PUT /services/1.json
   def update
     @service = Service.find(params[:id])
-
     respond_to do |format|
       if @service.update(service_params)
         format.html { redirect_to @service, notice: 'Service was successfully updated.' }
-        format.json { render :show, status: :ok, location: @service }
+        format.json { head :no_content }
       else
-        format.html { render :edit }
+        format.html { render action: 'edit'}
         format.json { render json: @service.errors, status: :unprocessable_entity }
       end
     end

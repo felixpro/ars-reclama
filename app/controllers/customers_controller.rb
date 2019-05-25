@@ -12,7 +12,7 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.json
   def show
-    @customer = Customer.find params[:id]
+    @customer = Customer.find(params[:id])
     @service = @customer.service.order('created_at DESC').limit(4)
   end
 
@@ -23,7 +23,7 @@ class CustomersController < ApplicationController
 
   # GET /customers/1/edit
   def edit
-    @customer = Customer.find params[:id]
+    @customer = Customer.find(params[:id])
 
   end
 

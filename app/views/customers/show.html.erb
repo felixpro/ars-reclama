@@ -8,116 +8,123 @@
   </head>
   <body>
 
-<p id="notice"><%= notice %></p>
+    <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-<%= best_in_place @customer, :name%>
-</p>
+    <p>
+      <strong>Name:</strong>
+      <%= best_in_place @customer, :name%>
+    </p>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @customer.phone %>
-</p>
+    <p>
+      <strong>Phone:</strong>
+      <%= @customer.phone %>
+    </p>
 
-<p>
-  <strong>Cell:</strong>
-  <%= @customer.cell %>
-</p>
+    <p>
+      <strong>Cell:</strong>
+      <%= @customer.cell %>
+    </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @customer.email %>
-</p>
+    <p>
+      <strong>Email:</strong>
+      <%= @customer.email %>
+    </p>
 
-<p>
-  <strong>Affiliate number:</strong>
-  <%= @customer.affiliate_number %>
-</p>
+    <p>
+      <strong>Affiliate number:</strong>
+      <%= @customer.affiliate_number %>
+    </p>
 
-<p>
-  <strong>Img:</strong>
-  <%= @customer.img %>
-</p>
+    <p>
+      <strong>Img:</strong>
+      <%= @customer.img %>
+    </p>
 
-<p>
-  <strong>Age:</strong>
-  <%= @customer.age %>
-</p>
+    <p>
+      <strong>Age:</strong>
+      <%= @customer.age %>
+    </p>
 
-<p>
-  <strong>Doc:</strong>
-  <%= @customer.doc %>
-</p>
+    <p>
+      <strong>Doc:</strong>
+      <%= @customer.doc %>
+    </p>
 
-<p>
-  <strong>Sector:</strong>
-  <%= @customer.sector %>
-</p>
+    <p>
+      <strong>Sector:</strong>
+      <%= @customer.sector %>
+    </p>
 
-<p>
-  <strong>City:</strong>
-  <%= @customer.city %>
-</p>
+    <p>
+      <strong>City:</strong>
+      <%= @customer.city %>
+    </p>
 
-<p>
-  <strong>Gender:</strong>
-  <%= @customer.gender %>
-</p>
+    <p>
+      <strong>Gender:</strong>
+      <%= @customer.gender %>
+    </p>
 
-<p>
-  <strong>Doc type:</strong>
-  <%= @customer.doc_type %>
-</p>
+    <p>
+      <strong>Doc type:</strong>
+      <%= @customer.doc_type %>
+    </p>
 
-<p>
-  <strong>Autorization number:</strong>
-  <%= @customer.autorization_number %>
-</p>
+    <p>
+      <strong>Autorization number:</strong>
+      <%= @customer.autorization_number %>
+    </p>
 
-<p>
-  <strong>Therapies:</strong>
-  <%= @customer.therapies %>
-</p>
+    <p>
+      <strong>Therapies:</strong>
+      <%= @customer.therapies %>
+    </p>
 
-<p>
-  <strong>Adress:</strong>
-  <%= @customer.adress %>
-</p>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  New Service
-</button>
-<%= render 'services' %>
+    <p>
+      <strong>Adress:</strong>
+      <%= @customer.adress %>
+    </p>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+      New Service
+    </button>
+    <br>
 
-   <% @customer.service.each do |service| %>
-      <%= best_in_place service, :process  %>
-   <% end %>
+  <% @customer.service.each do |service| %>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <%= render 'new_service' %>
+      <%= best_in_place(service, :process, url: customer_service_path(service.customer, service))
+ %>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+    <%= link_to customer_service_path(service.customer, service), method: :delete, data: { confirm: 'Are you sure?' } do %>
+      <button type="button" name="button">DELETE</button>
+    <% end %>
+  <% end %>
+  <br>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%= render 'new_service' %>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Back', customers_path %>
-
+  <%= link_to 'Edit', edit_customer_path(@customer) %>
+  |
+  <%= link_to 'Back', customers_path %>
 
 </body>
 </html>

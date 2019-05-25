@@ -3,3 +3,4 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery ->
   $('.best_in_place').best_in_place()
+  (".loro best_in_place").best_in_place();
