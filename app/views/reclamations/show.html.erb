@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @reclamation.customer %>
+</p>
+
+<p>
+  <strong>Authnum:</strong>
+  <%= @reclamation.authNum %>
+</p>
+
+<p>
+  <strong>Therapiesnum:</strong>
+  <%= @reclamation.therapiesNum %>
+</p>
+
+<p>
+  <strong>Doctor:</strong>
+  <%= @reclamation.doctor %>
+</p>
+
+<p>
+  <strong>Creationdate:</strong>
+  <%= @reclamation.creationDate %>
+</p>
+
+<%= link_to 'Edit', edit_reclamation_path(@reclamation) %> |
+<%= link_to 'Back', reclamations_path %>

@@ -1,0 +1,27 @@
+<%= form_for([@customer, @customer.reclamation.build], remote: true) do |f| %>
+
+  <div class="field">
+    <%= f.label :authNum %>
+    <%= f.number_field :authNum %>
+  </div>
+
+  <div class="field">
+    <%= f.label :therapiesNum %>
+    <%= f.number_field :therapiesNum %>
+  </div>
+
+  <div class="field">
+    <%= f.label :doctor %>
+    <%= f.number_field :doctor %>
+  </div>
+
+  <div class="field">
+    <%= f.label :creationDate %>
+    <%= f.number_field :creationDate %>
+  </div>
+
+
+  <p>
+    <%= f.submit "Submit" %>
+  </p>
+<% end %>

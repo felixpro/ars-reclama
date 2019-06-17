@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer: one
+  authNum: 1
+  therapiesNum: 1
+  doctor: 1
+  creationDate: 1
+
+two:
+  customer: two
+  authNum: 1
+  therapiesNum: 1
+  doctor: 1
+  creationDate: 1

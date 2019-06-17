@@ -1,7 +1,16 @@
 class CustomersController < ApplicationController
   include ActionController::MimeResponds
-
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
+
+  def ars
+    @customer = Customer.new
+  end
+  def cenasa
+    @customer = Customer.new
+  end
+  def naseguro
+    @customer = Customer.new
+  end
 
   # GET /customers
   # GET /customers.json
@@ -14,6 +23,9 @@ class CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @service = @customer.service.order('created_at DESC').limit(4)
+    @reclamation = @customer.reclamation.order('created_at DESC');
+    @identifier = 0;
+
   end
 
   # GET /customers/new
@@ -75,6 +87,6 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:name, :phone, :cell, :email, :affiliate_number, :img, :age, :doc, :sector, :city, :gender, :doc_type, :autorization_number, :therapies, :adress)
+      params.require(:customer).permit(:name, :phone, :cell, :email, :affiliate_number, :img, :age, :doc, :sector, :city, :gender, :doc_type, :autorization_number, :therapies, :adress, :insurance, :contractNum, :diagnostic)
     end
 end

@@ -1,15 +1,24 @@
 <p id="notice"><%= notice %></p>
 
+
+<button type="button" class="btn btn-primary"><%= link_to 'Ars Humano', ars_path, {:style=>'color:#FFFFFF;', class: "ars_humano_link"}%></button>
+<button type="button" class="btn btn-success"><%= link_to 'cenasa', cenasa_path, {:style=>'color:#FFFFFF;', class: "cenasa_link"}%></button>
+<button type="button" class="btn btn-light"><%= link_to 'No asegurado', naseguro_path, {:style=>'color:#000000;', class: "naseguro_link"}%></button>
+
+
+
 <h1>Customers</h1>
 
 <table>
   <thead>
     <tr>
+      <th>insurance</th>
       <th>Name</th>
       <th>Phone</th>
       <th>Cell</th>
       <th>Email</th>
-      <th>Affiliate number</th>
+      <th>Affiliate</th>
+      <th>contractNum</th>
       <th>Img</th>
       <th>Age</th>
       <th>Doc</th>
@@ -27,11 +36,13 @@
   <tbody>
     <% @customers.each do |customer| %>
       <tr>
+        <td><%= customer.insurance %></td>
         <td><%= customer.name %></td>
         <td><%= customer.phone %></td>
         <td><%= customer.cell %></td>
         <td><%= customer.email %></td>
         <td><%= customer.affiliate_number %></td>
+        <td><%= customer.contractNum %></td>
         <td><%= customer.img %></td>
         <td><%= customer.age %></td>
         <td><%= customer.doc %></td>
@@ -51,5 +62,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New Customer', new_customer_path %>

@@ -13,11 +13,6 @@
 <% end %>
 
 <div class="field">
-  <%= form.label :insurance %>
-  <%= form.text_field :insurance %>
-</div>
-
-<div class="field">
   <%= form.label :name %>
   <%= form.text_field :name %>
 </div>
@@ -28,12 +23,13 @@
 </div>
 
 <div class="field">
+  <%= form.label :insurance %>
+  <%= form.text_field :insurance, value: 'cenasa' %>
+</div>
+
+<div class="field">
   <%= form.label :cell %>
   <%= form.number_field :cell %>
-</div>
-<div class="field">
-  <%= form.label :contractNum %>
-  <%= form.number_field :contractNum %>
 </div>
 
 <div class="field">

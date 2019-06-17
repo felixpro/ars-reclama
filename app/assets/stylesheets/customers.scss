@@ -1,3 +1,761 @@
 // Place all the styles related to the Customers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@font-face {
+  src: url("font/ayuthaya.ttf");
+  font-family: Ayuthaya;
+}
+
+.modal-body {
+  padding: 0 !important;
+}
+
+input {
+  box-shadow: none;
+  outline: none;
+  text-decoration: none;
+
+  &:active,
+  &:focus,
+  &:hover,
+  &:visited {
+    box-shadow: none;
+    border: none;
+    outline: none;
+    text-decoration: none;
+  }
+}
+
+aside {
+  flex-direction: column;
+  float: left;
+  // border: 1px solid red;
+  padding-top: 27px;
+  width: 15.5%;
+  height: 100% !important;
+  background: #fff;
+
+  .img_hospital {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 23px;
+
+    img {
+      width: 130px;
+      height: 130px;
+    }
+  }
+
+  ul {
+    padding-left: 0;
+
+    li {
+      list-style: none;
+      text-align: left;
+      width: 100%;
+      height: 74px;
+      display: flex;
+      align-items: center;
+      padding-left: 35px;
+
+      &:hover {
+        background-color: rgba(132, 187, 199, 0.08);
+
+        a {
+          color: #17cb9a;
+          text-decoration: none;
+        }
+      }
+
+      img {
+        float: left;
+        margin-right: 28px;
+        width: 24px;
+        height: 24px;
+      }
+
+      a {
+        font-family: Raleway;
+        font-size: 16px;
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #000000;
+        text-decoration: none;
+        background: none;
+
+        &:active,
+        &:focus,
+        &:hover,
+        &:visited {
+          box-shadow: none;
+          border: none;
+          outline: none;
+          text-decoration: none;
+          background: none;
+          color: #000000;
+        }
+      }
+    }
+  }
+}
+
+.hide_content {
+  visibility: hidden;
+}
+
+.link_style {
+  background: none;
+  text-decoration: none;
+  outline: none;
+  box-shadow: none;
+  border: none;
+
+  &:focus,
+  &:hover,
+  &:hover,
+  &:visited {
+    background: none;
+    text-decoration: none;
+    outline: none;
+    box-shadow: none;
+    border: none;
+  }
+}
+
+.show_general_info {
+  .logo_show {
+    img.humano_logo {
+      width: 119px;
+    }
+
+    a {
+      font-family: Raleway;
+      font-size: 12px;
+      font-weight: 600;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #50aa91;
+      background: none;
+      text-decoration: none;
+      outline: none;
+      box-shadow: none;
+      border: none;
+      position: relative;
+      padding-left: 15px;
+      top: 5px;
+
+      &:focus,
+      &:hover,
+      &:hover,
+      &:visited {
+        background: none;
+        text-decoration: none;
+        outline: none;
+        box-shadow: none;
+        border: none;
+        color: #50aa91;
+      }
+
+      img {
+        width: 10px;
+        margin-left: 5px;
+      }
+    }
+  }
+}
+/// End show_general_info
+
+.cancel_button {
+  opacity: inherit !important;
+  padding: inherit !important;
+}
+
+.reclamation_section {
+  .new_reclamation {
+    .modal-body {
+      overflow: scroll;
+    }
+
+    .modal-full {
+      min-width: 100%;
+      height: 100%;
+      margin: 0!important !important;
+    }
+
+    .modal.show {
+      padding: 0;
+    }
+
+    .reclamation_header {
+      padding-top: 36px;
+      padding-left: 60px;
+
+      .logo {
+        float: left;
+        height: 49px;
+        display: flex;
+        align-items: center;
+
+        .humano_logo {
+          width: 119px;
+          height: 20.2px;
+        }
+      }
+
+      .therapies_form {
+        p {
+          float: left;
+        }
+
+        .authNum_container {
+          float: left;
+          display: flex;
+          align-items: center;
+
+          p {
+            margin: 0;
+            opacity: 0.7;
+            font-family: Raleway;
+            font-size: 14px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #000000;
+            padding-right: 17px;
+          }
+
+          .authNum {
+            width: 92px;
+            height: 49px;
+            opacity: 0.68;
+            border-radius: 8px;
+            border: solid 1px #bbbade;
+          }
+        }
+
+        .therapies_input {
+          height: 49px;
+          display: flex;
+          padding-left: 25px;
+
+          p {
+            margin: 0;
+            align-self: center;
+            opacity: 0.7;
+            font-family: Raleway;
+            font-size: 12px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #000000;
+          }
+
+          input {
+            border: none;
+            width: 48px;
+            border-bottom: solid 2px #bbbade;
+            text-align: center;
+            margin-left: 19px;
+          }
+        }
+      }
+    }
+
+    .body_reclamation {
+      padding-bottom: 50px;
+
+      .ceationDate {
+        position: relative;
+        bottom: 8px;
+
+        p {
+          margin: 0;
+          width: 50px;
+        }
+
+        div {
+          padding-right: 30px;
+        }
+
+        span {
+          display: block;
+          width: 178px;
+        }
+
+        input {
+          box-shadow: none;
+          outline: none;
+          text-decoration: none;
+          border: none;
+
+          &:active,
+          &:focus,
+          &:hover,
+          &:visited {
+            box-shadow: none;
+            border: none;
+            outline: none;
+            text-decoration: none;
+          }
+        }
+      }
+
+      .first_row,
+      .second_row {
+        display: flex;
+
+        p {
+          margin: 0;
+        }
+
+        div {
+          padding-right: 30px;
+        }
+
+        span {
+          display: block;
+          width: 178px;
+        }
+
+        input {
+          box-shadow: none;
+          outline: none;
+          text-decoration: none;
+          border: none;
+
+          &:active,
+          &:focus,
+          &:hover,
+          &:visited {
+            box-shadow: none;
+            border: none;
+            outline: none;
+            text-decoration: none;
+          }
+        }
+      }
+
+      .customer_inputs {
+        padding-left: 60px;
+
+        .name {
+          padding-top: 30px;
+          padding-bottom: 34px;
+
+          p {
+            margin: 0;
+          }
+
+          span {
+            font-family: Raleway;
+            font-size: 35px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #1e2469;
+            display: block;
+            width: 400px;
+          }
+        }
+
+        span {
+          border-bottom: solid 1px #bbbade;
+          padding-bottom: 9px;
+        }
+
+        .first_row {
+          padding-bottom: 34px;
+        }
+
+        .service_container {
+          position: relative;
+
+          h6 {
+            width: 149px;
+            height: 14px;
+            opacity: 0.7;
+            font-family: Raleway;
+            font-size: 12px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #000000;
+          }
+
+          h4 {
+            float: left;
+            font-family: OpenSans;
+            font-size: 16px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #000000;
+            width: 150px;
+          }
+
+          h5 {
+            display: flex;
+            font-family: Raleway;
+            font-size: 12px;
+            font-weight: 600;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #50aa91;
+
+            .edit_link {
+              margin-top: 5px;
+            }
+
+            i {
+              font-size: 16px;
+              margin-top: 4px;
+            }
+          }
+
+          h3 {
+            float: left;
+            position: relative;
+            bottom: 12px;
+            padding-right: 12px;
+            color: #50aa91;
+          }
+
+          .services_links {
+            font-family: Raleway;
+            font-size: 12px;
+            font-weight: 600;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #50aa91;
+          }
+
+          .edit_content {
+            overflow: scroll;
+            width: 220px;
+            height: 82px;
+            overflow-x: visible;
+            margin-bottom: 10px;
+
+            i {}
+          }
+
+          .add_service {
+            width: 178px;
+            border-bottom: solid 1px #bbbade;
+            display: block;
+            padding-bottom: 9px;
+          }
+        }
+      }
+    }
+
+    .bottom_reclamation {
+      .container-fluid {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+
+      .content {
+        background-color: #f4f7f6;
+        padding-top: 45px;
+        margin: 0 !important;
+
+        .row {
+          padding: 0 60px;
+        }
+
+        .buttons_container {
+          text-align: center;
+
+          .imprimir {
+            border: none;
+            background-image: linear-gradient(288deg, #7f00ff, #e100ff);
+          }
+
+          button.cancelar,
+          button.save {
+            background: transparent;
+            text-decoration: none;
+            box-shadow: none;
+            outline: none;
+            color: #6c757d;
+
+            &:active,
+            &:focus,
+            &:hover,
+            &:visited {
+              box-shadow: none;
+              outline: none;
+              text-decoration: none;
+              background: transparent;
+              color: #6c757d;
+            }
+          }
+
+          button {
+            width: 202px;
+            height: 49px;
+            margin-bottom: 23px;
+          }
+        }
+      }
+    }
+  }
+  // end New reclamation
+}
+// end relcamation section
+
+.print_Section {
+  padding: 0 10px;
+}
+
+.show_general_info {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: absolute;
+  top: 0;
+
+  .view_information_section {
+    background-color: #f4f7f6;
+    height: 100%;
+    width: 27%;
+    padding: 36px 100px;
+
+    .logo_show {
+      padding-bottom: 84px;
+    }
+
+    p.name {}
+
+    .view_more_buttons {
+      button.historial_clinic {
+        background-image: linear-gradient(285deg, #7f00ff, #e100ff);
+        color: #fff;
+        border: none;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 248px;
+        height: 49px;
+
+        &:active,
+        &:focus,
+        &:hover,
+        &:visited {
+          box-shadow: none;
+          outline: none;
+          text-decoration: none;
+          color: #fff;
+        }
+
+        img {
+          width: 19px;
+          margin-right: 21px;
+        }
+      }
+
+      .delete_customer {
+        padding-top: 38px;
+
+        a {
+          font-size: 16px;
+          display: flex;
+          box-shadow: none;
+          outline: none;
+          text-decoration: none;
+          color: #000;
+
+          &:active,
+          &:focus,
+          &:hover,
+          &:visited {
+            box-shadow: none;
+            outline: none;
+            text-decoration: none;
+            color: #000;
+          }
+
+          img {
+            margin-right: 15px;
+          }
+        }
+      }
+    }
+  }
+
+  .left_section {
+    width: 57.5%;
+
+    .therapies_section {
+      .header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: solid 1px #979797;
+        padding: 28px 58px;
+        padding-right: 90px !important;
+
+        p {
+          font-family: Raleway;
+          font-size: 19px;
+          font-weight: 800;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+        }
+
+        p.text {
+          color: #3f48ad;
+        }
+
+        p.number {
+          color: #e102ff;
+        }
+      }
+
+      .historial_therapies_container {
+        box-shadow: 0 26px 18px 0 rgba(0, 0, 0, 0.03);
+        padding-bottom: 35px;
+
+        .content_historial {
+          width: 100%;
+          height: 300px;
+          overflow-y: scroll;
+        }
+
+        .buttons_container_index {
+          padding-left: 58px;
+
+          button.reclamation_btn {
+            width: 277px;
+            height: 49px;
+            font-family: Raleway;
+            font-size: 16px;
+            font-weight: 600;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #6e6d8c;
+
+            &:active,
+            &:focus,
+            &:hover,
+            &:visited {
+              box-shadow: none;
+              outline: none;
+              text-decoration: none;
+              background: transparent;
+            }
+          }
+
+          a {
+            font-family: Raleway;
+            font-size: 12px;
+            font-weight: 600;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #50aa91;
+            box-shadow: none;
+            outline: none;
+            text-decoration: none;
+            background: none;
+            margin-left: 25px;
+            img {
+              width: 10px;
+              margin-left: 10px;
+            }
+            &:active,
+            &:focus,
+            &:hover,
+            &:visited {
+              box-shadow: none;
+              outline: none;
+              text-decoration: none;
+              background: none;
+            }
+          }
+        }
+      }
+    }
+    .index_reclamation_section {
+
+      .header {
+        padding: 21px 90px 21px 58px;
+        border-bottom: solid 1px #bbbade;
+        clear: both;
+        height: 65px;
+        p.title {
+          font-size: 19px;
+          font-weight: bold;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          color: #3f48ad;
+          float: left;
+        }
+      }
+      .historial_links {
+        float: right;
+        a {
+          padding-bottom: 10px;
+          border-bottom: solid 3px transparent;
+          position: relative;
+          top: 11px;
+          transition-duration: 1s;
+          &:hover {
+            border-bottom: solid 3px #17cb9a;
+            background: none;
+            outline: none;
+            text-decoration: none;
+            box-shadow: none;
+          }
+          &:visited,
+          &:active,
+          &:focus {
+            background: none;
+            outline: none;
+            text-decoration: none;
+            box-shadow: none;
+          }
+
+        }
+        a.historial_link {
+          margin-right: 29px;
+        }
+      }
+      .reclam_historial_content {
+        padding-top: 34px;
+        padding-right: 90px;
+        padding-left: 58px;
+      }
+
+
+    }
+  }
+}

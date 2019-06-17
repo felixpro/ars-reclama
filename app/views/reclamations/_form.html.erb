@@ -1,0 +1,42 @@
+<%= form_with(model: reclamation, local: true) do |form| %>
+  <% if reclamation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reclamation.errors.count, "error") %> prohibited this reclamation from being saved:</h2>
+
+      <ul>
+      <% reclamation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :customer_id %>
+    <%= form.text_field :customer_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :authNum %>
+    <%= form.number_field :authNum %>
+  </div>
+
+  <div class="field">
+    <%= form.label :therapiesNum %>
+    <%= form.number_field :therapiesNum %>
+  </div>
+
+  <div class="field">
+    <%= form.label :doctor %>
+    <%= form.number_field :doctor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :creationDate %>
+    <%= form.number_field :creationDate %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

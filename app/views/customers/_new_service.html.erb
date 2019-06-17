@@ -1,28 +1,100 @@
 <%= form_for([@customer, @customer.service.build], remote: true) do |f| %>
-  <p>
-    <%= f.label :process, "process" %><br>
-    <%= f.text_field :process %>
-  </p>
-  <p>
-    <%= f.label :code, "code" %><br>
-    <%= f.number_field :code %>
-  </p>
 
-  <p>
-    <%= f.label :reclaimed, "reclaimed" %><br>
-    <%= f.number_field :reclaimed %>
-  </p>
-  <p>
-    <%= f.label :authorized, "authorized" %><br>
-    <%= f.number_field :authorized %>
-  </p>
-  <p>
-    <%= f.label :difference, "difference" %><br>
-    <%= f.number_field :difference %>
-  </p>
+  <div class="container container_edit">
+    <div class="title">
+      <h1>Nuevo procedimiento</h1>
+    </div>
+    <div class="row container_row">
+        <div class="col-lg-4">
+          <div class="colum_content procedimiento">
+            <div class="column_title">
+              <p>Procedimiento</p>
+            </div>
+            <div class="display_content">
+            <div class="data">
+              <%= f.text_field :process %>
+            </div>
+            <div class="box_padding"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-2">
+        <div class="colum_content">
+          <div class="column_title">
+            <p>Codigo</p>
+          </div>
+          <div class="display_content">
+            <div class="box_padding_left"></div>
+            <div class="data">
+              <%= f.number_field :code %>
+            </div>
+            <div class="box_padding"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-2">
+        <div class="colum_content">
+          <div class="column_title">
+            <p>Reclamado RD$</p>
+          </div>
+          <div class="display_content">
+            <div class="box_padding_left"></div>
+            <div class="data">
+              <%= f.number_field :reclaimed %>
+            </div>
+            <div class="box_padding"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-2">
+        <div class="colum_content">
+          <div class="column_title">
+            <p>Diferencia RD$</p>
+          </div>
+          <div class="display_content">
+            <div class="box_padding_left"></div>
+            <div class="data">
+              <%= f.number_field :authorized %>
+            </div>
+            <div class="box_padding"></div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-lg-2">
+        <div class="colum_content">
+          <div class="column_title">
+            <p>Autorizado RD$</p>
+          </div>
+          <div class="display_content">
+            <div class="box_padding_left"></div>
+            <div class="data">
+              <%= f.number_field :difference %>
+            </div>
+            <div class="box_padding"></div>
+          </div>
+        </div>
+      </div>
+
+  </div>
+</div>
+<div class="container">
+  <div class="row edit_buttons">
+    <%= f.submit "Submit", class: "btn btn-danger", id:"save_button" %>
+
+    <button type="button" class=" btn btn-danger " id="cancel_button" data-dismiss="modal" aria-label="Close">
+      CANCELAR
+    </button>
 
 
-  <p>
-    <%= f.submit "Submit" %>
-  </p>
+
+  </div>
+</div>
+
+
+
 <% end %>

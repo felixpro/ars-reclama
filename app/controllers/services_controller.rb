@@ -67,7 +67,6 @@ class ServicesController < ApplicationController
    customer = @service.customer
    @service.destroy
    redirect_to customer
-
   end
 
   private

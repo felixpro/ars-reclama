@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_08_211046) do
+ActiveRecord::Schema.define(version: 2019_06_15_194626) do
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
@@ -30,6 +30,20 @@ ActiveRecord::Schema.define(version: 2019_05_08_211046) do
     t.string "adress"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "insurance"
+    t.integer "contractNum"
+  end
+
+  create_table "reclamations", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "authNum"
+    t.integer "therapiesNum"
+    t.integer "doctor"
+    t.string "creationDate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "diagnostic"
+    t.index ["customer_id"], name: "index_reclamations_on_customer_id"
   end
 
   create_table "services", force: :cascade do |t|
