@@ -1,64 +1,179 @@
-<p id="notice"><%= notice %></p>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+  <body>
 
+    <!-- <p id="notice"><%= notice %></p> -->
 
-<button type="button" class="btn btn-primary"><%= link_to 'Ars Humano', ars_path, {:style=>'color:#FFFFFF;', class: "ars_humano_link"}%></button>
-<button type="button" class="btn btn-success"><%= link_to 'cenasa', cenasa_path, {:style=>'color:#FFFFFF;', class: "cenasa_link"}%></button>
-<button type="button" class="btn btn-light"><%= link_to 'No asegurado', naseguro_path, {:style=>'color:#000000;', class: "naseguro_link"}%></button>
+    <section class="index_customer_section">
 
+      <aside class="sidebar">
+        <div class="img_hospital">
+          <%=image_tag("logo_clinica_1.png")%>
+        </div>
+        <ul>
+          <li>
+            <%=image_tag("home_aside.png", class:"humano_logo")%>
+            <a >INICIO</a>
+          </li>
+          <li>
+            <%=image_tag("home_aside.png", class:"humano_logo")%>
+            <a >CLIENTES</a>
+          </li>
+          <li>
+            <%=image_tag("home_aside.png", class:"humano_logo")%>
+            <a >CARTAS</a>
+          </li>
+          <li>
+            <%=image_tag("home_aside.png", class:"humano_logo")%>
+            <a >ESTADISTICAS</a>
+          </li>
+          <li>
+            <%=image_tag("home_aside.png", class:"humano_logo")%>
+            <a >ANTECEDENTES</a>
+          </li>
+        </ul>
+      </aside>
+      <div class="right_side">
+        <div class="new_buttons">
+          <h2>Crear cliente</h2>
 
+          <%= link_to 'Ars Humano',"#new_customer_humano", {:style=>'color:#FFFFFF;', class: "humano", "data-toggle" => "modal"}%>
+          <%= link_to 'CENASA',"#new_customer_cenasa", {:style=>'color:#FFFFFF;', class: "cenasa", "data-toggle" => "modal"}%>
+          <!-- <%= link_to 'cenasa', cenasa_path, {:style=>'color:#FFFFFF;', class: "cenasa"}%> -->
+          <%= link_to 'No asegurado',"#new_customer_Naseguro", {:style=>'color:#000000', class: "noSeguro", "data-toggle" => "modal"}%>
+          <!-- <%= link_to 'No asegurado', naseguro_path, {:style=>'color:#000000;', class: "noSeguro"}%> -->
+        </div>
 
-<h1>Customers</h1>
+        <div class="customer_info_container">
+          <div class="header">
+            <div class="header_content">
+              <h2>Clientes</h2>
+              <div class="search_section">
+                <form class="" action="index.html" method="post">
+                  <%=image_tag("search_icon.png")%>
+                  <input type="text" id="search" placeholder="Buscar cliente">
+                </form>
+              </div>
+            </div>
+          </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>insurance</th>
-      <th>Name</th>
-      <th>Phone</th>
-      <th>Cell</th>
-      <th>Email</th>
-      <th>Affiliate</th>
-      <th>contractNum</th>
-      <th>Img</th>
-      <th>Age</th>
-      <th>Doc</th>
-      <th>Sector</th>
-      <th>City</th>
-      <th>Gender</th>
-      <th>Doc type</th>
-      <th>Autorization number</th>
-      <th>Therapies</th>
-      <th>Adress</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+          <% @customers.each do |customer| %>
+            <%= link_to customer, class: "show_customer" do %>
+            <div class="customer">
+              <div class="sextion_1">
+                <div class="customer_info">
+                  <div class="img">
+                    <%=image_tag("customer.jpg")%>
+                  </div>
+                  <div>
+                    <p class="name"><%= customer.name %></p>
+                    <p class="insurance"><%= customer.insurance %></p>
+                  </div>
 
-  <tbody>
-    <% @customers.each do |customer| %>
-      <tr>
-        <td><%= customer.insurance %></td>
-        <td><%= customer.name %></td>
-        <td><%= customer.phone %></td>
-        <td><%= customer.cell %></td>
-        <td><%= customer.email %></td>
-        <td><%= customer.affiliate_number %></td>
-        <td><%= customer.contractNum %></td>
-        <td><%= customer.img %></td>
-        <td><%= customer.age %></td>
-        <td><%= customer.doc %></td>
-        <td><%= customer.sector %></td>
-        <td><%= customer.city %></td>
-        <td><%= customer.gender %></td>
-        <td><%= customer.doc_type %></td>
-        <td><%= customer.autorization_number %></td>
-        <td><%= customer.therapies %></td>
-        <td><%= customer.adress %></td>
-        <td><%= link_to 'Show', customer %></td>
-        <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+                </div>
+
+                <div class="link_customer">
+                  <%= link_to customer do %>
+                  <%=image_tag("edit_index.png")%>
+                <%end%>
+                <%= link_to customer, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <%=image_tag("delete_cus.png")%>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
     <% end %>
-  </tbody>
-</table>
+  </div>
 
-<br>
+  <div class="borrador_container">
+    <div class="borrador_content">
+      <div class="header">
+        <h2>Borradores</h2>
+      </div>
+
+    </div>
+    <div class="estadisticas">
+      <div class="header">
+        <h2>Estadisticas</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="new_customer_cenasa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="modal_new_customer">
+          <h5 class="modal-title">Crear Cliente</h5>
+
+        <%= render 'form_arsHumano', customer: @customerNew %>
+        <button type="button" class="close close_icon" data-dismiss="modal" aria-label="Close">
+          <%=image_tag("cancel-button.png")%>
+
+        </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="new_customer_Naseguro" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="modal_new_customer">
+          <h5 class="modal-title">Crear Cliente</h5>
+
+        <%= render 'form_naseguro', customer: @customerNew %>
+        <button type="button" class="close close_icon" data-dismiss="modal" aria-label="Close">
+          <%=image_tag("cancel-button.png")%>
+
+        </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="new_customer_humano" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="modal_new_customer">
+          <h5 class="modal-title">Crear Cliente</h5>
+
+        <%= render 'form_arsHumano', customer: @customerNew %>
+        <button type="button" class="close close_icon" data-dismiss="modal" aria-label="Close">
+          <%=image_tag("cancel-button.png")%>
+
+        </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</section>
+
+<script type="text/javascript">
+function reloadEdit() {
+  location.reload();
+}
+</script>
+</body>
+</html>

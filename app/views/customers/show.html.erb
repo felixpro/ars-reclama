@@ -72,86 +72,67 @@
         </div>
       </div>
 
-      <p class="name">
-        <%= best_in_place @customer, :name%>
-      </p>
+<div class="customer_info" id="customer_info">
+  <h1 class="name">
+    <%= best_in_place @customer, :name%>
+  </h1>
 
-      <p>
-        <% if @customer.phone.blank? %>
-        <% else %>
-          <strong>Phone:</strong>
-          <%= @customer.phone %>
-        <% end %>
-      </p>
+  <div class=" space email display_box">
+    <%=image_tag("envelope.png")%>
+      <p><%= best_in_place @customer, :email %></p>
+  </div>
 
-      <p>
-        <strong>insurance</strong>
-        <%= @customer.insurance %>
-      </p>
+  <div class=" space doc display_box">
+    <%=image_tag("doc.png")%>
+      <p><%= best_in_place @customer, :doc %></p>
+  </div>
+  <div class=" space phone display_box">
+    <%=image_tag("cell.png")%>
+      <p><%= best_in_place @customer, :cell %></p>
+  </div>
 
-      <p>
-        <strong>Cell:</strong>
-        <%= @customer.cell %>
-      </p>
-      <p>
-        <strong>contractNum</strong>
-        <%= @customer.contractNum %>
-      </p>
+  <div class=" space phone display_box">
+    <%=image_tag("phone.png")%>
+      <p><%= best_in_place @customer, :phone %></p>
+  </div>
 
-      <p>
-        <strong>Email:</strong>
-        <%= @customer.email %>
-      </p>
+  <div class="space display_box">
+    <strong>No.&nbsp;afiliado:</strong>
+    <p><%= best_in_place @customer, :affiliate_number %></p>
+  </div>
 
-      <p>
-        <strong>Affiliate number:</strong>
-        <%= @customer.affiliate_number %>
-      </p>
 
-      <p>
-        <strong>Img:</strong>
-        <%= @customer.img %>
-      </p>
+  <div class="space display_box">
+    <strong>Edad:</strong>
+    <p><%= best_in_place @customer, :age %></p>
+  </div>
 
-      <p>
-        <strong>Age:</strong>
-        <%= @customer.age %>
-      </p>
+  <div class="space display_box">
+    <strong>Sector:</strong>
+    <p><%= best_in_place @customer, :sector %></p>
+  </div>
 
-      <p>
-        <strong>Doc:</strong>
-        <%= @customer.doc %>
-      </p>
+  <div class="space display_box">
+    <strong>Ciudad:</strong>
+    <p><%= best_in_place @customer, :city %></p>
+  </div>
 
-      <p>
-        <strong>Sector:</strong>
-        <%= @customer.sector %>
-      </p>
+  <div class="space display_box">
+    <strong>Genero:</strong>
+    <p><%= best_in_place @customer, :gender %></p>
+  </div>
 
-      <p>
-        <strong>City:</strong>
-        <%= @customer.city %>
-      </p>
+  <div class="space adress">
+    <strong>Direccion:</strong>
+    <p><%= best_in_place @customer, :adress %></p>
+  </div>
+<button type="button" class="btn-outline-secondary reload_page" name="button" onclick="reloadEdit()">
+    <%=image_tag("reload.png")%> Actualizar Datos
+</button>
+</div>
 
-      <p>
-        <strong>Gender:</strong>
-        <%= @customer.gender %>
-      </p>
 
-      <p>
-        <strong>Doc type:</strong>
-        <%= @customer.doc_type %>
-      </p>
-
-      <p>
-        <strong>Autorization number:</strong>
-        <%= @customer.autorization_number %>
-      </p>
-
-      <p>
-        <strong>Adress:</strong>
-        <%= @customer.adress %>
-      </p>
+<a  class="view_info" >Ver más<%=image_tag("drop_down.png")%></a>
 
       <div class="view_more_buttons">
         <button type="button" name="button" class="btn historial_clinic"><%=image_tag("historial.png")%>
@@ -169,18 +150,42 @@
     <div class="therapies_section">
       <div class="header">
         <p class="text">Terapias disponibles</p>
-        <p class="number">03</p>
+        <p class="number"><%= @therapiequantity %></p>
       </div>
       <div class="historial_therapies_container">
-        <div class="content_historial"></div>
+        <div class="content_historial">
+
+          <div class="container-fluid">
+            <div class="row">
+              <%@therapiequantity = 0;%>
+              <% @reclamation.each do |reclamation| %>
+
+                <% reclamation.therapiesNum.to_i.times do | num |  %>
+                  <% @therapiequantity = @therapiequantity  + num %>
+                <div class="number_container">
+                  <a href="#">
+                    <%=image_tag("th_logo.png")%>
+                  </a>
+                  <p><%= reclamation.creationDate %></p>
+                </div>
+
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+
+
+
+
+        </div>
         <div class="buttons_container_index">
           <% if @customer.insurance === "humano" %>
             <button type="button" class="btn btn-outline-secondary reclamation_btn" data-toggle="modal" data-target="#newReclamationHumano" onclick="dateFuntion()">
-              New Reclamation/h
+              <%=image_tag("add_new.png")%>New Reclamation/h
             </button>
             <% elsif @customer.insurance === "cenasa" %>
               <button type="button" class="btn btn-outline-secondary reclamation_btn" data-toggle="modal" data-target="#newReclamationCenasa" onclick="dateFuntion()">
-                New Reclamation/c
+                <%=image_tag("add_new.png")%>New Reclamation/c
               </button>
             <% else %>
             <% end %>
@@ -201,29 +206,459 @@
           </div>
         </div>
 
-        <div class="reclam_historial_content">
+        <div class="reclam_historial_content reclamation_section">
           <% @reclamation.each do |reclamation| %>
             <% @identifier = @identifier + 1 %>
-            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#historial<%= @identifier %>" onclick="dateFuntion()">
-              historial<%= @identifier %>
-            </button>
+              <button type="button" class="reclam_button" data-toggle="modal" data-target="#historial<%= @identifier %>" onclick="dateFuntion()">
+                <p class="r">R</p>
+                <p class="date_reclam"><%= reclamation.creationDate %></p>
+                <p class="ensure">CENASA</p>
+              </button>
               <div class="modal fade new_reclamation" id="historial<%= @identifier %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-full" role="document">
                   <div class="modal-content" style="height:100%;">
                     <div class="modal-body">
-                      <%= @identifier %>
-                      <%= reclamation.authNum %>
-                      <%= reclamation.doctor %>
-                      <%= reclamation.creationDate %>
+                      <aside class="sidebar">
+                        <div class="img_hospital">
+                          <%=image_tag("logo_clinica_1.png")%>
+                        </div>
+                        <ul>
+                          <li>
+                            <%=image_tag("home_aside.png", class:"humano_logo")%>
+                            <%= link_to 'INICIO', customer_path %>
+                          </li>
+                          <li>
+                            <%=image_tag("home_aside.png", class:"humano_logo")%>
+                            <a >CLIENTES</a>
+                          </li>
+                          <li>
+                            <%=image_tag("home_aside.png", class:"humano_logo")%>
+                            <a >CARTAS</a>
+                          </li>
+                          <li>
+                            <%=image_tag("home_aside.png", class:"humano_logo")%>
+                            <a >ESTADISTICAS</a>
+                          </li>
+                          <li>
+                            <%=image_tag("home_aside.png", class:"humano_logo")%>
+                            <a >ANTECEDENTES</a>
+                          </li>
+                        </ul>
+                      </aside>
+
+                      <div class="reclamation_header">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-lg-6">
+                              <div class="logo">
+                                <%=image_tag("SENASA.jpg", class:"senasa_logo")%>
+                              </div>
+                            </div>
+                            <div class="col-lg-6">
+                              <div class="therapies_form">
+                                <div class="inputs">
+                                  <div class="field authNum_container">
+                                    <p>No. Autorización</p>
+                                    <p class="auth_reclam"><%= reclamation.authNum %></p>
+                                  </div>
+                                  <div class="field therapies_input">
+                                    <p>Terapias</p>
+                                    <p class="number_reclam"><%= reclamation.therapiesNum %></p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <section class="body_reclamation">
+                        <div class="customer_inputs">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-12">
+                                <div class="name">
+                                  <p>Nombre</p>
+                                  <span><%= @customer.name %></span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-lg-9">
+                                <div class="first_row">
+                                  <div>
+                                    <p>Phone</p>
+                                    <span><%= @customer.phone %></span>
+                                  </div>
+
+                                  <div>
+                                    <p>Cell</p>
+                                    <span><%= @customer.cell %></span>
+                                  </div>
+
+                                  <div>
+                                    <p class="doc_type"><%= @customer.doc_type %></p>
+
+                                    <span><%= @customer.doc %></span>
+                                  </div>
+
+                                  <div>
+                                    <p>Email</p>
+                                    <span><%= @customer.email %></span>
+                                  </div>
+
+                                </div>
+                                <div class="second_row">
+
+                                  <div class="field">
+                                    <p>Medico tratante</p>
+                                    <span>Enrique Paredes L.</span>
+                                  </div>
+
+                                  <div>
+                                    <p>Direccion</p>
+                                    <span><%= text_field_tag :mother_name, nil, :value =>  @customer.adress %></span>
+
+
+                                  </div>
+
+                                  <div class="field">
+                                    <p>Ciudad</p>
+                                    <span><%= @customer.city %></span>
+                                  </div>
+
+                                  <div class="field">
+                                    <p>Sector:</p>
+                                    <span><%= @customer.sector %></span>
+                                  </div>
+
+                                </div>
+                                <div class="second_row ">
+
+                                  <div>
+                                    <p>Sexo</p>
+                                    <span><%= @customer.gender %></span>
+                                  </div>
+
+                                  <div>
+                                    <p>Edad</p>
+                                    <span><%= @customer.age %></span>
+                                  </div>
+
+                                  <div>
+                                    <p>affiliate_number</p>
+                                    <span><%= @customer.affiliate_number %></span>
+                                  </div>
+
+                                  <div class="field therapies_input">
+                                    <p>Diagnostico</p>
+                                    <div class="diagnostic_input_histori">
+                                      <%= text_field_tag :mother_name, nil, :value =>  reclamation.diagnostic %>
+
+                                  </div>
+                                  </div>
+
+                                </div>
+                              </div>
+                              <div class="col-lg-2">
+                                <div class="service_container">
+
+                                </div>
+                                <div class="ceationDate">
+                                  <div class="">
+                                    <p>Fecha</p>
+                                    <span><%= reclamation.creationDate %></span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </section>
+
+                      <section class="bottom_reclamation">
+                        <div class="container-fluid content">
+                          <div class="row">
+                            <div class="col-lg-2">
+                              <div class="buttons_container">
+                                <button type="button" class=" btn btn-danger imprimir" onclick="javascript:printerCenasa('cenasa_print')">IMPRIMIR</button>
+                                <button type="button" class=" btn btn-outline-secondary cancelar" data-dismiss="modal" aria-label="Close">CANCELAR</button>
+                              </div>
+                            </div>
+                            <div class="col-lg-10 ">
+                                <div class="backcolor">
+                                  <section id="cenasa_print" class="">
+                                    <div class="cenasa_table">
+                                      <div class="container-fluid">
+                                        <div class="row">
+                                          <div class="col-lg-9 col-md-9 col-xs-9">
+                                            <div class="header_content_1">
+                                              <div class="img">
+                                                <%=image_tag("SENASA.jpg")%>
+                                              </div>
+                                              <div class="description" height="88px">
+                                                <div height="52px">
+                                                  <p class="text_1">SEGURO NACIONAL DE SALUD</p>
+                                                  <p class="text_2">FORMULARIO DE
+                                                    <strong>RECLAMACIONES MÉDICAS</strong>
+                                                  </p>
+                                                </div>
+                                                <div class="text_3_contet">
+                                                  <p class="text_3">
+                                                    <strong>Autorizaciones Médicas:</strong>
+                                                    Tel.: 809-732-3821 | www.arssenasa.gov.do</p>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-3 col-md-3 col-xs-3">
+                                            <div class="date">
+                                              <div class="nombreps padding_right_corretion">
+                                                <p class="title date_day">Fecha:</p>
+                                                <p class="number dateUpdate"><%= reclamation.creationDate %></p>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="row">
+                                          <div class="col-lg-9 col-md-9 col-xs-9">
+                                            <div class="prestador">
+                                              <p>DATOS DEL PRESTADOR</p>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-3 col-md-3 col-xs-3">
+                                            <div class="nombreps code_input ">
+                                              <p class="title pss_code ">Código PSS:</p>
+                                              <p class="number ">816159</p>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="row">
+                                          <div class="col-lg-6 col-md-6 col-xs-6">
+                                            <div class="nombreps padding_right_corretion">
+                                              <p class="title title_1 ">Nombre del PSS:</p>
+                                              <p class="number">Rehabilitación y T.F Dr. Paredes</p>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-3 col-md-3 col-xs-3">
+                                            <div class="nombreps">
+                                              <p class="title title_2">No. de Autorización:</p>
+                                              <p class="number "><%= reclamation.authNum %></p>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-3 col-md-3 col-xs-3">
+                                            <div class="nombreps">
+                                              <p class="title mini_text">NAF:</p>
+                                              <p class="number">
+                                                &nbsp; &nbsp;</p>
+                                            </div>
+                                          </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                          <div class="col-lg-6 col-md-6 col-xs-6">
+                                            <div class="nombreps padding_right_corretion">
+                                              <p class="title title_1">Médico Tratante:</p>
+                                              <p class="number">Dr. Enrique Paredes Lizandro</p>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-3 col-md-3 col-xs-3">
+                                            <div class="nombreps">
+                                              <p class="title Especialidad">Especialidad:</p>
+                                              <p class="number">Fisiatría</p>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-3 col-md-3 col-xs-3">
+                                            <div class="nombreps">
+                                              <p class="title">Teléfono:</p>
+                                              <p class="number">19/78/1997</p>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="row">
+                                          <div class="col-lg-12" style="padding-right:10px;">
+                                            <div class="section_3">
+                                              <p >DATOS DEL AFILIADO</p>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="row row_3">
+                                          <div class="col-lg-4 col-md-4 col-xs-4">
+                                            <div class="nombreps padding_top_correction doctor">
+                                              <p class="title name">Nombre:</p>
+                                              <p class="number"><%= @customer.name %></p>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-1 col-md-1 col-xs-1">
+                                            <div class="nombreps padding_top_correction">
+                                              <p class="title mini_text">Edad:</p>
+                                              <p class="number"><%= @customer.age %></p>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-2 col-md-2 col-xs-2">
+                                            <div class="nombreps padding_top_correction">
+                                              <p class="title mini_text">Sexo:</p>
+                                              <p class="number"><%= @customer.gender %></p>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-2 col-md-2 col-xs-2">
+                                            <div class="nombreps padding_top_correction">
+                                              <p class="title mini_text">NSS:</p>
+                                              <p class="number"><%= @customer.affiliate_number %></p>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-3 col-md-3 col-xs-3">
+                                            <div class="nombreps padding_top_correction">
+                                              <p class="title"><%= @customer.doc_type %>:</p>
+                                              <p class="number"><%= @customer.doc %></p>
+
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="row row_3">
+                                          <div class="col-lg-4 col-md-4 col-xs-4">
+                                            <div class="nombreps doctor">
+                                              <p class="title name">Teléfono:</p>
+                                              <p class="number"><%= @customer.phone %></p>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-4 col-xs-4">
+                                            <div class="nombreps">
+                                              <p class="title small_title">Celular:</p>
+                                              <p class="number"><%= @customer.cell %></p>
+                                            </div>
+                                          </div>
+
+                                          <div class="col-lg-4 col-md-4 col-xs-4">
+                                            <div class="nombreps ">
+                                              <p class="title correo">Correo Electrónico:</p>
+                                              <p class="number"><%= @customer.email %></p>
+                                            </div>
+                                          </div>
+
+                                        </div>
+
+                                        <div class="row row_4">
+                                          <div class="col-lg-6 col-md-6 col-xs-6">
+                                            <div class="nombreps padding_right_corretion doctor">
+                                              <p class="title">Dirección:</p>
+                                              <p class="number"><%= @customer.adress %></p>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-3 col-md-3 col-xs-3">
+                                            <div class="nombreps">
+                                              <p class="title sector pad_correcttion">Sector:</p>
+                                              <p class="number"><%= @customer.sector %></p>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-3 col-md-3 col-xs-3">
+                                            <div class="nombreps">
+                                              <p class="title ">Ciudad:</p>
+                                              <p class="number"><%= @customer.city %></p>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="row">
+                                          <div class="col-lg-12" style="padding-right:10px;">
+                                            <div class="section_4">
+                                              <p>DATOS DEL SERVICIO</p>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="row row_5">
+                                          <div class="col-lg-6 col-md-6 col-xs-6">
+                                            <div class="nombreps padding_top_correction">
+                                              <p class="title service">Tipo de Servicio:</p>
+                                              <p class="number">
+                                                &nbsp; &nbsp;</p>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-6 col-md-6 col-xs-6">
+                                            <div class="nombreps padding_top_correction">
+                                              <p class="title date_servicio">Fecha del Servicio:</p>
+                                              <p class="number dateUpdate"><%= reclamation.creationDate %></p>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="row row_6">
+                                          <div class="col-lg-12 col-md-12 col-xs-12">
+                                            <div class="nombreps padding_top_correction">
+                                              <p class="title diagnostico">Diagnóstico:</p>
+                                              <p class="number" ><%= reclamation.diagnostic %></p>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="row row_7">
+                                          <div class="col-lg-12 col-md-12 col-xs-12">
+                                            <table class="sevice_print_table">
+                                              <thead>
+                                                <tr>
+                                                  <td class="detalles">Detalles del Sericio</td>
+                                                  <td class="valor_total">Valor Total</td>
+                                                  <td class="procede">No procede</td>
+                                                  <td class="valor_recla">Valor Reclamado</td>
+                                                  <td class="copago">Copado</td>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                <% @service.each do |service| %>
+                                                  <tr>
+                                                    <td style="padding-left:20px;"><%= best_in_place(service, :process, url: customer_service_path(service.customer, service))%></td>
+                                                    <td style="text-align:center;"><%= best_in_place(service, :reclaimed, url: customer_service_path(service.customer, service))%></td>
+                                                    <td style="text-align:center;"></td>
+                                                    <td style="text-align:center;"><%= best_in_place(service, :authorized, url: customer_service_path(service.customer, service))%></td>
+                                                    <td style="text-align:center;"><%= best_in_place(service, :difference, url: customer_service_path(service.customer, service))%></td>
+                                                  </tr>
+                                                <% end %>
+                                              </tbody>
+                                            </table>
+                                          </div>
+                                        </div>
+                                        <div class="row row_8">
+                                          <div class="col-lg-5 col-md-5 col-xs-5">
+                                            <div class="firma_content space_left">
+                                              <p class="line"></p>
+                                              <p class="firma_title">Firma y Sello del Reclamante</p>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-2 col-md-2 col-xs-2"></div>
+                                          <div class="col-lg-5 col-md-5 col-xs-5">
+                                            <div class="firma_content space_right">
+                                              <p class="line"></p>
+                                              <p class="firma_title">Firma del Afiliado</p>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                      </div>
+                                    </div>
+
+                                  </section>
+                                </div>
+                              </div>
+                        </div>
+                      </div>
+                      </section>
+
+
                     </div>
+
                   </div>
                 </div>
               </div>
               <!-- <%= link_to customer_reclamation_path(reclamation.customer, reclamation), method: :delete, data: { confirm: 'Are you sure?' } do %> <button type="button" name="button">DELETE</button> <% end %> -->
             <% end %>
-        </div>
-
-
+          </div>
         </div>
       </div>
 
@@ -265,6 +700,8 @@
               </aside>
 
               <%= form_for([@customer, @customer.reclamation.build], remote: true) do |f| %>
+              <% f.number_field :ensureReclam, :value => @customer.insurance %>
+
               <div class="reclamation_header">
                 <div class="container">
                   <div class="row">
@@ -280,9 +717,9 @@
                             <p>No. Autorización</p>
                             <%= f.number_field :authNum, class:"authNum" , id: "authNum", onkeyup: "myFunction()" %>
                           </div>
-                          <div class="field therapies_input">
+                          <div class="field therapies_input quantity_therapies">
                             <p>Terapias</p>
-                            <%= f.number_field :therapiesNum %>
+                            <%= f.number_field :therapiesNum%>
                           </div>
                         </div>
                       </div>
@@ -335,7 +772,9 @@
 
                           <div>
                             <p>Direccion</p>
-                            <span><%= @customer.adress %></span>
+                            <span><%= text_field_tag :mother_name, nil, :value =>  @customer.adress %>
+
+                          </span>
                           </div>
 
                           <div class="field">
@@ -800,12 +1239,7 @@
   <div class="modal new_modal fade" id="newService" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+
         <div class="modal-body">
           <%= render 'new_service' %>
         </div>
@@ -849,6 +1283,8 @@
           </aside>
 
           <%= form_for([@customer, @customer.reclamation.build], remote: true) do |f| %>
+          <% f.number_field :ensureReclam, :value => @customer.insurance %>
+
           <div class="reclamation_header">
             <div class="container">
               <div class="row">

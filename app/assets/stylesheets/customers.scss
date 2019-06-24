@@ -176,21 +176,29 @@ aside {
 }
 
 .reclamation_section {
+  .modal-body {
+    overflow: scroll;
+  }
+
+  .modal {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .modal-full {
+    min-width: 100%;
+    height: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .modal.show {
+    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
   .new_reclamation {
-    .modal-body {
-      overflow: scroll;
-    }
-
-    .modal-full {
-      min-width: 100%;
-      height: 100%;
-      margin: 0!important !important;
-    }
-
-    .modal.show {
-      padding: 0;
-    }
-
     .reclamation_header {
       padding-top: 36px;
       padding-left: 60px;
@@ -216,6 +224,7 @@ aside {
           float: left;
           display: flex;
           align-items: center;
+          justify-content: center;
 
           p {
             margin: 0;
@@ -237,6 +246,19 @@ aside {
             opacity: 0.68;
             border-radius: 8px;
             border: solid 1px #bbbade;
+          }
+        }
+
+        .quantity_therapies {
+          input {
+            font-family: Raleway;
+            font-size: 35px;
+            font-weight: bold;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #17cb9a;
           }
         }
 
@@ -541,13 +563,140 @@ aside {
     width: 27%;
     padding: 36px 100px;
 
+    button.reload_page {
+      box-shadow: none;
+      outline: none;
+      text-decoration: none;
+      background: transparent;
+      font-family: Raleway;
+      font-size: 14px;
+      font-weight: 600;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #6e6d8c;
+      width: 180px;
+      height: 35px;
+      border-radius: 5px;
+
+      img {
+        width: 19px;
+        margin-right: 10px;
+      }
+
+      &:active,
+      &:focus,
+      &:hover,
+      &:visited {
+        box-shadow: none;
+        outline: none;
+        text-decoration: none;
+        background: transparent;
+      }
+    }
+
+    .customer_info {
+      overflow-y: hidden;
+      height: 220px;
+      transition: 2s;
+
+      &:hover {
+        height: 560px;
+      }
+    }
+
+    a.view_info {
+      font-family: Raleway;
+      font-size: 12px;
+      font-weight: 600;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #50aa91;
+      box-shadow: none;
+      outline: none;
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      position: relative;
+      top: 25px;
+
+      &:active,
+      &:focus,
+      &:hover,
+      &:visited {
+        box-shadow: none;
+        outline: none;
+        text-decoration: none;
+        background: transparent;
+        border: none;
+      }
+
+      img {
+        width: 10px;
+        margin-left: 13px;
+      }
+    }
+
     .logo_show {
       padding-bottom: 84px;
     }
 
-    p.name {}
+    .adress {
+      strong {
+        float: left;
+      }
+    }
+
+    .space {
+      padding-top: 20px;
+
+      strong {
+        font-family: Raleway;
+        margin-right: 10px;
+      }
+    }
+
+    .display_box {
+      display: flex;
+      align-items: center;
+
+      input {
+        background: none;
+        width: 100%;
+      }
+
+      img {
+        margin-right: 24px;
+      }
+
+      p {
+        margin: 0 0 3px;
+      }
+    }
+
+    h1.name {
+      font-family: Raleway;
+      font-size: 35px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #1e2469;
+
+      input {
+        width: 100%;
+        background: transparent;
+      }
+    }
 
     .view_more_buttons {
+      position: absolute;
+      bottom: 40px;
+
       button.historial_clinic {
         background-image: linear-gradient(285deg, #7f00ff, #e100ff);
         color: #fff;
@@ -613,8 +762,7 @@ aside {
         display: flex;
         justify-content: space-between;
         border-bottom: solid 1px #979797;
-        padding: 28px 58px;
-        padding-right: 90px !important;
+        padding: 28px 90px 28px 58px !important;
 
         p {
           font-family: Raleway;
@@ -643,10 +791,51 @@ aside {
           width: 100%;
           height: 300px;
           overflow-y: scroll;
+          padding-left: 58px;
+
+          .number_container {
+            margin-right: 45px;
+            padding-top: 30px;
+
+            a {
+              width: 73px;
+              height: 66px;
+              opacity: 0.68;
+              border-radius: 8px;
+              border: solid 2px #bbbade;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-decoration: none;
+              box-shadow: none;
+
+              img {
+                background: #e2e2ef;
+              }
+            }
+          }
+
+          p {
+            opacity: 0.48;
+            font-family: Raleway;
+            font-size: 12px;
+            font-weight: 500;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #000000;
+            position: relative;
+            left: 5px;
+            top: 8px;
+          }
         }
 
         .buttons_container_index {
           padding-left: 58px;
+          display: flex;
+          align-items: center;
+          padding-top: 20px;
 
           button.reclamation_btn {
             width: 277px;
@@ -659,6 +848,16 @@ aside {
             line-height: normal;
             letter-spacing: normal;
             color: #6e6d8c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            float: left;
+
+            img {
+              width: 22px;
+              height: 22px;
+              margin-right: 17px;
+            }
 
             &:active,
             &:focus,
@@ -685,10 +884,12 @@ aside {
             text-decoration: none;
             background: none;
             margin-left: 25px;
+
             img {
               width: 10px;
               margin-left: 10px;
             }
+
             &:active,
             &:focus,
             &:hover,
@@ -702,13 +903,14 @@ aside {
         }
       }
     }
-    .index_reclamation_section {
 
+    .index_reclamation_section {
       .header {
         padding: 21px 90px 21px 58px;
         border-bottom: solid 1px #bbbade;
         clear: both;
         height: 65px;
+
         p.title {
           font-size: 19px;
           font-weight: bold;
@@ -720,14 +922,17 @@ aside {
           float: left;
         }
       }
+
       .historial_links {
         float: right;
+
         a {
           padding-bottom: 10px;
           border-bottom: solid 3px transparent;
           position: relative;
           top: 11px;
           transition-duration: 1s;
+
           &:hover {
             border-bottom: solid 3px #17cb9a;
             background: none;
@@ -735,27 +940,519 @@ aside {
             text-decoration: none;
             box-shadow: none;
           }
-          &:visited,
+
           &:active,
-          &:focus {
+          &:focus,
+          &:visited {
             background: none;
             outline: none;
             text-decoration: none;
             box-shadow: none;
           }
-
         }
+
         a.historial_link {
           margin-right: 29px;
         }
       }
+
       .reclam_historial_content {
         padding-top: 34px;
         padding-right: 90px;
         padding-left: 58px;
+
+        button.reclam_button {
+          background: none;
+          outline: none;
+          text-decoration: none;
+          box-shadow: none;
+          border: none;
+          margin-right: 45px;
+          cursor: pointer;
+
+          &:active,
+          &:focus,
+          &:hover,
+          &:visited {
+            border: none;
+            background: none;
+            outline: none;
+            text-decoration: none;
+            box-shadow: none;
+          }
+        }
+
+        p.r {
+          width: 73px;
+          height: 66px;
+          border-radius: 8px;
+          border: solid 2px #bbbade;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-family: Raleway;
+          font-size: 35px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          color: #bbbade;
+        }
+
+        p.date_reclam {
+          margin-top: 0;
+          font-family: Raleway;
+          font-size: 12px;
+          font-weight: 500;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          color: #bbbade;
+          margin-bottom: 6px;
+        }
+
+        p.ensure {
+          font-family: Raleway;
+          font-size: 12px;
+          font-weight: 500;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          color: #bbbade;
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}
+
+#nilu {
+  color: red;
+}
+
+.reclam_historial_content {
+  .diagnostic_input_histori {
+    input {
+      color: #000;
+      border-bottom: solid 1px #bbbade!important;
+      padding-bottom: 9px;
+
+      &::placeholder {
+        color: #000;
+      }
+    }
+  }
+
+  .modal {
+    padding-right: 0 !important;
+  }
+
+  .modal-dialog {
+    min-width: 100%;
+    height: 100%;
+    margin: 0 !important;
+
+    p.auth_reclam {
+      width: 92px;
+      height: 49px;
+      opacity: 0.68;
+      border-radius: 8px;
+      border: solid 1px #bbbade;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    p.number_reclam {
+      margin-left: 13px;
+      font-family: Raleway;
+      font-size: 35px !important;
+      font-weight: bold !important;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #17cb9a !important;
+      margin-left: 10px !important;
+      border-bottom: solid 1px #bbbade;
+      padding-bottom: 10px;
+    }
+  }
+}
+/// End reclam_historial_content
+.index_customer_section {
+  aside {}
+
+  .right_side {
+    width: 84.5%;
+    float: right;
+    background: #edf3f1;
+    height: 100%;
+    position: absolute;
+    right: 0;
+
+    .new_buttons {
+      background: #f7f7fb;
+      width: 100%;
+      padding: 49px 0 60px 80px;
+
+      h2 {
+        font-family: Raleway;
+        font-size: 30px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #3f48ad;
+        margin-bottom: 30px;
       }
 
+      .humano {
+        background-color: #02bbec;
+      }
 
+      .cenasa {
+        background-color: #a9cf45;
+      }
+
+      .noSeguro {
+        border: solid 2px #979797;
+        outline: none;
+        text-decoration: none;
+        box-shadow: none;
+        background: none;
+
+        &:active,
+        &:focus,
+        &:hover,
+        &:visited {
+          outline: none;
+          text-decoration: none;
+          box-shadow: none;
+          background: none;
+        }
+      }
+
+      a {
+        padding: 18px 100px;
+        border-radius: 8px;
+        margin-right: 33px;
+        font-family: Raleway;
+        font-size: 16px;
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+        box-shadow: none;
+        text-transform: uppercase;
+        &:active,
+        &:focus,
+        &:hover,
+        &:visited {
+          outline: none;
+          text-decoration: none;
+          box-shadow: none;
+        }
+      }
+    }
+
+    .customer_info_container {
+      background: #fff;
+      width: 493px;
+      border-radius: 8px;
+      margin-top: 48px;
+      margin-left: 80px;
+      height: 70%;
+      float: left;
+      .header {
+        .header_content {
+          display: flex;
+          justify-content: space-between;
+        }
+        padding: 28px 15px 19px 26px;
+        border-bottom: solid 1px #979797;
+        h2 {
+          font-family: Raleway;
+          font-size: 19px;
+          font-weight: bold;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          color: #3f48ad;
+        }
+        .search_section {
+
+          img {
+            width: 19px;
+            margin-right: 14px;
+          }
+          input {
+            width: 110px;
+            border: none;
+            font-family: Raleway;
+            font-size: 16px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #000000;
+          }
+        }
+      }
+    }
+
+    .borrador_container {
+      height: 70%;
+      width:700px;
+      float: right;
+      margin-right: 100px;
+      margin-top: 48px;
+      border-radius: 8px;
+      .borrador_content {
+        width: 100%;
+        height: 47%;
+        background: #fff;
+        border-radius: 8px;
+        .header {
+          padding: 28px 0px 19px 32px;
+          border-bottom: solid 1px #979797;
+
+          h2 {
+            font-family: Raleway;
+            font-size: 19px;
+            font-weight: bold;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #3f48ad;
+          }
+        }
+      }
+      .estadisticas {
+        width: 100%;
+        height: 47%;
+        background: #fff;
+        position: relative;
+        bottom: 0;
+        margin-top: 6%;
+        border-radius: 8px;
+        .header {
+          padding: 28px 0px 19px 32px;
+          border-bottom: solid 1px #979797;
+          h2 {
+            font-family: Raleway;
+            font-size: 19px;
+            font-weight: bold;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #3f48ad;
+          }
+        }
+      }
+    }
+  }
+
+  a.show_customer {
+    background: none;
+    outline: none;
+    text-decoration: none;
+    box-shadow: none;
+    &:active,
+    &:focus,
+    &:hover,
+    &:visited {
+      outline: none;
+      text-decoration: none;
+      box-shadow: none;
+      background: none;
+
+    }
+  }
+  .customer {
+    padding: 22px 32px;
+    .sextion_1 {
+      display: flex;
+      justify-content: space-between;
+
+      .customer_info {
+        display: flex;
+      }
+      .img {
+        img {
+          border-radius: 50%;
+          margin-right: 26px;
+        }
+      }
+      p {
+        margin: 0;
+      }
+      p.name {
+        font-family: Raleway;
+        font-size: 16px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #3f48ad;
+      }
+      p.insurance {
+        opacity: 0.59;
+        font-family: Raleway;
+        font-size: 14px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #000000;
+      }
+      .link_customer {
+        a {
+          outline: none;
+          text-decoration: none;
+          box-shadow: none;
+          background: none;
+          margin-left: 16px;
+          &:active,
+          &:focus,
+          &:hover,
+          &:visited {
+            outline: none;
+            text-decoration: none;
+            box-shadow: none;
+            background: none;
+
+          }
+        }
+      }
+    }
+  }
+  #new_customer_cenasa,
+   #new_customer_Naseguro,
+   #new_customer_humano{
+    .modal-dialog {
+      min-width: 80%;
+      background: transparent;
+    }
+    .modal {
+      width: 50%;
+    }
+    .modal-content {
+      background: transparent;
+      border: none;
+    }
+    .close_icon {
+      position: absolute;
+      right: -25px;
+      top: -30px;
+    }
+  }
+
+  .modal_new_customer {
+    background-color: #f7f7fb;
+    padding: 49px 200px;
+    border-radius: 8px;
+    h5.modal-title {
+      padding-bottom: 58px;
+      font-family: Raleway;
+      font-size: 35px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.66;
+      letter-spacing: normal;
+      text-align: center;
+      color: #1e2469;
+    }
+  }
+
+}
+
+//// nend index_customer_section
+
+.humano_form_container {
+  .buttons {
+    padding-top: 88px;
+    display: flex;
+    justify-content: center;
+    .save_customer {
+      width: 202px;
+      height: 49px;
+      border-radius: 8px;
+      box-shadow: 0 19px 28px 0 rgba(200, 0, 255, 0.19);
+      background-image: linear-gradient(288deg, #7f00ff, #e100ff);
+      color: #fff;
+      margin-right: 28px;
+      border: none;
+
+      &:active,
+      &:focus,
+      &:hover,
+      &:visited {
+        border: none;
+        outline: none;
+        text-decoration: none;
+        border-radius: 8px;
+        box-shadow: 0 19px 28px 0 rgba(200, 0, 255, 0.19);
+        background-image: linear-gradient(288deg, #7f00ff, #e100ff);
+      }
+    }
+    button.close_new_modal {
+      width: 202px;
+      height: 49px;
+      opacity: 0.6;
+      border-radius: 8px;
+      border: solid 2px #bbbade;
+      background: transparent;
+      &:active,
+      &:focus,
+      &:hover,
+      &:visited {
+        outline: none;
+        text-decoration: none;
+        background: none;
+        box-shadow: none;
+      }
+    }
+  }
+
+
+  .section {
+
+    .content {
+      [type="radio"] {
+        margin-right: 6px;
+      }
+      label {
+        margin-right: 12px;
+      }
+      padding-top: 35px;
+      p {
+        margin: 0;
+      }
+      input {
+        border: none;
+        box-shadow: none;
+        background: none;
+
+      }
+      .input {
+        border-bottom: solid 1px #bbbade;
+        width: 178px;
+      }
     }
   }
 }

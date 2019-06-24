@@ -16,6 +16,8 @@ class CustomersController < ApplicationController
   # GET /customers.json
   def index
     @customers = Customer.all
+    @customerNew = Customer.new
+
   end
 
   # GET /customers/1
@@ -25,6 +27,13 @@ class CustomersController < ApplicationController
     @service = @customer.service.order('created_at DESC').limit(4)
     @reclamation = @customer.reclamation.order('created_at DESC');
     @identifier = 0;
+    @therapiequantity = 0;
+
+     @reclamation.each do |reclamation|
+      reclamation.therapiesNum.to_i.times do | num |
+        @therapiequantity = @therapiequantity + 1;
+      end
+     end
 
   end
 
@@ -64,7 +73,7 @@ class CustomersController < ApplicationController
          format.html { redirect_to customer_url, notice: 'Order updated.' }
          format.json { head :no_content }
        else
-         format.html { render action: 'edit' }
+         format.html { redirect_to @customer }
          format.json { render json: @customer.errors, status: :unprocessable_entity }
       end
     end
