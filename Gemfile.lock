@@ -77,6 +77,8 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
+    draftsman (0.7.2)
+      activerecord (>= 4.0, < 5.3)
     erubi (1.8.0)
     execjs (2.7.0)
     ffi (1.10.0)
@@ -207,6 +209,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
+  draftsman (~> 0.7.1)
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
@@ -226,4 +229,4 @@ RUBY VERSION
    ruby 2.5.1p57
 
 BUNDLED WITH
-   1.16.2
+   1.16.6

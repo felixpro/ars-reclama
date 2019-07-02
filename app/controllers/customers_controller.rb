@@ -15,8 +15,44 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
-    @customers = Customer.all
+    @customers = if params[:term]
+         Customer.where('name LIKE ?', "%#{params[:term]}%")
+       else
+         Customer.all
+       end
     @customerNew = Customer.new
+    @reclamations = Reclamation.all
+    ######### month
+    @monthCustomer      = @customers.where('created_at >= ?', 1.month.ago).count
+    @monthreclamations  = @reclamations.where('created_at >= ?', 1.month.ago).count
+    @reclam_month       = @reclamations.where('created_at >= ?', 1.month.ago)
+    @month_therapies    = 0;
+    @reclam_month .each do |reclamation|
+      reclamation.therapiesNum.to_i.times do | num |
+        @month_therapies  = @month_therapies  + 1;
+      end
+    end
+
+    ######### week
+    @weekCustomer      = @customers.where('created_at >= ?', 1.week.ago).count
+    @weekreclamations  = @reclamations.where('created_at >= ?', 1.week.ago).count
+    @reclam_week       = @reclamations.where('created_at >= ?', 1.week.ago)
+    @week_therapies    = 0;
+    @reclam_week.each do |reclamation|
+      reclamation.therapiesNum.to_i.times do | num |
+        @week_therapies = @week_therapies + 1;
+      end
+    end
+    ######### year
+    @yearCustomer      = @customers.where('created_at >= ?', 1.year.ago).count
+    @yearreclamations  = @reclamations.where('created_at >= ?', 1.year.ago).count
+    @reclam_year      = @reclamations.where('created_at >= ?', 1.year.ago)
+    @year_therapies    = 0;
+    @reclam_year.each do |reclamation|
+      reclamation.therapiesNum.to_i.times do | num |
+        @year_therapies = @year_therapies + 1;
+      end
+    end
 
   end
 
@@ -52,6 +88,8 @@ class CustomersController < ApplicationController
   # POST /customers.json
   def create
     @customer = Customer.new(customer_params)
+    @customer.image.attach(params[:customer][:image])
+
 
     respond_to do |format|
       if @customer.save
@@ -78,6 +116,8 @@ class CustomersController < ApplicationController
       end
     end
   end
+
+
   # DELETE /customers/1
   # DELETE /customers/1.json
   def destroy
@@ -96,6 +136,6 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:name, :phone, :cell, :email, :affiliate_number, :img, :age, :doc, :sector, :city, :gender, :doc_type, :autorization_number, :therapies, :adress, :insurance, :contractNum, :diagnostic)
+      params.permit(:name, :phone, :cell, :email, :affiliate_number, :img, :age, :doc, :sector, :city, :gender, :doc_type, :autorization_number, :therapies, :adress, :insurance, :contractNum, :diagnostic, :term)
     end
 end

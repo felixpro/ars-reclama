@@ -11,8 +11,10 @@
   </div>
 <% end %>
 
-<% form.label :insurance %>
-  <% form.text_field :insurance, value: 'cenasa' %>
+<div style="display:none;">
+  <%= form.text_field :insurance, :value => 'cenasa' %>
+
+</div>
 
     <div class="humano_form_container">
 
@@ -101,8 +103,19 @@
               </div>
             </div>
           </div>
+
+          <div class="row third_row">
+            <div class="col-lg-3 col-md-3 col-sm-3">
+              <%= form.file_field :image, :value => "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" %>
+            </div>
+          </div>
+
+
         </div>
       </div>
+
+
+
 
       <div class="buttons">
         <%= form.submit :GUARDAR, class: "save_customer" %>

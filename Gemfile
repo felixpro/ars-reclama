@@ -63,3 +63,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'jquery-rails'
 gem 'best_in_place', '~> 3.0.1'
+
+gem 'draftsman', '~> 0.7.1'

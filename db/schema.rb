@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_24_140831) do
+ActiveRecord::Schema.define(version: 2019_06_30_193908) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -53,6 +53,26 @@ ActiveRecord::Schema.define(version: 2019_06_24_140831) do
     t.datetime "updated_at", null: false
     t.string "insurance"
     t.integer "contractNum"
+    t.integer "draft_id"
+    t.datetime "published_at"
+    t.datetime "trashed_at"
+  end
+
+  create_table "drafts", force: :cascade do |t|
+    t.string "item_type", null: false
+    t.integer "item_id", null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.text "object"
+    t.text "previous_draft"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_drafts_on_created_at"
+    t.index ["event"], name: "index_drafts_on_event"
+    t.index ["item_id"], name: "index_drafts_on_item_id"
+    t.index ["item_type"], name: "index_drafts_on_item_type"
+    t.index ["updated_at"], name: "index_drafts_on_updated_at"
+    t.index ["whodunnit"], name: "index_drafts_on_whodunnit"
   end
 
   create_table "reclamations", force: :cascade do |t|

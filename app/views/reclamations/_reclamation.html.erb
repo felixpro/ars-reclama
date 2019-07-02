@@ -1,0 +1,9 @@
+
+
+
+        <%= reclamation.therapiesNum %>
+        <%= link_to customer_reclamation_path(reclamation.customer, reclamation), method: :delete, data: { confirm: 'Are you sure?' } do %>
+        <%=image_tag("edit_delete.png")%>
+
+        <% end %>
+        <br>

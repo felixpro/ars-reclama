@@ -18,6 +18,9 @@ $smallfont: 10px;
 .backcolor {
   background: #fff;
   padding-top: 12px;
+    @media (max-width: 1640px){
+      width: 100%;
+  }
 }
 .cenasa_table {
   padding-bottom: 30px;
