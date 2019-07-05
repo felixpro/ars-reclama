@@ -11,7 +11,7 @@
   </head>
   <body>
 
-    <!-- <p id="notice"><%= notice %></p> -->
+    <p id="notice"><%= notice %></p>
 
     <section class="index_customer_section">
       <div class="hide_navbar ">
@@ -53,14 +53,7 @@
             <%=image_tag("doc.png", class:"humano_logo")%>
             <a >CARTAS</a>
           </li>
-          <li>
-            <%=image_tag("nav_img_1.png", class:"humano_logo")%>
-            <a >ESTADISTICAS</a>
-          </li>
-          <li>
-            <%=image_tag("nav_img_1.png", class:"humano_logo")%>
-            <a >ANTECEDENTES</a>
-          </li>
+
         </ul>
       </aside>
       <div class="right_side">
@@ -100,12 +93,13 @@
                     <div class="search_section">
                       <%= form_tag(customers_path, method: :get) do %>
                       <%= image_submit_tag("search_icon.png", class: "submit_image ")%>
-                        <%= text_field_tag :term, params[:term], placeholder: "Buscar cliente" %>
-                      <% end %>
-    
-                    </div>
+                      <%= text_field_tag :term, params[:term], placeholder: "Buscar cliente" %>
+                    <% end %>
+
                   </div>
                 </div>
+              </div>
+              <div class="customer_body">
 
                 <% @customers.each do |customer| %>
                   <%= link_to customer, class: "show_customer" do %>
@@ -141,171 +135,170 @@
             <% end %>
           <% end %>
         </div>
-
       </div>
 
-      <div class="col-lg-6">
-        <div class="borrador_container">
-          <div class="borrador_content">
-            <div class="header">
-              <h2>Borradores</h2>
-            </div>
+    </div>
 
-            <div>
+    <div class="col-lg-6">
+      <div class="borrador_container">
+        <div class="borrador_content">
+          <div class="header">
+            <h2>Borradores</h2>
+          </div>
 
-              <%= render 'reclamations', reclamation: @reclamations %>
+          <div class="index_draft">
 
-            </div>
+            <%= render 'reclamations', reclamation: @reclamations %>
 
           </div>
-          <div class="estadisticas">
-            <div class="tabbable">
+
+        </div>
+        <div class="estadisticas">
+          <div class="tabbable">
             <div class="header">
               <h2>Estadisticas</h2>
-                <ul class="nav tab-group">
-                  <li class="active">
-                    <a href="#about" data-toggle="tab" class="active">7D</a>
-                  </li>
-                  <li>
-                    <a href="#social" data-toggle="tab">1M</a>
-                  </li>
-                  <li>
-                    <a href="#location" data-toggle="tab">1A</a>
-                  </li>
-                </ul>
-                </div>
-                <div class="tab-content">
-                  <div class="tab-pane active" id="about">
-                      <div class="content week">
-                        <div class="customer_week">
-                          <%= image_tag('interval.png')%>
-                          <h5>Clientes</h5>
-                          <p><%= @weekCustomer %></p>
-                        </div>
-
-                        <div class="reclamations_week">
-                          <%= image_tag('interval.png')%>
-                          <h5>Reclamaciones</h5>
-                          <p><%= @weekreclamations%></p>
-                        </div>
-
-                        <div class="therapies_week">
-                          <%= image_tag('interval.png')%>
-                          <h5>Terapias</h5>
-                          <p><%= @week_therapies %></p>
-                        </div>
-                      </div>
+              <ul class="nav tab-group">
+                <li class="active">
+                  <a href="#about" data-toggle="tab" class="active">7D</a>
+                </li>
+                <li>
+                  <a href="#social" data-toggle="tab">1M</a>
+                </li>
+                <li>
+                  <a href="#location" data-toggle="tab">1A</a>
+                </li>
+              </ul>
+            </div>
+            <div class="tab-content">
+              <div class="tab-pane active" id="about">
+                <div class="content week">
+                  <div class="customer_week">
+                    <%= image_tag('customer.png')%>
+                    <h5>Clientes</h5>
+                    <p><%= @weekCustomer %></p>
                   </div>
-                  <div class="tab-pane" id="social">
-                    <div class="content month">
-                      <div class="customer_week">
-                        <%= image_tag('interval.png')%>
-                        <h5>Clientes</h5>
-                        <p><%= @monthCustomer %></p>
-                      </div>
 
-                      <div class="reclamations_week">
-                        <%= image_tag('interval.png')%>
-                        <h5>Reclamaciones</h5>
-                        <p><%= @monthreclamations%></p>
-                      </div>
-
-                      <div class="therapies_week">
-                        <%= image_tag('interval.png')%>
-                        <h5>Terapias</h5>
-                        <p><%= @month_therapies %></p>
-                      </div>
-                    </div>
+                  <div class="reclamations_week">
+                    <%= image_tag('therapies.png')%>
+                    <h5>Reclamaciones</h5>
+                    <p><%= @weekreclamations%></p>
                   </div>
-                  <div class="tab-pane" id="location">
-                    <div class="content year">
-                      <div class="customer_week">
-                        <%= image_tag('interval.png')%>
-                        <h5>Clientes</h5>
-                        <p><%= @yearCustomer %></p>
-                      </div>
 
-                      <div class="reclamations_week">
-                        <%= image_tag('interval.png')%>
-                        <h5>Reclamaciones</h5>
-                        <p><%= @yearreclamations%></p>
-                      </div>
-
-                      <div class="therapies_week">
-                        <%= image_tag('interval.png')%>
-                        <h5>Terapias</h5>
-                        <p><%= @year_therapies %></p>
-                      </div>
-                    </div>
+                  <div class="therapies_week">
+                    <%= image_tag('reclamations.png')%>
+                    <h5>Terapias</h5>
+                    <p><%= @week_therapies %></p>
                   </div>
                 </div>
               </div>
+              <div class="tab-pane" id="social">
+                <div class="content month">
+                  <div class="customer_week">
+                    <%= image_tag('interval.png')%>
+                    <h5>Clientes</h5>
+                    <p><%= @monthCustomer %></p>
+                  </div>
 
+                  <div class="reclamations_week">
+                    <%= image_tag('interval.png')%>
+                    <h5>Reclamaciones</h5>
+                    <p><%= @monthreclamations%></p>
+                  </div>
 
+                  <div class="therapies_week">
+                    <%= image_tag('interval.png')%>
+                    <h5>Terapias</h5>
+                    <p><%= @month_therapies %></p>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="location">
+                <div class="content year">
+                  <div class="customer_week">
+                    <%= image_tag('interval.png')%>
+                    <h5>Clientes</h5>
+                    <p><%= @yearCustomer %></p>
+                  </div>
 
+                  <div class="reclamations_week">
+                    <%= image_tag('interval.png')%>
+                    <h5>Reclamaciones</h5>
+                    <p><%= @yearreclamations%></p>
+                  </div>
+
+                  <div class="therapies_week">
+                    <%= image_tag('interval.png')%>
+                    <h5>Terapias</h5>
+                    <p><%= @year_therapies %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>
 
 </div>
 
 <div class="modal fade" id="new_customer_cenasa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 <div class="modal-dialog  modal-dialog-centered" role="document">
-  <div class="modal-content">
-    <div class="modal-body">
-      <div class="modal_new_customer">
-        <h5 class="modal-title">Crear Cliente</h5>
+<div class="modal-content">
+  <div class="modal-body">
+    <div class="modal_new_customer">
+      <h5 class="modal-title">Crear Cliente</h5>
 
-        <%= render 'form_cenasa', customer: @customerNew %>
-        <button type="button" class="close close_icon" data-dismiss="modal" aria-label="Close">
-          <%=image_tag("cancel-button.png")%>
+      <%= render 'form_cenasa', customer: @customerNew %>
+      <button type="button" class="close close_icon" data-dismiss="modal" aria-label="Close">
+        <%=image_tag("cancel-button.png")%>
 
-        </button>
-      </div>
-
+      </button>
     </div>
+
   </div>
+</div>
 </div>
 </div>
 
 <div class="modal fade" id="new_customer_Naseguro" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 <div class="modal-dialog  modal-dialog-centered" role="document">
-  <div class="modal-content">
-    <div class="modal-body">
-      <div class="modal_new_customer">
-        <h5 class="modal-title">Crear Cliente</h5>
+<div class="modal-content">
+  <div class="modal-body">
+    <div class="modal_new_customer">
+      <h5 class="modal-title">Crear Cliente</h5>
 
-        <%= render 'form_naseguro', customer: @customerNew %>
-        <button type="button" class="close close_icon" data-dismiss="modal" aria-label="Close">
-          <%=image_tag("cancel-button.png")%>
+      <%= render 'form_naseguro', customer: @customerNew %>
+      <button type="button" class="close close_icon" data-dismiss="modal" aria-label="Close">
+        <%=image_tag("cancel-button.png")%>
 
-        </button>
-      </div>
-
+      </button>
     </div>
+
   </div>
+</div>
 </div>
 </div>
 
 <div class="modal fade" id="new_customer_humano" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 <div class="modal-dialog  modal-dialog-centered" role="document">
-  <div class="modal-content">
-    <div class="modal-body">
-      <div class="modal_new_customer">
-        <h5 class="modal-title">Crear Cliente</h5>
+<div class="modal-content">
+  <div class="modal-body">
+    <div class="modal_new_customer">
+      <h5 class="modal-title">Crear Cliente</h5>
 
-        <%= render 'form_arsHumano', customer: @customerNew %>
-        <button type="button" class="close close_icon" data-dismiss="modal" aria-label="Close">
-          <%=image_tag("cancel-button.png")%>
+      <%= render 'form_arsHumano', customer: @customerNew %>
+      <button type="button" class="close close_icon" data-dismiss="modal" aria-label="Close">
+        <%=image_tag("cancel-button.png")%>
 
-        </button>
-      </div>
-
+      </button>
     </div>
+
   </div>
+</div>
 </div>
 </div>
 

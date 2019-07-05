@@ -1,0 +1,29 @@
+<%= form_with(model: customer, local: true) do |form| %>
+<% if customer.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(customer.errors.count, "error") %>
+      prohibited this customer from being saved:</h2>
+
+    <ul>
+      <% customer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+<div class="field" style="display:none;">
+  <%= form.number_field :therapies_num, id: "form_input_customer" %>
+</div>
+
+<div class="field" style="display:none;">
+  <%= form.number_field :total_therapies, id: "total_input" %>
+</div>
+
+<div class="actions" style="display:none;">
+  <%= form.button 'submit', id: "submit_btn" %>
+</div>
+
+
+<% end %>

@@ -32,7 +32,7 @@ class ReclamationsController < ApplicationController
 
     respond_to do |format|
       if @reclamation.save
-        format.html { redirect_to @customer, notice: 'Reclamation was successfully created.' }
+        format.html { redirect_to @customer, notice: 'Guardado Correctamente' }
         format.json { render :show, status: :created, location: @reclamation }
       else
         format.html { render :new }
@@ -48,7 +48,7 @@ class ReclamationsController < ApplicationController
 
     respond_to do |format|
       if @reclamation.update(reclamation_params)
-        format.html { redirect_to @reclamation, notice: 'Reclamation was successfully updated.' }
+        format.html { redirect_to @reclamation, notice: 'Guardado Correctamente' }
         format.json { render :show, status: :ok, location: @reclamation }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class ReclamationsController < ApplicationController
     @reclamation = Reclamation.find(params[:id])
     respond_to do |format|
       if @reclamation.update(reclamation_params)
-        format.html { redirect_to @reclamation, notice: 'reclamation was successfully updated.' }
+        format.html { redirect_to @reclamation, notice: 'Guardado Correctamente' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit'}

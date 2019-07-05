@@ -22,7 +22,12 @@
 //= require turbolinks
 //= require_tree .
 
-
+/// notice slide
+$(function() {
+  setTimeout(function(){
+    $('#notice').slideUp(500);
+  }, 1000);
+});
 
 $(document).ready(function() {
   jQuery(".best_in_place").best_in_place();

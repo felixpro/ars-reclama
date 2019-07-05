@@ -6,14 +6,14 @@ jQuery ->
 
 
   $('#humano').click(() ->
-    $('.insurance_input').val('humano');
+    $('.insurance_input').val('ARS Humano');
     $('#insurance_submit').trigger('click');
   )
   $('#cenasa').click(() ->
-    $('.insurance_input').val('cenasa');
+    $('.insurance_input').val('CENASA');
     $('#insurance_submit').trigger('click');
   )
   $('#Naseguro').click(() ->
-    $('.insurance_input').val('Nasegurado');
+    $('.insurance_input').val('Sin Seguro');
     $('#insurance_submit').trigger('click');
   )

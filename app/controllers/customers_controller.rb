@@ -15,6 +15,7 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
+    @customer_total = Customer.all
     @customers = if params[:term]
          Customer.where('name LIKE ?', "%#{params[:term]}%")
        else
@@ -22,8 +23,10 @@ class CustomersController < ApplicationController
        end
     @customerNew = Customer.new
     @reclamations = Reclamation.all
+    @reclamation_number = 0;
+
     ######### month
-    @monthCustomer      = @customers.where('created_at >= ?', 1.month.ago).count
+    @monthCustomer      = @customer_total.where('created_at >= ?', 1.month.ago).count
     @monthreclamations  = @reclamations.where('created_at >= ?', 1.month.ago).count
     @reclam_month       = @reclamations.where('created_at >= ?', 1.month.ago)
     @month_therapies    = 0;
@@ -34,7 +37,7 @@ class CustomersController < ApplicationController
     end
 
     ######### week
-    @weekCustomer      = @customers.where('created_at >= ?', 1.week.ago).count
+    @weekCustomer      = @customer_total.where('created_at >= ?', 1.week.ago).count
     @weekreclamations  = @reclamations.where('created_at >= ?', 1.week.ago).count
     @reclam_week       = @reclamations.where('created_at >= ?', 1.week.ago)
     @week_therapies    = 0;
@@ -43,14 +46,26 @@ class CustomersController < ApplicationController
         @week_therapies = @week_therapies + 1;
       end
     end
+
+
     ######### year
-    @yearCustomer      = @customers.where('created_at >= ?', 1.year.ago).count
+    @yearCustomer      = @customer_total.where('created_at >= ?', 1.year.ago).count
     @yearreclamations  = @reclamations.where('created_at >= ?', 1.year.ago).count
-    @reclam_year      = @reclamations.where('created_at >= ?', 1.year.ago)
+    @reclam_year       = @reclamations.where('created_at >= ?', 1.year.ago)
     @year_therapies    = 0;
     @reclam_year.each do |reclamation|
       reclamation.therapiesNum.to_i.times do | num |
         @year_therapies = @year_therapies + 1;
+      end
+    end
+
+    # if the reclamation doens't has an authNum, it is not a reclamation
+    @reclamations .each do |reclamation|
+      if reclamation.authNum.blank?
+        @weekreclamations =  @weekreclamations - 1
+        @yearreclamations =  @yearreclamations - 1
+        @monthreclamations =  @monthreclamations - 1
+      else
       end
     end
 
@@ -62,14 +77,26 @@ class CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     @service = @customer.service.order('created_at DESC').limit(4)
     @reclamation = @customer.reclamation.order('created_at DESC');
+    @historialReclamation = @reclamation.where.not(authNum:nil)
+
     @identifier = 0;
     @therapiequantity = 0;
-
      @reclamation.each do |reclamation|
       reclamation.therapiesNum.to_i.times do | num |
         @therapiequantity = @therapiequantity + 1;
       end
      end
+     @total_therapies = @therapiequantity.to_i
+
+
+    @therapies_num_customer = @customer.therapies_num;
+    # to avoid error using the times, when it is nill
+    if @therapies_num_customer === nil
+      @therapies_num_customer = 0
+    else
+      @therapies_num_customer = @customer.therapies_num;
+
+    end
 
   end
 
@@ -93,7 +120,7 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
+        format.html { redirect_to @customer, notice: 'Cliente creado correctamente' }
         format.json { render :show, status: :created, location: @customer }
       else
         format.html { render :new }
@@ -108,7 +135,7 @@ class CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     respond_to do |format|
        if @customer.update(customer_params)
-         format.html { redirect_to customer_url, notice: 'Order updated.' }
+         format.html { redirect_to customer_url, notice: 'Guardado Correctamente' }
          format.json { head :no_content }
        else
          format.html { redirect_to @customer }
@@ -123,7 +150,7 @@ class CustomersController < ApplicationController
   def destroy
     @customer.destroy
     respond_to do |format|
-      format.html { redirect_to customers_url, notice: 'Customer was successfully destroyed.' }
+      format.html { redirect_to customers_url, notice: 'Cliente eliminado correctamente' }
       format.json { head :no_content }
     end
   end
@@ -134,8 +161,12 @@ class CustomersController < ApplicationController
       @customer = Customer.find(params[:id])
     end
 
+    def customer_params
+      params.permit(:term)
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.permit(:name, :phone, :cell, :email, :affiliate_number, :img, :age, :doc, :sector, :city, :gender, :doc_type, :autorization_number, :therapies, :adress, :insurance, :contractNum, :diagnostic, :term)
+      params.require(:customer).permit(:name, :phone, :cell, :email, :affiliate_number, :img, :age, :doc, :sector, :city, :gender, :doc_type, :autorization_number, :therapies, :adress, :insurance, :contractNum, :diagnostic, :therapies_num, :total_therapies)
     end
 end

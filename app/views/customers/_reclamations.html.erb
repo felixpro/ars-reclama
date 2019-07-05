@@ -1,3 +1,7 @@
 <% @reclamations.each do |reclamation| %>
-    <%= render reclamation %>
+<% if reclamation.authNum.blank?%>
+<% else%>
+<%= render reclamation %>
+
+<% end %>
 <% end %>

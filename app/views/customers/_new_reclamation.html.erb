@@ -7,7 +7,7 @@
 
   <div class="field">
     <%= f.label :therapiesNum %>
-    <%= f.number_field :therapiesNum %>
+    <%= f.number_field :therapiesNum, :required => true %>
   </div>
 
   <div class="field">
@@ -19,8 +19,6 @@
     <%= f.label :creationDate %>
     <%= f.number_field :creationDate %>
   </div>
-
-
   <p>
     <%= f.submit "Submit" %>
   </p>
