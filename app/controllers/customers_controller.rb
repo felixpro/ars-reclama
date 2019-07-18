@@ -25,6 +25,9 @@ class CustomersController < ApplicationController
     @reclamations = Reclamation.all
     @reclamation_number = 0;
 
+
+    ######### Detect when a reclamation should be in the draft
+    @draftreclamations = @reclamations.where(authNum: nil);
     ######### month
     @monthCustomer      = @customer_total.where('created_at >= ?', 1.month.ago).count
     @monthreclamations  = @reclamations.where('created_at >= ?', 1.month.ago).count
@@ -38,7 +41,18 @@ class CustomersController < ApplicationController
 
     ######### week
     @weekCustomer      = @customer_total.where('created_at >= ?', 1.week.ago).count
+
+
     @weekreclamations  = @reclamations.where('created_at >= ?', 1.week.ago).count
+    @weekresult = 0;
+
+    if @weekreclamations >0
+        @weekresult = @weekreclamations;
+      else
+        @weekresult = 0;
+
+    end
+
     @reclam_week       = @reclamations.where('created_at >= ?', 1.week.ago)
     @week_therapies    = 0;
     @reclam_week.each do |reclamation|
@@ -75,6 +89,8 @@ class CustomersController < ApplicationController
   # GET /customers/1.json
   def show
     @customer = Customer.find(params[:id])
+    @appointments = @customer.appointment.order('created_at DESC');
+
     @service = @customer.service.order('created_at DESC').limit(4)
     @reclamation = @customer.reclamation.order('created_at DESC');
     @historialReclamation = @reclamation.where.not(authNum:nil)
@@ -120,7 +136,7 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to @customer, notice: 'Cliente creado correctamente' }
+        format.html { redirect_to @customer, success: 'Cliente creado correctamente' }
         format.json { render :show, status: :created, location: @customer }
       else
         format.html { render :new }
@@ -135,7 +151,7 @@ class CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     respond_to do |format|
        if @customer.update(customer_params)
-         format.html { redirect_to customer_url, notice: 'Guardado Correctamente' }
+         format.html { redirect_to customer_url, success: 'Guardado Correctamente' }
          format.json { head :no_content }
        else
          format.html { redirect_to @customer }
@@ -150,7 +166,7 @@ class CustomersController < ApplicationController
   def destroy
     @customer.destroy
     respond_to do |format|
-      format.html { redirect_to customers_url, notice: 'Cliente eliminado correctamente' }
+      format.html { redirect_to customers_url, success: 'Cliente eliminado correctamente' }
       format.json { head :no_content }
     end
   end

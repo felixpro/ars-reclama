@@ -25,7 +25,7 @@
 /// notice slide
 $(function() {
   setTimeout(function(){
-    $('#notice').slideUp(500);
+    $('#alert').fadeOut(500);
   }, 1000);
 });
 

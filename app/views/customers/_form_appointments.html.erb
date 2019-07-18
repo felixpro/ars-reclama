@@ -1,0 +1,13 @@
+<%= form_for([@customer, @customer.appointment.build], remote: true) do |form| %>
+
+
+<div class="field" style="display:none;">
+  <%= form.label :date_therapie %>
+  <%= form.text_field :date_therapie, :value => DateTime.now.to_date %>
+</div>
+
+<div class="actions" style="display:none;">
+  <%= form.submit :GUARDAR, id: "btn_appointment" %>
+</div>
+
+<% end %>

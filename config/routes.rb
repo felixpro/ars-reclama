@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :customers do
     resources :services
     resources :reclamations
+    resources :appointments
+
   end
   get '/ars', to: 'customers#ars'
   get '/cenasa', to: 'customers#cenasa'

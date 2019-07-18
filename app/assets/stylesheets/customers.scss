@@ -6,10 +6,34 @@
   font-family: Ayuthaya;
 }
 
-#notice {
-  margin: 0;
+
+#alert{
+  box-shadow:0 0 0 9999px rgba(0,0,0,.6);
+  margin-left: 30%;
+  margin-top: 15%;
   position: absolute;
   z-index: 99999;
+  background: #ffffff;
+  height: 344px;
+  width: 672px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    margin-left: 40%;
+  }
+  p {
+    font-family: Raleway;
+    font-size: 35px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.66;
+    letter-spacing: normal;
+    text-align: center;
+    color: #1e2469;
+  }
+
 }
 
 .hide_navbar {
@@ -679,7 +703,7 @@ aside {
           }
 
           .edit_content {
-            overflow: scroll;
+            overflow: auto;
             width: 220px;
             height: 82px;
             overflow-x: visible;
@@ -832,7 +856,7 @@ aside {
     }
 
     .customer_info {
-      overflow-y: hidden;
+      overflow: hidden;
       height: 220px;
       transition: 2s;
       width: 270px;
@@ -883,6 +907,14 @@ aside {
     }
 
     .adress {
+      display: flex;
+      padding-bottom: 10px;
+      input {
+        background: none;
+      }
+      span {
+        background: none;
+      }
       strong {
         float: left;
       }
@@ -1262,6 +1294,7 @@ aside {
           button.number_container {
             margin-right: 45px;
             padding-top: 30px;
+
             &:active,
             &:focus,
             &:hover,
@@ -1322,6 +1355,7 @@ aside {
           button.number_container {
             margin-right: 45px;
             padding-top: 30px;
+
             &:active,
             &:focus,
             &:hover,
@@ -1668,6 +1702,12 @@ aside {
           padding-top: 30px;
           background: none;
           border: none;
+          p.appointment_date {
+             font-family: Raleway;
+             font-size: 12px;
+             font-weight: 500;
+             padding-top: 10px;
+          }
           &:active,
           &:focus,
           &:hover,
@@ -2079,10 +2119,13 @@ overflow: auto;
         }
 
         .tab-content {
+
+
+
           .content {
             .customer_week {
               h5 {
-                padding-top: 20px;
+                padding-top: 8px;
               }
 
               p {

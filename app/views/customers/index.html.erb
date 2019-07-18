@@ -11,7 +11,14 @@
   </head>
   <body>
 
-    <p id="notice"><%= notice %></p>
+    <% flash.each do |key, value| %>
+      <div class="alert" id="alert">
+        <div>
+          <%=image_tag("Shape.png")%>
+          <p><%= value %></p>
+        </div>
+      </div>
+    <% end %>
 
     <section class="index_customer_section">
       <div class="hide_navbar ">
@@ -148,7 +155,17 @@
 
           <div class="index_draft">
 
-            <%= render 'reclamations', reclamation: @reclamations %>
+
+            <% @draftreclamations.each do |reclamation| %>
+              <%= reclamation.therapiesNum %>
+
+              <%= link_to customer_reclamation_path(reclamation.customer, reclamation), method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <%=image_tag("edit_delete.png")%>
+
+              <% end %>
+            <% end %>
+
+            <!-- <%= render 'reclamations', reclamation: @reclamations %> -->
 
           </div>
 
@@ -170,6 +187,7 @@
               </ul>
             </div>
             <div class="tab-content">
+
               <div class="tab-pane active" id="about">
                 <div class="content week">
                   <div class="customer_week">
@@ -181,7 +199,7 @@
                   <div class="reclamations_week">
                     <%= image_tag('therapies.png')%>
                     <h5>Reclamaciones</h5>
-                    <p><%= @weekreclamations%></p>
+                    <p><%= @weekresult%></p>
                   </div>
 
                   <div class="therapies_week">
@@ -191,22 +209,23 @@
                   </div>
                 </div>
               </div>
+
               <div class="tab-pane" id="social">
                 <div class="content month">
                   <div class="customer_week">
-                    <%= image_tag('interval.png')%>
+                    <%= image_tag('customer.png')%>
                     <h5>Clientes</h5>
                     <p><%= @monthCustomer %></p>
                   </div>
 
                   <div class="reclamations_week">
-                    <%= image_tag('interval.png')%>
+                    <%= image_tag('therapies.png')%>
                     <h5>Reclamaciones</h5>
                     <p><%= @monthreclamations%></p>
                   </div>
 
                   <div class="therapies_week">
-                    <%= image_tag('interval.png')%>
+                    <%= image_tag('reclamations.png')%>
                     <h5>Terapias</h5>
                     <p><%= @month_therapies %></p>
                   </div>
@@ -215,19 +234,19 @@
               <div class="tab-pane" id="location">
                 <div class="content year">
                   <div class="customer_week">
-                    <%= image_tag('interval.png')%>
+                    <%= image_tag('customer.png')%>
                     <h5>Clientes</h5>
                     <p><%= @yearCustomer %></p>
                   </div>
 
                   <div class="reclamations_week">
-                    <%= image_tag('interval.png')%>
+                    <%= image_tag('therapies.png')%>
                     <h5>Reclamaciones</h5>
                     <p><%= @yearreclamations%></p>
                   </div>
 
                   <div class="therapies_week">
-                    <%= image_tag('interval.png')%>
+                    <%= image_tag('reclamations.png')%>
                     <h5>Terapias</h5>
                     <p><%= @year_therapies %></p>
                   </div>

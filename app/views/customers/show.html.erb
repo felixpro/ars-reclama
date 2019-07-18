@@ -11,7 +11,15 @@
 
   <body>
 
-    <p id="notice"><%= notice %></p>
+
+    <% flash.each do |key, value| %>
+      <div class="alert" id="alert">
+        <div>
+          <%=image_tag("Shape.png")%>
+          <p><%= value %></p>
+        </div>
+      </div>
+    <% end %>
 
     <div class="hide_navbar ">
       <nav class="navbar container navbar-expand-lg navbar-light ">
@@ -34,9 +42,8 @@
         </div>
       </nav>
     </div>
+
     <section class=" show_general_info">
-
-
       <aside class="sidebar">
         <div class="img_hospital">
           <%=image_tag("logo_clinica_1.png")%>
@@ -59,7 +66,29 @@
 
       <div class="view_information_section">
         <div class="logo_show">
+
+
+
+
+          <% if @customer.insurance === "ARS Humano" %>
+
           <%=image_tag("humano_logo.png", class:"humano_logo")%>
+
+            <% elsif @customer.insurance === "CENASA" %>
+            <%=image_tag("senasa_logo.png", class:"humano_logo")%>
+
+            <% else %>
+          <%=image_tag("sin_seguro.png", class:"humano_logo")%>
+
+            <% end %>
+
+
+
+
+
+
+
+
           <%= link_to "#changeInsurance", :class => "change_insurance link_style", "data-toggle" => "modal" do%>
           Cambiar Seguro<%=image_tag("change_ensure.png")%>
         <%end%>
@@ -80,15 +109,13 @@
 
                 <%= render 'insurance_form', customer: @customer %>
 
-                <!-- <p> <strong>insurance</strong> <%= best_in_place @customer, :insurance, class:'insurance_input' %> </p> -->
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- <%= best_in_place @customer, :therapies_num, id: "momo"%> -->
-      <!-- <%= @customer.updated_at%> -->
+
 
       <div class="customer_info" id="customer_info">
         <h1 class="name">
@@ -220,7 +247,6 @@
     <div class="therapies_num_container">
     <%= render 'therapies_customer', customer: @customer %>
 
-    <!-- <button type="button" name="button" onclick="num_therapies()">Cambiar</button> -->
     <div class="container-fluid">
       <div class="row">
         <% @therapies_num_customer.times do |num| %>
@@ -231,18 +257,7 @@
           </div>
         <% end %>
       </div>
-        <!-- <%@therapiequantity = 0;%>
-          <% @reclamation.each do |reclamation| %>
-            <% reclamation.therapiesNum.to_i.times do | num |  %>
-              <% @therapiequantity = @therapiequantity  + num %>
-                <div class="number_container">
-                  <a href="#">
-                    <%=image_tag("th_logo.png")%>
-                  </a>
-                  <p><%= reclamation.creationDate %></p>
-                </div>
-              <% end %>
-            <% end %> -->
+
           </div>
         </div>
       </div>
@@ -363,16 +378,21 @@
 
               <div class="tab-content">
                 <div class="tab-pane active" id="Terapias">
-                  <%=@total_therapies%>
+                  <!-- <%=@total_therapies%> -->
                   <div class="therapie_container" id="done_therapies">
 
-                  <%@total_therapies.times do |num|%>
-                  <button class="number_container">
-                    <a href="#">
-                      <%=image_tag("th_logo.png")%>
-                    </a>
-                  </button >
-                  <%end %>
+                    <%= render 'form_appointments' %>
+
+                    <% @appointments.each do |appointment| %>
+                      <button class="number_container">
+                        <a href="#">
+                          <%=image_tag("th_logo.png")%>
+                        </a>
+                        <p class="appointment_date"><%= appointment.date_therapie %></p>
+                      </button >
+                    <% end %>
+
+
 
                   </div>
                 </div>
@@ -388,6 +408,10 @@
 
           <%else%>
             <div class="index_reclamation_section">
+
+
+
+
 
               <div class="tabbable">
                 <div class="header">
@@ -410,20 +434,21 @@
 
                 <div class="tab-content">
                   <div class="tab-pane active" id="Terapias">
-                    <%=@total_therapies%>
+                    <!-- <%=@total_therapies%> -->
                     <div class="therapie_container" id="done_therapies">
+                      <%= render 'form_appointments' %>
 
-                    <%@total_therapies.times do |num|%>
-                    <button class="number_container">
-                      <a href="#">
-                        <%=image_tag("th_logo.png")%>
-                      </a>
-                    </button >
-                    <%end %>
+                      <% @appointments.each do |appointment| %>
+                        <button class="number_container">
+                          <a href="#">
+                            <%=image_tag("th_logo.png")%>
+                          </a>
+                          <p class="appointment_date"><%= appointment.date_therapie %></p>
+                        </button >
+                      <% end %>
 
                     </div>
                   </div>
-
 
 
                   <div class="tab-pane" id="Reclamaciones">
@@ -897,7 +922,6 @@
                               </div>
                             </div>
                           </div>
-                          <!-- <%= link_to customer_reclamation_path(reclamation.customer, reclamation), method: :delete, data: { confirm: 'Are you sure?' } do %> <button type="button" name="button">DELETE</button> <% end %> -->
                         <% end %>
                       </section>
                   </div>
@@ -6012,6 +6036,8 @@
         var inputValue = $('#form_input_customer').val();
         $('#form_input_customer').val(inputValue - 1)
         $("#submit_btn").trigger('click');
+        $("#btn_appointment").trigger('click');
+
       }
 
       // add therapies
