@@ -11,6 +11,7 @@ group :development do
 end
 group :production do
   gem 'pg'
+  gem 'best_in_place', '~> 3.0.1'
 end
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
