@@ -41,18 +41,7 @@ class CustomersController < ApplicationController
 
     ######### week
     @weekCustomer      = @customer_total.where('created_at >= ?', 1.week.ago).count
-
-
     @weekreclamations  = @reclamations.where('created_at >= ?', 1.week.ago).count
-    @weekresult = 0;
-
-    if @weekreclamations >0
-        @weekresult = @weekreclamations;
-      else
-        @weekresult = 0;
-
-    end
-
     @reclam_week       = @reclamations.where('created_at >= ?', 1.week.ago)
     @week_therapies    = 0;
     @reclam_week.each do |reclamation|
