@@ -43,18 +43,18 @@ ActiveRecord::Schema.define(version: 2019_07_17_204022) do
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
-    t.integer "phone"
-    t.integer "cell"
+    t.string "phone"
+    t.string "cell"
     t.string "email"
-    t.integer "affiliate_number"
+    t.string "affiliate_number"
     t.string "img"
     t.integer "age"
     t.string "doc"
     t.string "sector"
     t.string "city"
     t.integer "gender"
-    t.integer "doc_type"
-    t.integer "autorization_number"
+    t.boolean "doc_type"
+    t.string "autorization_number"
     t.integer "therapies"
     t.string "adress"
     t.datetime "created_at", null: false
@@ -108,14 +108,6 @@ ActiveRecord::Schema.define(version: 2019_07_17_204022) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_services_on_customer_id"
-  end
-
-  create_table "therapies", force: :cascade do |t|
-    t.integer "customer_id"
-    t.string "date_therapie"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_therapies_on_customer_id"
   end
 
 end
