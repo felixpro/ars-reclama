@@ -25,6 +25,9 @@
 /// notice slide
 
 
+$(document).ready(function() {
+  jQuery(".best_in_place").best_in_place();
+});
 
 // Update the inputs
 function myFunction() {
