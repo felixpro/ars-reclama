@@ -11,7 +11,7 @@ class CreateCustomers < ActiveRecord::Migration[5.2]
       t.string :doc
       t.string :sector
       t.string :city
-      t.boolean :gender
+      t.integer :gender
       t.boolean :doc_type
       t.integer :autorization_number
       t.integer :therapies
