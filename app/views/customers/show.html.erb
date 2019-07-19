@@ -104,6 +104,7 @@
           <div class="modal-dialog  modal-dialog-centered" role="document">
             <div class="modal-content">
 
+
               <div class="modal-body">
                 <button type="button" class="close close_image" data-dismiss="modal" aria-label="Close">
                   <%=image_tag("cancel-button.png")%>
@@ -6054,6 +6055,28 @@
         $('#form_input_customer').val(result);
         $("#submit_btn").trigger('click');
       }
+
+
+      // change insurance
+      $('#humano').click(function() {
+        $('.insurance_input').val('ARS Humano');
+        $('#insurance_submit').trigger('click');
+      });
+      $('#cenasa').click(function() {
+        $('.insurance_input').val('CENASA');
+        $('#insurance_submit').trigger('click');
+      });
+
+      $('#Naseguro').click(function() {
+        $('.insurance_input').val('Sin Seguro');
+        $('#insurance_submit').trigger('click');
+      });
+
+      $(document).ready(function() {
+        jQuery(".best_in_place").best_in_place();
+      });
+
+
     </script>
     <script type="text/javascript">
       function reloadEdit() {
