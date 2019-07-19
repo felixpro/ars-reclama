@@ -2282,7 +2282,7 @@ overflow: auto;
       min-width: 80%;
       background: transparent;
       @media (max-width: 1520px) {
-        min-width: 99%;
+        min-width: 90%;
       }
     }
 
@@ -2324,7 +2324,9 @@ overflow: auto;
     background-color: #f7f7fb;
     padding: 49px 200px;
     border-radius: 8px;
-
+    @media (max-width: 1520px) {
+      padding: 49px 50px;
+    }
     h5.modal-title {
       padding-bottom: 58px;
       font-family: Raleway;

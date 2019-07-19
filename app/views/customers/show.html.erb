@@ -5982,13 +5982,7 @@
 
 
 
-    <%= content_for :javascript do %>
-      <script>
-        $(document).ready(function(){
-          jQuery(".best_in_place").best_in_place();
-        });
-      </script>
-    <% end %>
+
 
 
     <script type="text/javascript">
@@ -6076,6 +6070,10 @@
       $('#Naseguro').click(function() {
         $('.insurance_input').val('Sin Seguro');
         $('#insurance_submit').trigger('click');
+      });
+
+      $(document).ready(function() {
+        jQuery(".best_in_place").best_in_place();
       });
 
 
