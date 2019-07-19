@@ -27,9 +27,6 @@
 
 $(document).ready(function() {
   jQuery(".best_in_place").best_in_place();
-  setTimeout(function(){
-    $('#alert').fadeOut(500);
-  }, 1000);
 });
 
 // Update the inputs

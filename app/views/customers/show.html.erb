@@ -21,6 +21,14 @@
       </div>
     <% end %>
 
+    <script type="text/javascript">
+    $(function() {
+      setTimeout(function(){
+        $('#alert').fadeOut(500);
+      }, 1000);
+    });
+    </script>
+
     <div class="hide_navbar ">
       <nav class="navbar container navbar-expand-lg navbar-light ">
         <a class="navbar-brand" href="#"><%=image_tag("brand.png", class: "nav_logo")%></a>
