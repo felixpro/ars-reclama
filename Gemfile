@@ -70,3 +70,6 @@ gem "best_in_place"
 gem 'jquery-rails'
 
 gem 'draftsman', '~> 0.7.1'
+
+
+gem 'rails_12factor', group: :production
