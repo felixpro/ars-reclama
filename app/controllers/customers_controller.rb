@@ -125,7 +125,7 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to @customer, success: 'Cliente creado correctamente' }
+        format.html { redirect_to @customer}
         format.json { render :show, status: :created, location: @customer }
       else
         format.html { render :new }
