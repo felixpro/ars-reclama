@@ -330,7 +330,7 @@
         <div class="buttons_container_index">
           <% if @customer.insurance === "ARS Humano" %>
             <button type="button" class="btn btn-outline-secondary reclamation_btn" data-toggle="modal" data-target="#newReclamationHumano" onclick="dateFuntion()">
-              <%=image_tag("add_new.png")%>New Reclamation/h
+              <%=image_tag("add_new.png")%>New Reclamation
             </button>
             <a href="" data-toggle="modal" data-target="#reclamation_self" onclick="dateFuntion()">
               Agregar Terapia sin reclamación
@@ -338,7 +338,7 @@
             </a>
             <% elsif @customer.insurance === "CENASA" %>
               <button type="button" class="btn btn-outline-secondary reclamation_btn" data-toggle="modal" data-target="#newReclamationCenasa" onclick="dateFuntion()">
-                <%=image_tag("add_new.png")%>New Reclamation/c
+                <%=image_tag("add_new.png")%>New Reclamation
               </button>
               <a href="" data-toggle="modal" data-target="#reclamation_self" onclick="dateFuntion()">
                 Agregar Terapia sin reclamación
