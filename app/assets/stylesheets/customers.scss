@@ -981,8 +981,8 @@ aside {
     }
 
     .view_more_buttons {
-      padding-top: 350px;
-
+      position: absolute;
+      bottom: 40px;
       .content {
         padding: 45px 0;
 
