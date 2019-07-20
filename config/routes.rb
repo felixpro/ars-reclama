@@ -4,8 +4,8 @@ Rails.application.routes.draw do
     resources :services
     resources :reclamations
     resources :appointments
-
   end
+  
   get '/ars', to: 'customers#ars'
   get '/cenasa', to: 'customers#cenasa'
   get '/naseguro', to: 'customers#naseguro'
