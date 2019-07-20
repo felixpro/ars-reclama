@@ -28,6 +28,12 @@ $(document).ready(function() {
 });
 
 
+
+function edit_trigger() {
+  alert("lkijh");
+}
+
+
 // Update the inputs
 function myFunction() {
   $('#actualizar').html('')

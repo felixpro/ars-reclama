@@ -129,20 +129,18 @@
                           <% else%>
                             <%=image_tag("profile.png", class: "user_image")%>
                           <% end %>
-
                         </div>
                         <div>
                           <p class="name"><%= customer.name %></p>
                           <p class="insurance"><%= customer.insurance %></p>
                         </div>
-
                       </div>
+                <% end %>
 
                       <div class="link_customer">
-                        <%= link_to customer do %>
-                        <%=image_tag("edit_index.png")%>
-                      <%end%>
-
+                        <button type="button" name="button" onclick="edit_trigger()">
+                          <%=image_tag("edit_index.png")%>
+                        </button>
 
                     <%= link_to "#delete_customer_modal", :class => "", "data-toggle" => "modal" do%>
                       <%=image_tag("delete_cus.png")%>
@@ -165,6 +163,8 @@
                                 <button type="button" name="button" class="dimiss_modal" data-dismiss="modal" aria-label="Close">CANCELAR</button>
                               </div>
 
+
+
                             </div>
                           </div>
                         </div>
@@ -175,7 +175,7 @@
                   </div>
                 </div>
               </div>
-            <% end %>
+
           <% end %>
         </div>
       </div>
