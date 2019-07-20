@@ -20,7 +20,6 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
 
 
 $(document).ready(function() {
@@ -28,7 +27,12 @@ $(document).ready(function() {
 });
 
 
+function edit_trigger() {
+  setTimeout(function () {
+    $('#edit_btn').trigger('click');
+  }, 1000);
 
+}
 
 
 // Update the inputs
