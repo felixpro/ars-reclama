@@ -6,8 +6,31 @@
   font-family: Ayuthaya;
 }
 
+#edit_modal_section {
+  .modal-dialog {
+    min-width: 80%;
+    background: transparent;
+    @media (max-width: 1520px) {
+      min-width: 90%;
+    }
 
-#alert{
+
+
+  .edit_container {
+    padding: 49px 200px;
+    border-radius: 8px;
+    @media (max-width: 1520px) {
+      padding: 49px 50px;
+    }
+  }
+
+
+
+
+  }
+}
+
+#alert {
   box-shadow:0 0 0 9999px rgba(0,0,0,.6);
   margin-left: 30%;
   margin-top: 15%;
@@ -33,7 +56,6 @@
     text-align: center;
     color: #1e2469;
   }
-
 }
 
 .hide_navbar {
@@ -822,28 +844,19 @@ aside {
       width: auto;
     }
 
-    button.reload_page {
+    a.reload_page {
+      border: 1px solid #6e6d8c;
       box-shadow: none;
       outline: none;
       text-decoration: none;
-      background: transparent;
+      background: none;
       font-family: Raleway;
       font-size: 14px;
       font-weight: 600;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: normal;
       color: #6e6d8c;
-      width: 180px;
-      height: 35px;
+      padding: 8px 25px;
+
       border-radius: 5px;
-
-      img {
-        width: 19px;
-        margin-right: 10px;
-      }
-
       &:active,
       &:focus,
       &:hover,
@@ -851,7 +864,10 @@ aside {
         box-shadow: none;
         outline: none;
         text-decoration: none;
-        background: transparent;
+        background: none;
+        color: #6e6d8c;
+        border: 1px solid #6e6d8c;
+
       }
     }
 
@@ -2331,6 +2347,26 @@ overflow: auto;
       }
 
       .link_customer {
+        button.index_edit_btn {
+          border: none;
+          outline: none;
+          text-decoration: none;
+          box-shadow: none;
+          background: none;
+          margin-left: 16px;
+
+          &:active,
+          &:focus,
+          &:hover,
+          &:visited {
+            border: none;
+
+            outline: none;
+            text-decoration: none;
+            box-shadow: none;
+            background: none;
+          }
+        }
         a {
           outline: none;
           text-decoration: none;

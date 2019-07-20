@@ -1,0 +1,124 @@
+<%= form_with(model: customer, local: true) do |form| %>
+<% if customer.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(customer.errors.count, "error") %>
+      prohibited this customer from being saved:</h2>
+    <ul>
+      <% customer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div style="display:none;">
+  <%= form.text_field :insurance, :value => 'CENASA' %>
+
+</div>
+
+    <div class="humano_form_container">
+
+      <div class="section">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3">
+              <div class="content">
+                <p class="title"><%= form.label :Nombre %></p>
+                <p class="input"><%= form.text_field :name %></p>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3">
+              <div class="content">
+                <p class="title"><%= form.label :Teléfono %></p>
+                <p class="input"><%= form.text_field :phone %></p>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3">
+              <div class="content">
+                <p class="title"><%= form.label :Celular %></p>
+                <p class="input"><%= form.text_field :cell %></p>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3">
+              <div class="content id_document">
+                <p class="title"><%= form.collection_radio_buttons :doc_type, Customer.doc_types, :first, :first, required: true %></p>
+                <p class="input"><%= form.text_field :doc %></p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row second_row">
+            <div class="col-lg-3 col-md-3 col-sm-3">
+              <div class="content">
+                <p class="title"><%= form.label :Dirección %></p>
+                <p class="input"><%= form.text_field :adress %></p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3">
+              <div class="content">
+                <p class="title"><%= form.label :Sector %></p>
+                <p class="input"><%= form.text_field :sector %></p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3">
+              <div class="content">
+                <p class="title"><%= form.label :Ciudad %></p>
+                <p class="input"><%= form.text_field :city %></p>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3">
+              <div class="content">
+                <p class="title"><%= form.label :Edad %></p>
+                <p class="input"><%= form.number_field :age %></p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row third_row">
+            <div class="col-lg-3 col-md-3 col-sm-3">
+              <div class="content">
+                <p class="title"><%= form.label :Email %></p>
+                <p class="input"><%= form.text_field :email %></p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3">
+              <div class="content">
+                <p class="title"><label for="affiliate_number">No.  de Afiliado</label></p>
+                <p class="input"><%= form.text_field :affiliate_number, :required => true %></p>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3">
+              <div class="content">
+                <p class="title">Genero</p>
+                <p class="input"><%= form.collection_radio_buttons :gender, Customer.genders, :first, :first, required: 'required' %></p>
+              </div>
+            </div>
+
+          </div>
+
+
+
+
+        </div>
+      </div>
+
+
+
+
+      <div class="buttons">
+        <%= form.submit :GUARDAR, class: "save_customer" %>
+        <button type="button" class=" close_new_modal " data-dismiss="modal" aria-label="Close" onclick="reloadEdit()">
+          CANCELAR
+        </button>
+      </div>
+
+    <% end %>
+
+  </div>

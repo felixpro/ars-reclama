@@ -30,7 +30,11 @@ $(document).ready(function() {
 
 
 function edit_trigger() {
-  alert("lkijh");
+  setTimeout(function () {
+    $('#edit_btn').trigger('click');
+
+  }, 1000);
+
 }
 
 

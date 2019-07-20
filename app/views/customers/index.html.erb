@@ -129,16 +129,17 @@
                           <% else%>
                             <%=image_tag("profile.png", class: "user_image")%>
                           <% end %>
+
                         </div>
                         <div>
                           <p class="name"><%= customer.name %></p>
                           <p class="insurance"><%= customer.insurance %></p>
                         </div>
+
                       </div>
-                <% end %>
 
                       <div class="link_customer">
-                        <button type="button" name="button" onclick="edit_trigger()">
+                        <button type="button" name="button" class="index_edit_btn" onclick="edit_trigger()">
                           <%=image_tag("edit_index.png")%>
                         </button>
 
@@ -175,7 +176,7 @@
                   </div>
                 </div>
               </div>
-
+            <% end %>
           <% end %>
         </div>
       </div>
