@@ -29,13 +29,6 @@ $(document).ready(function() {
 
 
 
-function edit_trigger() {
-  setTimeout(function () {
-    $('#edit_btn').trigger('click');
-
-  }, 1000);
-
-}
 
 
 // Update the inputs

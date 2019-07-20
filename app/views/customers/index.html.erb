@@ -361,6 +361,13 @@
 </section>
 
 <script type="text/javascript">
+
+function edit_trigger() {
+  setTimeout(function () {
+    $('#edit_btn').trigger('click');
+  }, 1000);
+
+}
 function reloadEdit() {
 location.reload();
 }
