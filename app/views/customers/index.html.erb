@@ -142,9 +142,36 @@
                         <%= link_to customer do %>
                         <%=image_tag("edit_index.png")%>
                       <%end%>
-                      <%= link_to customer, method: :delete, data: { confirm: 'Are you sure?' } do %>
+
+
+                    <%= link_to "#delete_customer_modal", :class => "", "data-toggle" => "modal" do%>
                       <%=image_tag("delete_cus.png")%>
-                    <% end %>
+                    <%end%>
+
+                    <div class="modal fade" id="delete_customer_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog  modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-body">
+                            <div class="delete_content">
+                              <h1>
+                                ¿Estas seguro que quieres <br> eliminar a <span> <strong><%= customer.name %>?</strong></span>
+                              </h1>
+
+                              <div class="btn_content">
+                                <%= link_to customer, method: :delete do %>
+                                <button type="button" class="btn btn-outline-secondary delete_btn" >SI, ELIMINAR</button>
+                                <%end%>
+
+                                <button type="button" name="button" class="dimiss_modal" data-dismiss="modal" aria-label="Close">CANCELAR</button>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
                   </div>
                 </div>
               </div>
