@@ -10,6 +10,8 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 
+//= require rails-ujs
+//= require turbolinks
 //= require jquery
 //= require jquery_ujs
 //= require jquery.purr
@@ -17,9 +19,8 @@
 
 //= require best_in_place
 //= require best_in_place.jquery-ui
-//= require rails-ujs
 //= require activestorage
-//= require turbolinks
+//= require_tree .
 
 
 $(document).ready(function() {
@@ -27,9 +28,11 @@ $(document).ready(function() {
 });
 
 
+
 function edit_trigger() {
   setTimeout(function () {
     $('#edit_btn').trigger('click');
+
   }, 1000);
 
 }
