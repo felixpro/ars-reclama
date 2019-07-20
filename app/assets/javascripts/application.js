@@ -29,6 +29,8 @@ $(document).ready(function() {
 
 
 
+
+// open edit modal
 function edit_trigger() {
   setTimeout(function () {
     $('#edit_btn').trigger('click');
@@ -60,21 +62,26 @@ function dateFuntion() {
 //// Print section
 function printerDiv(divID) {
 //Get the HTML of div
-var divElements = document.getElementById(divID).innerHTML;
 
-//Get the HTML of whole page
-var oldPage = document.body.innerHTML;
-//Reset the pages HTML with divs HTML only
-     document.body.innerHTML =
+setTimeout(function () {
+  var divElements = document.getElementById(divID).innerHTML;
 
-     "<html ><head><title></title></head><body>" +
-     divElements + "</body>";
+  //Get the HTML of whole page
+  var oldPage = document.body.innerHTML;
+  //Reset the pages HTML with divs HTML only
+       document.body.innerHTML =
+
+       "<html ><head><title></title></head><body>" +
+       divElements + "</body>";
 
 
-//Print Page
-window.print();
-//Restore orignal HTML
-document.body.innerHTML = oldPage;
+  //Print Page
+  window.print();
+  //Restore orignal HTML
+  document.body.innerHTML = oldPage;
+location.reload();
+
+}, 500);
 
 }
 
@@ -83,20 +90,26 @@ document.body.innerHTML = oldPage;
 
 function printerCenasa(divID) {
 //Get the HTML of div
-var cenasaContent = document.getElementById(divID).innerHTML;
 
-//Get the HTML of whole page
-var oldPage = document.body.innerHTML;
-//Reset the pages HTML with divs HTML only
-     document.body.innerHTML =
+setTimeout(function () {
 
-     "<html ><head><title></title></head><body>" +
-     cenasaContent + "</body>";
+  var cenasaContent = document.getElementById(divID).innerHTML;
+
+  //Get the HTML of whole page
+  var oldPage = document.body.innerHTML;
+  //Reset the pages HTML with divs HTML only
+       document.body.innerHTML =
+
+       "<html ><head><title></title></head><body>" +
+       cenasaContent + "</body>";
 
 
-//Print Page
-window.print();
-//Restore orignal HTML
-document.body.innerHTML = oldPage;
+  //Print Page
+  window.print();
+  //Restore orignal HTML
+  document.body.innerHTML = oldPage;
+  location.reload();
+
+}, 500);
 
 }

@@ -1157,7 +1157,9 @@
                       <div class="row">
                         <div class="col-lg-2 button_column">
                           <div class="buttons_container">
-                            <button type="button" class=" btn btn-danger imprimir" onclick="javascript:printerCenasa('cenasa_print')">IMPRIMIR</button>
+                            <%= f.button 'IMPRIMIR', class:"btn btn-danger imprimir", onclick:"javascript:printerCenasa('cenasa_print')"  %>
+
+
                             <%= f.button "CERRAR Y GUARDAR", class: "btn btn-outline-secondary save btn_add_therapie_1" %>
                           <% end %>
                           <button type="button" class=" btn btn-outline-secondary cancelar" data-dismiss="modal" aria-label="Close">CANCELAR</button>

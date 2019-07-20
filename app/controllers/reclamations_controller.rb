@@ -32,8 +32,7 @@ class ReclamationsController < ApplicationController
 
     respond_to do |format|
       if @reclamation.save
-        format.html { redirect_to @customer, success: 'Guardado Correctamente' }
-        format.json { render :show, status: :created, location: @reclamation }
+        
       else
         format.html { render :new }
         format.json { render json: @reclamation.errors, status: :unprocessable_entity }
