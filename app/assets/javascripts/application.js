@@ -29,15 +29,17 @@ $(document).ready(function() {
 
 
 
-
 // open edit modal
-function edit_trigger() {
+function edit_trigger(){
   setTimeout(function () {
-    $('#edit_btn').trigger('click');
-
+    // trigger the btn when the windows is loaded
+    window.onload = momo();
   }, 1000);
-
 }
+
+function momo() {
+  $('#edit_btn').trigger('click');
+  }
 
 
 // Update the inputs
