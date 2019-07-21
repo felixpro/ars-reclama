@@ -32,14 +32,14 @@ $(document).ready(function() {
 // open edit modal
 function edit_trigger(){
   setTimeout(function () {
-    // trigger the btn when the windows is loaded
-    window.onload = momo();
-  }, 1000);
+  $('#show_body').ready = loro();
+}, 1000);
+};
+
+function loro() {
+  $('#edit_btn').trigger('click');
 }
 
-function momo() {
-  $('#edit_btn').trigger('click');
-  }
 
 
 // Update the inputs
