@@ -136,19 +136,20 @@ class CustomersController < ApplicationController
 
   # PATCH/PUT /customers/1
   # PATCH/PUT /customers/1.json
+
+
   def update
     @customer = Customer.find(params[:id])
     respond_to do |format|
-       if @customer.update(customer_params)
-         format.html { redirect_to customer_url, success: 'Guardado Correctamente' }
-         format.json { respond_with_bip(@customer) }
-       else
+      if @customer.update_attributes(customer_params)
+        format.html { redirect_to(@customer,  success: 'Guardado Correctamente') }
+        format.json { respond_with_bip(@customer) }
+      else
+        format.html { render :action => "edit" }
         format.json { respond_with_bip(@customer) }
       end
     end
   end
-
-
 
   # DELETE /customers/1
   # DELETE /customers/1.json
