@@ -50,12 +50,11 @@ class ServicesController < ApplicationController
   def update
     @service = Service.find(params[:id])
     respond_to do |format|
-      if @service.update(service_params)
-        format.html { redirect_to @service, success: 'Service was successfully updated.' }
-        format.json { head :no_content }
+      if @service.update_attributes(service_params)
+        format.json { respond_with_bip(@service) }
       else
         format.html { render action: 'edit'}
-        format.json { render json: @service.errors, status: :unprocessable_entity }
+        format.json { respond_with_bip(@service) }
       end
     end
   end

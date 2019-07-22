@@ -15,9 +15,11 @@
 
     <script type="text/javascript">
 
+
       function displayEdit() {
         $('#edit_btn').trigger('click');
       }
+
 
     </script>
 
@@ -156,56 +158,56 @@
 
         <div class="customer_info" id="customer_info">
           <h1 class="name">
-            <%= best_in_place @customer, :name, :as => :input%>
+            <%= best_in_place @customer, :name%>
           </h1>
 
           <div class=" space email display_box">
             <%=image_tag("envelope.png")%>
-            <p><%= best_in_place @customer, :email, :as => :input %></p>
+            <p><%= best_in_place @customer, :email %></p>
           </div>
 
           <div class=" space doc display_box">
             <%=image_tag("doc.png")%>
-            <p><%= best_in_place @customer, :doc, :as => :input %></p>
+            <p><%= best_in_place @customer, :doc %></p>
           </div>
           <div class=" space phone display_box">
             <%=image_tag("cell.png")%>
-            <p><%= best_in_place @customer, :cell, :as => :input %></p>
+            <p><%= best_in_place @customer, :cell %></p>
           </div>
 
           <div class=" space phone display_box">
             <%=image_tag("phone.png")%>
-            <p><%= best_in_place @customer, :phone, :as => :input %></p>
+            <p><%= best_in_place @customer, :phone %></p>
           </div>
 
           <div class="space display_box">
             <strong>No.&nbsp;afiliado:</strong>
-            <p><%= best_in_place @customer, :affiliate_number, :as => :input %></p>
+            <p><%= best_in_place @customer, :affiliate_number %></p>
           </div>
 
           <div class="space display_box">
             <strong>Edad:</strong>
-            <p><%= best_in_place @customer, :age, :as => :input %></p>
+            <p><%= best_in_place @customer, :age %></p>
           </div>
 
           <div class="space display_box">
             <strong>Sector:</strong>
-            <p><%= best_in_place @customer, :sector, :as => :input %></p>
+            <p><%= best_in_place @customer, :sector %></p>
           </div>
 
           <div class="space display_box">
             <strong>Ciudad:</strong>
-            <p><%= best_in_place @customer, :city, :as => :input %></p>
+            <p><%= best_in_place @customer, :city %></p>
           </div>
 
           <div class="space display_box">
             <strong>Genero:</strong>
-            <p><%= best_in_place @customer, :gender, :as => :input %></p>
+            <p><%= best_in_place @customer, :gender %></p>
           </div>
 
           <div class="space adress">
             <strong>Direccion:</strong>
-            <p><%= best_in_place @customer, :adress, :as => :input %></p>
+            <p><%= best_in_place @customer, :adress %></p>
           </div>
 
           <%= link_to "#edit_modal_section", :id => "edit_btn", class: " reload_page ",  "data-toggle" => "modal" do%>
