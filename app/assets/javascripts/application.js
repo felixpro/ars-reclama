@@ -23,22 +23,23 @@
 //= require_tree .
 
 
-$(document).ready(function() {
-  jQuery(".best_in_place").best_in_place();
-});
 
 
 
 // open edit modal
 function edit_trigger(){
   setTimeout(function () {
-  $('#show_body').ready = loro();
-}, 1000);
+    displayEdit();
+  }, 1000);
 };
 
-function loro() {
-  $('#edit_btn').trigger('click');
-}
+
+
+
+// best_in_place
+$(document).ready(function() {
+  jQuery(".best_in_place").best_in_place();
+});
 
 
 

@@ -9,7 +9,19 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
 
-  <body id="show_body">
+
+
+  <body>
+
+    <script type="text/javascript">
+
+
+      function displayEdit() {
+        $('#edit_btn').trigger('click');
+      }
+
+
+    </script>
 
     <%= yield %>
 
@@ -6068,6 +6080,11 @@
     $('.insurance_input').val('Sin Seguro');
     $('#insurance_submit').trigger('click');
   });
+
+
+
+
+
 </script>
 <script type="text/javascript">
   function reloadEdit() {
