@@ -141,13 +141,13 @@ class CustomersController < ApplicationController
     respond_to do |format|
        if @customer.update(customer_params)
          format.html { redirect_to customer_url, success: 'Guardado Correctamente' }
-         format.json { head :no_content }
+         format.json { respond_with_bip(@customer) }
        else
-         format.html { redirect_to @customer }
-         format.json { render json: @customer.errors, status: :unprocessable_entity }
+        format.json { respond_with_bip(@customer) }
       end
     end
   end
+
 
 
   # DELETE /customers/1
