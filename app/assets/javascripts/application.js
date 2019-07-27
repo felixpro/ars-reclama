@@ -16,6 +16,7 @@
 //= require jquery_ujs
 //= require jquery.purr
 //= require best_in_place.purr
+
 //= require best_in_place
 //= require best_in_place.jquery-ui
 //= require activestorage
@@ -24,13 +25,15 @@
 
 
 
-
+// open edit modal
 // open edit modal
 function edit_trigger(){
   setTimeout(function () {
-    displayEdit();
+        $('#edit_btn').trigger('click');
+
   }, 1000);
 };
+
 
 
 
@@ -111,6 +114,33 @@ setTimeout(function () {
   //Restore orignal HTML
   document.body.innerHTML = oldPage;
   location.reload();
+
+}, 500);
+
+}
+
+
+
+function printerHistorial(divID) {
+//Get the HTML of div
+
+setTimeout(function () {
+
+  var historial = document.getElementById(divID).innerHTML;
+
+  //Get the HTML of whole page
+  var oldPage = document.body.innerHTML;
+  //Reset the pages HTML with divs HTML only
+       document.body.innerHTML =
+
+       "<html ><head><title></title></head><body>" +
+       historial + "</body>";
+
+
+  //Print Page
+  window.print();
+  //Restore orignal HTML
+  document.body.innerHTML = oldPage;
 
 }, 500);
 

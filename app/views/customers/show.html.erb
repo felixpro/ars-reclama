@@ -8,20 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
-
-
-
   <body>
-
-    <script type="text/javascript">
-
-
-      function displayEdit() {
-        $('#edit_btn').trigger('click');
-      }
-
-
-    </script>
 
     <%= yield %>
 
@@ -42,183 +29,177 @@
       });
     </script>
 
+    <div class="modal fade" id="edit_modal_section" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog  modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
 
+            <div class="edit_container">
 
-  <div class="modal fade" id="edit_modal_section" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog  modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-body">
+              <% if @customer.insurance === "ARS Humano" %>
 
-          <div class="edit_container">
+                <%= render 'edit_humano', customer: @customer %>
 
-            <% if @customer.insurance === "ARS Humano" %>
+                <% elsif @customer.insurance === "CENASA" %>
 
-              <%= render 'edit_humano', customer: @customer %>
+                  <%= render 'edit_cenasa', customer: @customer %>
 
-              <% elsif @customer.insurance === "CENASA" %>
+                <% else %>
 
-                <%= render 'edit_cenasa', customer: @customer %>
+                  <%= render 'edit_naseguro', customer: @customer %>
 
-              <% else %>
+                <% end %>
 
-                <%= render 'edit_naseguro', customer: @customer %>
-
-              <% end %>
+              </div>
 
             </div>
-
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="hide_navbar ">
-      <nav class="navbar container navbar-expand-lg navbar-light ">
-        <a class="navbar-brand" href="#"><%=image_tag("brand.png", class: "nav_logo")%></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item inicio">
-              <%=image_tag("nav_img_1.png")%>
-              <%= link_to 'INICIO', customers_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item clientes">
-              <%=image_tag("people.png")%>
-              <a class="nav-link" href="#">CLIENTES</a>
-            </li>
+      <div class="hide_navbar ">
+        <nav class="navbar container navbar-expand-lg navbar-light ">
+          <a class="navbar-brand" href="#"><%=image_tag("brand.png", class: "nav_logo")%></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item inicio">
+                <%=image_tag("nav_img_1.png")%>
+                <%= link_to 'INICIO', customers_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item clientes">
+                <%=image_tag("people.png")%>
+                <a class="nav-link" href="#">CLIENTES</a>
+              </li>
 
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <section class=" show_general_info">
+        <aside class="sidebar">
+          <div class="img_hospital">
+            <%=image_tag("logo_clinica_1.png")%>
+          </div>
+          <ul>
+            <li>
+              <%=image_tag("nav_img_1.png", class:"humano_logo")%>
+              <%= link_to 'INICIO', customers_path %>
+            </li>
+            <li>
+              <%=image_tag("people.png", class:"humano_logo")%>
+              <a >CLIENTES</a>
+            </li>
+            <li>
+              <%=image_tag("doc.png", class:"humano_logo")%>
+              <a >CARTAS</a>
+            </li>
           </ul>
-        </div>
-      </nav>
-    </div>
+        </aside>
 
-    <section class=" show_general_info">
-      <aside class="sidebar">
-        <div class="img_hospital">
-          <%=image_tag("logo_clinica_1.png")%>
-        </div>
-        <ul>
-          <li>
-            <%=image_tag("nav_img_1.png", class:"humano_logo")%>
-            <%= link_to 'INICIO', customers_path %>
-          </li>
-          <li>
-            <%=image_tag("people.png", class:"humano_logo")%>
-            <a >CLIENTES</a>
-          </li>
-          <li>
-            <%=image_tag("doc.png", class:"humano_logo")%>
-            <a >CARTAS</a>
-          </li>
-        </ul>
-      </aside>
+        <div class="view_information_section">
+          <div class="logo_show">
 
-      <div class="view_information_section">
-        <div class="logo_show">
+            <% if @customer.insurance === "ARS Humano" %>
 
-          <% if @customer.insurance === "ARS Humano" %>
+              <%=image_tag("humano_logo.png", class:"humano_logo")%>
 
-            <%=image_tag("humano_logo.png", class:"humano_logo")%>
+              <% elsif @customer.insurance === "CENASA" %>
+                <%=image_tag("senasa_logo.png", class:"humano_logo")%>
 
-            <% elsif @customer.insurance === "CENASA" %>
-              <%=image_tag("senasa_logo.png", class:"humano_logo")%>
+              <% else %>
+                <%=image_tag("sin_seguro.png", class:"humano_logo")%>
 
-            <% else %>
-              <%=image_tag("sin_seguro.png", class:"humano_logo")%>
+              <% end %>
 
-            <% end %>
+              <%= link_to "#changeInsurance", :class => "change_insurance link_style", "data-toggle" => "modal" do%>
+              Cambiar Seguro<%=image_tag("change_ensure.png")%>
+            <%end%>
+            <div class="modal fade" id="changeInsurance" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog  modal-dialog-centered" role="document">
+                <div class="modal-content">
 
-            <%= link_to "#changeInsurance", :class => "change_insurance link_style", "data-toggle" => "modal" do%>
-            Cambiar Seguro<%=image_tag("change_ensure.png")%>
-          <%end%>
-          <div class="modal fade" id="changeInsurance" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog  modal-dialog-centered" role="document">
-              <div class="modal-content">
+                  <div class="modal-body">
+                    <button type="button" class="close close_image" data-dismiss="modal" aria-label="Close">
+                      <%=image_tag("cancel-button.png")%>
+                    </button>
+                    <h1>Elije el seguro para cambiar</h1>
+                    <div class="insurance_buttons">
+                      <button type="button" class="btn btn-primary" id="humano">ARS HUMANO</button>
+                      <button type="button" class="btn btn-success" id="cenasa">CENASA</button>
+                      <button type="button" class="btn btn-light" id="Naseguro">NO ASEGURADO</button>
+                    </div>
 
-                <div class="modal-body">
-                  <button type="button" class="close close_image" data-dismiss="modal" aria-label="Close">
-                    <%=image_tag("cancel-button.png")%>
-                  </button>
-                  <h1>Elije el seguro para cambiar</h1>
-                  <div class="insurance_buttons">
-                    <button type="button" class="btn btn-primary" id="humano">ARS HUMANO</button>
-                    <button type="button" class="btn btn-success" id="cenasa">CENASA</button>
-                    <button type="button" class="btn btn-light" id="Naseguro">NO ASEGURADO</button>
+                    <%= render 'insurance_form', customer: @customer %>
+
                   </div>
-
-                  <%= render 'insurance_form', customer: @customer %>
-
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="customer_info" id="customer_info">
-          <h1 class="name">
-            <%= best_in_place @customer, :name%>
-          </h1>
+          <div class="customer_info" id="customer_info">
+            <h1 class="name">
+              <%= best_in_place @customer, :name%>
+            </h1>
 
-          <div class=" space email display_box">
-            <%=image_tag("envelope.png")%>
-            <p><%= best_in_place @customer, :email %></p>
-          </div>
+            <div class=" space email display_box">
+              <%=image_tag("envelope.png")%>
+              <p><%= best_in_place @customer, :email %></p>
+            </div>
 
-          <div class=" space doc display_box">
-            <%=image_tag("doc.png")%>
-            <p><%= best_in_place @customer, :doc %></p>
-          </div>
-          <div class=" space phone display_box">
-            <%=image_tag("cell.png")%>
-            <p><%= best_in_place @customer, :cell %></p>
-          </div>
+            <div class=" space doc display_box">
+              <%=image_tag("doc.png")%>
+              <p><%= best_in_place @customer, :doc %></p>
+            </div>
+            <div class=" space phone display_box">
+              <%=image_tag("cell.png")%>
+              <p><%= best_in_place @customer, :cell %></p>
+            </div>
 
-          <div class=" space phone display_box">
-            <%=image_tag("phone.png")%>
-            <p><%= best_in_place @customer, :phone %></p>
-          </div>
+            <div class=" space phone display_box">
+              <%=image_tag("phone.png")%>
+              <p><%= best_in_place @customer, :phone %></p>
+            </div>
 
-          <div class="space display_box">
-            <strong>No.&nbsp;afiliado:</strong>
-            <p><%= best_in_place @customer, :affiliate_number %></p>
-          </div>
+            <div class="space display_box">
+              <strong>No.&nbsp;afiliado:</strong>
+              <p><%= best_in_place @customer, :affiliate_number %></p>
+            </div>
 
-          <div class="space display_box">
-            <strong>Edad:</strong>
-            <p><%= best_in_place @customer, :age %></p>
-          </div>
+            <div class="space display_box">
+              <strong>Edad:</strong>
+              <p><%= best_in_place @customer, :age %></p>
+            </div>
 
-          <div class="space display_box">
-            <strong>Sector:</strong>
-            <p><%= best_in_place @customer, :sector %></p>
-          </div>
+            <div class="space display_box">
+              <strong>Sector:</strong>
+              <p><%= best_in_place @customer, :sector %></p>
+            </div>
 
-          <div class="space display_box">
-            <strong>Ciudad:</strong>
-            <p><%= best_in_place @customer, :city %></p>
-          </div>
+            <div class="space display_box">
+              <strong>Ciudad:</strong>
+              <p><%= best_in_place @customer, :city %></p>
+            </div>
 
-          <div class="space display_box">
-            <strong>Genero:</strong>
-            <p><%= best_in_place @customer, :gender %></p>
-          </div>
+            <div class="space display_box">
+              <strong>Genero:</strong>
+              <p><%= best_in_place @customer, :gender %></p>
+            </div>
 
-          <div class="space adress">
-            <strong>Direccion:</strong>
-            <p><%= best_in_place @customer, :adress %></p>
-          </div>
+            <div class="space adress">
+              <strong>Direccion:</strong>
+              <p><%= best_in_place @customer, :adress %></p>
+            </div>
 
-          <%= link_to "#edit_modal_section", :id => "edit_btn", class: " reload_page ",  "data-toggle" => "modal" do%>
-          Editar Cliente
-        <% end %>
+            <%= link_to "#edit_modal_section", :id => "edit_btn", class: " reload_page ", "data-toggle" => "modal" do%>
+            Editar Cliente
+          <% end %>
 
-
-          <!-- <button type="button" class="btn-outline-secondary reload_page" name="button" onclick="reloadEdit()">
-            <%=image_tag("reload.png")%>
-            Actualizar Datos
-          </button> -->
+          <!-- <button type="button" class="btn-outline-secondary reload_page" name="button" onclick="reloadEdit()"> <%=image_tag("reload.png")%> Actualizar Datos </button> -->
         </div>
 
         <a class="view_info">Ver más<%=image_tag("drop_down.png")%></a>
@@ -228,9 +209,101 @@
             <button type="button" name="button" class="btn historial_clinic" data-toggle="modal" data-target="#add_therapies"><%=image_tag("historial.png")%>
               AÑADIR TERAPIA</button>
           <%else%>
-            <button type="button" name="button" class="btn historial_clinic"><%=image_tag("historial.png")%>
+            <button type="button" name="button" class="btn historial_clinic" data-toggle="modal" data-target="#historial_modal">
+              <%=image_tag("historial.png")%>
               HISTORIA CLINICA</button>
           <% end %>
+
+          <div class="modal fade" id="historial_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog  modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <section class="historial_container">
+
+                    <div class="hide_navbar ">
+                      <nav class="navbar container navbar-expand-lg navbar-light ">
+                        <a class="navbar-brand" href="#"><%=image_tag("brand.png", class: "nav_logo")%></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                          <ul class="navbar-nav">
+                            <li class="nav-item inicio">
+                              <%=image_tag("nav_img_1.png")%>
+                              <%= link_to 'INICIO', customers_path, class: "nav-link" %>
+                            </li>
+                            <li class="nav-item clientes">
+                              <%=image_tag("people.png")%>
+                              <a class="nav-link" href="#">CLIENTES</a>
+                            </li>
+
+                          </ul>
+                        </div>
+                      </nav>
+                    </div>
+                    <aside class="sidebar">
+                      <div class="img_hospital">
+                        <%=image_tag("logo_clinica_1.png")%>
+                      </div>
+                      <ul>
+                        <li>
+                          <%=image_tag("nav_img_1.png", class:"humano_logo")%>
+                          <%= link_to 'INICIO', customers_path %>
+                        </li>
+                        <li>
+                          <%=image_tag("people.png", class:"humano_logo")%>
+                          <a >CLIENTES</a>
+                        </li>
+                        <li>
+                          <%=image_tag("doc.png", class:"humano_logo")%>
+                          <a >CARTAS</a>
+                        </li>
+                      </ul>
+                    </aside>
+
+                    <div class="content_clinic">
+
+                      <div class="section_1">
+                        <div class="customer_data">
+                            <%= best_in_place @customer, :name%>
+
+                            <p><%= best_in_place @customer, :email %></p>
+
+                            <p><%= best_in_place @customer, :doc %></p>
+                            <p><%= best_in_place @customer, :cell %></p>
+
+                            <p><%= best_in_place @customer, :phone %></p>
+
+                            <p><%= best_in_place @customer, :affiliate_number %></p>
+
+                            <p><%= best_in_place @customer, :age %></p>
+
+                            <p><%= best_in_place @customer, :sector %></p>
+
+                            <p><%= best_in_place @customer, :city %></p>
+
+                            <p><%= best_in_place @customer, :gender %></p>
+
+                            <p><%= best_in_place @customer, :adress %></p>
+
+                        </div>
+                      </div>
+
+                      <div class="section_2">
+                        <button type="button" name="button" onclick="javascript:printerHistorial('historial_print')">Imprimir</button>
+                        <div class="print_section" id="historial_print">
+                          <p>kjnhlkjh</p>
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </section>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Historial clinico -->
 
           <div class="delete_customer">
             <%= link_to @customer, method: :delete, data: { confirm: 'Are you sure?' } do%>
@@ -1169,8 +1242,7 @@
                       <div class="row">
                         <div class="col-lg-2 button_column">
                           <div class="buttons_container">
-                            <%= f.button 'IMPRIMIR', class:"btn btn-danger imprimir", onclick:"javascript:printerCenasa('cenasa_print')"  %>
-
+                            <%= f.button 'IMPRIMIR', class:"btn btn-danger imprimir", onclick:"javascript:printerCenasa('cenasa_print')" %>
 
                             <%= f.button "CERRAR Y GUARDAR", class: "btn btn-outline-secondary save btn_add_therapie_1" %>
                           <% end %>
@@ -6080,11 +6152,6 @@
     $('.insurance_input').val('Sin Seguro');
     $('#insurance_submit').trigger('click');
   });
-
-
-
-
-
 </script>
 <script type="text/javascript">
   function reloadEdit() {

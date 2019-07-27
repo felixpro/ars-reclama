@@ -24,9 +24,6 @@
     }
   }
 
-
-
-
   }
 }
 
@@ -1151,12 +1148,51 @@ aside {
           text-decoration: none;
           color: #fff;
         }
-
         img {
           width: 19px;
           margin-right: 21px;
         }
       }
+
+      #historial_modal {
+        padding: 0 !important;
+        .modal-dialog {
+          min-height: 100%;
+          min-width: 100%;
+          margin: 0;
+          .modal-content {
+            position: absolute;
+            min-height: 100%;
+          }
+        }
+
+        aside {
+          float: left;
+        }
+        .content_clinic {
+          display: flex;
+          width: 84.5%;
+          @media (max-width: 1400px) {
+            width: 100%;
+          }
+          height: 100%;
+          position: absolute;
+          right: 0;
+
+          .section_1,
+          .section_2 {
+            width: 50%;
+            height: 100%;
+          }
+          .section_1 {
+            background: blue;
+          }
+          .section_2 {
+            background: green;
+          }
+        }
+      }
+      //historial_modal
 
       .delete_customer {
         padding-top: 38px;
