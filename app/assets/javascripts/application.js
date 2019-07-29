@@ -45,18 +45,22 @@ function reloadTimer() {
 
 
 // best_in_place
-$(document).ready(function() {
-  jQuery(".best_in_place").best_in_place();
 
-  // view more slideDown
-  $('#customer_info, #view_info').hover(function () {
-    $('#customer_info ').animate({height: "560px"});
+$(function(){
 
-  }, function() {
-    $('#customer_info').animate({height: "220px"});
-  })
+    jQuery(".best_in_place").best_in_place();
 
-});
+    // view more slideDown
+    $('#customer_info, #view_info').hover(function () {
+      $('#customer_info ').animate({height: "560px"});
+
+    }, function() {
+      $('#customer_info').animate({height: "220px"});
+    })
+
+  });
+
+
 
 
 
