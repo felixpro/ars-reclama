@@ -1,0 +1,64 @@
+<%= form_with(model: historial, local: true) do |form| %>
+  <% if historial.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(historial.errors.count, "error") %> prohibited this historial from being saved:</h2>
+
+      <ul>
+      <% historial.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :padecimiento %>
+    <%= form.text_field :padecimiento %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :patologico %>
+    <%= form.text_field :patologico %>
+  </div>
+
+  <div class="field">
+    <%= form.label :familiares %>
+    <%= form.text_field :familiares %>
+  </div>
+
+  <div class="field">
+    <%= form.label :examen %>
+    <%= form.text_field :examen %>
+  </div>
+
+  <div class="field">
+    <%= form.label :anexo %>
+    <%= form.text_field :anexo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :unificada %>
+    <%= form.text_field :unificada %>
+  </div>
+
+  <div class="field">
+    <%= form.label :autorizar %>
+    <%= form.text_field :autorizar %>
+  </div>
+
+  <div class="field">
+    <%= form.label :firma %>
+    <%= form.text_field :firma %>
+  </div>
+
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

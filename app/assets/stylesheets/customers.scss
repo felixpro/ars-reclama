@@ -13,9 +13,6 @@
     @media (max-width: 1520px) {
       min-width: 90%;
     }
-
-
-
   .edit_container {
     padding: 49px 200px;
     border-radius: 8px;
@@ -874,11 +871,9 @@ aside {
       transition: 2s;
       width: 270px;
 
-      @media (max-width: 1640px) {}
-
-      &:hover {
-        height: 560px;
-      }
+      // &:hover {
+      //   height: 560px;
+      // }
     }
 
     a.view_info {
@@ -897,6 +892,7 @@ aside {
       border: none;
       position: relative;
       top: 25px;
+      cursor: pointer;
 
       &:active,
       &:focus,
@@ -907,6 +903,8 @@ aside {
         text-decoration: none;
         background: transparent;
         border: none;
+        color: #50aa91;
+
       }
 
       img {
@@ -916,7 +914,7 @@ aside {
     }
 
     .logo_show {
-      padding-bottom: 84px;
+      padding-bottom: 45px;
     }
 
     .adress {
@@ -978,8 +976,7 @@ aside {
     }
 
     .view_more_buttons {
-      position: absolute;
-      bottom: 40px;
+      margin-top: 230px;
       .content {
         padding: 45px 0;
 
@@ -1154,8 +1151,15 @@ aside {
         }
       }
 
+
+
+
+
+
       #historial_modal {
         padding: 0 !important;
+        background: #ffff;
+
         .modal-dialog {
           min-height: 100%;
           min-width: 100%;
@@ -1163,8 +1167,46 @@ aside {
           .modal-content {
             position: absolute;
             min-height: 100%;
+            border: none;
           }
         }
+
+          .button_container_historial {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: 25px;
+            padding-bottom: 20px;
+            button.save_historial {
+              width: 202px;
+                height: 49px;
+                opacity: 0.6;
+                border-radius: 8px;
+                font-family: Raleway;
+              font-size: 16px;
+              font-weight: 600;
+              font-style: normal;
+              font-stretch: normal;
+              line-height: normal;
+              letter-spacing: normal;
+              color: #6e6d8c;
+              background: none;
+              border: solid 2px #bbbade;
+              margin-right: 26px;
+            }
+            button.print_historial {
+              color: #ffffff;
+              width: 202px;
+              height: 49px;
+              border-radius: 8px;
+              box-shadow: 0 19px 28px 0 rgba(200, 0, 255, 0.19);
+              background-image: linear-gradient(288deg, #7f00ff, #e100ff);
+              img {
+                margin-right: 17px;
+              }
+            }
+          }
+
 
         aside {
           float: left;
@@ -1185,14 +1227,122 @@ aside {
             height: 100%;
           }
           .section_1 {
-            background: blue;
+            .customer_data {
+              padding: 50px 80px 0px 80px;
+              height: 100%;
+              overflow-x: scroll;
+              box-shadow: 0 12px 74px 0 rgba(172, 214, 203, 0.29);
+              .display_content {
+                display: flex;
+                justify-content: space-between;
+                div {
+                  width: 47%;
+                  :first-child {
+
+                  }
+                }
+              }
+              .box_content {
+                padding-bottom: 22px;
+                P {
+                  opacity: 0.7;
+                  font-family: Raleway;
+                  font-size: 14px;
+                  font-weight: normal;
+                  font-style: normal;
+                  font-stretch: normal;
+                  line-height: normal;
+                  letter-spacing: normal;
+                  color: #000000;
+                }
+                textarea {
+                  max-height: 81px;
+                  min-height: 81px;
+
+                }
+                input, textarea {
+                  width: 100%;
+                  border: none;
+                  border-bottom: solid 1px #bbbade;
+                  background: none;
+                  outline: none;
+                  text-decoration: none;
+                  box-shadow: none;
+                  &:active,
+                  &:focus,
+                  &:hover,
+                  &:visited {
+                    background: none;
+                    outline: none;
+                    text-decoration: none;
+                    box-shadow: none;
+                    border: none;
+                    border-bottom: solid 1px #bbbade;
+                  }
+                }
+
+                h1,h5 {
+                  border-bottom: solid 1px #bbbade;
+
+                }
+
+
+              }
+            }
           }
           .section_2 {
-            background: green;
+            display: flex;
+            justify-content: center;
+            // background-color: #f4f7f6;
+            padding-top: 30px;
+            .input_content_authnum {
+              display: flex;
+              align-items: center;
+              justify-content: flex-end;
+              padding-bottom: 30px;
+
+              input {
+                background: none;
+                width: 137px;
+                height: 49px;
+                opacity: 0.68;
+                border-radius: 8px;
+                border: solid 1px #bbbade;
+                text-align: center;
+                &:active,
+                &:focus,
+                &:hover,
+                &:visited {
+                  background: none;
+                  box-shadow: none;
+                  outline: none;
+                  text-decoration: none;
+                  color: #000;
+                }
+              }
+              p {
+                margin-right: 15px;
+                margin-bottom: 0;
+                margin-top: 0;
+                opacity: 0.7;
+              font-family: Raleway;
+              font-size: 14px;
+              font-weight: normal;
+              font-style: normal;
+              font-stretch: normal;
+              line-height: normal;
+              letter-spacing: normal;
+              color: #000000;
+              }
+            }
           }
         }
       }
+
       //historial_modal
+
+
+      // historial modal 2
 
       .delete_customer {
         padding-top: 38px;
@@ -1802,6 +1952,9 @@ aside {
         padding-top: 34px;
         padding-right: 50px;
         padding-left: 58px;
+        .modal-content {
+          border: none;
+        }
 
 
         button.reclam_button {

@@ -34,13 +34,28 @@ function edit_trigger(){
   }, 1000);
 };
 
+function reloadTimer() {
 
+  setTimeout(function () {
+    location.reload();
+
+  }, 500);
+}
 
 
 
 // best_in_place
 $(document).ready(function() {
   jQuery(".best_in_place").best_in_place();
+
+  // view more slideDown
+  $('#customer_info, #view_info').hover(function () {
+    $('#customer_info ').animate({height: "560px"});
+
+  }, function() {
+    $('#customer_info').animate({height: "220px"});
+  })
+
 });
 
 
@@ -49,22 +64,83 @@ $(document).ready(function() {
 function myFunction() {
   $('#actualizar').html('')
   $('#actualizar').append($('#authNum').val());
-}
+};
 
 function diagnosticFuntion() {
   $('#input_diagnostic').html('')
   $('#input_diagnostic').append($('#diagnostic_text').val());
-}
+};
 
 function dateFuntion() {
   $('.dateUpdate').html('')
   $('.dateUpdate').append($('#dateInput').val());
+};
+
+
+// update input historial_link
+
+function padecimiento() {
+  $('#padecimiento').html('')
+  $('#padecimiento').append($('#input_padecimiento').val());
+};
+
+function antecedentes() {
+  $('#antecedentes').html('');
+  var texto = $('#input_antecedentes' ).val();
+  $('#antecedentes').append(texto)
+};
+
+function status() {
+  $('#status').html('')
+  $('#status').append($('#input_status').val());
+};
+
+function familiares() {
+  $('#familiares').html('')
+  $('#familiares').append($('#input_familiares').val());
+};
+
+function examen() {
+  $('#examen').html('')
+  $('#examen').append($('#input_examen').val());
+};
+
+function anexo() {
+  $('#anexo').html('')
+  $('#anexo').append($('#input_anexo').val());
+};
+
+function unificada() {
+  $('#unificada').html('')
+  $('#unificada').append($('#input_unificada').val());
+};
+
+function autorizar() {
+  $('#autorizar').html('')
+  $('#autorizar').append($('#input_autorizar').val());
+};
+
+
+
+// save historial
+function guardarHistorial() {
+  $('#historial_btn').trigger('click');
+  setTimeout(function () {
+    location.reload();
+
+  }, 500);
+}
+
+function imprimirGuardar() {
+  $('#historial_btn').trigger('click');
 }
 
 
 
 
-//// Print section
+
+
+// Print section
 function printerDiv(divID) {
 //Get the HTML of div
 
@@ -143,5 +219,4 @@ setTimeout(function () {
   document.body.innerHTML = oldPage;
 
 }, 500);
-
 }

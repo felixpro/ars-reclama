@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  padecimiento: MyString
+  status: MyString
+  patologico: MyString
+  familiares: MyString
+  examen: MyString
+  anexo: MyString
+  unificada: MyString
+  autorizar: MyString
+  firma: MyString
+  customer: one
+
+two:
+  padecimiento: MyString
+  status: MyString
+  patologico: MyString
+  familiares: MyString
+  examen: MyString
+  anexo: MyString
+  unificada: MyString
+  autorizar: MyString
+  firma: MyString
+  customer: two

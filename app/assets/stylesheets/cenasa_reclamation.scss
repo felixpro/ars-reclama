@@ -1,3 +1,5 @@
+
+
 @media print {
   body {
     margin: 0 0 0 0 !important;
@@ -10,7 +12,368 @@
       top: 10px;
     }
   }
+
+  .print_content {
+    width: 528px;
+    height: 816px;
+    .antecedentes {
+      font-weight: bold;
+    }
+  }
 }
+
+
+
+.print_content {
+  width: 528px;
+  height: 816px;
+  .header, .header_historial {
+    padding: 20px 15px 0px 15px;
+    text-align: center;
+    border: 1px solid #002080;
+    border-radius: 15px;
+    color: #002080;
+    display: flex;
+height: 200px;
+    .img {
+      padding-right: 30px;
+      .customer_img {
+        background: green;
+        margin-top: 10px;
+        width: 80px;
+      }
+    }
+    .text {
+      h4 {
+        font-weight:5px;
+        margin: 0;
+            font-size: 20px;
+        strong {
+          font-style: oblique;
+          letter-spacing: 2px;
+        }
+      }
+    }
+  }
+  .body {
+    padding: 20px 15px 0px 15px;
+    border: 1px solid #002080;
+    height: 100%;
+    border-radius: 15px;
+    margin-top: 5px;
+    height: 616px;
+    p {
+      margin: 0;
+    }
+    p.black_color {
+      color: #000000;
+      font-weight: 300px;
+    }
+
+    .firma {
+      position: absolute;
+      top: 780px;
+    }
+
+
+        .examen {
+          color:  #008080;
+        }
+
+        .line {
+          text-decoration: underline;
+        }
+
+        .italic {
+          font-style: italic;
+        }
+
+        #loro {
+          strong {
+            color: #4d0000;
+            font-style: italic;
+            text-decoration: underline;
+
+          }
+        }
+
+        .unificada {
+          strong {
+            font-weight: italic;
+            color: #4d0000;
+            text-decoration: underline;
+
+          }
+        }
+
+    #familiares {
+      strong {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+
+.historial_content {
+  padding: 0 !important;
+  background: #ffff;
+
+  .modal-dialog {
+    min-height: 100%;
+    min-width: 100%;
+    margin: 0;
+    .modal-content {
+      position: absolute;
+      min-height: 100%;
+    }
+  }
+
+    .button_container_historial {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-top: 25px;
+      padding-bottom: 20px;
+      button.save_historial {
+        width: 202px;
+          height: 49px;
+          opacity: 0.6;
+          border-radius: 8px;
+          font-family: Raleway;
+        font-size: 16px;
+        font-weight: 600;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #6e6d8c;
+        background: none;
+        border: solid 2px #bbbade;
+        margin-right: 26px;
+      }
+      button.print_historial {
+        color: #ffffff;
+        width: 202px;
+        height: 49px;
+        border-radius: 8px;
+        box-shadow: 0 19px 28px 0 rgba(200, 0, 255, 0.19);
+        background-image: linear-gradient(288deg, #7f00ff, #e100ff);
+        img {
+          margin-right: 17px;
+        }
+      }
+    }
+
+
+  aside {
+    float: left;
+  }
+  .content_clinic {
+    display: flex;
+    width: 84.5%;
+    @media (max-width: 1400px) {
+      width: 100%;
+    }
+    height: 100%;
+    position: absolute;
+    right: 0;
+
+    .section_1,
+    .section_2 {
+      width: 50%;
+      height: 100%;
+    }
+    .section_1 {
+      .customer_data {
+        padding: 50px 80px 0px 80px;
+        height: 100%;
+        overflow-x: scroll;
+        box-shadow: 0 12px 74px 0 rgba(172, 214, 203, 0.29);
+        .display_content {
+          display: flex;
+          justify-content: space-between;
+          div {
+            width: 47%;
+            :first-child {
+
+            }
+          }
+        }
+        .box_content {
+          padding-bottom: 22px;
+          P {
+            opacity: 0.7;
+            font-family: Raleway;
+            font-size: 14px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #000000;
+          }
+          textarea {
+            max-height: 81px;
+            min-height: 81px;
+
+          }
+          input, textarea {
+            width: 100%;
+            border: none;
+            border-bottom: solid 1px #bbbade;
+            background: none;
+            outline: none;
+            text-decoration: none;
+            box-shadow: none;
+            &:active,
+            &:focus,
+            &:hover,
+            &:visited {
+              background: none;
+              outline: none;
+              text-decoration: none;
+              box-shadow: none;
+              border: none;
+              border-bottom: solid 1px #bbbade;
+            }
+          }
+
+          h1,h5, h6 {
+            border-bottom: solid 1px #bbbade;
+          }
+          h6 {
+            font-size: 16px;
+            min-height: 25px;
+          }
+
+
+        }
+      }
+    }
+    .section_2 {
+      display: flex;
+      justify-content: center;
+      background-color: #f4f7f6;
+      padding-top: 30px;
+      .input_content_authnum {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-bottom: 30px;
+        input, span {
+          background: none;
+          width: 137px;
+          height: 49px;
+          opacity: 0.68;
+          border-radius: 8px;
+          border: solid 1px #bbbade;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          &:active,
+          &:focus,
+          &:hover,
+          &:visited {
+            background: none;
+            box-shadow: none;
+            outline: none;
+            text-decoration: none;
+            color: #000;
+          }
+        }
+        p {
+          margin-right: 15px;
+          margin-bottom: 0;
+          margin-top: 0;
+          opacity: 0.7;
+        font-family: Raleway;
+        font-size: 14px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #000000;
+        }
+      }
+    }
+  }
+
+}
+
+.show_section_histories {
+  padding-top: 34px;
+  padding-right: 50px;
+  padding-left: 58px;
+
+          button.reclam_button {
+            background: none;
+            outline: none;
+            text-decoration: none;
+            box-shadow: none;
+            border: none;
+            margin-right: 45px;
+            cursor: pointer;
+
+            &:active,
+            &:focus,
+            &:hover,
+            &:visited {
+              border: none;
+              background: none;
+              outline: none;
+              text-decoration: none;
+              box-shadow: none;
+            }
+          }
+
+          p.r {
+            width: 73px;
+            height: 66px;
+            border-radius: 8px;
+            border: solid 2px #bbbade;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Raleway;
+            font-size: 35px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #bbbade;
+          }
+
+          p.date_reclam {
+            margin-top: 0;
+            font-family: Raleway;
+            font-size: 12px;
+            font-weight: 500;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #bbbade;
+            margin-bottom: 6px;
+          }
+
+          p.ensure {
+            font-family: Raleway;
+            font-size: 12px;
+            font-weight: 500;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #bbbade;
+            margin-top: 0;
+          }
+}
+
+
+
 $backcolor: #cdcbbe;
 $border: 1px solid #000;
 $smallfont: 10px;

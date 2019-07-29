@@ -1,0 +1,53 @@
+<%= form_for([@customer, @customer.historial.build], remote: true) do |form| %>
+
+<div class="box_content">
+  <p>Descripción de padecimiento</p>
+  <%= form.text_area :padecimiento, onkeyup: "padecimiento()", id: "input_padecimiento" %>
+</div>
+
+<div class="box_content display_content">
+  <div class="">
+    <p>Status Laboral</p>
+    <%= form.text_field :status, onkeyup: "status()", id: "input_status"  %>
+  </div>
+  <div class="">
+    <p>Antecedentes Patológicos</p>
+    <%= form.text_field :patologico, onkeyup: "antecedentes()", id: "input_antecedentes" %>
+  </div>
+</div>
+
+<div class="box_content">
+  <p>Antecedentes Patológicos Familiares</p>
+  <%= form.text_field :familiares, onkeyup: "familiares()", id: "input_familiares" %>
+</div>
+
+<div class="box_content">
+  <p>Examen Físico</p>
+  <%= form.text_area :examen, onkeyup: "examen()", id: "input_examen" %>
+</div>
+
+<div class="box_content">
+  <p>Anexo</p>
+  <%= form.text_field :anexo, onkeyup: "anexo()", id: "input_anexo" %>
+</div>
+
+<div class="box_content">
+  <p>Reclamación de Terapia Física Unificada</p>
+  <%= form.text_field :unificada, onkeyup: "unificada()", id: "input_unificada" %>
+</div>
+
+<div class="box_content">
+  <p>Para autorizar</p>
+  <%= form.number_field :autorizar, onkeyup: "autorizar()", id: "input_autorizar", placeholder: "0" %>
+</div>
+
+<div class="box_content">
+  <p>Numero de auth</p>
+  <%= form.text_field :firma, id: "Auth_historie"%>
+</div>
+
+  <div class="actions" style="display:none;">
+    <%= form.submit :GUARDAR, id: "historial_btn" %>
+  </div>
+
+<% end %>

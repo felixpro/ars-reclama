@@ -68,7 +68,8 @@ class CustomersController < ApplicationController
         @weekreclamations =  @weekreclamations - 1
         @yearreclamations =  @yearreclamations - 1
         @monthreclamations =  @monthreclamations - 1
-      else
+
+
       end
     end
 
@@ -79,10 +80,16 @@ class CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @appointments = @customer.appointment.order('created_at DESC');
-
+    @historiales =  @customer.historial.order('created_at DESC');
+    @identifierHistorial = 0;
     @service = @customer.service.order('created_at DESC').limit(4)
     @reclamation = @customer.reclamation.order('created_at DESC');
     @historialReclamation = @reclamation.where.not(authNum:nil)
+    if @reclamation.count > 0
+      @lastReclamation = Reclamation.last.authNum
+    else
+
+    end
 
     @identifier = 0;
     @therapiequantity = 0;

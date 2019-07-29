@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_17_204022) do
+ActiveRecord::Schema.define(version: 2019_07_27_125012) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -83,6 +83,22 @@ ActiveRecord::Schema.define(version: 2019_07_17_204022) do
     t.index ["item_type"], name: "index_drafts_on_item_type"
     t.index ["updated_at"], name: "index_drafts_on_updated_at"
     t.index ["whodunnit"], name: "index_drafts_on_whodunnit"
+  end
+
+  create_table "historials", force: :cascade do |t|
+    t.string "padecimiento"
+    t.string "status"
+    t.string "patologico"
+    t.string "familiares"
+    t.string "examen"
+    t.string "anexo"
+    t.string "unificada"
+    t.string "autorizar"
+    t.string "firma"
+    t.integer "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_historials_on_customer_id"
   end
 
   create_table "reclamations", force: :cascade do |t|
