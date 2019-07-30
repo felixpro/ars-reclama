@@ -40,6 +40,15 @@ function reloadTimer() {
 }
 
 
+function reloadSevice() {
+
+  setTimeout(function () {
+    location.reload();
+
+  }, 200);
+}
+
+
 
 // best_in_place
 
@@ -50,9 +59,11 @@ $(function(){
     // view more slideDown
     $('#customer_info, #view_info').hover(function () {
       $('#customer_info ').animate({height: "560px"});
+      $('.view_more_buttons ').animate({bottom: "-200px"},1000);
 
     }, function() {
       $('#customer_info').animate({height: "220px"});
+      $('.view_more_buttons ').animate({bottom: "20px"},1000);
     })
 
   });

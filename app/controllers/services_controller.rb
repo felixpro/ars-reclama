@@ -51,6 +51,8 @@ class ServicesController < ApplicationController
     @service = Service.find(params[:id])
     respond_to do |format|
       if @service.update_attributes(service_params)
+        format.html { redirect_to @customer, success: 'Service was successfully updated.' }
+
         format.json { respond_with_bip(@service) }
       else
         format.html { render action: 'edit'}

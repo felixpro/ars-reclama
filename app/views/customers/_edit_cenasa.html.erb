@@ -31,14 +31,14 @@
             <div class="col-lg-3 col-md-3 col-sm-3">
               <div class="content">
                 <p class="title"><%= form.label :Teléfono %></p>
-                <p class="input"><%= form.text_field :phone %></p>
+                <p class="input"><%= form.number_field :phone %></p>
               </div>
             </div>
 
             <div class="col-lg-3 col-md-3 col-sm-3">
               <div class="content">
                 <p class="title"><%= form.label :Celular %></p>
-                <p class="input"><%= form.text_field :cell %></p>
+                <p class="input"><%= form.number_field :cell %></p>
               </div>
             </div>
 
@@ -90,7 +90,7 @@
             <div class="col-lg-3 col-md-3 col-sm-3">
               <div class="content">
                 <p class="title"><label for="affiliate_number">No.  de Afiliado</label></p>
-                <p class="input"><%= form.text_field :affiliate_number, :required => true %></p>
+                <p class="input"><%= form.number_field :affiliate_number, :required => true %></p>
               </div>
             </div>
 

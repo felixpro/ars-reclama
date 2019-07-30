@@ -82,7 +82,7 @@ class CustomersController < ApplicationController
     @appointments = @customer.appointment.order('created_at DESC');
     @historiales =  @customer.historial.order('created_at DESC');
     @identifierHistorial = 0;
-    @service = @customer.service.order('created_at DESC').limit(4)
+    @service = @customer.service.order('created_at DESC');
     @reclamation = @customer.reclamation.order('created_at DESC');
     @historialReclamation = @reclamation.where.not(authNum:nil)
     if @reclamation.count > 0

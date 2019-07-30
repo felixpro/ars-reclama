@@ -10,7 +10,6 @@
   </head>
   <body>
 
-
     <%= yield %>
 
     <% flash.each do |key, value| %>
@@ -89,7 +88,7 @@
           <ul>
             <li>
               <%=image_tag("nav_img_1.png", class:"humano_logo")%>
-              <%= link_to 'INICIO', customers_path, onclick:'reloadTimer()' %>
+              <%= link_to 'INICIO', customers_path %>
             </li>
             <li>
               <%=image_tag("people.png", class:"humano_logo")%>
@@ -458,11 +457,41 @@
           </div>
           <!-- Historial clinico -->
 
-          <div class="delete_customer">
-            <%= link_to @customer, method: :delete, data: { confirm: 'Are you sure?' } do%>
+          <div class="delete_customer ">
+
+
+          <%= link_to "#delete_customer_modal", :class => "", "data-toggle" => "modal" do%>
             <%=image_tag("delete_index.png")%>
             Eliminar Paciente
-          <% end %>
+          <%end%>
+
+          <div class="modal fade" id="delete_customer_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog  modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div class="delete_content">
+                    <h1>
+                      ¿Estas seguro que quieres <br> eliminar a <span> <strong><%= @customer.name %>?</strong></span>
+                    </h1>
+
+                    <div class="btn_content">
+                      <%= link_to @customer, method: :delete do %>
+                      <button type="button" class="btn btn-outline-secondary delete_btn" >SI, ELIMINAR</button>
+                      <%end%>
+
+                      <button type="button" name="button" class="dimiss_modal" data-dismiss="modal" aria-label="Close">CANCELAR</button>
+                    </div>
+
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
         </div>
 
         <div class="modal fade" id="add_therapies" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -483,7 +512,7 @@
                     <%= f.number_field :therapiesNum, id: "add_therapie_input" %>
                   </div>
 
-                  <span style="display:none;"><%= f.text_field :creationDate, :value => DateTime.now.to_date, id: "dateInput", onkeyup: "dateFuntion()" %></span>
+                  <span style="display:none;"><%= f.text_field :creationDate, :value => Time.current.to_date, id: "dateInput", onkeyup: "dateFuntion()" %></span>
                   <div class="buttons_container">
                     <%= f.button "GUARDAR", class: "save remove_therapie_class"%>
                     <button type="button" class="cancel" data-dismiss="modal" aria-label="Close">
@@ -2038,7 +2067,7 @@
               </div>
               <div class="container">
                 <div class="row edit_buttons">
-                  <button type="button" class=" btn btn-danger " id="save_button" data-dismiss="modal" aria-label="Close">
+                  <button type="button" class=" btn btn-danger " id="save_button" data-dismiss="modal" aria-label="Close" onclick="reloadSevice()">
                     GUARDAR
                   </button>
                   <button type="button" class=" btn btn-outline-secondary " id="cancel_button" data-dismiss="modal" aria-label="Close">
@@ -6514,16 +6543,21 @@
       var result = parseInt($('#input_1_therapie').val())
       var form_val = parseInt($('#form_input_customer').val())
       var sum = (result + form_val);
+
       // detect if the input is empty, to avoyd delete the whole therapies
       if ($('#input_1_therapie').val().length === 0) {} else {
         setTimeout(function () {
           $('#form_input_customer').val(sum);
           $("#submit_btn").trigger('click');
-        }, 2000);
+        });
       }
-
     });
 
+    $('.btn_add_therapie_1').click(function () {
+      setTimeout(function () {
+        $('.btn_add_therapie_1').prop('disabled', true);
+    },50);
+  });
     // add  therapie chadow
     $('.remove_therapie_class').click(function () {
       var result = parseInt($('#add_therapie_input').val())
@@ -6571,13 +6605,11 @@
     });
   </script>
   <script type="text/javascript">
+
     function reloadEdit() {
       location.reload();
 
     }
-
-
-
   </script>
 </body>
 </html>

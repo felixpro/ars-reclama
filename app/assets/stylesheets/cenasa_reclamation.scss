@@ -38,7 +38,6 @@ height: 200px;
     .img {
       padding-right: 30px;
       .customer_img {
-        background: green;
         margin-top: 10px;
         width: 80px;
       }
@@ -727,9 +726,38 @@ $smallfont: 10px;
 
 .edit_modal {
   .modal-dialog {
-    min-width: 60%;
+    min-width: 70%;
+     @media (max-width: 1330px) {
+       min-width: 85%;
+     }
+     .modal-body {
+       box-shadow:0 0 0 9999px rgba(0,0,0,.6);
+
+     }
     .container_edit {
       padding: 50px 0px;
+      span {
+
+      }
+      input {
+
+        outline: none;
+        background: none;
+        box-shadow: none;
+        border: none;
+        height: 24px;
+        width: 95%;
+        &:hover,
+        &:active,
+        &:focus,
+        &:visited {
+          outline: none;
+          background: none;
+          box-shadow: none;
+          border: none;
+          height: 24px;
+        }
+      }
 
       .title {
         h1 {
@@ -739,11 +767,13 @@ $smallfont: 10px;
       }
       .container_row {
         background: #fafafa;
-          margin: 0;
-          padding-top: 0px !important;
-
-          padding: 30px 60px;
-          width: 100%;
+        margin: 0;
+        padding-top: 0px !important;
+        padding: 30px 60px;
+        width: 100%;
+        overflow-y: inherit;
+overflow-x: auto;
+max-height: 300px;
         .procedimiento {
           a {
             outline: none;
@@ -780,9 +810,7 @@ $smallfont: 10px;
           }
           .box_padding_left {
             width: 10px;
-
             border-left: 1px solid grey;
-
           }
 
           .display_content {
@@ -817,15 +845,7 @@ $smallfont: 10px;
           background: none;
 
         }
-
-
-
-
-
     }
-
-
-
   }
 }
 // End edit modal
@@ -841,7 +861,15 @@ $smallfont: 10px;
 
 .new_modal {
   .modal-dialog {
-    min-width: 60%;
+    min-width: 70%;
+
+     @media (max-width: 1330px) {
+       min-width: 85%;
+     }
+     .modal-body {
+       box-shadow:0 0 0 9999px rgba(0,0,0,.6);
+
+     }
     .container_edit {
       padding: 50px 0px;
       input {
@@ -870,9 +898,11 @@ $smallfont: 10px;
         background: #fafafa;
           margin: 0;
           padding-top: 0px !important;
-
           padding: 30px 60px;
           width: 100%;
+          overflow-y: inherit;
+overflow-x: auto;
+max-height: 300px;
         .procedimiento {
           a {
             outline: none;
