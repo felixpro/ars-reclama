@@ -21,6 +21,24 @@
 
 
 
+function loro() {
+  setTimeout(function () {
+    $('#edit_content').html("<%=  render 'band' %>");
+  }, 500);
+
+}
+
+
+// allow to save service before close modal
+function close_modal() {
+  setTimeout(function () {
+  $('#newService').modal('toggle');
+    }, 500);
+}
+
+// update the sevices in the show page
+
+
 
 // open edit modal
 // open edit modal

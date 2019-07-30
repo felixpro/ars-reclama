@@ -1659,15 +1659,22 @@
 
                               <div class="service_container">
                                 <h6>Procedimientos o servicios</h6>
-                                <div class="edit_content">
-                                  <% @customer.service.each do |service| %>
-                                    <h4><%=service.process%></h4>
-                                    <h5>
-                                      <%= link_to "Editar", "#edit", :class => "services_links edit_link link_style", "data-toggle" => "modal" %>
-                                      <i class="material-icons">keyboard_arrow_right</i>
-                                    </h5>
-                                  <% end %>
+
+
+                                <div class="edit_content" id="edit_content">
+                                    <% @customer.service.each do |service| %>
+
+                                      <h4><%=service.process%></h4>
+                                      <h5>
+                                        <%= link_to "Editar", "#edit", :class => "services_links edit_link link_style", "data-toggle" => "modal" %>
+                                        <i class="material-icons">keyboard_arrow_right</i>
+                                      </h5>
+
+                                    <% end %>
                                 </div>
+
+
+
                                 <h3>&#x2b;</h3>
                                 <%= link_to "Añadir otro", "#newService", :class => "services_links link_style add_service", "data-toggle" => "modal" %>
                               </div>
@@ -1980,8 +1987,10 @@
                   <div class="title">
                     <h1>Procedimientos o servicios</h1>
                   </div>
-                  <div class="row container_row">
                     <% @service.each do |service| %>
+                    <div class="row container_row">
+
+
                       <div class="col-lg-4">
                         <div class="colum_content procedimiento">
                           <div class="column_title">
@@ -1989,7 +1998,7 @@
                           </div>
                           <div class="display_content">
                             <div class="image_delete">
-                              <%= link_to customer_service_path(service.customer, service), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                              <%= link_to customer_service_path(service.customer, service), method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: 'delete' do %>
                               <%=image_tag("edit_delete.png")%>
                             <% end %>
                           </div>
@@ -2061,13 +2070,14 @@
                         </div>
                       </div>
                     </div>
+                      </div>
 
                   <% end %>
-                </div>
+
               </div>
               <div class="container">
                 <div class="row edit_buttons">
-                  <button type="button" class=" btn btn-danger " id="save_button" data-dismiss="modal" aria-label="Close" onclick="reloadSevice()">
+                  <button type="button" class=" btn btn-danger " id="save_button" data-dismiss="modal" aria-label="Close">
                     GUARDAR
                   </button>
                   <button type="button" class=" btn btn-outline-secondary " id="cancel_button" data-dismiss="modal" aria-label="Close">
@@ -2086,7 +2096,107 @@
           <div class="modal-content">
 
             <div class="modal-body">
-              <%= render 'new_service' %>
+              <%= form_for([@customer, @customer.service.build], remote: true) do |f| %>
+
+                <div class="container container_edit">
+                  <div class="title">
+                    <h1>Nuevo procedimiento</h1>
+                  </div>
+                  <div class="row container_row">
+                      <div class="col-lg-4">
+                        <div class="colum_content procedimiento">
+                          <div class="column_title">
+                            <p>Procedimiento</p>
+                          </div>
+                          <div class="display_content">
+                          <div class="data">
+                            <%= f.text_field :process %>
+                          </div>
+                          <div class="box_padding"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                      <div class="colum_content">
+                        <div class="column_title">
+                          <p>Codigo</p>
+                        </div>
+                        <div class="display_content">
+                          <div class="box_padding_left"></div>
+                          <div class="data">
+                            <%= f.number_field :code %>
+                          </div>
+                          <div class="box_padding"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                      <div class="colum_content">
+                        <div class="column_title">
+                          <p>Reclamado RD$</p>
+                        </div>
+                        <div class="display_content">
+                          <div class="box_padding_left"></div>
+                          <div class="data">
+                            <%= f.number_field :reclaimed %>
+                          </div>
+                          <div class="box_padding"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                      <div class="colum_content">
+                        <div class="column_title">
+                          <p>Diferencia RD$</p>
+                        </div>
+                        <div class="display_content">
+                          <div class="box_padding_left"></div>
+                          <div class="data">
+                            <%= f.number_field :authorized %>
+                          </div>
+                          <div class="box_padding"></div>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                      <div class="colum_content">
+                        <div class="column_title">
+                          <p>Autorizado RD$</p>
+                        </div>
+                        <div class="display_content">
+                          <div class="box_padding_left"></div>
+                          <div class="data">
+                            <%= f.number_field :difference %>
+                          </div>
+                          <div class="box_padding"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                </div>
+              </div>
+              <div class="container">
+                <div class="row edit_buttons">
+                  <%= f.submit "GUARDAR", class: "btn btn-danger", id:"save_button", onclick: "close_modal()" %>
+
+                  <button type="button" class=" btn btn-danger " id="cancel_button" data-dismiss="modal" aria-label="Close">
+                    CANCELAR
+                  </button>
+
+
+
+                </div>
+              </div>
+
+
+
+              <% end %>
+
             </div>
           </div>
         </div>
@@ -2241,13 +2351,21 @@
                               <h6>Procedimientos o servicios</h6>
 
                               <div class="edit_content">
+
                                 <% @customer.service.each do |service| %>
-                                  <h4><%=service.process%></h4>
-                                  <h5>
-                                    <%= link_to "Editar", "#edit_humano", :class => "services_links edit_link link_style", "data-toggle" => "modal" %>
-                                    <i class="material-icons">keyboard_arrow_right</i>
-                                  </h5>
+
+                                  <div class="">
+                                    <h4><%=service.process%></h4>
+                                    <h5>
+                                      <%= link_to "Editar", "#edit_humano", :class => "services_links edit_link link_style", "data-toggle" => "modal" %>
+                                      <i class="material-icons">keyboard_arrow_right</i>
+                                    </h5>
+                                  </div>
+
+
+
                                 <% end %>
+
                               </div>
                               <h3>&#x2b;</h3>
                               <%= link_to "Anadir otro", "#newServiceHumano", :class => "services_links link_style add_service", "data-toggle" => "modal" %>

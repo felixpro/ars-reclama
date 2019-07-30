@@ -36,6 +36,7 @@ class ServicesController < ApplicationController
 
     respond_to do |format|
       if @service.save
+        format.js
         format.html { redirect_to @customer, success: 'Service was successfully created.' }
         format.json { render :show, status: :created, location: @service }
       else
@@ -67,7 +68,9 @@ class ServicesController < ApplicationController
    @service = Service.find(params[:id])
    customer = @service.customer
    @service.destroy
-   redirect_to customer
+   respond_to do |format|
+     format.js
+   end
   end
 
   private

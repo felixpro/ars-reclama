@@ -1,0 +1,12 @@
+<% @customer.service.each do |service| %>
+
+  <div id="index_service_container">
+    <h4><%=service.process%></h4>
+    <h5>
+      <%= link_to "Editar", "#edit_humano", :class => "services_links edit_link link_style", "data-toggle" => "modal" %>
+      <i class="material-icons">keyboard_arrow_right</i>
+    </h5>
+  </div>
+
+
+<% end %>
