@@ -58,11 +58,11 @@ $(function(){
 
     // view more slideDown
     $('#customer_info, #view_info').hover(function () {
-      $('#customer_info ').animate({height: "560px"});
+      $('#customer_info ').animate({height: "560px"},1000);
       $('.view_more_buttons ').animate({bottom: "-200px"},1000);
 
     }, function() {
-      $('#customer_info').animate({height: "220px"});
+      $('#customer_info').animate({height: "220px"},1000);
       $('.view_more_buttons ').animate({bottom: "20px"},1000);
     })
 
