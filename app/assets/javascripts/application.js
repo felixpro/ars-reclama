@@ -31,6 +31,8 @@ function edit_trigger(){
   }, 1000);
 };
 
+
+
 function reloadTimer() {
 
   setTimeout(function () {
