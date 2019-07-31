@@ -19,6 +19,11 @@
 //= require activestorage
 //= require_tree .
 
+$(function () {
+  setTimeout(function () {
+    $('#alert').fadeOut(500);
+  }, 1000);
+});
 
 // After reloar page open de modal
 function reloadP() {

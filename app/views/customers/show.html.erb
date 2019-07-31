@@ -23,11 +23,7 @@
 
     <script type="text/javascript">
 
-      $(function () {
-        setTimeout(function () {
-          $('#alert').fadeOut(500);
-        }, 1000);
-      });
+  
     </script>
 
     <div class="modal fade" id="edit_modal_section" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -1691,7 +1687,7 @@
                         <div class="row">
                           <div class="col-lg-2 button_column">
                             <div class="buttons_container">
-                              <button type="button" name="button" class="btn btn-danger imprimir" onclick="javascript:printerCenasa('cenasa_print')">IMPRIMIR</button>
+                              <%= f.button 'IMPRIMIR', class:"btn btn-danger imprimir", onclick:"javascript:printerCenasa('cenasa_print')" %>
 
                               <%= f.button "CERRAR Y GUARDAR", class: "btn btn-outline-secondary save btn_add_therapie_1" %>
                             <% end %>
