@@ -16,6 +16,8 @@
   .print_content {
     width: 528px;
     height: 816px;
+    transform: rotate(90deg);
+    right: -300px;
     .antecedentes {
       font-weight: bold;
     }

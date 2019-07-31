@@ -21,12 +21,6 @@
 
 
 
-function loro() {
-  setTimeout(function () {
-    $('#edit_content').html("<%=  render 'band' %>");
-  }, 500);
-
-}
 
 
 // allow to save service before close modal
@@ -34,25 +28,27 @@ function close_modal() {
   setTimeout(function () {
   $('#newService').modal('toggle');
     }, 500);
-}
+};
 
-// update the sevices in the show page
+// best_in_place service modal
 
-
-
-// open edit modal
-// open edit modal
-function edit_trigger(){
-  setTimeout(function () {
-        $('#edit_btn').trigger('click');
-
-  }, 1000);
+function service_modal() {
+  $('#edit').modal('toggle');
 };
 
 
 
-function reloadTimer() {
+// open edit modal
+function edit_trigger(){
+  setTimeout(function () {
+        $('#edit_btn').trigger('click');
+  }, 2000);
+};
 
+
+
+
+function reloadTimer() {
   setTimeout(function () {
     location.reload();
 
@@ -61,10 +57,11 @@ function reloadTimer() {
 
 
 function reloadSevice() {
-
   setTimeout(function () {
     location.reload();
-
+    window.onload=function(){
+                  alert('lkjhl')
+                }
   }, 200);
 }
 
@@ -77,20 +74,17 @@ $(function(){
     jQuery(".best_in_place").best_in_place();
 
     // view more slideDown
-    $('#customer_info, #view_info').hover(function () {
-      $('#customer_info ').animate({height: "560px"},1000);
-      $('.view_more_buttons ').animate({bottom: "-200px"},1000);
+    $(' #view_info').hover(function () {
+      $('#customer_info ').animate({height: "560px"},700);
+      $('.view_more_buttons ').animate({bottom: "-200px"},700);
+    });
 
-    }, function() {
-      $('#customer_info').animate({height: "220px"},1000);
-      $('.view_more_buttons ').animate({bottom: "20px"},1000);
+    $('aside, .left_section').hover(function () {
+      $('#customer_info').animate({height: "220px"},700);
+      $('.view_more_buttons ').animate({bottom: "20px"},700);
     })
 
   });
-
-
-
-
 
 // Update the inputs
 function myFunction() {

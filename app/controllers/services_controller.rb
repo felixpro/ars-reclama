@@ -36,7 +36,7 @@ class ServicesController < ApplicationController
 
     respond_to do |format|
       if @service.save
-        format.js
+        format.js { render :file => "/customers/serv.js.erb"}
         format.html { redirect_to @customer, success: 'Service was successfully created.' }
         format.json { render :show, status: :created, location: @service }
       else
@@ -53,7 +53,6 @@ class ServicesController < ApplicationController
     respond_to do |format|
       if @service.update_attributes(service_params)
         format.html { redirect_to @customer, success: 'Service was successfully updated.' }
-
         format.json { respond_with_bip(@service) }
       else
         format.html { render action: 'edit'}
@@ -69,7 +68,8 @@ class ServicesController < ApplicationController
    customer = @service.customer
    @service.destroy
    respond_to do |format|
-     format.js
+     format.html { redirect_to @customer, success: 'Service was successfully updated.'}
+
    end
   end
 

@@ -2,12 +2,50 @@ class CustomersController < ApplicationController
   include ActionController::MimeResponds
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
+  def reclamation
+    @customer = Customer.find(params[:id])
+    @appointments = @customer.appointment.order('created_at DESC');
+    @historiales =  @customer.historial.order('created_at DESC');
+    @identifierHistorial = 0;
+    @service = @customer.service.order('created_at DESC');
+    @reclamation = @customer.reclamation.order('created_at DESC');
+    @historialReclamation = @reclamation.where.not(authNum:nil)
+    if @reclamation.count > 0
+      @lastReclamation = Reclamation.last.authNum
+    else
+
+    end
+
+    @identifier = 0;
+    @therapiequantity = 0;
+     @reclamation.each do |reclamation|
+      reclamation.therapiesNum.to_i.times do | num |
+        @therapiequantity = @therapiequantity + 1;
+      end
+     end
+     @total_therapies = @therapiequantity.to_i
+
+
+    @therapies_num_customer = @customer.therapies_num;
+    # to avoid error using the times, when it is nill
+    if @therapies_num_customer === nil
+      @therapies_num_customer = 0
+    else
+      @therapies_num_customer = @customer.therapies_num;
+
+    end
+
+  end
+
+
   def ars
     @customer = Customer.new
   end
+
   def cenasa
     @customer = Customer.new
   end
+
   def naseguro
     @customer = Customer.new
   end

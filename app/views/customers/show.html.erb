@@ -81,6 +81,9 @@
       </div>
 
       <section class=" show_general_info">
+
+
+
         <aside class="sidebar">
           <div class="img_hospital">
             <%=image_tag("logo_clinica_1.png")%>
@@ -1657,22 +1660,14 @@
                           <div class="col-lg-2">
                             <div class="service_input">
 
+
                               <div class="service_container">
                                 <h6>Procedimientos o servicios</h6>
 
-
                                 <div class="edit_content" id="edit_content">
-                                    <% @customer.service.each do |service| %>
 
-                                      <h4><%=service.process%></h4>
-                                      <h5>
-                                        <%= link_to "Editar", "#edit", :class => "services_links edit_link link_style", "data-toggle" => "modal" %>
-                                        <i class="material-icons">keyboard_arrow_right</i>
-                                      </h5>
-
-                                    <% end %>
+                                  <%= render partial: 'band' %>
                                 </div>
-
 
 
                                 <h3>&#x2b;</h3>
@@ -1987,97 +1982,13 @@
                   <div class="title">
                     <h1>Procedimientos o servicios</h1>
                   </div>
-                    <% @service.each do |service| %>
-                    <div class="row container_row">
 
-
-                      <div class="col-lg-4">
-                        <div class="colum_content procedimiento">
-                          <div class="column_title">
-                            <p>Procedimiento</p>
-                          </div>
-                          <div class="display_content">
-                            <div class="image_delete">
-                              <%= link_to customer_service_path(service.customer, service), method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: 'delete' do %>
-                              <%=image_tag("edit_delete.png")%>
-                            <% end %>
-                          </div>
-                          <div class="data">
-                            <%= best_in_place(service, :process, url: customer_service_path(service.customer, service))%>
-                          </div>
-                          <div class="box_padding"></div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-lg-2">
-                      <div class="colum_content">
-                        <div class="column_title">
-                          <p>Codigo</p>
-                        </div>
-                        <div class="display_content">
-                          <div class="box_padding_left"></div>
-                          <div class="data">
-                            <%= best_in_place(service, :code, url: customer_service_path(service.customer, service))%>
-                          </div>
-                          <div class="box_padding"></div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-lg-2">
-                      <div class="colum_content">
-                        <div class="column_title">
-                          <p>Reclamado RD$</p>
-                        </div>
-                        <div class="display_content">
-                          <div class="box_padding_left"></div>
-                          <div class="data">
-                            <%= best_in_place(service, :reclaimed, url: customer_service_path(service.customer, service))%>
-                          </div>
-                          <div class="box_padding"></div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-lg-2">
-                      <div class="colum_content">
-                        <div class="column_title">
-                          <p>Diferencia RD$</p>
-                        </div>
-                        <div class="display_content">
-                          <div class="box_padding_left"></div>
-                          <div class="data">
-                            <%= best_in_place(service, :authorized, url: customer_service_path(service.customer, service))%>
-                          </div>
-                          <div class="box_padding"></div>
-                        </div>
-
-                      </div>
-                    </div>
-
-                    <div class="col-lg-2">
-                      <div class="colum_content">
-                        <div class="column_title">
-                          <p>Autorizado RD$</p>
-                        </div>
-                        <div class="display_content">
-                          <div class="box_padding_left"></div>
-                          <div class="data">
-                            <%= best_in_place(service, :difference, url: customer_service_path(service.customer, service))%>
-                          </div>
-                          <div class="box_padding"></div>
-                        </div>
-                      </div>
-                    </div>
-                      </div>
-
-                  <% end %>
+                  <%= render 'bsi_form_service'%>
 
               </div>
               <div class="container">
                 <div class="row edit_buttons">
-                  <button type="button" class=" btn btn-danger " id="save_button" data-dismiss="modal" aria-label="Close">
+                  <button type="button" class=" btn btn-danger " id="save_button" data-dismiss="modal" aria-label="Close" onclick="reloadSevice()">
                     GUARDAR
                   </button>
                   <button type="button" class=" btn btn-outline-secondary " id="cancel_button" data-dismiss="modal" aria-label="Close">
@@ -2182,7 +2093,7 @@
               </div>
               <div class="container">
                 <div class="row edit_buttons">
-                  <%= f.submit "GUARDAR", class: "btn btn-danger", id:"save_button", onclick: "close_modal()" %>
+                  <%= f.submit "GUARDAR", class: "btn btn-danger", id:"save_button", onclick: "reloadSevice()" %>
 
                   <button type="button" class=" btn btn-danger " id="cancel_button" data-dismiss="modal" aria-label="Close">
                     CANCELAR
@@ -6708,10 +6619,10 @@
     }
 
     // change insurance
-    $('#humano').click(function () {
-      $('.insurance_input').val('ARS Humano');
-      $('#insurance_submit').trigger('click');
-    });
+    // $('#humano').click(function () {
+    //   $('.insurance_input').val('ARS Humano');
+    //   $('#insurance_submit').trigger('click');
+    // });
     $('#cenasa').click(function () {
       $('.insurance_input').val('CENASA');
       $('#insurance_submit').trigger('click');

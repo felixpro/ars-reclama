@@ -1,0 +1,6 @@
+
+
+setTimeout(function () {
+  $("#edit_content").html("<%= escape_javascript(render partial: "customers/band", locals: {service: @customer.service}) %>");
+
+  }, 500);

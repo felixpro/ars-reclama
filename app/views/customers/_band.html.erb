@@ -3,10 +3,11 @@
   <div id="index_service_container">
     <h4><%=service.process%></h4>
     <h5>
-      <%= link_to "Editar", "#edit_humano", :class => "services_links edit_link link_style", "data-toggle" => "modal" %>
+      <%= link_to "Editar", "#..", :class => "services_links edit_link link_style", onclick: "service_modal()" %>
       <i class="material-icons">keyboard_arrow_right</i>
     </h5>
   </div>
+
 
 
 <% end %>
