@@ -13,6 +13,8 @@
     }
   }
 
+
+
   .print_content {
     width: 528px;
     height: 816px;
@@ -20,9 +22,14 @@
     position: absolute;
     top: -130px;
     right: 150px;
-
     .antecedentes {
       font-weight: bold;
+    }
+  }
+
+  #cenasa_print {
+    .cenasa_table {
+      background: #ffffff;
     }
   }
 }
@@ -391,7 +398,6 @@ $smallfont: 10px;
 }
 .cenasa_table {
   padding-bottom: 30px;
-      background-color: #f4f7f6;
 
   p {
     font-family: Arial;
