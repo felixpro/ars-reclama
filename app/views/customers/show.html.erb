@@ -22,6 +22,7 @@
     <% end %>
 
     <script type="text/javascript">
+
       $(function () {
         setTimeout(function () {
           $('#alert').fadeOut(500);
@@ -337,7 +338,7 @@
                         <div>
                           <div class="input_content_authnum">
                             <p>No. Autorización</p>
-                            <%= form.text_field :firma, :value => @lastReclamation%>
+                            <%= form.text_field :firma, :value => @lastReclamation, id: "input_numAutorization",  onkeyup: "numAutorization()"%>
                           </div>
 
                             <div class="actions" style="display:none;">
@@ -427,7 +428,7 @@
                                   <br>
                                   <span id="unificada"></span></p>
                                 <p class="unificada">
-                                  <strong>Codigo de Autorizacion:</strong>
+                                  <strong>Codigo de Autorizacion: <span id="numAutorization"></span></strong>
                                   <br>
                                 </p>
                                 <p>
@@ -599,7 +600,7 @@
 
         <div class="buttons_container_index">
           <% if @customer.insurance === "ARS Humano" %>
-            <button type="button" class="btn btn-outline-secondary reclamation_btn" data-toggle="modal" data-target="#newReclamationHumano" onclick="dateFuntion()">
+            <button type="button" class="btn btn-outline-secondary boton_reclamaciones reclamation_btn" data-toggle="modal" data-target="#newReclamationHumano" onclick="dateFuntion()">
               <%=image_tag("add_new.png")%>New Reclamation
             </button>
             <a href="" data-toggle="modal" data-target="#reclamation_self" onclick="dateFuntion()">
@@ -607,7 +608,7 @@
               <%=image_tag("change_ensure.png")%>
             </a>
             <% elsif @customer.insurance === "CENASA" %>
-              <button type="button" class="btn btn-outline-secondary reclamation_btn" data-toggle="modal" data-target="#newReclamationCenasa" onclick="dateFuntion()">
+              <button type="button" class="btn btn-outline-secondary boton_reclamaciones reclamation_btn" data-toggle="modal" data-target="#newReclamationCenasa" onclick="dateFuntion()">
                 <%=image_tag("add_new.png")%>New Reclamation
               </button>
               <a href="" data-toggle="modal" data-target="#reclamation_self" onclick="dateFuntion()">
@@ -1690,7 +1691,7 @@
                         <div class="row">
                           <div class="col-lg-2 button_column">
                             <div class="buttons_container">
-                              <%= f.button 'IMPRIMIR', class:"btn btn-danger imprimir", onclick:"javascript:printerCenasa('cenasa_print')" %>
+                              <button type="button" name="button" class="btn btn-danger imprimir" onclick="javascript:printerCenasa('cenasa_print')">IMPRIMIR</button>
 
                               <%= f.button "CERRAR Y GUARDAR", class: "btn btn-outline-secondary save btn_add_therapie_1" %>
                             <% end %>
@@ -1988,7 +1989,7 @@
               </div>
               <div class="container">
                 <div class="row edit_buttons">
-                  <button type="button" class=" btn btn-danger " id="save_button" data-dismiss="modal" aria-label="Close" onclick="reloadSevice()">
+                  <button type="button" class=" btn btn-danger btn_reload" id="save_button" data-dismiss="modal" aria-label="Close" onclick="reloadP()">
                     GUARDAR
                   </button>
                   <button type="button" class=" btn btn-outline-secondary " id="cancel_button" data-dismiss="modal" aria-label="Close">
@@ -2093,7 +2094,7 @@
               </div>
               <div class="container">
                 <div class="row edit_buttons">
-                  <%= f.submit "GUARDAR", class: "btn btn-danger", id:"save_button", onclick: "reloadSevice()" %>
+                  <%= f.submit "GUARDAR", class: "btn btn-danger btn_reload", id:"save_button", onclick: "reloadP()" %>
 
                   <button type="button" class=" btn btn-danger " id="cancel_button" data-dismiss="modal" aria-label="Close">
                     CANCELAR

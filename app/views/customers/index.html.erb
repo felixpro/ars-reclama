@@ -192,14 +192,17 @@
           <div class="index_draft">
 
 
-            <% @draftreclamations.each do |reclamation| %>
+            <%=image_tag("settings.png")%>
+
+
+            <!-- <% @draftreclamations.each do |reclamation| %>
               <%= reclamation.therapiesNum %>
 
               <%= link_to customer_reclamation_path(reclamation.customer, reclamation), method: :delete, data: { confirm: 'Are you sure?' } do %>
               <%=image_tag("edit_delete.png")%>
 
               <% end %>
-            <% end %>
+            <% end %> -->
 
             <!-- <%= render 'reclamations', reclamation: @reclamations %> -->
 

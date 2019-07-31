@@ -16,8 +16,7 @@
   .print_content {
     width: 528px;
     height: 816px;
-    transform: rotate(90deg);
-    right: -300px;
+
     .antecedentes {
       font-weight: bold;
     }
@@ -380,7 +379,7 @@ $border: 1px solid #000;
 $smallfont: 10px;
 
 .backcolor {
-  background: #fff;
+  background: none;
   padding-top: 12px;
     @media (max-width: 1640px){
       width: 100%;
@@ -388,6 +387,7 @@ $smallfont: 10px;
 }
 .cenasa_table {
   padding-bottom: 30px;
+      background-color: #f4f7f6;
 
   p {
     font-family: Arial;

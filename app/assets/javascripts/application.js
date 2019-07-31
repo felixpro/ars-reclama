@@ -20,15 +20,24 @@
 //= require_tree .
 
 
+// After reloar page open de modal
+function reloadP() {
+  location.reload();
+  localStorage.setItem("po", "momo");
+}
+
+$(window).on("load", function() {
+if (localStorage.getItem("po") === "momo" ) {
+  $('.boton_reclamaciones').trigger('click');
+  localStorage.setItem("po", "lulu");
+} else {
+
+}
+
+});
 
 
 
-// allow to save service before close modal
-function close_modal() {
-  setTimeout(function () {
-  $('#newService').modal('toggle');
-    }, 500);
-};
 
 // best_in_place service modal
 
@@ -55,15 +64,6 @@ function reloadTimer() {
   }, 500);
 }
 
-
-function reloadSevice() {
-  setTimeout(function () {
-    location.reload();
-    window.onload=function(){
-                  alert('lkjhl')
-                }
-  }, 200);
-}
 
 
 
@@ -145,6 +145,18 @@ function autorizar() {
   $('#autorizar').html('')
   $('#autorizar').append($('#input_autorizar').val());
 };
+
+function numAutorization() {
+  $('#numAutorization').html('')
+  $('#numAutorization').append($('#input_numAutorization').val());
+};
+$(function(){
+ if ($('#input_numAutorization').val().length > 0) {
+   $('#numAutorization').append($('#input_numAutorization').val());
+
+ }
+
+})
 
 
 
