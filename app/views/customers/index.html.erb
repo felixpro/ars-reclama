@@ -117,8 +117,8 @@
                     <div class="search_section">
 
                       <%= form_tag(customers_path, method: "get", remote: true) do %>
-                        <%= text_field_tag :search, params[:search], placeholder: "Enter search term" %>
-                        <%= submit_tag "Search" %>
+                        <%= image_submit_tag("search_icon.png", class: "submit_image ")%>
+                        <%= text_field_tag :search, params[:search], placeholder: "Buscar cliente" %>
                       <% end %>
 
                     <!-- <%= form_tag(customers_path, method: :get) do %>
