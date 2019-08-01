@@ -19,11 +19,15 @@ class CustomersController < ApplicationController
   # GET /customers.json
   def index
     @customer_total = Customer.all
-    @customers = if params[:term]
-         Customer.where('name LIKE ?', "%#{params[:term]}%")
-       else
-         Customer.all
-       end
+    if params[:search]
+        @search_results_posts = Customer.search_by_title_and_body(params[:search])
+          respond_to do |format|
+            format.js { render partial: 'search-results'}
+        end
+      else
+        @customers = Customer.all
+      end
+
     @customerNew = Customer.new
     @reclamations = Reclamation.all
     @reclamation_number = 0;
@@ -142,7 +146,6 @@ class CustomersController < ApplicationController
         format.json { render :show, status: :created, location: @customer }
       else
         format.html { redirect_to(@customer,  warning: 'Cliente ya existe ') }
-
       end
     end
   end

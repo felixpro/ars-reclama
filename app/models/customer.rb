@@ -1,4 +1,5 @@
 class Customer < ApplicationRecord
+  include PgSearch
 
   has_many :service, dependent: :delete_all
   has_many :reclamation, dependent: :delete_all
@@ -14,5 +15,9 @@ class Customer < ApplicationRecord
   validates :affiliate_number, :uniqueness => true
   validates :name, :uniqueness => true
 
+   pg_search_scope :search_by_title_and_body, :against => [:name, :doc],
+     using: {
+       :tsearch => {:prefix => true}
+     }
 
 end

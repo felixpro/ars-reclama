@@ -70,3 +70,10 @@ gem "best_in_place"
 gem 'jquery-rails'
 
 gem 'draftsman', '~> 0.7.1'
+
+
+gem 'ransack', github: 'activerecord-hackery/ransack'
+
+
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+gem 'pg_search'

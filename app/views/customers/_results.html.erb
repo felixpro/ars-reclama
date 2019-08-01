@@ -1,0 +1,62 @@
+
+                <% @search_results_posts.each do |customer| %>
+                  <%= link_to customer, class: "show_customer" do %>
+                  <div class="customer">
+                    <div class="sextion_1">
+                      <div class="customer_info">
+                        <div class="img">
+
+                          <% if customer.image.attached?%>
+                            <%= image_tag customer.image %>
+                          <% else%>
+                            <%=image_tag("profile.png", class: "user_image")%>
+                          <% end %>
+
+                        </div>
+                        <div>
+                          <p class="name"><%= customer.name %></p>
+                          <p class="insurance"><%= customer.insurance %></p>
+                        </div>
+
+                      </div>
+
+                      <div class="link_customer">
+                        <button type="button" name="button" class="index_edit_btn" onclick="edit_trigger()">
+                          <%=image_tag("edit_index.png")%>
+                        </button>
+
+                    <%= link_to "#delete_customer_modal", :class => "", "data-toggle" => "modal" do%>
+                      <%=image_tag("delete_cus.png")%>
+                    <%end%>
+
+                    <div class="modal fade" id="delete_customer_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog  modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-body">
+                            <div class="delete_content">
+                              <h1>
+                                ¿Estas seguro que quieres <br> eliminar a <span> <strong><%= customer.name %>?</strong></span>
+                              </h1>
+
+                              <div class="btn_content">
+                                <%= link_to customer, method: :delete do %>
+                                <button type="button" class="btn btn-outline-secondary delete_btn" >SI, ELIMINAR</button>
+                                <%end%>
+
+                                <button type="button" name="button" class="dimiss_modal" data-dismiss="modal" aria-label="Close">CANCELAR</button>
+                              </div>
+
+
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>

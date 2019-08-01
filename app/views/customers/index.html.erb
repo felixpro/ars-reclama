@@ -115,16 +115,28 @@
                   <div class="header_content">
                     <h2>Clientes</h2>
                     <div class="search_section">
-                      <%= form_tag(customers_path, method: :get) do %>
+
+                      <%= form_tag(customers_path, method: "get", remote: true) do %>
+                        <%= text_field_tag :search, params[:search], placeholder: "Enter search term" %>
+                        <%= submit_tag "Search" %>
+                      <% end %>
+
+                    <!-- <%= form_tag(customers_path, method: :get) do %>
                       <%= image_submit_tag("search_icon.png", class: "submit_image ")%>
                       <%= text_field_tag :term, params[:term], placeholder: "Buscar cliente" %>
-                    <% end %>
+                    <% end %> -->
 
                   </div>
                 </div>
               </div>
               <div class="customer_body">
 
+                <div id="search-results">
+
+                </div>
+
+                <div class="blogpost-table">
+                  
                 <% @customers.each do |customer| %>
                   <%= link_to customer, class: "show_customer" do %>
                   <div class="customer">
@@ -186,6 +198,7 @@
               </div>
             <% end %>
           <% end %>
+            </div>
         </div>
       </div>
 

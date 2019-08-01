@@ -204,7 +204,7 @@ aside {
         font-stretch: normal;
         line-height: normal;
         letter-spacing: normal;
-        color: #000000;
+        background: red;
         text-decoration: none;
         background: none;
 
@@ -1547,7 +1547,8 @@ aside {
           height: 300px;
           width: 100%;
           background: #fff;
-          overflow: auto;
+          overflow-x: hidden;
+          overflow-y: scroll;
           .delete_container {
             margin-right: 45px;
   padding-top: 30px;
@@ -1634,7 +1635,8 @@ aside {
         .content_historial {
           width: 100%;
           height: 300px;
-          overflow-y: auto;
+          overflow-x: hidden;
+          overflow-y: scroll;
           padding-left: 58px;
           button.number_container {
             margin-right: 45px;
