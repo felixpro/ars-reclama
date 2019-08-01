@@ -87,9 +87,12 @@ class CustomersController < ApplicationController
     @identifierHistorial = 0;
     @service = @customer.service.order('created_at DESC');
     @reclamation = @customer.reclamation.order('created_at DESC');
+
     @historialReclamation = @reclamation.where.not(authNum:nil)
     if @reclamation.count > 0
       @lastReclamation = Reclamation.last.authNum
+      @lastDiagnostic = @reclamation.last.diagnostic
+
     else
 
     end
@@ -138,8 +141,8 @@ class CustomersController < ApplicationController
         format.html { redirect_to @customer}
         format.json { render :show, status: :created, location: @customer }
       else
-        format.html { render :new }
-        format.json { render json: @customer.errors, status: :unprocessable_entity }
+        format.html { redirect_to(@customer,  warning: 'Cliente ya existe ') }
+
       end
     end
   end

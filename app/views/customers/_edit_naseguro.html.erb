@@ -30,6 +30,13 @@
                 <p class="input"><%= form.text_field :name, :required => true %></p>
               </div>
             </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3">
+              <div class="content id_document">
+                <p class="title"><%= form.collection_radio_buttons :doc_type, Customer.doc_types, :first, :first %></p>
+                <p class="input"><%= form.text_field :doc, :required => true %></p>
+              </div>
+            </div>
             <div class="col-lg-3 col-md-3 col-sm-3">
               <div class="content">
                 <p class="title"><%= form.label :Teléfono%></p>
@@ -42,12 +49,7 @@
                 <p class="input"><%= form.number_field :cell %></p>
               </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-3">
-              <div class="content id_document">
-                <p class="title"><%= form.collection_radio_buttons :doc_type, Customer.doc_types, :first, :first %></p>
-                <p class="input"><%= form.text_field :doc, :required => true %></p>
-              </div>
-            </div>
+
 
           </div>
 

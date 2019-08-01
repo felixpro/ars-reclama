@@ -10,4 +10,9 @@ class Customer < ApplicationRecord
   enum gender: [:Fem, :Mas]
   enum doc_type: [:Cedula, :Pasaporte]
 
+  validates :doc, :uniqueness => true
+  validates :affiliate_number, :uniqueness => true
+  validates :name, :uniqueness => true
+
+
 end

@@ -13,7 +13,7 @@
     <%= yield %>
 
     <% flash.each do |key, value| %>
-      <div class="alert" id="alert">
+      <div class="alert success" id="alert">
         <div>
           <%=image_tag("Shape.png")%>
           <p><%= value %></p>
@@ -23,7 +23,7 @@
 
     <script type="text/javascript">
 
-  
+
     </script>
 
     <div class="modal fade" id="edit_modal_section" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -928,6 +928,7 @@
                                 <div class="row">
                                   <div class="col-lg-2 button_column">
                                     <div class="buttons_container">
+
                                       <button type="button" class=" btn btn-danger imprimir" onclick="javascript:printerCenasa('cenasa_print')">IMPRIMIR</button>
                                       <button type="button" class=" btn btn-outline-secondary cancelar" data-dismiss="modal" aria-label="Close">CANCELAR</button>
                                     </div>
@@ -1649,7 +1650,7 @@
 
                               <div class="field therapies_input">
                                 <p>Diagnostico</p>
-                                <span><%= f.text_field :diagnostic, id: "diagnostic_text", onkeyup: "diagnosticFuntion()" %></span>
+                                <span><%= f.text_field :diagnostic, id: "diagnostic_text", onkeyup: "diagnosticFuntion()", value: @lastDiagnostic %></span>
                               </div>
 
                             </div>
@@ -1687,9 +1688,12 @@
                         <div class="row">
                           <div class="col-lg-2 button_column">
                             <div class="buttons_container">
-                              <%= f.button 'IMPRIMIR', class:"btn btn-danger imprimir", onclick:"javascript:printerCenasa('cenasa_print')" %>
+
+                              <%= f.button 'IMPRIMIR', class:"btn btn-danger imprimir ", onclick:"javascript:printerCenasa('cenasa_print')" %>
 
                               <%= f.button "CERRAR Y GUARDAR", class: "btn btn-outline-secondary save btn_add_therapie_1" %>
+
+
                             <% end %>
                             <button type="button" class=" btn btn-outline-secondary cancelar" data-dismiss="modal" aria-label="Close">CANCELAR</button>
                           </div>

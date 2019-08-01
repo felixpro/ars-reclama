@@ -29,29 +29,41 @@
             </div>
 
             <div class="col-lg-3 col-md-3 col-sm-3">
-              <div class="content">
-                <p class="title"><%= form.label :Teléfono %></p>
-                <p class="input"><%= form.number_field :phone %></p>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-3 col-sm-3">
-              <div class="content">
-                <p class="title"><%= form.label :Celular %></p>
-                <p class="input"><%= form.number_field :cell %></p>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-3 col-sm-3">
               <div class="content id_document">
                 <p class="title"><%= form.collection_radio_buttons :doc_type, Customer.doc_types, :first, :first, required: 'required' %></p>
                 <p class="input"><%= form.text_field :doc, :required => true %></p>
               </div>
             </div>
 
+            <div class="col-lg-3 col-md-3 col-sm-3">
+              <div class="content">
+                <p class="title"><label for="affiliate_number">No.  de Afiliado</label></p>
+                <p class="input"><%= form.number_field :affiliate_number, :required => true %></p>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3">
+              <div class="content">
+                <p class="title"><%= form.label :Teléfono %></p>
+                <p class="input"><%= form.number_field :phone %></p>
+              </div>
+            </div>
+
+
+
+
+
           </div>
 
+
+
           <div class="row second_row">
+            <div class="col-lg-3 col-md-3 col-sm-3">
+              <div class="content">
+                <p class="title"><%= form.label :Celular %></p>
+                <p class="input"><%= form.number_field :cell %></p>
+              </div>
+            </div>
             <div class="col-lg-3 col-md-3 col-sm-3">
               <div class="content">
                 <p class="title"><%= form.label :Dirección %></p>
@@ -71,12 +83,7 @@
               </div>
             </div>
 
-            <div class="col-lg-3 col-md-3 col-sm-3">
-              <div class="content">
-                <p class="title"><%= form.label :Edad %></p>
-                <p class="input"><%= form.number_field :age %></p>
-              </div>
-            </div>
+
 
           </div>
 
@@ -87,10 +94,12 @@
                 <p class="input"><%= form.text_field :email %></p>
               </div>
             </div>
+
+
             <div class="col-lg-3 col-md-3 col-sm-3">
               <div class="content">
-                <p class="title"><label for="affiliate_number">No.  de Afiliado</label></p>
-                <p class="input"><%= form.number_field :affiliate_number, :required => true %></p>
+                <p class="title"><%= form.label :Edad %></p>
+                <p class="input"><%= form.number_field :age %></p>
               </div>
             </div>
 

@@ -178,7 +178,10 @@ function imprimirGuardar() {
   $('#historial_btn').trigger('click');
 }
 
-
+// guardar relclamacion
+function imprimirGuardar_cenasa() {
+  $('#historial_btn').trigger('click');
+}
 
 
 

@@ -1,5 +1,7 @@
 {
   "name": "ars-reclama",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap-input-spinner": "^1.11.8"
+  }
 }

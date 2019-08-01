@@ -12,21 +12,30 @@
 
 
     <% flash.each do |key, value| %>
-      <div class="alert" id="alert">
+
+      <% if key === 'warning'%>
+
+      <div class="alert success_warning" id="alert">
+        <div>
+          <%=image_tag("warning.png")%>
+          <p><%= value %></p>
+        </div>
+      </div>
+
+      <% elsif%>
+
+      <div class="alert success_alert" id="alert">
         <div>
           <%=image_tag("Shape.png")%>
           <p><%= value %></p>
         </div>
       </div>
+
+      <% end %>
+
     <% end %>
 
-    <script type="text/javascript">
-    $(function() {
-      setTimeout(function(){
-        $('#alert').fadeOut(500);
-      }, 1000);
-    });
-    </script>
+
 
     <section class="index_customer_section">
       <div class="hide_navbar ">
