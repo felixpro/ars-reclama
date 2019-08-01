@@ -1,3 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+  <body>
+
+
+    <% flash.each do |key, value| %>
+
+      <% if key === 'warning'%>
+
+      <div class="alert success_warning" id="alert">
+        <div>
+          <%=image_tag("warning.png")%>
+          <p><%= value %></p>
+        </div>
+      </div>
+
+      <% elsif%>
+
+      <div class="alert success_alert" id="alert">
+        <div>
+          <%=image_tag("Shape.png")%>
+          <p><%= value %></p>
+        </div>
+      </div>
+
+      <% end %>
+
+    <% end %>
+
+
+
+    <section class="index_customer_section">
+      <div class="hide_navbar ">
+        <nav class="navbar container navbar-expand-lg navbar-light ">
+          <a class="navbar-brand" href="#"><%=image_tag("brand.png", class: "nav_logo")%></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item inicio">
+                <%=image_tag("nav_img_1.png")%>
+                <%= link_to 'INICIO', customers_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item clientes">
+                <%=image_tag("people.png")%>
+                <a class="nav-link" href="#">CLIENTES</a>
+              </li>
+
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <aside class="sidebar">
+        <div class="img_hospital">
+          <%=image_tag("logo_clinica_1.png")%>
+        </div>
+        <ul>
+          <li>
+            <%=image_tag("nav_img_1.png", class:"humano_logo")%>
+            <a >INICIO</a>
+          </li>
+          <li>
+            <%=image_tag("people.png", class:"humano_logo")%>
+            <a >CLIENTES</a>
+          </li>
+          <li>
+            <%=image_tag("doc.png", class:"humano_logo")%>
+            <a >CARTAS</a>
+          </li>
+
+        </ul>
+      </aside>
+      <div class="right_side">
+        <div class="new_buttons">
+          <div class="container">
+            <h2>Crear cliente</h2>
+
+            <div class="row">
+              <div class="col-lg-3">
+                <%= link_to 'Ars Humano',"#new_customer_humano", {:style=>'color:#FFFFFF;', class: "humano", "data-toggle" => "modal"}%>
+
+              </div>
+              <div class="col-lg-3">
+                <%= link_to 'CENASA',"#new_customer_cenasa", {:style=>'color:#FFFFFF;', class: "cenasa", "data-toggle" => "modal"}%>
+
+              </div>
+              <div class="col-lg-3">
+                <%= link_to 'No asegurado',"#new_customer_Naseguro", {:style=>'color:#000000', class: "noSeguro", "data-toggle" => "modal"}%>
+              </div>
+
+              <div class="col-lg-3"></div>
+            </div>
+          </div>
+
+          <!-- <%= link_to 'cenasa', cenasa_path, {:style=>'color:#FFFFFF;', class: "cenasa"}%> -->
+          <!-- <%= link_to 'No asegurado', naseguro_path, {:style=>'color:#000000;', class: "noSeguro"}%> -->
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6">
+
+              <div class="customer_info_container">
+                <div class="header">
+                  <div class="header_content">
+                    <h2>Clientes</h2>
+                    <div class="search_section">
+
+                      <%= form_tag(customers_path, method: "get", remote: true) do %>
+                        <%= text_field_tag :search, params[:search], placeholder: "Enter search term" %>
+                        <%= submit_tag "Search" %>
+                      <% end %>
+
+                    <!-- <%= form_tag(customers_path, method: :get) do %>
+                      <%= image_submit_tag("search_icon.png", class: "submit_image ")%>
+                      <%= text_field_tag :term, params[:term], placeholder: "Buscar cliente" %>
+                    <% end %> -->
+
+                  </div>
+                </div>
+              </div>
+              <div class="customer_body">
+
+                <div id="search-results">
+
+                </div>
+
+                <div class="blogpost-table">
 
                 <% @search_results_posts.each do |customer| %>
                   <%= link_to customer, class: "show_customer" do %>
@@ -60,3 +198,198 @@
               </div>
             <% end %>
           <% end %>
+            </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-lg-6">
+      <div class="borrador_container">
+        <div class="borrador_content">
+          <div class="header">
+            <h2>Borradores</h2>
+          </div>
+
+          <div class="index_draft">
+
+
+            <%=image_tag("settings.png")%>
+
+
+            <!-- <% @draftreclamations.each do |reclamation| %>
+              <%= reclamation.therapiesNum %>
+
+              <%= link_to customer_reclamation_path(reclamation.customer, reclamation), method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <%=image_tag("edit_delete.png")%>
+
+              <% end %>
+            <% end %> -->
+
+            <!-- <%= render 'reclamations', reclamation: @reclamations %> -->
+
+          </div>
+
+        </div>
+        <div class="estadisticas">
+          <div class="tabbable">
+            <div class="header">
+              <h2>Estadisticas</h2>
+              <ul class="nav tab-group">
+                <li class="active">
+                  <a href="#about" data-toggle="tab" class="active">7D</a>
+                </li>
+                <li>
+                  <a href="#social" data-toggle="tab">1M</a>
+                </li>
+                <li>
+                  <a href="#location" data-toggle="tab">1A</a>
+                </li>
+              </ul>
+            </div>
+            <div class="tab-content">
+
+              <div class="tab-pane active" id="about">
+                <div class="content week">
+                  <div class="customer_week">
+                    <%= image_tag('customer.png')%>
+                    <h5>Clientes</h5>
+                    <p><%= @weekCustomer %></p>
+                  </div>
+
+                  <div class="reclamations_week">
+                    <%= image_tag('therapies.png')%>
+                    <h5>Reclamaciones</h5>
+                    <p><%= @weekreclamations%></p>
+                  </div>
+
+                  <div class="therapies_week">
+                    <%= image_tag('reclamations.png')%>
+                    <h5>Terapias</h5>
+                    <p><%= @week_therapies %></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane" id="social">
+                <div class="content month">
+                  <div class="customer_week">
+                    <%= image_tag('customer.png')%>
+                    <h5>Clientes</h5>
+                    <p><%= @monthCustomer %></p>
+                  </div>
+
+                  <div class="reclamations_week">
+                    <%= image_tag('therapies.png')%>
+                    <h5>Reclamaciones</h5>
+                    <p><%= @monthreclamations%></p>
+                  </div>
+
+                  <div class="therapies_week">
+                    <%= image_tag('reclamations.png')%>
+                    <h5>Terapias</h5>
+                    <p><%= @month_therapies %></p>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="location">
+                <div class="content year">
+                  <div class="customer_week">
+                    <%= image_tag('customer.png')%>
+                    <h5>Clientes</h5>
+                    <p><%= @yearCustomer %></p>
+                  </div>
+
+                  <div class="reclamations_week">
+                    <%= image_tag('therapies.png')%>
+                    <h5>Reclamaciones</h5>
+                    <p><%= @yearreclamations%></p>
+                  </div>
+
+                  <div class="therapies_week">
+                    <%= image_tag('reclamations.png')%>
+                    <h5>Terapias</h5>
+                    <p><%= @year_therapies %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+</div>
+
+<div class="modal fade" id="new_customer_cenasa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog  modal-dialog-centered" role="document">
+<div class="modal-content">
+  <div class="modal-body">
+    <div class="modal_new_customer">
+      <h5 class="modal-title">Crear Cliente</h5>
+
+      <%= render 'form_cenasa', customer: @customerNew %>
+      <button type="button" class="close close_icon" data-dismiss="modal" aria-label="Close">
+        <%=image_tag("cancel-button.png")%>
+
+      </button>
+    </div>
+
+  </div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="new_customer_Naseguro" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog  modal-dialog-centered" role="document">
+<div class="modal-content">
+  <div class="modal-body">
+    <div class="modal_new_customer">
+      <h5 class="modal-title">Crear Cliente</h5>
+
+      <%= render 'form_naseguro', customer: @customerNew %>
+      <button type="button" class="close close_icon" data-dismiss="modal" aria-label="Close">
+        <%=image_tag("cancel-button.png")%>
+
+      </button>
+    </div>
+
+  </div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="new_customer_humano" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog  modal-dialog-centered" role="document">
+<div class="modal-content">
+  <div class="modal-body">
+    <div class="modal_new_customer">
+      <h5 class="modal-title">Crear Cliente</h5>
+
+      <%= render 'form_arsHumano', customer: @customerNew %>
+      <button type="button" class="close close_icon" data-dismiss="modal" aria-label="Close">
+        <%=image_tag("cancel-button.png")%>
+
+      </button>
+    </div>
+
+  </div>
+</div>
+</div>
+</div>
+
+</section>
+
+<script type="text/javascript">
+
+
+function reloadEdit() {
+location.reload();
+}
+</script>
+</body>
+</html>
