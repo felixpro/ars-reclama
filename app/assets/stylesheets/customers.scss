@@ -2498,7 +2498,7 @@ aside {
 
   .customer {
     padding: 22px 32px;
-    #delete_customer_modal {
+    .delete_customer_modal {
       .modal-dialog  {
         max-width: 641px;
         .modal-body {
@@ -2644,12 +2644,13 @@ aside {
             background: none;
           }
         }
-        a {
+        .delete_btn_index {
           outline: none;
           text-decoration: none;
           box-shadow: none;
           background: none;
           margin-left: 16px;
+          border: none;
 
           &:active,
           &:focus,
@@ -2659,6 +2660,7 @@ aside {
             text-decoration: none;
             box-shadow: none;
             background: none;
+            border: none;
           }
         }
       }

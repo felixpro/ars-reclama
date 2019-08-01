@@ -162,12 +162,16 @@
                         <button type="button" name="button" class="index_edit_btn" onclick="edit_trigger()">
                           <%=image_tag("edit_index.png")%>
                         </button>
-
-                    <%= link_to "#delete_customer_modal", :class => "", "data-toggle" => "modal" do%>
+                      <% @identifier = @identifier + 1 %>
+                      <!-- <%= link_to "#delete_customer_modal", :class => "", "data-toggle" => "modal" do%>
+                      <%end%> -->
+                    <% end %>
+                    <button type="button" class="delete_btn_index" data-toggle="modal" data-target="#delete_customer_modal<%= @identifier %>" >
                       <%=image_tag("delete_cus.png")%>
-                    <%end%>
 
-                    <div class="modal fade" id="delete_customer_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    </button>
+
+                    <div class="modal fade delete_customer_modal" id="delete_customer_modal<%= @identifier %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                       <div class="modal-dialog  modal-dialog-centered" role="document">
                         <div class="modal-content">
                           <div class="modal-body">
@@ -196,7 +200,7 @@
                   </div>
                 </div>
               </div>
-            <% end %>
+
           <% end %>
             </div>
         </div>

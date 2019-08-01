@@ -31,6 +31,7 @@ class CustomersController < ApplicationController
     @customerNew = Customer.new
     @reclamations = Reclamation.all
     @reclamation_number = 0;
+    @identifier = 0;
 
 
     ######### Detect when a reclamation should be in the draft
