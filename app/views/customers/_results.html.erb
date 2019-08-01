@@ -131,12 +131,7 @@
               </div>
               <div class="customer_body">
 
-                <div id="search-results">
-
-                </div>
-
-                <div class="blogpost-table">
-
+        
                 <% @search_results_posts.each do |customer| %>
                   <%= link_to customer, class: "show_customer" do %>
                   <div class="customer">
@@ -198,7 +193,6 @@
               </div>
             <% end %>
           <% end %>
-            </div>
         </div>
       </div>
 
