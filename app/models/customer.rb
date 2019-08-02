@@ -1,5 +1,7 @@
 class Customer < ApplicationRecord
   include PgSearch
+  multisearchable against: [:name, :doc]
+
 
   has_many :service, dependent: :delete_all
   has_many :reclamation, dependent: :delete_all
