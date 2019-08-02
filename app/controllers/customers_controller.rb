@@ -92,14 +92,15 @@ class CustomersController < ApplicationController
     @identifierHistorial = 0;
     @service = @customer.service.order('created_at DESC');
     @reclamation = @customer.reclamation.order('created_at DESC');
+    @reclamation_actual = @customer.reclamation
 
     @historialReclamation = @reclamation.where.not(authNum:nil)
     if @reclamation.count > 0
       @lastReclamation = Reclamation.last.authNum
-      @lastDiagnostic = @reclamation.last.diagnostic
+      @lastDiagnostic = @reclamation_actual.last.diagnostic
 
     else
-
+      @lastDiagnostic = ""
     end
 
     @identifier = 0;

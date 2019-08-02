@@ -1984,7 +1984,93 @@
                     <h1>Procedimientos o servicios</h1>
                   </div>
 
-                  <%= render 'bsi_form_service'%>
+                  <% @service.each do |service| %>
+                  <div class="row container_row">
+
+
+                    <div class="col-lg-4">
+                      <div class="colum_content procedimiento">
+                        <div class="column_title">
+                          <p>Procedimiento</p>
+                        </div>
+                        <div class="display_content">
+                          <div class="image_delete">
+                            <%= link_to customer_service_path(service.customer, service), method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: 'delete' do %>
+                              <%= image_tag("edit_delete.png") %>
+                            <% end %>
+                        </div>
+                        <div class="data">
+                          <%= best_in_place(service, :process, url: customer_service_path(service.customer, service))%>
+                        </div>
+                        <div class="box_padding"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-2">
+                    <div class="colum_content">
+                      <div class="column_title">
+                        <p>Codigo</p>
+                      </div>
+                      <div class="display_content">
+                        <div class="box_padding_left"></div>
+                        <div class="data">
+                          <%= best_in_place(service, :code, url: customer_service_path(service.customer, service))%>
+                        </div>
+                        <div class="box_padding"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-2">
+                    <div class="colum_content">
+                      <div class="column_title">
+                        <p>Reclamado RD$</p>
+                      </div>
+                      <div class="display_content">
+                        <div class="box_padding_left"></div>
+                        <div class="data">
+                          <%= best_in_place(service, :reclaimed, url: customer_service_path(service.customer, service))%>
+                        </div>
+                        <div class="box_padding"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-2">
+                    <div class="colum_content">
+                      <div class="column_title">
+                        <p>Diferencia RD$</p>
+                      </div>
+                      <div class="display_content">
+                        <div class="box_padding_left"></div>
+                        <div class="data">
+                          <%= best_in_place(service, :authorized, url: customer_service_path(service.customer, service))%>
+                        </div>
+                        <div class="box_padding"></div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="col-lg-2">
+                    <div class="colum_content">
+                      <div class="column_title">
+                        <p>Autorizado RD$</p>
+                      </div>
+                      <div class="display_content">
+                        <div class="box_padding_left"></div>
+                        <div class="data">
+                          <%= best_in_place(service, :difference, url: customer_service_path(service.customer, service))%>
+                        </div>
+                        <div class="box_padding"></div>
+                      </div>
+                    </div>
+                  </div>
+                    </div>
+
+                  <% end %>
+
 
               </div>
               <div class="container">

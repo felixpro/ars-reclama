@@ -20,11 +20,18 @@
 //= require activestorage
 //= require_tree .
 
+
+function delete_serv() {
+  alert('jlkhlk')
+ }
+
 $(function () {
   setTimeout(function () {
     $('#alert').fadeOut(500);
   }, 1000);
 });
+
+
 
 // After reloar page open de modal
 function reloadP() {

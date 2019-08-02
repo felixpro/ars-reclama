@@ -36,7 +36,6 @@ class ServicesController < ApplicationController
 
     respond_to do |format|
       if @service.save
-        format.js { render :file => "/customers/serv.js.erb"}
         format.html { redirect_to @customer, success: 'Service was successfully created.' }
         format.json { render :show, status: :created, location: @service }
       else
@@ -65,11 +64,9 @@ class ServicesController < ApplicationController
   # DELETE /services/1.json
   def destroy
    @service = Service.find(params[:id])
-   customer = @service.customer
    @service.destroy
    respond_to do |format|
-     format.html { redirect_to @customer, success: 'Service was successfully updated.'}
-
+     format.js { render :file => "/customers/serv.js.erb"}
    end
   end
 
