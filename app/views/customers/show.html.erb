@@ -113,7 +113,7 @@
                 <%=image_tag("senasa_logo.png", class:"humano_logo")%>
 
               <% else %>
-                <%=image_tag("sin_seguro.png", class:"humano_logo")%>
+                
 
               <% end %>
 
@@ -597,7 +597,7 @@
         <div class="buttons_container_index">
           <% if @customer.insurance === "ARS Humano" %>
             <button type="button" class="btn btn-outline-secondary boton_reclamaciones reclamation_btn" data-toggle="modal" data-target="#newReclamationHumano" onclick="dateFuntion()">
-              <%=image_tag("add_new.png")%>New Reclamation
+              <%=image_tag("add_new.png")%>Nueva reclamación
             </button>
             <a href="" data-toggle="modal" data-target="#reclamation_self" onclick="dateFuntion()">
               Agregar Terapia sin reclamación
@@ -605,7 +605,7 @@
             </a>
             <% elsif @customer.insurance === "CENASA" %>
               <button type="button" class="btn btn-outline-secondary boton_reclamaciones reclamation_btn" data-toggle="modal" data-target="#newReclamationCenasa" onclick="dateFuntion()">
-                <%=image_tag("add_new.png")%>New Reclamation
+                <%=image_tag("add_new.png")%>Nueva reclamación
               </button>
               <a href="" data-toggle="modal" data-target="#reclamation_self" onclick="dateFuntion()">
                 Agregar Terapia sin reclamación

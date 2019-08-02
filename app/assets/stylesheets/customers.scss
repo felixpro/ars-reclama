@@ -1428,6 +1428,20 @@ aside {
               .btn_content {
                 display: flex;
                 justify-content: center;
+                a {
+                    background: none;
+                    text-decoration: none;
+
+                    &:active,
+                    &:focus,
+                    &:hover,
+                    &:visited {
+                      background: none;
+                      box-shadow: none;
+                      outline: none;
+                    }
+                }
+
               }
             }
           }
@@ -2534,6 +2548,8 @@ aside {
              line-height: normal;
              letter-spacing: normal;
              color: #6e6d8c;
+             background: none;
+
              &:active,
              &:focus,
              &:hover,
@@ -2572,6 +2588,19 @@ aside {
             .btn_content {
               display: flex;
               justify-content: center;
+              a {
+                  background: none;
+                  text-decoration: none;
+
+                  &:active,
+                  &:focus,
+                  &:hover,
+                  &:visited {
+                    background: none;
+                    box-shadow: none;
+                    outline: none;
+                  }
+              }
             }
           }
         }
