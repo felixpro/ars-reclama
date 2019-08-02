@@ -12,8 +12,8 @@
 
 
 //= require jquery
-//= require jquery_ujs
 //= require jquery3
+//= require jquery_ujs
 //= require jquery-ui
 //= require best_in_place
 //= require best_in_place.jquery-ui
@@ -23,7 +23,7 @@
 
 
 
-$(function () {
+$(function() {
   setTimeout(function () {
     $('#alert').fadeOut(500);
   }, 1000);
