@@ -22,8 +22,6 @@
     <% end %>
 
     <script type="text/javascript">
-
-
     </script>
 
     <div class="modal fade" id="edit_modal_section" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -64,7 +62,7 @@
             <ul class="navbar-nav">
               <li class="nav-item inicio">
                 <%=image_tag("nav_img_1.png")%>
-                <%= link_to 'INICIO', customers_path, class: "nav-link", onclick:'reloadTimer()' %>
+                <%= link_to 'INICIO', :controller => 'customers', :action => 'index', onclick:'reloadTimer()', class: "nav-link" %>
 
               </li>
               <li class="nav-item clientes">
@@ -88,7 +86,7 @@
           <ul>
             <li>
               <%=image_tag("nav_img_1.png", class:"humano_logo")%>
-              <%= link_to 'INICIO', customers_path %>
+              <%= link_to 'INICIO', :controller => 'customers', :action => 'index', onclick:'reloadTimer()' %>
             </li>
             <li>
               <%=image_tag("people.png", class:"humano_logo")%>
@@ -234,7 +232,8 @@
                           <ul class="navbar-nav">
                             <li class="nav-item inicio">
                               <%=image_tag("nav_img_1.png")%>
-                              <%= link_to 'INICIO', customers_path, class: "nav-link", onclick:'reloadTimer()' %>
+                              <%= link_to 'INICIO', :controller => 'customers',class: "nav-link", :action => 'index', onclick:'reloadTimer()', class: "nav-link" %>
+
                             </li>
                             <li class="nav-item clientes">
                               <%=image_tag("people.png")%>
@@ -251,7 +250,7 @@
                       <ul>
                         <li>
                           <%=image_tag("nav_img_1.png", class:"humano_logo")%>
-                          <%= link_to 'INICIO', customers_path, onclick:'reloadTimer()' %>
+                          <%= link_to 'INICIO', :controller => 'customers', :action => 'index', onclick:'reloadTimer()' %>
                         </li>
                         <li>
                           <%=image_tag("people.png", class:"humano_logo")%>
@@ -757,8 +756,7 @@
                                   <ul class="navbar-nav">
                                     <li class="nav-item inicio">
                                       <%=image_tag("nav_img_1.png")%>
-                                      <%= link_to 'INICIO', customers_path, class: "nav-link", onclick:'reloadTimer()' %>
-                                    </li>
+                                      <%= link_to 'INICIO', :controller => 'customers', :action => 'index', onclick:'reloadTimer()' %>                                    </li>
                                     <li class="nav-item clientes">
                                       <%=image_tag("people.png")%>
                                       <a class="nav-link" href="#">CLIENTES</a>
@@ -775,8 +773,7 @@
                               <ul>
                                 <li>
                                   <%=image_tag("nav_img_1.png", class:"humano_logo")%>
-                                  <%= link_to 'INICIO', customers_path, onclick:'reloadTimer()' %>
-                                </li>
+                                    <%= link_to 'INICIO', :controller => 'customers', :action => 'index', onclick:'reloadTimer()' %>                                </li>
                                 <li>
                                   <%=image_tag("people.png", class:"humano_logo")%>
                                   <a >CLIENTES</a>
@@ -1251,7 +1248,7 @@
                               <ul>
                                 <li>
                                   <%=image_tag("nav_img_1.png", class:"humano_logo")%>
-                                  <%= link_to 'INICIO', customers_path, onclick:'reloadTimer()' %>
+                                  <%= link_to 'INICIO', :controller => 'customers', :action => 'index', onclick:'reloadTimer()' %>                                </li>
                                 </li>
                                 <li>
                                   <%=image_tag("people.png", class:"humano_logo")%>
@@ -1521,7 +1518,7 @@
                   <ul>
                     <li>
                       <%=image_tag("nav_img_1.png", class:"humano_logo")%>
-                      <%= link_to 'INICIO', customers_path, onclick:'reloadTimer()' %>
+                      <%= link_to 'INICIO', :controller => 'customers', :action => 'index', onclick:'reloadTimer()' %>                                </li>
                     </li>
                     <li>
                       <%=image_tag("people.png", class:"humano_logo")%>
@@ -1689,7 +1686,8 @@
                           <div class="col-lg-2 button_column">
                             <div class="buttons_container">
 
-                              <%= f.button 'IMPRIMIR', class:"btn btn-danger imprimir ", onclick:"javascript:printerCenasa('cenasa_print')" %>
+
+                              <button type="button" name="button" class="btn btn-danger imprimir" onclick="javascript:printerReclam('reclam_print')">IMPRIMIR</button>
 
                               <%= f.button "CERRAR Y GUARDAR", class: "btn btn-outline-secondary save btn_add_therapie_1" %>
 
@@ -1700,7 +1698,7 @@
                         </div>
                         <div class="col-lg-10 ">
                           <div class="backcolor">
-                            <section id="cenasa_print" class="">
+                            <section id="reclam_print" class="">
                               <div class="cenasa_table">
                                 <div class="container-fluid">
                                   <div class="row">
@@ -2216,7 +2214,8 @@
                     <ul class="navbar-nav">
                       <li class="nav-item inicio">
                         <%=image_tag("nav_img_1.png")%>
-                        <%= link_to 'INICIO', customers_path, class: "nav-link", onclick:'reloadTimer()' %>
+                        <%= link_to 'INICIO', :controller => 'customers', :action => 'index', onclick:'reloadTimer()', class: "nav-link" %>                                </li>
+
                       </li>
                       <li class="nav-item clientes">
                         <%=image_tag("people.png")%>
@@ -2235,7 +2234,7 @@
                 <ul>
                   <li>
                     <%=image_tag("nav_img_1.png", class:"humano_logo")%>
-                    <%= link_to 'INICIO', customers_path, onclick:'reloadTimer()' %>
+                    <%= link_to 'INICIO', :controller => 'customers', :action => 'index', onclick:'reloadTimer()' %>
                   </li>
                   <li>
                     <%=image_tag("people.png", class:"humano_logo")%>
@@ -6640,7 +6639,6 @@
         $('#total_therapies_value').val(sum);
       }, 2000);
     })
-
     // add  therapie modal cenasa
     $('.btn_add_therapie_2').click(function () {
       var result = parseInt($('#input_1').val())
@@ -6653,13 +6651,11 @@
         }, 2000);
       }
     });
-
     // add  therapie chadow in the reclamation modal
     $('.btn_add_therapie_1').click(function () {
       var result = parseInt($('#input_1_therapie').val())
       var form_val = parseInt($('#form_input_customer').val())
       var sum = (result + form_val);
-
       // detect if the input is empty, to avoyd delete the whole therapies
       if ($('#input_1_therapie').val().length === 0) {} else {
         setTimeout(function () {
@@ -6668,7 +6664,6 @@
         });
       }
     });
-
     $('.btn_add_therapie_1').click(function () {
       setTimeout(function () {
         $('.btn_add_therapie_1').prop('disabled', true);
@@ -6682,29 +6677,32 @@
       $('#form_input_customer').val(sum);
       $("#submit_btn").trigger('click');
     });
-
     // check if form input is empty and add a 0 to avoid error nill
     if ($('#form_input_customer').val().length === 0) {
       $('#form_input_customer').val(0);
       $("#submit_btn").trigger('click');
     }
-
     // delete therapies
     function delete_number() {
+      $('.delete_box').prop('disabled', true);
+
+      setTimeout(function () {
+        e.stopPropagation();
+        e.preventDefault();
+        e.stopImmediatePropagation();
+      }, 100);
+
       var inputValue = $('#form_input_customer').val();
       $('#form_input_customer').val(inputValue - 1)
       $("#submit_btn").trigger('click');
       $("#btn_appointment").trigger('click');
-
     }
-
     // add therapies
     function num_therapies() {
       var result = $('#input_customer').val();
       $('#form_input_customer').val(result);
       $("#submit_btn").trigger('click');
     }
-
     // change insurance
     // $('#humano').click(function () {
     //   $('.insurance_input').val('ARS Humano');
@@ -6714,17 +6712,14 @@
       $('.insurance_input').val('CENASA');
       $('#insurance_submit').trigger('click');
     });
-
     $('#Naseguro').click(function () {
       $('.insurance_input').val('Sin Seguro');
       $('#insurance_submit').trigger('click');
     });
   </script>
   <script type="text/javascript">
-
     function reloadEdit() {
       location.reload();
-
     }
   </script>
 </body>

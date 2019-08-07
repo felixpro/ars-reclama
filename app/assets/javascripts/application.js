@@ -21,8 +21,7 @@
 //= require_tree .
 
 
-
-
+/// alert desapear funtion
 $(function() {
   setTimeout(function () {
     $('#alert').fadeOut(500);
@@ -224,7 +223,6 @@ location.reload();
 function printerCenasa(divID) {
 //Get the HTML of div
 
-setTimeout(function () {
 
   var cenasaContent = document.getElementById(divID).innerHTML;
 
@@ -243,9 +241,37 @@ setTimeout(function () {
   document.body.innerHTML = oldPage;
   location.reload();
 
-}, 500);
 
 }
+
+
+/// print the relclamacion
+
+
+function printerReclam(divID) {
+//Get the HTML of div
+
+
+  var cenasaContent = document.getElementById(divID).innerHTML;
+
+  //Get the HTML of whole page
+  var oldPage = document.body.innerHTML;
+  //Reset the pages HTML with divs HTML only
+       document.body.innerHTML =
+
+       "<html ><head><title></title></head><body>" +
+       cenasaContent + "</body>";
+
+
+  //Print Page
+  window.print();
+  //Restore orignal HTML
+  document.body.innerHTML = oldPage;
+  location.reload();
+
+
+}
+
 
 
 
