@@ -33,6 +33,8 @@ $(function() {
 // After reloar page open de modal
 function reloadP() {
   location.reload();
+  location.reload();
+
   localStorage.setItem("po", "momo");
 }
 
