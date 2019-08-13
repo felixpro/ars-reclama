@@ -87,14 +87,22 @@ $(function(){
 
     // view more slideDown
     $(' #view_info').hover(function () {
-      $('#customer_info ').animate({height: "560px"},700);
-      $('.view_more_buttons ').animate({bottom: "-200px"},700);
+      $('#customer_info ').animate({height: "67%"},700);
+
+        $('.customer_info ').addClass('class_auto_over');
     });
 
     $('aside, .left_section').hover(function () {
       $('#customer_info').animate({height: "220px"},700);
-      $('.view_more_buttons ').animate({bottom: "20px"},700);
+        $('.customer_info ').removeClass('class_auto_over');
+
+
     })
+
+
+
+
+
 
   });
 

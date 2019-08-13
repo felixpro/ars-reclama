@@ -536,7 +536,7 @@ aside {
       }
       .ceationDate {
         position: relative;
-        bottom: 8px;
+        // bottom: 8px;
         width: 178px;
         height: 30px;
         p {
@@ -658,6 +658,33 @@ aside {
           @media (max-width: 1400px) {
             left: 0;
           }
+
+          .therapies_input {
+            height: 49px;
+
+            p {
+              margin: 0;
+              align-self: center;
+              opacity: 0.7;
+              font-family: Raleway;
+              font-size: 12px;
+              font-weight: normal;
+              font-style: normal;
+              font-stretch: normal;
+              line-height: normal;
+              letter-spacing: normal;
+              color: #000000;
+              width: 70px;
+            }
+
+            input {
+              border: none;
+              width: 100%;
+              text-align: center;
+            }
+          }
+
+
         }
 
         .service_container {
@@ -686,6 +713,8 @@ aside {
             letter-spacing: normal;
             color: #000000;
             width: 150px;
+            overflow: hidden;
+            height: 22px;
           }
 
           h5 {
@@ -877,14 +906,18 @@ aside {
       }
     }
 
+    .class_auto_over {
+      overflow-y: auto !important;
+    }
+
+
     .customer_info {
-      overflow: hidden;
       height: 220px;
       width: 270px;
+      overflow: hidden ;
 
-      // &:hover {
-      //   height: 560px;
-      // }
+
+
     }
 
     a.view_info {

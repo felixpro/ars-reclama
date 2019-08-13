@@ -142,7 +142,7 @@
           </div>
 
 
-          <div class="customer_info" id="customer_info">
+          <div class="customer_info class_hidden_over" id="customer_info">
             <h1 class="name">
               <%= best_in_place @customer, :name%>
             </h1>
@@ -1645,10 +1645,13 @@
                                 <span><%= @customer.affiliate_number %></span>
                               </div>
 
-                              <div class="field therapies_input">
-                                <p>Diagnostico</p>
-                                <span><%= f.text_field :diagnostic, id: "diagnostic_text", onkeyup: "diagnosticFuntion()", value: @lastDiagnostic %></span>
+                              <div class="ceationDate">
+                                <div class="">
+                                  <p>Fecha</p>
+                                  <span><%= f.text_field :creationDate, :value => DateTime.now.to_date, id: "dateInput", onkeyup: "dateFuntion()" %></span>
+                                </div>
                               </div>
+
 
                             </div>
                           </div>
@@ -1668,12 +1671,13 @@
                                 <h3>&#x2b;</h3>
                                 <%= link_to "Añadir otro", "#newService", :class => "services_links link_style add_service", "data-toggle" => "modal" %>
                               </div>
-                              <div class="ceationDate">
-                                <div class="">
-                                  <p>Fecha</p>
-                                  <span><%= f.text_field :creationDate, :value => DateTime.now.to_date, id: "dateInput", onkeyup: "dateFuntion()" %></span>
-                                </div>
+
+                              <div class="field therapies_input">
+                                <p>Diagnostico</p>
+                                <span><%= f.text_field :diagnostic, id: "diagnostic_text", onkeyup: "diagnosticFuntion()", value: @lastDiagnostic %></span>
                               </div>
+
+
                             </div>
                           </div>
                         </div>
@@ -2099,10 +2103,13 @@
                     <h1>Nuevo procedimiento</h1>
                   </div>
                   <div class="row container_row">
+                    <div class="col-lg-1">
+                    </div>
+
                       <div class="col-lg-4">
                         <div class="colum_content procedimiento">
                           <div class="column_title">
-                            <p>Procedimiento</p>
+                            <p>Servicio</p>
                           </div>
                           <div class="display_content">
                           <div class="data">
@@ -2113,25 +2120,12 @@
                       </div>
                     </div>
 
-                    <div class="col-lg-2">
-                      <div class="colum_content">
-                        <div class="column_title">
-                          <p>Codigo</p>
-                        </div>
-                        <div class="display_content">
-                          <div class="box_padding_left"></div>
-                          <div class="data">
-                            <%= f.number_field :code %>
-                          </div>
-                          <div class="box_padding"></div>
-                        </div>
-                      </div>
-                    </div>
+
 
                     <div class="col-lg-2">
                       <div class="colum_content">
                         <div class="column_title">
-                          <p>Reclamado RD$</p>
+                          <p>No procede</p>
                         </div>
                         <div class="display_content">
                           <div class="box_padding_left"></div>
@@ -2146,7 +2140,7 @@
                     <div class="col-lg-2">
                       <div class="colum_content">
                         <div class="column_title">
-                          <p>Diferencia RD$</p>
+                          <p>Valor reclamado</p>
                         </div>
                         <div class="display_content">
                           <div class="box_padding_left"></div>
@@ -2162,7 +2156,7 @@
                     <div class="col-lg-2">
                       <div class="colum_content">
                         <div class="column_title">
-                          <p>Autorizado RD$</p>
+                          <p>Copago</p>
                         </div>
                         <div class="display_content">
                           <div class="box_padding_left"></div>
@@ -2173,7 +2167,8 @@
                         </div>
                       </div>
                     </div>
-
+                    <div class="col-lg-1">
+                    </div>
                 </div>
               </div>
               <div class="container">

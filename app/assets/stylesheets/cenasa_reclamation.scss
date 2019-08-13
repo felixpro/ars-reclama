@@ -817,7 +817,7 @@ max-height: 300px;
             padding-right: 20px;
           }
           .column_title {
-            padding-left: 45px;
+            // padding-left: 45px;
           }
 
         }
@@ -839,6 +839,9 @@ max-height: 300px;
           .data {
           border-bottom: 1px solid grey;
           width: 100%;
+          span {
+            display: block;
+          }
         }
         }
       }
@@ -947,7 +950,7 @@ max-height: 300px;
 
           }
           .column_title {
-            padding-left: 45px;
+            // padding-left: 45px;
           }
         }
         .colum_content {
@@ -970,6 +973,9 @@ max-height: 300px;
           .data {
           border-bottom: 1px solid grey;
           width: 100%;
+          span {
+            display: block;
+          }
         }
         }
       }
