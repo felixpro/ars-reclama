@@ -32,7 +32,10 @@ $(function() {
 
 // After reloar page open de modal
 function reloadP() {
-  window.location.reload(true)
+  $('#newReclamationCenasa').modal('toggle');
+
+  location.reload(true);
+
   localStorage.setItem("po", "momo");
 }
 
