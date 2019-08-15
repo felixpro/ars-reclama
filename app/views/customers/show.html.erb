@@ -35,7 +35,7 @@
 
                 <%= render 'edit_humano', customer: @customer %>
 
-                <% elsif @customer.insurance === "CENASA" %>
+                <% elsif @customer.insurance === "SENASA" %>
 
                   <%= render 'edit_cenasa', customer: @customer %>
 
@@ -107,7 +107,7 @@
 
               <%=image_tag("humano_logo.png", class:"humano_logo")%>
 
-              <% elsif @customer.insurance === "CENASA" %>
+              <% elsif @customer.insurance === "SENASA" %>
                 <%=image_tag("senasa_logo.png", class:"humano_logo")%>
 
               <% else %>
@@ -129,7 +129,7 @@
                     <h1>Elije el seguro para cambiar</h1>
                     <div class="insurance_buttons">
                       <button type="button" class="btn btn-primary" id="humano">ARS HUMANO</button>
-                      <button type="button" class="btn btn-success" id="cenasa">CENASA</button>
+                      <button type="button" class="btn btn-success" id="cenasa">SENASA</button>
                       <button type="button" class="btn btn-light" id="Naseguro">NO ASEGURADO</button>
                     </div>
 
@@ -511,7 +511,7 @@
                     <%= f.number_field :therapiesNum, id: "add_therapie_input" %>
                   </div>
 
-                  <span style="display:none;"><%= f.text_field :creationDate, :value => Time.current.to_date, id: "dateInput", onkeyup: "dateFuntion()" %></span>
+                  <span style="display:none;"><%= f.text_field :creationDate, :value => DateTime.now.to_date.strftime("%d/%m/%Y"), id: "dateInput", onkeyup: "dateFuntion()" %></span>
                   <div class="buttons_container">
                     <%= f.button "GUARDAR", class: "save remove_therapie_class"%>
                     <button type="button" class="cancel" data-dismiss="modal" aria-label="Close">
@@ -602,7 +602,7 @@
               Agregar Terapia sin reclamación
               <%=image_tag("change_ensure.png")%>
             </a>
-            <% elsif @customer.insurance === "CENASA" %>
+            <% elsif @customer.insurance === "SENASA" %>
               <button type="button" class="btn btn-outline-secondary boton_reclamaciones reclamation_btn" data-toggle="modal" data-target="#newReclamationCenasa" onclick="dateFuntion()">
                 <%=image_tag("add_new.png")%>Nueva reclamación
               </button>
@@ -631,7 +631,7 @@
                         <%= f.number_field :therapiesNum, :required => true, id: "input_1" %>
                       </div>
 
-                      <span style="display:none;"><%= f.text_field :creationDate, :value => DateTime.now.to_date, id: "dateInput", onkeyup: "dateFuntion()" %></span>
+                      <span style="display:none;"><%= f.text_field :creationDate, :value => DateTime.now.to_date.strftime("%d/%m/%Y"), id: "dateInput", onkeyup: "dateFuntion()" %></span>
                       <div class="buttons_container">
                         <%= f.button "GUARDAR", class: "save btn_add_therapie_2"%>
                         <button type="button" class="cancel" data-dismiss="modal" aria-label="Close">
@@ -739,7 +739,7 @@
                     <button type="button" class="reclam_button" data-toggle="modal" data-target="#historial<%= @identifier %>" onclick="dateFuntion()">
                       <p class="r">R</p>
                       <p class="date_reclam"><%= reclamation.creationDate %></p>
-                      <p class="ensure">CENASA</p>
+                      <p class="ensure">SENASA</p>
                     </button>
                     <div class="modal fade new_reclamation" id="historial<%= @identifier %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                       <div class="modal-dialog modal-full" role="document">
@@ -1019,7 +1019,7 @@
                                               <div class="col-lg-3 col-md-3 col-xs-3">
                                                 <div class="nombreps">
                                                   <p class="title">Teléfono:</p>
-                                                  <p class="number">19/78/1997</p>
+                                                  <p class="number">809-597-1162</p>
                                                 </div>
                                               </div>
                                             </div>
@@ -1159,8 +1159,8 @@
                                                     <% @service.each do |service| %>
                                                       <tr>
                                                         <td style="padding-left:20px;"><%= best_in_place(service, :process, url: customer_service_path(service.customer, service))%></td>
+                                                        <td style="text-align:center;"><%= best_in_place(service, :code, url: customer_service_path(service.customer, service))%></td>
                                                         <td style="text-align:center;"><%= best_in_place(service, :reclaimed, url: customer_service_path(service.customer, service))%></td>
-                                                        <td style="text-align:center;"></td>
                                                         <td style="text-align:center;"><%= best_in_place(service, :authorized, url: customer_service_path(service.customer, service))%></td>
                                                         <td style="text-align:center;"><%= best_in_place(service, :difference, url: customer_service_path(service.customer, service))%></td>
                                                       </tr>
@@ -1212,7 +1212,7 @@
                     <button type="button" class="reclam_button" data-toggle="modal" data-target="#histories<%= @identifierHistorial %>">
                       <p class="r">H</p>
                       <p class="date_reclam"><%= historial.created_at.to_date %></p>
-                      <p class="ensure">CENASA</p>
+                      <p class="ensure">SENASA</p>
                     </button>
 
                   <div class="modal fade historial_content" id="histories<%= @identifierHistorial %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -1645,12 +1645,18 @@
                                 <span><%= @customer.affiliate_number %></span>
                               </div>
 
-                              <div class="ceationDate">
+                              <!-- <div class="ceationDate">
                                 <div class="">
                                   <p>Fecha</p>
-                                  <span><%= f.text_field :creationDate, :value => DateTime.now.to_date, id: "dateInput", onkeyup: "dateFuntion()" %></span>
+                                  <span><%= f.text_field :creationDate, :value => DateTime.now.to_date.strftime("%d/%m/%Y"), id: "dateInput", onkeyup: "dateFuntion()" %></span>
                                 </div>
+                              </div> -->
+
+                              <div class="field therapies_input">
+                                <p>Diagnostico</p>
+                                <span><%= f.text_field :diagnostic, id: "diagnostic_text", onkeyup: "diagnosticFuntion()", value: @lastDiagnostic %></span>
                               </div>
+
 
 
                             </div>
@@ -1672,10 +1678,6 @@
                                 <%= link_to "Añadir otro", "#newService", :class => "services_links link_style add_service", "data-toggle" => "modal" %>
                               </div>
 
-                              <div class="field therapies_input">
-                                <p>Diagnostico</p>
-                                <span><%= f.text_field :diagnostic, id: "diagnostic_text", onkeyup: "diagnosticFuntion()", value: @lastDiagnostic %></span>
-                              </div>
 
 
                             </div>
@@ -1789,7 +1791,7 @@
                                     <div class="col-lg-3 col-md-3 col-xs-3">
                                       <div class="nombreps">
                                         <p class="title">Teléfono:</p>
-                                        <p class="number">19/78/1997</p>
+                                        <p class="number">809-597-1162</p>
                                       </div>
                                     </div>
                                   </div>
@@ -1889,19 +1891,19 @@
                                   </div>
 
                                   <div class="row row_5">
-                                    <div class="col-lg-6 col-md-6 col-xs-6">
+                                    <div class="col-lg-12 col-md-12 col-xs-12">
                                       <div class="nombreps padding_top_correction">
                                         <p class="title service">Tipo de Servicio:</p>
                                         <p class="number">
                                           &nbsp; &nbsp;</p>
                                       </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-xs-6">
+                                    <!-- <div class="col-lg-6 col-md-6 col-xs-6">
                                       <div class="nombreps padding_top_correction">
                                         <p class="title date_servicio">Fecha del Servicio:</p>
                                         <p class="number dateUpdate"></p>
                                       </div>
-                                    </div>
+                                    </div> -->
                                   </div>
 
                                   <div class="row row_6">
@@ -1929,8 +1931,8 @@
                                           <% @service.each do |service| %>
                                             <tr>
                                               <td style="padding-left:20px;"><%= best_in_place(service, :process, url: customer_service_path(service.customer, service))%></td>
+                                              <td style="text-align:center;"><%= best_in_place(service, :code, url: customer_service_path(service.customer, service))%></td>
                                               <td style="text-align:center;"><%= best_in_place(service, :reclaimed, url: customer_service_path(service.customer, service))%></td>
-                                              <td style="text-align:center;"></td>
                                               <td style="text-align:center;"><%= best_in_place(service, :authorized, url: customer_service_path(service.customer, service))%></td>
                                               <td style="text-align:center;"><%= best_in_place(service, :difference, url: customer_service_path(service.customer, service))%></td>
                                             </tr>
@@ -2012,7 +2014,7 @@
                   <div class="col-lg-2">
                     <div class="colum_content">
                       <div class="column_title">
-                        <p>Codigo</p>
+                        <p>Valor total</p>
                       </div>
                       <div class="display_content">
                         <div class="box_padding_left"></div>
@@ -2027,7 +2029,7 @@
                   <div class="col-lg-2">
                     <div class="colum_content">
                       <div class="column_title">
-                        <p>Reclamado RD$</p>
+                        <p>No procede</p>
                       </div>
                       <div class="display_content">
                         <div class="box_padding_left"></div>
@@ -2042,7 +2044,7 @@
                   <div class="col-lg-2">
                     <div class="colum_content">
                       <div class="column_title">
-                        <p>Diferencia RD$</p>
+                        <p>Valor reclamado</p>
                       </div>
                       <div class="display_content">
                         <div class="box_padding_left"></div>
@@ -2058,7 +2060,7 @@
                   <div class="col-lg-2">
                     <div class="colum_content">
                       <div class="column_title">
-                        <p>Autorizado RD$</p>
+                        <p>Copago</p>
                       </div>
                       <div class="display_content">
                         <div class="box_padding_left"></div>
@@ -2103,8 +2105,7 @@
                     <h1>Nuevo procedimiento</h1>
                   </div>
                   <div class="row container_row">
-                    <div class="col-lg-1">
-                    </div>
+
 
                       <div class="col-lg-4">
                         <div class="colum_content procedimiento">
@@ -2119,6 +2120,21 @@
                         </div>
                       </div>
                     </div>
+
+                    <div class="col-lg-2">
+                 <div class="colum_content">
+                  <div class="column_title">
+                    <p>Valor Total</p>
+                  </div>
+                  <div class="display_content">
+                    <div class="box_padding_left"></div>
+                    <div class="data">
+                      <%= f.number_field :code %>
+                    </div>
+                    <div class="box_padding"></div>
+                  </div>
+                </div>
+              </div>
 
 
 
@@ -2167,8 +2183,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-lg-1">
-                    </div>
+
                 </div>
               </div>
               <div class="container">

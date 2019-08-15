@@ -9,7 +9,7 @@ class Customer < ApplicationRecord
 
   has_one_attached :image
 
-  enum gender: [:Fem, :Mas]
+  enum gender: [:Femenino, :Masculino]
   enum doc_type: [:Cedula, :Pasaporte]
 
   validates :doc, :uniqueness => true

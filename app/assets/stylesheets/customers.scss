@@ -2860,7 +2860,12 @@ aside {
   .section {
     .content {
       [type="radio"] {
-        margin-right: 6px;
+        margin-right: 3px;
+      }
+
+      .gender {
+        width: 100% !important;
+
       }
 
       label {

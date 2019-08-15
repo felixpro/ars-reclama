@@ -12,7 +12,7 @@
 <% end %>
 
 <div style="display:none;">
-  <%= form.text_field :insurance, :value => 'CENASA' %>
+  <%= form.text_field :insurance, :value => 'SENASA' %>
 
 </div>
 
@@ -106,7 +106,7 @@
             <div class="col-lg-3 col-md-3 col-sm-3">
               <div class="content">
                 <p class="title">Genero</p>
-                <p class="input"><%= form.collection_radio_buttons :gender, Customer.genders, :first, :first, required: 'required' %></p>
+                <p class="input gender"><%= form.collection_radio_buttons :gender, Customer.genders, :first, :first, required: 'required' %></p>
               </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3">
