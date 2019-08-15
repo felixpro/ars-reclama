@@ -43,6 +43,7 @@ class ServicesController < ApplicationController
         format.json { render json: @service.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /services/1

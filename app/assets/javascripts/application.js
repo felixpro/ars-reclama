@@ -32,13 +32,13 @@ $(function() {
 
 // After reloar page open de modal
 function reloadP() {
-  location.reload();
-  location.reload();
-
+  location.reload(true)
   localStorage.setItem("po", "momo");
 }
 
 $(window).on("load", function() {
+
+
 if (localStorage.getItem("po") === "momo" ) {
   $('.boton_reclamaciones').trigger('click');
   localStorage.setItem("po", "lulu");
