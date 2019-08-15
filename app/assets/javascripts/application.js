@@ -32,7 +32,7 @@ $(function() {
 
 // After reloar page open de modal
 function reloadP() {
-  location.reload(true)
+  window.location.reload(true)
   localStorage.setItem("po", "momo");
 }
 
