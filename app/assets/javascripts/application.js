@@ -182,6 +182,7 @@ $(function(){
 
 
 
+
 // save historial
 function guardarHistorial() {
   $('#historial_btn').trigger('click');
@@ -262,10 +263,14 @@ function printerCenasa(divID) {
 
 function printerReclam(divID) {
 //Get the HTML of div
+localStorage.setItem("printer", "on");
+localStorage.setItem("numData", $('#authNum').val());
+localStorage.setItem("diagnostic", $('#diagnostic_text').val());
+localStorage.setItem("therapieNum", $('#input_1_therapie').val());
 
 
+setTimeout(function () {
   var cenasaContent = document.getElementById(divID).innerHTML;
-
   //Get the HTML of whole page
   var oldPage = document.body.innerHTML;
   //Reset the pages HTML with divs HTML only
@@ -273,16 +278,45 @@ function printerReclam(divID) {
 
        "<html ><head><title></title></head><body>" +
        cenasaContent + "</body>";
-
-
   //Print Page
   window.print();
   //Restore orignal HTML
   document.body.innerHTML = oldPage;
   location.reload();
 
-
+}, 500);
 }
+
+
+// After reloar page open de modal
+
+$(window).on("load", function() {
+if (localStorage.getItem("printer") === "on" ) {
+  $('.boton_reclamaciones').trigger('click');
+var dataAuth = localStorage.getItem("numData");
+var dataDiagnostic = localStorage.getItem("diagnostic");
+var dataTherapie = localStorage.getItem("therapieNum");
+
+  // Auth num
+  $('#authNum').trigger('click');
+  $('#authNum').val(dataAuth);
+  $('#actualizar').append(dataAuth);
+
+  // therapie num
+  $('#input_1_therapie').trigger('click');
+  $('#input_1_therapie').val(dataTherapie);
+
+  // Diagnostic
+  $('#diagnostic_text').trigger('click');
+  $('#diagnostic_text').val(dataDiagnostic);
+  $('#input_diagnostic').append(dataDiagnostic);
+
+
+  localStorage.setItem("printer", "off");
+} else {}
+
+});
+
 
 
 

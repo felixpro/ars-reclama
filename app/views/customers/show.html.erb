@@ -6695,13 +6695,11 @@
     // delete therapies
     function delete_number() {
       $('.delete_box').prop('disabled', true);
-
       setTimeout(function () {
         e.stopPropagation();
         e.preventDefault();
         e.stopImmediatePropagation();
       }, 100);
-
       var inputValue = $('#form_input_customer').val();
       $('#form_input_customer').val(inputValue - 1)
       $("#submit_btn").trigger('click');
