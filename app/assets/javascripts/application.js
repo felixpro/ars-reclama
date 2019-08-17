@@ -12,8 +12,10 @@
 
 
 //= require jquery
-//= require jquery3
 //= require jquery_ujs
+//= require rails-ujs
+//= require jquery3
+
 //= require jquery-ui
 //= require best_in_place
 //= require best_in_place.jquery-ui
@@ -317,7 +319,7 @@ var dataTherapie = localStorage.getItem("therapieNum");
   $('#diagnostic_text').val(dataDiagnostic);
   $('#input_diagnostic').append(dataDiagnostic);
 
-  // reset 
+  // reset
   localStorage.setItem("printer", "off");
   localStorage.setItem("numData", "off");
   localStorage.setItem("diagnostic", "off");
