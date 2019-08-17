@@ -2082,7 +2082,7 @@
                   <button type="button" class=" btn btn-danger btn_reload" id="save_button" data-dismiss="modal" aria-label="Close" onclick="reloadP()">
                     GUARDAR
                   </button>
-                  <button type="button" class=" btn btn-outline-secondary " id="cancel_button" data-dismiss="modal" aria-label="Close">
+                  <button type="button" class=" btn btn-outline-secondary " id="cancel_button"  onclick="reloadP()">
                     CANCELAR
                   </button>
                 </div>
@@ -2190,7 +2190,7 @@
                 <div class="row edit_buttons">
                   <%= f.submit "GUARDAR", class: "btn btn-danger btn_reload", id:"save_button", onclick: "reloadP()" %>
 
-                  <button type="button" class=" btn btn-danger " id="cancel_button" data-dismiss="modal" aria-label="Close">
+                  <button type="button" class=" btn btn-danger " id="cancel_button" data-dismiss="modal" aria-label="Close" >
                     CANCELAR
                   </button>
 

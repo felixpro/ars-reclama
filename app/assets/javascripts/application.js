@@ -32,6 +32,12 @@ $(function() {
 
 // After reloar page open de modal
 function reloadP() {
+  // it will call the funtion to update the atuth and diagnostic input
+  localStorage.setItem("printer", "on");
+  localStorage.setItem("numData", $('#authNum').val());
+  localStorage.setItem("diagnostic", $('#diagnostic_text').val());
+  localStorage.setItem("therapieNum", $('#input_1_therapie').val());
+
   setTimeout(function () {
   location.reload(true);
     }, 1000);
@@ -311,8 +317,11 @@ var dataTherapie = localStorage.getItem("therapieNum");
   $('#diagnostic_text').val(dataDiagnostic);
   $('#input_diagnostic').append(dataDiagnostic);
 
-
+  // reset 
   localStorage.setItem("printer", "off");
+  localStorage.setItem("numData", "off");
+  localStorage.setItem("diagnostic", "off");
+  localStorage.setItem("therapieNum","off");
 } else {}
 
 });
