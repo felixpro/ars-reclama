@@ -144,56 +144,56 @@
 
           <div class="customer_info class_hidden_over" id="customer_info">
             <h1 class="name">
-              <%= best_in_place @customer, :name%>
+              <%=  @customer.name%>
             </h1>
 
             <div class=" space email display_box">
               <%=image_tag("envelope.png")%>
-              <p><%= best_in_place @customer, :email %></p>
+              <p><%=  @customer.email %></p>
             </div>
 
             <div class=" space doc display_box">
               <%=image_tag("doc.png")%>
-              <p><%= best_in_place @customer, :doc %></p>
+              <p><%= @customer.doc.unpack('A3A7A1').join('-') %></p>
             </div>
             <div class=" space phone display_box">
               <%=image_tag("cell.png")%>
-              <p><%= best_in_place @customer, :cell %></p>
+              <p><%= @customer.cell.unpack('A3A3A4').join('-') %></p>
             </div>
 
             <div class=" space phone display_box">
               <%=image_tag("phone.png")%>
-              <p><%= best_in_place @customer, :phone %></p>
+              <p><%= @customer.phone.unpack('A3A3A4').join('-') %></p>
             </div>
 
             <div class="space display_box">
               <strong>No.&nbsp;afiliado:</strong>
-              <p><%= best_in_place @customer, :affiliate_number %></p>
+              <p><%= @customer.affiliate_number %></p>
             </div>
 
             <div class="space display_box">
               <strong>Edad:</strong>
-              <p><%= best_in_place @customer, :age %></p>
+              <p><%=@customer.age %></p>
             </div>
 
             <div class="space display_box">
               <strong>Sector:</strong>
-              <p><%= best_in_place @customer, :sector %></p>
+              <p><%= @customer.sector %></p>
             </div>
 
             <div class="space display_box">
               <strong>Ciudad:</strong>
-              <p><%= best_in_place @customer, :city %></p>
+              <p><%= @customer.city %></p>
             </div>
 
             <div class="space display_box">
               <strong>Genero:</strong>
-              <p><%= best_in_place @customer, :gender %></p>
+              <p><%= @customer.gender %></p>
             </div>
 
             <div class="space adress">
               <strong>Direccion:</strong>
-              <p><%= best_in_place @customer, :adress %></p>
+              <p><%= @customer.adress %></p>
             </div>
 
             <%= link_to "#edit_modal_section", :id => "edit_btn", class: " reload_page ", "data-toggle" => "modal" do%>
@@ -389,10 +389,10 @@
                                   <%= @customer.name %>
                                   <br>
                                   Cedula:
-                                  <%= @customer.doc %>
+                                  <%= @customer.doc.unpack('A3A7A1').join('-') %>
                                   <br>
                                   Cel:
-                                  <%= @customer.cell %>
+                                  <%= @customer.cell.unpack('A3A3A4').join('-') %>
                                   <br>
                                 </p>
                                 <p id="padecimiento" class="black_color"></p>
@@ -827,12 +827,12 @@
                                       <div class="first_row">
                                         <div>
                                           <p>Teléfono</p>
-                                          <span><%= @customer.phone %></span>
+                                          <span><%= @customer.phone.unpack('A3A3A4').join('-') %></span>
                                         </div>
 
                                         <div>
                                           <p>Celular</p>
-                                          <span><%= @customer.cell %></span>
+                                          <span><%= @customer.cell.unpack('A3A3A4').join('-') %></span>
                                         </div>
 
                                         <div>
@@ -844,7 +844,7 @@
                                             <% end%>
 
                                           </p>
-                                          <span><%= @customer.doc %></span>
+                                          <span><%= @customer.doc.unpack('A3A7A1').join('-') %></span>
                                         </div>
 
                                         <div>
@@ -1060,7 +1060,7 @@
                                               <div class="col-lg-3 col-md-3 col-xs-3">
                                                 <div class="nombreps padding_top_correction">
                                                   <p class="title"><%= @customer.doc_type %>:</p>
-                                                  <p class="number"><%= @customer.doc %></p>
+                                                  <p class="number"><%= @customer.doc.unpack('A3A7A1').join('-') %></p>
 
                                                 </div>
                                               </div>
@@ -1070,13 +1070,13 @@
                                               <div class="col-lg-4 col-md-4 col-xs-4">
                                                 <div class="nombreps doctor">
                                                   <p class="title name">Teléfono:</p>
-                                                  <p class="number"><%= @customer.phone %></p>
+                                                  <p class="number"><%= @customer.phone.unpack('A3A3A4').join('-') %></p>
                                                 </div>
                                               </div>
                                               <div class="col-lg-4 col-md-4 col-xs-4">
                                                 <div class="nombreps">
                                                   <p class="title small_title">Celular:</p>
-                                                  <p class="number"><%= @customer.cell %></p>
+                                                  <p class="number"><%= @customer.cell.unpack('A3A3A4').join('-') %></p>
                                                 </div>
                                               </div>
 
@@ -1378,10 +1378,10 @@
                                           <%= @customer.name %>
                                           <br>
                                           Cedula:
-                                          <%= @customer.doc %>
+                                          <%= @customer.doc.unpack('A3A7A1').join('-') %>
                                           <br>
                                           Cel:
-                                          <%= @customer.cell %>
+                                          <%= @customer.cell.unpack('A3A3A4').join('-') %>
                                           <br>
                                         </p>
                                         <% if historial.patologico.blank? %>
@@ -1576,12 +1576,12 @@
                             <div class="first_row">
                               <div>
                                 <p>Teléfono</p>
-                                <span><%= @customer.phone %></span>
+                                <span><%= @customer.phone.unpack('A3A3A4').join('-') %></span>
                               </div>
 
                               <div>
                                 <p>Celular</p>
-                                <span><%= @customer.cell %></span>
+                                <span><%= @customer.cell.unpack('A3A3A4').join('-') %></span>
                               </div>
 
                               <div>
@@ -1595,7 +1595,7 @@
 
                                 </p>
 
-                                <span><%= @customer.doc %></span>
+                                <span><%= @customer.doc.unpack('A3A7A1').join('-') %></span>
                               </div>
 
                               <div>
@@ -1832,7 +1832,7 @@
                                     <div class="col-lg-3 col-md-3 col-xs-3">
                                       <div class="nombreps padding_top_correction">
                                         <p class="title"><%= @customer.doc_type %>:</p>
-                                        <p class="number"><%= @customer.doc %></p>
+                                        <p class="number"><%= @customer.doc.unpack('A3A7A1').join('-') %></p>
 
                                       </div>
                                     </div>
@@ -1842,13 +1842,13 @@
                                     <div class="col-lg-4 col-md-4 col-xs-4">
                                       <div class="nombreps doctor">
                                         <p class="title name">Teléfono:</p>
-                                        <p class="number"><%= @customer.phone %></p>
+                                        <p class="number"><%= @customer.phone.unpack('A3A3A4').join('-') %></p>
                                       </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-xs-4">
                                       <div class="nombreps">
                                         <p class="title small_title">Celular:</p>
-                                        <p class="number"><%= @customer.cell %></p>
+                                        <p class="number"><%= @customer.cell.unpack('A3A3A4').join('-') %></p>
                                       </div>
                                     </div>
 
@@ -2320,7 +2320,7 @@
 
                               </p>
 
-                              <span><%= @customer.doc %></span>
+                              <span><%= @customer.doc.unpack('A3A7A1').join('-')%></span>
                             </div>
 
                             <div>
