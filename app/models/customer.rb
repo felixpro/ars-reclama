@@ -1,5 +1,4 @@
 class Customer < ApplicationRecord
-  include PgSearch
 
 
   has_many :service, dependent: :delete_all
@@ -16,9 +15,13 @@ class Customer < ApplicationRecord
   validates :affiliate_number, :uniqueness => true
   validates :name, :uniqueness => true
 
-   pg_search_scope :search_by_title_and_body, :against => [:name, :doc],
-     using: {
-       :tsearch => {:prefix => true}
-     }
+
+  def self.search(search)
+           if search
+                 Customer.where("name LIKE '%#{search}%'")
+           else
+                 Customer.all
+           end
+       end
 
 end

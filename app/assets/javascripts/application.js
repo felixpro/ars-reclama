@@ -13,9 +13,6 @@
 
 //= require jquery
 //= require jquery_ujs
-//= require rails-ujs
-//= require jquery3
-
 //= require jquery-ui
 //= require best_in_place
 //= require best_in_place.jquery-ui

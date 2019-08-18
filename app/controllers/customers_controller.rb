@@ -18,16 +18,14 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
-    @customer_total = Customer.all
-    if params[:search]
-        @search_results_posts = Customer.search_by_title_and_body(params[:search])
-          respond_to do |format|
-            format.js { render partial: 'search-results'}
-        end
-      else
-        @customers = Customer.all
-      end
 
+    @customers = if params[:term]
+         Customer.where('name LIKE ?', "%#{params[:term]}%")
+       else
+         Customer.all
+       end
+
+    @customer_total = Customer.all
     @customerNew = Customer.new
     @reclamations = Reclamation.all
     @reclamation_number = 0;
