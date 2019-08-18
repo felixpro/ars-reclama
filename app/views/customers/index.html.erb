@@ -117,9 +117,10 @@
                     <div class="search_section">
 
 
+
                     <%= form_tag(customers_path, method: :get) do %>
                       <%= image_submit_tag("search_icon.png", class: "submit_image ")%>
-                      <%= text_field_tag :term, params[:term], placeholder: "Buscar cliente" %>
+                      <%= text_field_tag :q, params[:q], placeholder: "Buscar cliente" %>
                     <% end %>
 
                   </div>

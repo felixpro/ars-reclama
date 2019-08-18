@@ -19,11 +19,14 @@ class CustomersController < ApplicationController
   # GET /customers.json
   def index
 
-    @customers = if params[:term]
-         Customer.where('name LIKE ?', "%#{params[:term]}%")
-       else
-         Customer.all
-       end
+    if params[:q]
+      search_term = params[:q]
+      @customers = Customer.search(search_term)
+      # return our filtered list here
+    else
+      @customers = Customer.all
+    end
+
 
     @customer_total = Customer.all
     @customerNew = Customer.new

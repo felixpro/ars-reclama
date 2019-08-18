@@ -16,12 +16,11 @@ class Customer < ApplicationRecord
   validates :name, :uniqueness => true
 
 
-  def self.search(search)
-           if search
-                 Customer.where("name LIKE '%#{search}%'")
-           else
-                 Customer.all
-           end
-       end
-
-end
+    def self.search(search_term)
+      if Rails.env.development?
+        Customer.where('name LIKE ?', "%#{search_term}%")
+      else
+        Customer.where('name ilike ?', "%#{search_term}%")
+      end
+    end
+  end
