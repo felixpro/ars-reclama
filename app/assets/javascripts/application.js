@@ -353,12 +353,15 @@ var dataTherapie_humano = localStorage.getItem("therapieNum_humano");
   $('#diagnostic_text_humano').val(dataDiagnostic_humano);
   $('#input_diagnostic_humano').append(dataDiagnostic_humano);
 
+
   // reset
   localStorage.setItem("printer", "off");
   localStorage.setItem("numData", "off");
   localStorage.setItem("numData_humano", "off");
   localStorage.setItem("diagnostic", "off");
   localStorage.setItem("therapieNum","off");
+
+
 } else {}
 
 });
@@ -369,8 +372,20 @@ var dataTherapie_humano = localStorage.getItem("therapieNum_humano");
 
 function printerHistorial(divID) {
 //Get the HTML of div
+localStorage.setItem("printer_historial", "on");
+localStorage.setItem("padecimiento",    $('#input_padecimiento').val());
+localStorage.setItem("status",          $('#input_status').val());
+localStorage.setItem("patologico",      $('#input_antecedentes').val());
+localStorage.setItem("familiares",      $('#input_familiares').val());
+localStorage.setItem("examen",          $('#input_examen').val());
+localStorage.setItem("anexo",           $('#input_anexo').val());
+localStorage.setItem("unificada",       $('#input_unificada').val());
+localStorage.setItem("autorizar",       $('#input_autorizar').val());
+
 
 setTimeout(function () {
+
+
 
   var historial = document.getElementById(divID).innerHTML;
 
@@ -387,6 +402,65 @@ setTimeout(function () {
   window.print();
   //Restore orignal HTML
   document.body.innerHTML = oldPage;
+  location.reload();
 
 }, 500);
 }
+
+
+$(window).on("load", function() {
+if (localStorage.getItem("printer_historial") === "on" ) {
+  $('#historial_modal_humano').modal('toggle');
+  $('#historial_modal_senasa').modal('toggle');
+
+
+  // historial section
+  var padecimiento = localStorage.getItem("padecimiento");
+  var status = localStorage.getItem("status");
+  var patologico = localStorage.getItem("patologico");
+  var familiares = localStorage.getItem("familiares");
+  var examen = localStorage.getItem("examen");
+  var anexo = localStorage.getItem("anexo");
+  var unificada = localStorage.getItem("unificada");
+  var autorizar = localStorage.getItem("autorizar");
+
+
+  // padecimiento
+  $('#input_padecimiento').val(padecimiento);
+  $('#padecimiento').append(padecimiento);
+
+  // status
+  $('#input_status').val(status);
+  $('#status').append(status);
+
+  // patologico
+  $('#input_antecedentes').val(patologico);
+  $('#antecedentes').append(patologico);
+
+  // familiares
+  $('#input_familiares').val(familiares);
+  $('#familiares').append(familiares);
+
+  // Examen
+  $('#input_examen').val(familiares);
+  $('#examen').append(familiares);
+
+  // anexo
+  $('#input_anexo').val(anexo);
+  $('#anexo').append(anexo);
+
+  // unificada
+  $('#input_unificada').val(unificada);
+  $('#unificada').append(unificada);
+
+  // autorizar
+  $('#input_autorizar').val(autorizar);
+  $('#autorizar').append(autorizar);
+
+
+  // reset
+  localStorage.setItem("printer_historial", "off");
+
+} else {}
+
+});
