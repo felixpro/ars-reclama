@@ -63,6 +63,13 @@
               </div>
             </div>
 
+            <div class="col-lg-3 col-md-3 col-sm-3">
+              <div class="content">
+                <p class="title">Genero</p>
+                <p class="input gender"><%= form.collection_radio_buttons :gender, Customer.genders, :first, :first, required: 'required' %></p>
+              </div>
+            </div>
+
 
 
 

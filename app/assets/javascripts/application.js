@@ -34,8 +34,13 @@ function reloadP() {
   // it will call the funtion to update the atuth and diagnostic input
   localStorage.setItem("printer", "on");
   localStorage.setItem("numData", $('#authNum').val());
+  localStorage.setItem("numData_humano", $('#authNum_humano').val());
   localStorage.setItem("diagnostic", $('#diagnostic_text').val());
+  localStorage.setItem("diagnostic_humano", $('#diagnostic_text_humano').val());
+
   localStorage.setItem("therapieNum", $('#input_1_therapie').val());
+  localStorage.setItem("therapieNum_humano", $('#humano_terapias').val());
+
 
   setTimeout(function () {
   location.reload(true);
@@ -45,14 +50,10 @@ function reloadP() {
 
 $(window).on("load", function() {
 
-
 if (localStorage.getItem("po") === "momo" ) {
   $('.boton_reclamaciones').trigger('click');
   localStorage.setItem("po", "lulu");
-} else {
-
-}
-
+} else {}
 });
 
 
@@ -63,7 +64,9 @@ if (localStorage.getItem("po") === "momo" ) {
 function service_modal() {
   $('#edit').modal('toggle');
 };
-
+function humano_modal() {
+  $('#edit_modal_humano').modal('toggle');
+};
 
 
 // open edit modal
@@ -106,22 +109,32 @@ $(function(){
 
     })
 
-
-
-
-
-
   });
 
 // Update the inputs
 function myFunction() {
   $('#actualizar').html('')
   $('#actualizar').append($('#authNum').val());
+
+  $('#input_humano_auth').html('')
+  $('#input_humano_auth').append($('#authNum_humano').val());
+
 };
+
+function textTerapias() {
+  $('#print_therapies').html('')
+  $('#print_therapies').append($('#humano_terapias').val());
+
+};
+
+
 
 function diagnosticFuntion() {
   $('#input_diagnostic').html('')
   $('#input_diagnostic').append($('#diagnostic_text').val());
+
+  $('#input_diagnostic_humano').html('')
+  $('#input_diagnostic_humano').append($('#diagnostic_text_humano').val());
 };
 
 function dateFuntion() {
@@ -270,8 +283,13 @@ function printerReclam(divID) {
 //Get the HTML of div
 localStorage.setItem("printer", "on");
 localStorage.setItem("numData", $('#authNum').val());
+localStorage.setItem("numData_humano", $('#authNum_humano').val());
 localStorage.setItem("diagnostic", $('#diagnostic_text').val());
+localStorage.setItem("diagnostic_humano", $('#diagnostic_text_humano').val());
+
 localStorage.setItem("therapieNum", $('#input_1_therapie').val());
+localStorage.setItem("therapieNum_humano", $('#humano_terapias').val());
+
 
 
 setTimeout(function () {
@@ -299,26 +317,46 @@ $(window).on("load", function() {
 if (localStorage.getItem("printer") === "on" ) {
   $('.boton_reclamaciones').trigger('click');
 var dataAuth = localStorage.getItem("numData");
+var dataAuth_humano = localStorage.getItem("numData_humano");
 var dataDiagnostic = localStorage.getItem("diagnostic");
+var dataDiagnostic_humano = localStorage.getItem("diagnostic_humano");
+
 var dataTherapie = localStorage.getItem("therapieNum");
+var dataTherapie_humano = localStorage.getItem("therapieNum_humano");
+
+
 
   // Auth num
   $('#authNum').trigger('click');
   $('#authNum').val(dataAuth);
   $('#actualizar').append(dataAuth);
+  // auth num humano
+  $('#authNum_humano').val(dataAuth_humano);
+  $('#input_humano_auth').append(dataAuth_humano);
+
 
   // therapie num
   $('#input_1_therapie').trigger('click');
   $('#input_1_therapie').val(dataTherapie);
+  $('#humano_terapias').val(dataTherapie_humano);
+  $('#print_therapies').append(dataTherapie_humano);
+
+
+
 
   // Diagnostic
   $('#diagnostic_text').trigger('click');
   $('#diagnostic_text').val(dataDiagnostic);
   $('#input_diagnostic').append(dataDiagnostic);
+  // Diagnostic humano
+  $('#diagnostic_text_humano').trigger('click');
+  $('#diagnostic_text_humano').val(dataDiagnostic_humano);
+  $('#input_diagnostic_humano').append(dataDiagnostic_humano);
 
   // reset
   localStorage.setItem("printer", "off");
   localStorage.setItem("numData", "off");
+  localStorage.setItem("numData_humano", "off");
   localStorage.setItem("diagnostic", "off");
   localStorage.setItem("therapieNum","off");
 } else {}
