@@ -13,26 +13,23 @@
     }
   }
 
- .polo {
-   background-color: red !important;
- }
 
   .print_content {
-    width: 528px !important;
+    width: 700px !important;
     height: 1300px !important;
     transform: rotate(90deg);
     position: absolute;
-    top: -375px;
-    right: 400px;
+    top: -300px;
+    right: 300px;
     .antecedentes {
       font-weight: bold;
     }
     .body {
-      height: 890px !important;
+      height: 840px !important;
       .firma {
 
 
-        top: 1050px !important;
+        top: 980px !important;
       }
     }
   }
@@ -627,7 +624,7 @@ $smallfont: 10px;
   }
 
   .section_4 {
-    padding-top: 10px;
+    padding-top: 15px;
 
     p {
       margin-top: 0;
@@ -646,6 +643,7 @@ $smallfont: 10px;
     padding-right: 15px;
     .padding_top_correction {
       padding-top: 0 !important;
+      padding-right: 0 !important;
     }
     .service {
       width: 130px;

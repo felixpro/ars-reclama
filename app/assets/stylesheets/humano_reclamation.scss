@@ -33,26 +33,25 @@ $blue_color: #2929a3;
   }
 .title_humano_2 {
   .logo {
-    img {
+    .primera_logo {
+      display: none;
+      width: 119px;
+
+    }
+    .humano_reclam_logo,
+    .humano_reclam_logo_historial {
       width: 119px;
       height: 20.2px;
+    }
+    .primera_logo_historial {
+      width: 119px;
+
     }
   }
 }
 
 p.autorizacion {
   width: 200px;
-}
-
-.separador_1 {
-  width: 100%;
-  margin-top: 15px;
-  h5 {
-    font-size: 16px;
-    margin: 0;
-    background: #a6a6a6;
-    padding: 5px 0px 5px 10px;
-  }
 }
 
 .inputs_box {
@@ -99,16 +98,17 @@ p.autorizacion {
 
 .separador {
   width: 100%;
-  margin-top: 15px;
+  margin-top: 25px;
   h5 {
     font-size: 16px;
     margin: 0;
-    background: #a6a6a6;
+    background: #d9d9d9;
     padding: 5px 0px 5px 10px;
   }
 }
 
 .firmas {
+  margin-top: 30px !important;
   hr {
     height: 0.5px;
     width: 100%;

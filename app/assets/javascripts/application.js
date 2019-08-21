@@ -27,6 +27,117 @@ $(function() {
   }, 1000);
 });
 
+// buttons to change the logo in the reclamation
+
+// check if the input has a insurance value
+$(function(){
+
+  if ($("#humano_terapias").val().length <= 0) {
+    $("#humano_terapias").val(3);
+    $("#print_therapies").html("")
+    $("#print_therapies").append("3")
+
+  }
+
+
+  if ($('#multiple_insuranse').val() === "humano") {
+    $(".primera_logo").hide();
+    $(".humano_reclam_logo").show();
+
+    $("#primera_btn").css(
+      {"background":"none",
+      "color":"#000",
+      "border":"1px solid #000000"}
+    );
+
+    $("#humano_btn").css(
+      {"background":"#00b2e3",
+        "color":"#fff",
+      "border":"none"}
+    );
+
+
+  } else if ($('#multiple_insuranse').val() === "primera") {
+    $(".humano_reclam_logo").hide();
+    $(".primera_logo").show();
+
+    $("#humano_btn").css(
+      {"background":"none",
+      "color":"#000",
+      "border":"1px solid #000000"}
+    );
+
+    $("#primera_btn").css(
+      {"background":"#2d7bb7",
+      "color":"#fff",
+      "border":"none"}
+    );
+
+  } else if ($('#multiple_insuranse').val() === "") {
+    $(".primera_logo").hide();
+    $(".humano_reclam_logo").show();
+
+    $('#multiple_insuranse').val("");
+    $('#multiple_insuranse').val("humano");
+
+    $("#primera_btn").css(
+      {"background":"none",
+      "color":"#000",
+      "border":"1px solid #000000"}
+    );
+
+    $("#humano_btn").css(
+      {"background":"#00b2e3",
+        "color":"#fff",
+      "border":"none"}
+    );
+  }
+
+
+  });
+
+
+function seguro_humano() {
+  $('#multiple_insuranse').val("");
+  $('#multiple_insuranse').val("humano");
+
+  $(".primera_logo").hide();
+  $(".humano_reclam_logo").show();
+
+  $("#primera_btn").css(
+    {"background":"none",
+    "color":"#000",
+    "border":"1px solid #000000"}
+  );
+
+  $("#humano_btn").css(
+    {"background":"#00b2e3",
+      "color":"#fff",
+    "border":"none"}
+  );
+
+}
+
+function seguro_primera() {
+  $('#multiple_insuranse').val("");
+  $('#multiple_insuranse').val("primera");
+
+  $(".humano_reclam_logo").hide();
+  $(".primera_logo").show();
+
+  $("#humano_btn").css(
+    {"background":"none",
+    "color":"#000",
+    "border":"1px solid #000000"}
+  );
+
+  $("#primera_btn").css(
+    {"background":"#2d7bb7",
+    "color":"#fff",
+    "border":"none"}
+  );
+
+}
 
 
 // After reloar page open de modal
@@ -37,10 +148,9 @@ function reloadP() {
   localStorage.setItem("numData_humano", $('#authNum_humano').val());
   localStorage.setItem("diagnostic", $('#diagnostic_text').val());
   localStorage.setItem("diagnostic_humano", $('#diagnostic_text_humano').val());
-
   localStorage.setItem("therapieNum", $('#input_1_therapie').val());
   localStorage.setItem("therapieNum_humano", $('#humano_terapias').val());
-
+  localStorage.setItem("multiple_insuranse", $('#multiple_insuranse').val());
 
   setTimeout(function () {
   location.reload(true);
@@ -289,6 +399,7 @@ localStorage.setItem("diagnostic_humano", $('#diagnostic_text_humano').val());
 
 localStorage.setItem("therapieNum", $('#input_1_therapie').val());
 localStorage.setItem("therapieNum_humano", $('#humano_terapias').val());
+localStorage.setItem("multiple_insuranse", $('#multiple_insuranse').val());
 
 
 
@@ -324,6 +435,66 @@ var dataDiagnostic_humano = localStorage.getItem("diagnostic_humano");
 var dataTherapie = localStorage.getItem("therapieNum");
 var dataTherapie_humano = localStorage.getItem("therapieNum_humano");
 
+var multiple_insuranse = localStorage.getItem("multiple_insuranse");
+
+// multiple_insuranse_humano
+$('#multiple_insuranse').val(multiple_insuranse);
+
+
+
+  if ($('#multiple_insuranse').val() === "humano") {
+    $(".primera_logo").hide();
+    $(".humano_reclam_logo").show();
+
+    $("#primera_btn").css(
+      {"background":"none",
+      "color":"#000",
+      "border":"1px solid #000000"}
+    );
+
+    $("#humano_btn").css(
+      {"background":"#00b2e3",
+        "color":"#fff",
+      "border":"none"}
+    );
+
+
+  } else if ($('#multiple_insuranse').val() === "primera") {
+    $(".humano_reclam_logo").hide();
+    $(".primera_logo").show();
+
+    $("#humano_btn").css(
+      {"background":"none",
+      "color":"#000",
+      "border":"1px solid #000000"}
+    );
+
+    $("#primera_btn").css(
+      {"background":"#2d7bb7",
+      "color":"#fff",
+      "border":"none"}
+    );
+
+  } else if ($('#multiple_insuranse').val() === "") {
+    $(".primera_logo").hide();
+    $(".humano_reclam_logo").show();
+
+    $('#multiple_insuranse').val("");
+    $('#multiple_insuranse').val("humano");
+
+    $("#primera_btn").css(
+      {"background":"none",
+      "color":"#000",
+      "border":"1px solid #000000"}
+    );
+
+    $("#humano_btn").css(
+      {"background":"#00b2e3",
+        "color":"#fff",
+      "border":"none"}
+    );
+  }
+
 
 
   // Auth num
@@ -339,6 +510,7 @@ var dataTherapie_humano = localStorage.getItem("therapieNum_humano");
   $('#input_1_therapie').trigger('click');
   $('#input_1_therapie').val(dataTherapie);
   $('#humano_terapias').val(dataTherapie_humano);
+  $('#print_therapies').html('')
   $('#print_therapies').append(dataTherapie_humano);
 
 
@@ -360,6 +532,7 @@ var dataTherapie_humano = localStorage.getItem("therapieNum_humano");
   localStorage.setItem("numData_humano", "off");
   localStorage.setItem("diagnostic", "off");
   localStorage.setItem("therapieNum","off");
+  localStorage.setItem("multiple_insuranse", "off");
 
 
 } else {}

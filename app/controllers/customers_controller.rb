@@ -98,6 +98,8 @@ class CustomersController < ApplicationController
     @historialReclamation = @reclamation.where.not(authNum:nil)
     if @reclamation.count > 0
       @lastReclamation = Reclamation.last.authNum
+      @lastReclamInsurance = Reclamation.last.doctor
+
       @lastDiagnostic = @reclamation_actual.last.diagnostic
 
     else

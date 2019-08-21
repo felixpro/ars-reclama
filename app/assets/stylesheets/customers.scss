@@ -649,11 +649,57 @@ aside {
           padding-bottom: 34px;
         }
 
+        .selecciona {
+          position: relative;
+          left: -25px;
+          margin: 0;
+        }
+
+        .humano_btn_type {
+          display: flex;
+          button {
+            margin: 5px;
+          padding: 5px 10px;
+          font-size: 14px;
+          font-weight: bold;
+          border: none;
+          border-radius: 5px;
+          box-shadow: none;
+          text-decoration: none;
+          &:active,
+          &:focus,
+          &:hover,
+          &:visited {
+            box-shadow: none;
+            outline: none;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+          }
+
+          }
+            .humano_style {
+            background: #00b2e3;
+            color: #fff;
+          }
+            .primera_style {
+            background:#2d7bb7;
+            color: #fff;
+          }
+
+          .active_button {
+            background: none !important;
+            color: #000 !important;
+            border: 1px solid #000000 !important;
+          }
+
+        }
+
         .service_input {
           position: relative;
           top: -13px;
           @media (max-width: 1485px) {
-            left: 50px;
+            // left: 50px;
           }
           @media (max-width: 1400px) {
             left: 0;
