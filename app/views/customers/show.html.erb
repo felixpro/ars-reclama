@@ -1437,48 +1437,22 @@
                                         </div>
 
                                         <div>
-                                          <p>Dirección</p>
-                                          <span><%= text_field_tag :mother_name, nil, :value => @customer.adress %></span>
-
-                                        </div>
-
-                                        <div class="field">
-                                          <p>Ciudad</p>
-                                          <span><%= @customer.city %></span>
-                                        </div>
-
-                                        <div class="field">
-                                          <p>Sector</p>
-                                          <span><%= @customer.sector %></span>
-                                        </div>
-
-                                      </div>
-                                      <div class="second_row ">
-
-                                        <div>
-                                          <p>Sexo</p>
-                                          <span><%= @customer.gender %></span>
-                                        </div>
-
-                                        <div>
-                                          <p>Edad</p>
-                                          <span><%= @customer.age %></span>
-                                        </div>
-
-                                        <div>
                                           <p>No. de Afiliado</p>
                                           <span><%= @customer.affiliate_number %></span>
                                         </div>
 
-                                        <div class="field therapies_input">
-                                          <p>Diagnostico</p>
-                                          <div class="diagnostic_input_histori">
-                                            <%= text_field_tag :mother_name, nil, :value => reclamation.diagnostic %>
+                                      <div class="field therapies_input">
+                                        <p>Diagnostico</p>
+                                        <div class="diagnostic_input_histori">
+                                          <%= text_field_tag :mother_name, nil, :value => reclamation.diagnostic %>
 
-                                          </div>
                                         </div>
+                                      </div>
+
+
 
                                       </div>
+
                                     </div>
                                     <div class="col-lg-2">
                                       <div class="service_input">
@@ -3596,44 +3570,8 @@
                             </div>
 
                             <div>
-                              <p>Dirección</p>
-                              <span><%= text_field_tag :mother_name, nil, :value => @customer.adress %></span>
-
-                            </div>
-
-                            <div class="field">
-                              <p>Ciudad</p>
-                              <span><%= @customer.city %></span>
-                            </div>
-
-                            <div class="field">
-                              <p>Sector</p>
-                              <span><%= @customer.sector %></span>
-                            </div>
-
-                          </div>
-                          <div class="second_row ">
-
-                            <div>
-                              <p>Sexo</p>
-                              <span><%= @customer.gender %></span>
-                            </div>
-
-                            <div>
-                              <p>Edad</p>
-                              <span><%= @customer.age %></span>
-                            </div>
-
-                            <div>
                               <p>No. de Afiliado</p>
                               <span><%= @customer.affiliate_number %></span>
-                            </div>
-
-                            <div class="ceationDate" style="display:none;">
-                              <div class="">
-                                <p>Fecha</p>
-                                <span><%= f.text_field :creationDate, :value => DateTime.now.to_date.strftime("%d/%m/%Y"), id: "dateInput", onkeyup: "dateFuntion()" %></span>
-                              </div>
                             </div>
 
                             <div class="field therapies_input">
@@ -3643,7 +3581,9 @@
 
 
 
+
                           </div>
+
                         </div>
                         <div class="col-lg-2">
                           <div class="service_input">
