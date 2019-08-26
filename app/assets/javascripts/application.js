@@ -17,7 +17,8 @@
 //= require best_in_place.jquery-ui
 //= require activestorage
 
-//= require jquery-mask-plugin
+//= require jquery.mask
+
 //= require_tree .
 
 $.jMaskGlobals.watchDataMask = true;

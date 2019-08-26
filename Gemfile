@@ -74,6 +74,6 @@ gem 'draftsman', '~> 0.7.1'
 
 gem 'ransack', github: 'activerecord-hackery/ransack'
 
-gem 'jquery_mask_rails'
+gem 'jquery_mask_rails', '~> 0.1.0'
 
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
