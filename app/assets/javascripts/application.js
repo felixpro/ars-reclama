@@ -10,15 +10,17 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 
-
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
 //= require best_in_place
 //= require best_in_place.jquery-ui
 //= require activestorage
+
+//= require jquery-mask-plugin
 //= require_tree .
 
+$.jMaskGlobals.watchDataMask = true;
 
 /// alert desapear funtion
 $(function() {
@@ -36,7 +38,6 @@ $(function(){
     $("#humano_terapias").val(3);
     $("#print_therapies").html("")
     $("#print_therapies").append("3")
-
   }
 
 
@@ -203,13 +204,19 @@ function reloadTimer() {
 
 $(function(){
 
+  // add diagnostic to the print section when starting
+  $('#input_diagnostic').html('')
+  $('#input_diagnostic').append($('#diagnostic_text').val());
+
+  $('#input_diagnostic_humano').html('')
+  $('#input_diagnostic_humano').append($('#diagnostic_text_humano').val());
+
     jQuery(".best_in_place").best_in_place();
 
     // view more slideDown
     $(' #view_info').hover(function () {
-      $('#customer_info ').animate({height: "67%"},700);
-
-        $('.customer_info ').addClass('class_auto_over');
+      $('#customer_info ').animate({height: "60%"},700);
+      $('.customer_info ').addClass('class_auto_over');
     });
 
     $('aside, .left_section').hover(function () {
@@ -250,6 +257,16 @@ function diagnosticFuntion() {
 function dateFuntion() {
   $('.dateUpdate').html('')
   $('.dateUpdate').append($('#dateInput').val());
+};
+
+function dateFuntion_1() {
+  $('.dateUpdate').html('')
+  $('.dateUpdate').append($('#dateInput_1').val());
+};
+
+function dateFuntion_2() {
+  $('.dateUpdate').html('')
+  $('.dateUpdate').append($('#dateInput_2').val());
 };
 
 

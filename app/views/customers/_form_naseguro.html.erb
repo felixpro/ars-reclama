@@ -34,19 +34,19 @@
             <div class="col-lg-3 col-md-3 col-sm-3">
               <div class="content id_document">
                 <p class="title"><%= form.collection_radio_buttons :doc_type, Customer.doc_types, :first, :first %></p>
-                <p class="input"><%= form.text_field :doc, :required => true %></p>
+                <p class="input"><%= form.text_field :doc, 'data-mask': '000-0000000-0', required: true %></p>
               </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3">
               <div class="content">
                 <p class="title"><%= form.label :Teléfono%></p>
-                <p class="input"><%= form.number_field :phone %></p>
+                <p class="input"><%= form.text_field :phone, 'data-mask': '000-000-0000', required: true %></p>
               </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3">
               <div class="content">
                 <p class="title"><%= form.label :Celular %></p>
-                <p class="input"><%= form.number_field :cell %></p>
+                <p class="input"><%= form.text_field :cell, 'data-mask': '000-000-0000', required: true %></p>
               </div>
             </div>
 

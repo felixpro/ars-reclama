@@ -476,7 +476,7 @@ aside {
           }
 
           .authNum {
-            width: 92px;
+            width: 130px;
             height: 49px;
             opacity: 0.68;
             border-radius: 8px;
@@ -937,7 +937,8 @@ aside {
       color: #6e6d8c;
       padding: 8px 25px;
       position: relative;
-      top: 10px;
+      top: 70px;
+      left: -70px;
 
       border-radius: 5px;
       &:active,
@@ -2235,7 +2236,7 @@ aside {
     margin: 0 !important;
 
     p.auth_reclam {
-      width: 92px;
+      width: 130px;
       height: 49px;
       opacity: 0.68;
       border-radius: 8px;
@@ -2754,7 +2755,6 @@ aside {
           &:hover,
           &:visited {
             border: none;
-
             outline: none;
             text-decoration: none;
             box-shadow: none;

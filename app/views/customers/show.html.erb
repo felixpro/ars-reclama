@@ -156,16 +156,16 @@
 
             <div class=" space doc display_box">
               <%=image_tag("doc.png")%>
-              <p><%= @customer.doc.unpack('A3A7A1').join('-') %></p>
+              <p><%= @customer.doc %></p>
             </div>
             <div class=" space phone display_box">
               <%=image_tag("cell.png")%>
-              <p><%= @customer.cell.unpack('A3A3A4').join('-') %></p>
+              <p><%= @customer.cell %></p>
             </div>
 
             <div class=" space phone display_box">
               <%=image_tag("phone.png")%>
-              <p><%= @customer.phone.unpack('A3A3A4').join('-') %></p>
+              <p><%= @customer.phone %></p>
             </div>
 
             <div class="space display_box">
@@ -173,14 +173,6 @@
               <p><%= @customer.affiliate_number %></p>
             </div>
 
-
-
-
-
-            <div class="space display_box">
-              <strong>Genero:</strong>
-              <p><%= @customer.gender %></p>
-            </div>
 
 
               <% elsif @customer.insurance === "SENASA" %>
@@ -196,16 +188,16 @@
 
               <div class=" space doc display_box">
                 <%=image_tag("doc.png")%>
-                <p><%= @customer.doc.unpack('A3A7A1').join('-') %></p>
+                <p><%= @customer.doc %></p>
               </div>
               <div class=" space phone display_box">
                 <%=image_tag("cell.png")%>
-                <p><%= @customer.cell.unpack('A3A3A4').join('-') %></p>
+                <p><%= @customer.cell %></p>
               </div>
 
               <div class=" space phone display_box">
                 <%=image_tag("phone.png")%>
-                <p><%= @customer.phone.unpack('A3A3A4').join('-') %></p>
+                <p><%= @customer.phone %></p>
               </div>
 
               <div class="space display_box">
@@ -251,16 +243,16 @@
 
               <div class=" space doc display_box">
                 <%=image_tag("doc.png")%>
-                <p><%= @customer.doc.unpack('A3A7A1').join('-') %></p>
+                <p><%= @customer.doc %></p>
               </div>
               <div class=" space phone display_box">
                 <%=image_tag("cell.png")%>
-                <p><%= @customer.cell.unpack('A3A3A4').join('-') %></p>
+                <p><%= @customer.cell %></p>
               </div>
 
               <div class=" space phone display_box">
                 <%=image_tag("phone.png")%>
-                <p><%= @customer.phone.unpack('A3A3A4').join('-') %></p>
+                <p><%= @customer.phone %></p>
               </div>
 
               <div class="space display_box">
@@ -273,14 +265,14 @@
               <% end %>
 
 
-            <%= link_to "#edit_modal_section", :id => "edit_btn", class: " reload_page ", "data-toggle" => "modal" do%>
-            Editar Cliente
-          <% end %>
+
 
         </div>
 
         <a class="view_info" id="view_info">Ver más<%=image_tag("drop_down.png")%></a>
-
+        <%= link_to "#edit_modal_section", :id => "edit_btn", class: " reload_page ", "data-toggle" => "modal" do%>
+        Editar Cliente
+      <% end %>
 
 
 
@@ -464,10 +456,10 @@
                                     <%= @customer.name %>
                                     <br>
                                     Cedula:
-                                    <%= @customer.doc.unpack('A3A7A1').join('-') %>
+                                    <%= @customer.doc %>
                                     <br>
                                     Cel:
-                                    <%= @customer.cell.unpack('A3A3A4').join('-') %>
+                                    <%= @customer.cell %>
                                     <br>
                                   </p>
                                   <p id="padecimiento" class="black_color"></p>
@@ -712,10 +704,10 @@
                                       <%= @customer.name %>
                                       <br>
                                       Cedula:
-                                      <%= @customer.doc.unpack('A3A7A1').join('-') %>
+                                      <%= @customer.doc %>
                                       <br>
                                       Cel:
-                                      <%= @customer.cell.unpack('A3A3A4').join('-') %>
+                                      <%= @customer.cell %>
                                       <br>
                                     </p>
                                     <p id="padecimiento" class="black_color"></p>
@@ -963,10 +955,10 @@
                                   <%= @customer.name %>
                                   <br>
                                   Cedula:
-                                  <%= @customer.doc.unpack('A3A7A1').join('-') %>
+                                  <%= @customer.doc %>
                                   <br>
                                   Cel:
-                                  <%= @customer.cell.unpack('A3A3A4').join('-') %>
+                                  <%= @customer.cell %>
                                   <br>
                                 </p>
                                 <p id="padecimiento" class="black_color"></p>
@@ -1205,6 +1197,9 @@
                         <%= f.number_field :therapiesNum, :required => true, id: "input_1" %>
                       </div>
 
+
+
+
                       <span style="display:none;"><%= f.text_field :creationDate, :value => DateTime.now.to_date.strftime("%d/%m/%Y"), id: "dateInput", onkeyup: "dateFuntion()" %></span>
                       <div class="buttons_container">
                         <%= f.button "GUARDAR", class: "save btn_add_therapie_2"%>
@@ -1275,11 +1270,11 @@
 
             <ul class="nav tab-group list">
               <li>
-                <a href="#Terapias" class="reclam_link terapias active" data-toggle="tab">Terapias</a>
+                <a href="#Terapias" class="reclam_link terapias " data-toggle="tab">Terapias</a>
               </li>
 
               <li>
-                <a href="#Reclamaciones" class="reclam_link" data-toggle="tab">Reclamaciones</a>
+                <a href="#Reclamaciones" class="reclam_link active" data-toggle="tab">Reclamaciones</a>
               </li>
               <li >
                 <a href="#Historiales" class="historial_link " data-toggle="tab">Historiales</a>
@@ -1289,7 +1284,7 @@
           </div>
 
           <div class="tab-content">
-            <div class="tab-pane active" id="Terapias">
+            <div class="tab-pane " id="Terapias">
               <!-- <%=@total_therapies%> -->
               <div class="therapie_container" id="done_therapies">
                 <%= render 'form_appointments' %>
@@ -1304,9 +1299,10 @@
                 <% end %>
 
               </div>
+
             </div>
 
-            <div class="tab-pane" id="Reclamaciones">
+            <div class="tab-pane active" id="Reclamaciones">
               <% if @customer.insurance === "ARS Humano" %>
 
               <section class="reclam_historial_content reclamation_section historial_humano">
@@ -1403,12 +1399,12 @@
                                       <div class="first_row">
                                         <div>
                                           <p>Teléfono</p>
-                                          <span><%= @customer.phone.unpack('A3A3A4').join('-') %></span>
+                                          <span><%= @customer.phone %></span>
                                         </div>
 
                                         <div>
                                           <p>Celular</p>
-                                          <span><%= @customer.cell.unpack('A3A3A4').join('-') %></span>
+                                          <span><%= @customer.cell %></span>
                                         </div>
 
                                         <div>
@@ -1420,7 +1416,7 @@
                                             <% end%>
 
                                           </p>
-                                          <span><%= @customer.doc.unpack('A3A7A1').join('-') %></span>
+                                          <span><%= @customer.doc %></span>
                                         </div>
 
                                         <div>
@@ -1530,7 +1526,7 @@
                                                 <div class="col-6">
                                                   <div class="inputs_box">
                                                     <h5>Fecha:</h5>
-                                                    <p>&nbsp;</p>
+                                                    <p><%= reclamation.creationDate %></p>
                                                   </div>
                                                   <div class="inputs_box">
                                                     <h5>Paciente:</h5>
@@ -1538,11 +1534,11 @@
                                                   </div>
                                                   <div class="inputs_box">
                                                     <h5>No. de Cédula:</h5>
-                                                    <p><%= @customer.doc.unpack('A3A7A1').join('-')%></p>
+                                                    <p><%= @customer.doc%></p>
                                                   </div>
                                                   <div class="inputs_box">
                                                     <h5>Teléfono:</h5>
-                                                    <p><%=   @customer.phone.unpack('A3A3A4').join('-')%></p>
+                                                    <p><%=   @customer.phone%></p>
                                                   </div>
                                                 </div>
 
@@ -1766,12 +1762,12 @@
                                         <div class="first_row">
                                           <div>
                                             <p>Teléfono</p>
-                                            <span><%= @customer.phone.unpack('A3A3A4').join('-') %></span>
+                                            <span><%= @customer.phone %></span>
                                           </div>
 
                                           <div>
                                             <p>Celular</p>
-                                            <span><%= @customer.cell.unpack('A3A3A4').join('-') %></span>
+                                            <span><%= @customer.cell %></span>
                                           </div>
 
                                           <div>
@@ -1783,7 +1779,7 @@
                                               <% end%>
 
                                             </p>
-                                            <span><%= @customer.doc.unpack('A3A7A1').join('-') %></span>
+                                            <span><%= @customer.doc %></span>
                                           </div>
 
                                           <div>
@@ -1847,10 +1843,7 @@
                                         <div class="service_input">
                                           <div class="service_container"></div>
                                           <div class="ceationDate date">
-                                            <div class="">
-                                              <p>Fecha</p>
-                                              <span><%= reclamation.creationDate %></span>
-                                            </div>
+
                                           </div>
                                         </div>
                                       </div>
@@ -1899,7 +1892,7 @@
                                                   <div class="date">
                                                     <div class="nombreps padding_right_corretion">
                                                       <p class="title date_day">Fecha:</p>
-                                                      <p class="number">&nbsp;</p>
+                                                      <p class="number"><%= reclamation.creationDate%></p>
                                                     </div>
                                                   </div>
                                                 </div>
@@ -1999,7 +1992,7 @@
                                                 <div class="col-lg-3 col-md-3 col-xs-3">
                                                   <div class="nombreps padding_top_correction">
                                                     <p class="title"><%= @customer.doc_type %>:</p>
-                                                    <p class="number"><%= @customer.doc.unpack('A3A7A1').join('-') %></p>
+                                                    <p class="number"><%= @customer.doc %></p>
 
                                                   </div>
                                                 </div>
@@ -2009,13 +2002,13 @@
                                                 <div class="col-lg-4 col-md-4 col-xs-4">
                                                   <div class="nombreps doctor">
                                                     <p class="title name">Teléfono:</p>
-                                                    <p class="number"><%= @customer.phone.unpack('A3A3A4').join('-') %></p>
+                                                    <p class="number"><%= @customer.phone %></p>
                                                   </div>
                                                 </div>
                                                 <div class="col-lg-4 col-md-4 col-xs-4">
                                                   <div class="nombreps">
                                                     <p class="title small_title">Celular:</p>
-                                                    <p class="number"><%= @customer.cell.unpack('A3A3A4').join('-') %></p>
+                                                    <p class="number"><%= @customer.cell %></p>
                                                   </div>
                                                 </div>
 
@@ -2317,10 +2310,10 @@
                                           <%= @customer.name %>
                                           <br>
                                           Cedula:
-                                          <%= @customer.doc.unpack('A3A7A1').join('-') %>
+                                          <%= @customer.doc %>
                                           <br>
                                           Cel:
-                                          <%= @customer.cell.unpack('A3A3A4').join('-') %>
+                                          <%= @customer.cell %>
                                           <br>
                                         </p>
                                         <% if historial.patologico.blank? %>
@@ -2591,10 +2584,10 @@
                                             <%= @customer.name %>
                                             <br>
                                             Cedula:
-                                            <%= @customer.doc.unpack('A3A7A1').join('-') %>
+                                            <%= @customer.doc %>
                                             <br>
                                             Cel:
-                                            <%= @customer.cell.unpack('A3A3A4').join('-') %>
+                                            <%= @customer.cell %>
                                             <br>
                                           </p>
                                           <% if historial.patologico.blank? %>
@@ -2713,6 +2706,8 @@
 
       </section>
 
+
+
       <section class="reclamation_section">
         <div class="modal fade new_reclamation" id="newReclamationCenasa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog modal-full" role="document">
@@ -2763,7 +2758,12 @@
 
                 <%= form_for([@customer, @customer.reclamation.build], remote: true) do |f| %>
 
-                <% f.text_field :ensureReclam, :value => @customer.insurance %>
+
+                <div style="display:none;">
+                  <%= f.text_field :ensureReclam, :value => "identifier" %>
+                </div>
+
+
 
                   <div class="reclamation_header">
                     <div class="container">
@@ -2806,12 +2806,12 @@
                             <div class="first_row">
                               <div>
                                 <p>Teléfono</p>
-                                <span><%= @customer.phone.unpack('A3A3A4').join('-') %></span>
+                                <span><%= @customer.phone %></span>
                               </div>
 
                               <div>
                                 <p>Celular</p>
-                                <span><%= @customer.cell.unpack('A3A3A4').join('-') %></span>
+                                <span><%= @customer.cell %></span>
                               </div>
 
                               <div>
@@ -2825,7 +2825,7 @@
 
                                 </p>
 
-                                <span><%= @customer.doc.unpack('A3A7A1').join('-') %></span>
+                                <span><%= @customer.doc %></span>
                               </div>
 
                               <div>
@@ -2875,12 +2875,7 @@
                                 <span><%= @customer.affiliate_number %></span>
                               </div>
 
-                              <div class="ceationDate" style="display:none;">
-                                <div class="">
-                                  <p>Fecha</p>
-                                  <span><%= f.text_field :creationDate, :value => DateTime.now.to_date.strftime("%d/%m/%Y"), id: "dateInput", onkeyup: "dateFuntion()" %></span>
-                                </div>
-                              </div>
+
 
                               <div class="field therapies_input">
                                 <p>Diagnostico</p>
@@ -2908,7 +2903,12 @@
                                 <%= link_to "Añadir otro", "#newService", :class => "services_links link_style add_service", "data-toggle" => "modal" %>
                               </div>
 
-
+                              <div class="ceationDate">
+                                <div class="">
+                                  <p>Fecha</p>
+                                  <span><%= f.text_field :creationDate, :value => DateTime.now.to_date.strftime("%d/%m/%Y"), id: "dateInput_1", onkeyup: "dateFuntion_1()" %></span>
+                                </div>
+                              </div>
 
                             </div>
                           </div>
@@ -2962,7 +2962,7 @@
                                       <div class="date">
                                         <div class="nombreps padding_right_corretion">
                                           <p class="title date_day">Fecha:</p>
-                                          <p class="number">&nbsp;</p>
+                                          <p class="number dateUpdate">&nbsp;</p>
                                         </div>
                                       </div>
                                     </div>
@@ -3062,7 +3062,7 @@
                                     <div class="col-lg-3 col-md-3 col-xs-3">
                                       <div class="nombreps padding_top_correction">
                                         <p class="title"><%= @customer.doc_type %>:</p>
-                                        <p class="number"><%= @customer.doc.unpack('A3A7A1').join('-') %></p>
+                                        <p class="number"><%= @customer.doc %></p>
 
                                       </div>
                                     </div>
@@ -3072,13 +3072,13 @@
                                     <div class="col-lg-4 col-md-4 col-xs-4">
                                       <div class="nombreps doctor">
                                         <p class="title name">Teléfono:</p>
-                                        <p class="number"><%= @customer.phone.unpack('A3A3A4').join('-') %></p>
+                                        <p class="number"><%= @customer.phone %></p>
                                       </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-xs-4">
                                       <div class="nombreps">
                                         <p class="title small_title">Celular:</p>
-                                        <p class="number"><%= @customer.cell.unpack('A3A3A4').join('-') %></p>
+                                        <p class="number"><%= @customer.cell %></p>
                                       </div>
                                     </div>
 
@@ -3491,7 +3491,10 @@
 
               <%= form_for([@customer, @customer.reclamation.build], remote: true) do |f| %>
 
-              <% f.text_field :ensureReclam, :value => @customer.insurance %>
+
+                <div style="display:none;">
+                  <%= f.text_field :ensureReclam, :value => "identifier" %>
+                </div>
 
                 <div class="reclamation_header">
                   <div class="container">
@@ -3534,12 +3537,12 @@
                           <div class="first_row">
                             <div>
                               <p>Teléfono</p>
-                              <span><%= @customer.phone.unpack('A3A3A4').join('-') %></span>
+                              <span><%= @customer.phone %></span>
                             </div>
 
                             <div>
                               <p>Celular</p>
-                              <span><%= @customer.cell.unpack('A3A3A4').join('-') %></span>
+                              <span><%= @customer.cell %></span>
                             </div>
 
                             <div>
@@ -3553,7 +3556,7 @@
 
                               </p>
 
-                              <span><%= @customer.doc.unpack('A3A7A1').join('-') %></span>
+                              <span><%= @customer.doc %></span>
                             </div>
 
                             <div>
@@ -3577,6 +3580,13 @@
                             <div class="field therapies_input">
                               <p>Diagnostico</p>
                               <span><%= f.text_field :diagnostic, id: "diagnostic_text_humano", onkeyup: "diagnosticFuntion()", value: @lastDiagnostic %></span>
+                            </div>
+
+                            <div class="field ">
+                              <div class="ceationDate">
+                                <p>Fecha</p>
+                                <span><%= f.text_field :creationDate, :value => DateTime.now.to_date.strftime("%d/%m/%Y"), id: "dateInput_2", onkeyup: "dateFuntion_2()" %></span>
+                              </div>
                             </div>
 
 
@@ -3681,7 +3691,7 @@
                                     <div class="col-6">
                                       <div class="inputs_box">
                                         <h5>Fecha:</h5>
-                                        <p >&nbsp;</p>
+                                        <p class="dateUpdate"></p>
                                       </div>
                                       <div class="inputs_box">
                                         <h5>Paciente:</h5>
@@ -3689,11 +3699,11 @@
                                       </div>
                                       <div class="inputs_box">
                                         <h5>No. de Cédula:</h5>
-                                        <p><%= @customer.doc.unpack('A3A7A1').join('-')%></p>
+                                        <p><%= @customer.doc%></p>
                                       </div>
                                       <div class="inputs_box">
                                         <h5>Teléfono:</h5>
-                                        <p><%=   @customer.phone.unpack('A3A3A4').join('-')%></p>
+                                        <p><%=   @customer.phone%></p>
                                       </div>
                                     </div>
 

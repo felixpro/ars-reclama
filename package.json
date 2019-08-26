@@ -2,6 +2,7 @@
   "name": "ars-reclama",
   "private": true,
   "dependencies": {
-    "bootstrap-input-spinner": "^1.11.8"
+    "bootstrap-input-spinner": "^1.11.8",
+    "jquery-mask-plugin": "^1.14.16"
   }
 }

@@ -95,7 +95,7 @@ class CustomersController < ApplicationController
     @reclamation = @customer.reclamation.order('created_at DESC');
     @reclamation_actual = @customer.reclamation
 
-    @historialReclamation = @reclamation.where.not(authNum:nil)
+    @historialReclamation = @reclamation.where(ensureReclam:"identifier")
     if @reclamation.count > 0
       @lastReclamation = Reclamation.last.authNum
       @lastReclamInsurance = Reclamation.last.doctor
