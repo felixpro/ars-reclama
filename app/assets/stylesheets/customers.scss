@@ -6,6 +6,38 @@
   font-family: Ayuthaya;
 }
 
+.delete_historial {
+  a {
+    position: relative;
+    top: -40px;
+    left: 100px;
+&:active,
+&:focus,
+&:hover,
+&:visited {
+  background: none;
+  box-shadow: none;
+  outline: none;
+  text-decoration: none;
+}
+  }
+}
+
+.delete_btn {
+      padding: 11px 30px !important;
+      position: relative;
+      top: 2px;
+      &:active,
+      &:focus,
+      &:hover,
+      &:visited {
+        background: none;
+        box-shadow: none;
+        outline: none;
+        text-decoration: none;
+      }
+}
+
 
 #edit_modal_section {
   .modal-dialog {
@@ -959,14 +991,47 @@ aside {
       overflow-y: auto !important;
     }
 
+    .customer_info_humano {
+
+      width: 270px;
+      overflow: hidden ;
+
+    }
+
+    a.reload_page_humano {
+      border: 1px solid #6e6d8c;
+      box-shadow: none;
+      outline: none;
+      text-decoration: none;
+      background: none;
+      font-family: Raleway;
+      font-size: 14px;
+      font-weight: 600;
+      color: #6e6d8c;
+      padding: 8px 25px;
+      position: relative;
+      top: 30px;
+
+
+      border-radius: 5px;
+      &:active,
+      &:focus,
+      &:hover,
+      &:visited {
+        box-shadow: none;
+        outline: none;
+        text-decoration: none;
+        background: none;
+        color: #6e6d8c;
+        border: 1px solid #6e6d8c;
+
+      }
+    }
 
     .customer_info {
       height: 220px;
       width: 270px;
       overflow: hidden ;
-
-
-
     }
 
     a.view_info {

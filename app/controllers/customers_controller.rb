@@ -101,6 +101,8 @@ class CustomersController < ApplicationController
       @lastReclamInsurance = Reclamation.last.doctor
 
       @lastDiagnostic = @reclamation_actual.last.diagnostic
+      @lastAuthNum = @reclamation_actual.last.authNum
+
 
     else
       @lastDiagnostic = ""

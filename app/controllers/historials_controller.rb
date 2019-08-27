@@ -55,10 +55,12 @@ class HistorialsController < ApplicationController
   # DELETE /historials/1
   # DELETE /historials/1.json
   def destroy
+    @historial = Historial.find(params[:id])
+    @customer = Customer.find(params[:customer_id])
+
     @historial.destroy
     respond_to do |format|
-      format.html { redirect_to historials_url, notice: 'Historial was successfully destroyed.' }
-      format.json { head :no_content }
+        format.js {render inline: "location.reload();" }
     end
   end
 

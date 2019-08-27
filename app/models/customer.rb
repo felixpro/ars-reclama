@@ -13,7 +13,6 @@ class Customer < ApplicationRecord
 
   validates :doc, :uniqueness => true
   validates :affiliate_number, :uniqueness => true
-  validates :name, :uniqueness => true
 
 
     def self.search(search_term)

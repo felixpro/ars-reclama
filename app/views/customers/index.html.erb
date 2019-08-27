@@ -178,9 +178,8 @@
                               </h1>
 
                               <div class="btn_content">
-                                <%= link_to customer, method: :delete do %>
-                                <button type="button" class="btn btn-outline-secondary delete_btn" >SI, ELIMINAR</button>
-                                <%end%>
+                                <%= button_to "SI, ELIMINAR",  customer, method: :delete, data: { disable_with: "Eliminando cliente" },  class: "btn btn-outline-secondary delete_btn"   %>
+
 
                                 <button type="button" name="button" class="dimiss_modal" data-dismiss="modal" aria-label="Close">CANCELAR</button>
                               </div>

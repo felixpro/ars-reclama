@@ -80,7 +80,9 @@
 
         <aside class="sidebar">
           <div class="img_hospital">
-            <%=image_tag("logo_clinica_1.png")%>
+            <%= link_to :controller => 'customers', :action => 'index', onclick:'reloadTimer()' do %>
+<%=image_tag("logo_clinica_1.png")%>
+<% end%>
           </div>
           <ul>
             <li>
@@ -141,9 +143,9 @@
           </div>
 
 
-          <div class="customer_info class_hidden_over" id="customer_info">
 
             <% if @customer.insurance === "ARS Humano" %>
+            <div class="customer_info_humano ">
 
             <h1 class="name">
               <%=  @customer.name%>
@@ -173,9 +175,20 @@
               <p><%= @customer.affiliate_number %></p>
             </div>
 
+            <div class="space display_box">
+              <strong>Genero:</strong>
+              <p><%= @customer.gender %></p>
+            </div>
 
 
+        </div>
+        <%= link_to "#edit_modal_section", :id => "edit_btn", class: " reload_page_humano ", "data-toggle" => "modal" do%>
+        Editar Cliente
+      <% end %>
               <% elsif @customer.insurance === "SENASA" %>
+
+              <div class="customer_info class_hidden_over" id="customer_info">
+
 
               <h1 class="name">
                 <%=  @customer.name%>
@@ -230,8 +243,14 @@
                 <p><%= @customer.adress %></p>
               </div>
 
-
+</div>
+<a class="view_info" id="view_info">Ver más<%=image_tag("drop_down.png")%></a>
+<%= link_to "#edit_modal_section", :id => "edit_btn", class: " reload_page ", "data-toggle" => "modal" do%>
+Editar Cliente
+<% end %>
               <% else %>
+              <div class="customer_info_humano">
+
               <h1 class="name">
                 <%=  @customer.name%>
               </h1>
@@ -261,18 +280,19 @@
               </div>
 
 
+</div>
+<%= link_to "#edit_modal_section", :id => "edit_btn", class: " reload_page_humano ", "data-toggle" => "modal" do%>
+Editar Cliente
+<% end %>
 
               <% end %>
 
 
 
 
-        </div>
 
-        <a class="view_info" id="view_info">Ver más<%=image_tag("drop_down.png")%></a>
-        <%= link_to "#edit_modal_section", :id => "edit_btn", class: " reload_page ", "data-toggle" => "modal" do%>
-        Editar Cliente
-      <% end %>
+
+
 
 
 
@@ -312,7 +332,9 @@
                       </div>
                       <aside class="sidebar">
                         <div class="img_hospital">
-                          <%=image_tag("logo_clinica_1.png")%>
+                          <%= link_to :controller => 'customers', :action => 'index', onclick:'reloadTimer()' do %>
+<%=image_tag("logo_clinica_1.png")%>
+<% end%>
                         </div>
                         <ul>
                           <li>
@@ -560,7 +582,9 @@
                         </div>
                         <aside class="sidebar">
                           <div class="img_hospital">
-                            <%=image_tag("logo_clinica_1.png")%>
+                            <%= link_to :controller => 'customers', :action => 'index', onclick:'reloadTimer()' do %>
+<%=image_tag("logo_clinica_1.png")%>
+<% end%>
                           </div>
                           <ul>
                             <li>
@@ -811,7 +835,9 @@
                     </div>
                     <aside class="sidebar">
                       <div class="img_hospital">
-                        <%=image_tag("logo_clinica_1.png")%>
+                        <%= link_to :controller => 'customers', :action => 'index', onclick:'reloadTimer()' do %>
+<%=image_tag("logo_clinica_1.png")%>
+<% end%>
                       </div>
                       <ul>
                         <li>
@@ -1040,9 +1066,9 @@
                     </h1>
 
                     <div class="btn_content">
-                      <%= link_to @customer, method: :delete do %>
-                      <button type="button" class="btn btn-outline-secondary delete_btn" >SI, ELIMINAR</button>
-                      <%end%>
+                      <%= button_to "SI, ELIMINAR",  @customer, method: :delete, data: { disable_with: "Eliminando cliente" },  class: "btn btn-outline-secondary delete_btn"   %>
+
+
 
                       <button type="button" name="button" class="dimiss_modal" data-dismiss="modal" aria-label="Close">CANCELAR</button>
                     </div>
@@ -1340,7 +1366,9 @@
 
                             <aside class="sidebar">
                               <div class="img_hospital">
+                                <%= link_to :controller => 'customers', :action => 'index', onclick:'reloadTimer()' do %>
                                 <%=image_tag("logo_clinica_1.png")%>
+                                <% end%>
                               </div>
                               <ul>
                                 <li>
@@ -1703,7 +1731,9 @@
 
                               <aside class="sidebar">
                                 <div class="img_hospital">
-                                  <%=image_tag("logo_clinica_1.png")%>
+                                  <%= link_to :controller => 'customers', :action => 'index', onclick:'reloadTimer()' do %>
+<%=image_tag("logo_clinica_1.png")%>
+<% end%>
                                 </div>
                                 <ul>
                                   <li>
@@ -2139,6 +2169,12 @@
                 <% if @customer.insurance === "ARS Humano" %>
 
                 <% @historiales.each do |historial| %>
+                <span class="delete_historial">
+                  <%= link_to customer_historial_path(historial.customer, historial), method: :delete, data: { confirm: 'Estas seguro que deseas eliminar este historial?', remote: true } do %>
+                    <%= image_tag("delete_historial.png") %>
+                  <% end %>
+                 </span>
+
 
                   <% @identifierHistorial = @identifierHistorial + 1 %>
                     <button type="button" class="reclam_button" data-toggle="modal" data-target="#histories<%= @identifierHistorial %>">
@@ -2175,7 +2211,9 @@
                             </div>
                             <aside class="sidebar">
                               <div class="img_hospital">
-                                <%=image_tag("logo_clinica_1.png")%>
+                                <%= link_to :controller => 'customers', :action => 'index', onclick:'reloadTimer()' do %>
+<%=image_tag("logo_clinica_1.png")%>
+<% end%>
                               </div>
                               <ul>
                                 <li>
@@ -2413,7 +2451,11 @@
                   <% elsif @customer.insurance === "SENASA" %>
 
                   <% @historiales.each do |historial| %>
-
+                  <span class="delete_historial">
+                    <%= link_to customer_historial_path(historial.customer, historial), method: :delete, data: { confirm: 'Estas seguro que deseas eliminar este historial?', remote: true } do %>
+                      <%= image_tag("delete_historial.png") %>
+                    <% end %>
+                   </span>
                     <% @identifierHistorial = @identifierHistorial + 1 %>
                       <button type="button" class="reclam_button" data-toggle="modal" data-target="#histories<%= @identifierHistorial %>">
                         <p class="r">H</p>
@@ -2449,7 +2491,9 @@
                               </div>
                               <aside class="sidebar">
                                 <div class="img_hospital">
-                                  <%=image_tag("logo_clinica_1.png")%>
+                                  <%= link_to :controller => 'customers', :action => 'index', onclick:'reloadTimer()' do %>
+<%=image_tag("logo_clinica_1.png")%>
+<% end%>
                                 </div>
                                 <ul>
                                   <li>
@@ -2738,7 +2782,9 @@
 
                 <aside class="sidebar">
                   <div class="img_hospital">
-                    <%=image_tag("logo_clinica_1.png")%>
+                    <%= link_to :controller => 'customers', :action => 'index', onclick:'reloadTimer()' do %>
+<%=image_tag("logo_clinica_1.png")%>
+<% end%>
                   </div>
                   <ul>
                     <li>
@@ -2778,7 +2824,7 @@
                             <div class="inputs">
                               <div class="field authNum_container">
                                 <p>No. Autorización</p>
-                                <%= f.number_field :authNum, class:"authNum" , id: "authNum", onkeyup: "myFunction()" %>
+                                <%= f.text_field :authNum, class:"authNum" , id: "authNum", onkeyup: "myFunction()" %>
                               </div>
                               <div class="field therapies_input quantity_therapies">
                                 <p>Terapias</p>
@@ -3471,7 +3517,9 @@
 
               <aside class="sidebar">
                 <div class="img_hospital">
-                  <%=image_tag("logo_clinica_1.png")%>
+                  <%= link_to :controller => 'customers', :action => 'index', onclick:'reloadTimer()' do %>
+<%=image_tag("logo_clinica_1.png")%>
+<% end%>
                 </div>
                 <ul>
                   <li>
@@ -3509,7 +3557,7 @@
                           <div class="inputs">
                             <div class="field authNum_container">
                               <p>No. Autorización</p>
-                              <%= f.number_field :authNum, class:"authNum" , id: "authNum_humano", onkeyup: "myFunction()" %>
+                              <%= f.text_field :authNum, class:"authNum" , id: "authNum_humano", onkeyup: "myFunction()",  value: @lastAuthNum %>
                             </div>
                             <div class="field therapies_input quantity_therapies">
                               <p>Terapias</p>
@@ -4129,12 +4177,13 @@
       }
     });
 
-
+// disable btn
     $('.btn_add_therapie_1').click(function () {
       setTimeout(function () {
         $('.btn_add_therapie_1').prop('disabled', true);
     },50);
   });
+
     // add  therapie chadow
     $('.remove_therapie_class').click(function () {
       var result = parseInt($('#add_therapie_input').val())

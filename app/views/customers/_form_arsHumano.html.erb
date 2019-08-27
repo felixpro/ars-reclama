@@ -22,20 +22,20 @@
             <div class="col-lg-3 col-md-3 col-sm-3">
               <div class="content">
                 <p class="title"><%= form.label :Nombre %></p>
-                <p class="input"><%= form.text_field :name, :required => true %></p>
+                <p class="input"><%= form.text_field :name%></p>
               </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3">
               <div class="content">
                 <p class="title"><%= form.label :Celular %></p>
-                <p class="input"><%= form.text_field :cell, 'data-mask': '000-000-0000', required: true %></p>
+                <p class="input"><%= form.text_field :cell, 'data-mask': '000-000-0000'%></p>
 
               </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3">
               <div class="content">
                 <p class="title"><%= form.label :Teléfono %></p>
-                <p class="input"><%= form.text_field :phone, 'data-mask': '000-000-0000', required: true %></p>
+                <p class="input"><%= form.text_field :phone, 'data-mask': '000-000-0000'%></p>
               </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3">
@@ -67,7 +67,7 @@
             <div class="col-lg-3 col-md-3 col-sm-3">
               <div class="content">
                 <p class="title">Genero</p>
-                <p class="input gender"><%= form.collection_radio_buttons :gender, Customer.genders, :first, :first, required: 'required' %></p>
+                <p class="input gender"><%= form.collection_radio_buttons :gender, Customer.genders, :first, :first %></p>
               </div>
             </div>
 
