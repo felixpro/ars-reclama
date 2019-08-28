@@ -1331,10 +1331,16 @@ Editar Cliente
             <div class="tab-pane active" id="Reclamaciones">
               <% if @customer.insurance === "ARS Humano" %>
 
+
               <section class="reclam_historial_content reclamation_section historial_humano">
                 <% @historialReclamation.each do |reclamation| %>
+                <span class="delete_historial">
+                  <%= link_to customer_reclamation_path(reclamation.customer, reclamation), method: :delete, data: { confirm: 'Estas seguro que deseas eliminar este historial?', remote: true } do %>
+                    <%= image_tag("delete_historial.png", id: "delete_img_humano") %>
+                  <% end %>
+                 </span>
                   <% @identifier = @identifier + 1 %>
-                    <button type="button" class="reclam_button" data-toggle="modal" data-target="#historial<%= @identifier %>" onclick="dateFuntion()">
+                    <button type="button" class="reclam_button" data-toggle="modal" data-target="#historial<%= @identifier %>" onclick="dateFuntion()" id="btn_hover_humano">
                       <p class="r">R</p>
                       <p class="date_reclam"><%= reclamation.creationDate %></p>
                       <p class="ensure">ARS HUMANO</p>
@@ -3820,7 +3826,7 @@ Editar Cliente
                                     </div>
                                     <div class="col-2">
                                       <div class="humano_service_input">
-                                        <h5>Codigo</h5>
+                                        <h5>Codigo:</h5>
                                         <p><%= service.difference %></p>
                                       </div>
                                     </div>

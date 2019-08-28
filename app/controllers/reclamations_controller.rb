@@ -32,7 +32,7 @@ class ReclamationsController < ApplicationController
 
     respond_to do |format|
       if @reclamation.save
-        
+
       else
         format.html { render :new }
         format.json { render json: @reclamation.errors, status: :unprocessable_entity }
@@ -76,7 +76,9 @@ class ReclamationsController < ApplicationController
    @reclamation = Reclamation.find(params[:id])
    customer = @reclamation.customer
    @reclamation.destroy
-   redirect_to customer
+   respond_to do |format|
+       format.js {render inline: "location.reload();" }
+   end
   end
 
   private

@@ -25,6 +25,11 @@ $.jMaskGlobals.watchDataMask = true;
 
 
 
+
+
+
+
+
 /// alert desapear funtion
 $(function() {
   setTimeout(function () {
@@ -32,10 +37,12 @@ $(function() {
   }, 1000);
 });
 
-// buttons to change the logo in the reclamation
 
-// check if the input has a insurance value
 $(function(){
+
+
+
+   // check if the input has a insurance value
 
   if ($("#humano_terapias").val().length <= 0) {
     $("#humano_terapias").val(3);
