@@ -1634,8 +1634,8 @@ Editar Cliente
                                                 </div>
                                                 <div class="col-2">
                                                   <div class="humano_service_input">
-                                                    <h5>No. de terapias:</h5>
-                                                    <p><%= reclamation.therapiesNum %></p>
+                                                    <h5>Codigo:</h5>
+                                                    <p><%= service.difference %></p>
                                                   </div>
                                                 </div>
                                                 <div class="col-2">
@@ -3820,8 +3820,8 @@ Editar Cliente
                                     </div>
                                     <div class="col-2">
                                       <div class="humano_service_input">
-                                        <h5>No. de terapias:</h5>
-                                        <p id="print_therapies"></p>
+                                        <h5>Codigo</h5>
+                                        <p><%= service.difference %></p>
                                       </div>
                                     </div>
                                     <div class="col-2">
@@ -3893,9 +3893,6 @@ Editar Cliente
                   </div>
                   <div class="row container_row">
 
-                    <div class="col-lg-1">
-
-                    </div>
 
                       <div class="col-lg-4">
                         <div class="colum_content procedimiento">
@@ -3905,6 +3902,21 @@ Editar Cliente
                           <div class="display_content">
                           <div class="data">
                             <%= f.text_field :process %>
+                          </div>
+                          <div class="box_padding"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                       <div class="colum_content">
+                        <div class="column_title">
+                          <p>Codigo</p>
+                        </div>
+                        <div class="display_content">
+                          <div class="box_padding_left"></div>
+                          <div class="data">
+                            <%= f.number_field :difference %>
                           </div>
                           <div class="box_padding"></div>
                         </div>
@@ -3958,9 +3970,7 @@ Editar Cliente
 
                       </div>
                     </div>
-                    <div class="col-lg-1">
 
-                    </div>
 
 
 
