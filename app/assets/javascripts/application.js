@@ -550,6 +550,7 @@ $('#multiple_insuranse').val(multiple_insuranse);
   // Diagnostic humano
   $('#diagnostic_text_humano').trigger('click');
   $('#diagnostic_text_humano').val(dataDiagnostic_humano);
+  $('#input_diagnostic_humano').html('');
   $('#input_diagnostic_humano').append(dataDiagnostic_humano);
 
 
