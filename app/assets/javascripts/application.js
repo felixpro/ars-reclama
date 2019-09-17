@@ -24,12 +24,6 @@
 $.jMaskGlobals.watchDataMask = true;
 
 
-
-
-
-
-
-
 /// alert desapear funtion
 $(function() {
   setTimeout(function () {
@@ -279,6 +273,22 @@ function dateFuntion_2() {
   $('.dateUpdate').append($('#dateInput_2').val());
 };
 
+// update input procedures
+function conclusion() {
+  $('#conclusion').html('')
+  $('#conclusion').append($('#input_conclusion').val());
+};
+
+function description() {
+  $('#description').html('')
+  $('#description').append($('#input_description').val());
+};
+
+function plan() {
+  $('#plan').html('')
+  $('#plan').append($('#input_plan').val());
+};
+
 
 // update input historial_link
 
@@ -336,6 +346,14 @@ $(function(){
 })
 
 
+// save procedimiento
+function guardarProcedimiento() {
+  $('#procedure_btn').trigger('click');
+  setTimeout(function () {
+    location.reload();
+
+  }, 500);
+}
 
 
 // save historial
@@ -528,10 +546,10 @@ $('#multiple_insuranse').val(multiple_insuranse);
   $('#authNum').trigger('click');
   $('#authNum').val(dataAuth);
   $('#actualizar').append(dataAuth);
+
   // auth num humano
   $('#authNum_humano').val(dataAuth_humano);
   $('#input_humano_auth').append(dataAuth_humano);
-
 
   // therapie num
   $('#input_1_therapie').trigger('click');
@@ -540,13 +558,11 @@ $('#multiple_insuranse').val(multiple_insuranse);
   $('#print_therapies').html('')
   $('#print_therapies').append(dataTherapie_humano);
 
-
-
-
   // Diagnostic
   $('#diagnostic_text').trigger('click');
   $('#diagnostic_text').val(dataDiagnostic);
   $('#input_diagnostic').append(dataDiagnostic);
+
   // Diagnostic humano
   $('#diagnostic_text_humano').trigger('click');
   $('#diagnostic_text_humano').val(dataDiagnostic_humano);
@@ -613,7 +629,6 @@ if (localStorage.getItem("printer_historial") === "on" ) {
   $('#historial_modal_humano').modal('toggle');
   $('#historial_modal_senasa').modal('toggle');
 
-
   // historial section
   var padecimiento = localStorage.getItem("padecimiento");
   var status = localStorage.getItem("status");
@@ -661,6 +676,73 @@ if (localStorage.getItem("printer_historial") === "on" ) {
   // reset
   localStorage.setItem("printer_historial", "off");
 
+} else {}
+
+});
+
+
+// Procedimiento
+function printerProcedimiento(divID) {
+//Get the HTML of div
+localStorage.setItem("printer_procedimiento", "on");
+localStorage.setItem("conclusion",    $('#input_conclusion').val());
+localStorage.setItem("description",    $('#input_description').val());
+localStorage.setItem("plan",    $('#input_plan').val());
+
+setTimeout(function () {
+
+
+
+  var historial = document.getElementById(divID).innerHTML;
+
+  //Get the HTML of whole page
+  var oldPage = document.body.innerHTML;
+  //Reset the pages HTML with divs HTML only
+       document.body.innerHTML =
+
+       "<html ><head><title></title></head><body>" +
+       historial + "</body>";
+
+
+  //Print Page
+  window.print();
+  //Restore orignal HTML
+  document.body.innerHTML = oldPage;
+  location.reload();
+
+}, 500);
+}
+
+
+// When windows load procedimientos
+$(window).on("load", function() {
+if (localStorage.getItem("printer_procedimiento") === "on" ) {
+  $('#procedimiento_modal_humano').modal('toggle');
+  $('#procedimiento_modal_senasa').modal('toggle');
+
+
+var conclusion = localStorage.getItem("conclusion");
+var description = localStorage.getItem("description");
+var plan = localStorage.getItem("plan");
+
+// conclusion
+$('#input_conclusion').val(conclusion);
+$('#conclusion').append(conclusion);
+
+// description
+$('#input_description').val(description);
+$('#description').append(description);
+
+// plan
+$('#input_plan').val(plan);
+$('#plan').append(plan);
+
+
+  // reset
+  localStorage.setItem("printer_procedimiento", "off");
+  localStorage.setItem("conlusion",    "off");
+  localStorage.setItem("description",   "off");
+  localStorage.setItem("plan",   "off");
 } else {}
 
 });

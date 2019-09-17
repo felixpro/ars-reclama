@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @procedure.customer %>
+</p>
+
+<p>
+  <strong>Conclusion:</strong>
+  <%= @procedure.conclusion %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @procedure.description %>
+</p>
+
+<%= link_to 'Edit', edit_procedure_path(@procedure) %> |
+<%= link_to 'Back', procedures_path %>

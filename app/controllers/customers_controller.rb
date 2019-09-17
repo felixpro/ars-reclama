@@ -90,6 +90,8 @@ class CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     @appointments = @customer.appointment.order('created_at DESC');
     @historiales =  @customer.historial.order('created_at DESC');
+    @procedures =  @customer.procedure.order('created_at DESC');
+
     @identifierHistorial = 0;
     @service = @customer.service.order('created_at DESC');
     @reclamation = @customer.reclamation.order('created_at DESC');
