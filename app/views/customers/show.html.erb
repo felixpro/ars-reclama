@@ -549,7 +549,8 @@ Editar Cliente
 
             <button type="button" name="button" class="btn historial_clinic procedimientos" data-toggle="modal" data-target="#procedimiento_modal_humano">
               <%=image_tag("historial.png")%>
-              Procedimientos</button>
+              PROCEDIMIENTO
+            </button>
 
             <div class="modal fade" id="procedimiento_modal_humano" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
               <div class="modal-dialog  modal-dialog-centered" role="document">
@@ -968,6 +969,176 @@ Editar Cliente
                 </div>
               </div>
 
+              <button type="button" name="button" class="btn historial_clinic procedimientos" data-toggle="modal" data-target="#procedimiento_modal_senasa">
+                <%=image_tag("historial.png")%>
+                PROCEDIMIENTO</button>
+
+              <div class="modal fade" id="procedimiento_modal_senasa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog  modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-body">
+
+                      <section class="historial_container">
+
+                        <div class="hide_navbar ">
+                          <nav class="navbar container navbar-expand-lg navbar-light ">
+                            <a class="navbar-brand" href="#"><%=image_tag("brand.png", class: "nav_logo")%></a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                              <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                              <ul class="navbar-nav">
+                                <li class="nav-item inicio">
+                                  <%=image_tag("nav_img_1.png")%>
+                                  <%= link_to 'INICIO', :controller => 'customers',class: "nav-link", :action => 'index', onclick:'reloadTimer()', class: "nav-link" %>
+
+                                </li>
+                                <li class="nav-item clientes">
+                                  <%=image_tag("people.png")%>
+                                  <a class="nav-link" href="#">CLIENTES</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </nav>
+                        </div>
+                        <aside class="sidebar">
+                          <div class="img_hospital">
+                            <%= link_to :controller => 'customers', :action => 'index', onclick:'reloadTimer()' do %>
+                          <%=image_tag("logo_clinica_1.png")%>
+                          <% end%>
+                          </div>
+                          <ul>
+                            <li>
+                              <%=image_tag("nav_img_1.png", class:"humano_logo")%>
+                              <%= link_to 'INICIO', :controller => 'customers', :action => 'index', onclick:'reloadTimer()' %>
+                            </li>
+                            <li>
+                              <%=image_tag("people.png", class:"humano_logo")%>
+                              <a >CLIENTES</a>
+                            </li>
+                            <li>
+                              <%=image_tag("doc.png", class:"humano_logo")%>
+                              <a >CARTAS</a>
+                            </li>
+                          </ul>
+                        </aside>
+
+                        <div class="content_clinic procedimiento_container">
+
+                          <div class="section_1">
+
+                            <div class="customer_data">
+
+
+                              <%= form_for([@customer, @customer.procedure.build], remote: true) do |form| %>
+
+                              <div class="box_content">
+                                <p>diagnosticos</p>
+                                <%= form.text_area :conclusion, onkeyup: "conclusion()", id: "input_conclusion" %>
+                              </div>
+
+                              <div class="box_content">
+                                <p>descripcion del procedimiento</p>
+                                <%= form.text_area :description, onkeyup: "description()", id: "input_description" %>
+                              </div>
+
+                              <div class="box_content">
+                                <p> plan a seguir</p>
+                                <%= form.text_area :plan, onkeyup: "plan()", id: "input_plan" %>
+
+                              </div>
+
+
+                            </div>
+                          </div>
+
+                          <div class="section_2">
+                            <div>
+
+                                <div class="actions" style="display:none;">
+                                  <%= form.submit :GUARDAR, id: "procedure_btn" %>
+                                </div>
+
+                              <% end %>
+                              <!-- End of historie form-->
+
+                              <section id="procedure_print">
+                                <div class="content_procedure">
+                                  <div class="title">
+                                    <h1>FORMATO PARA DESCRIPCION DE PROCEDIMIENTOS MEDICOS REALIZADOS <br>
+                                      EN EL CONSULTORIO
+                                    </h1>
+
+                                    <h2>PSS. PRESTADORES DE SERVICIOS DE SALUD INDEPENDIENTES</h2>
+                                  </div>
+                                  <div class="body_container">
+                                    <div class="content">
+                                      <div class="input_container">
+                                        <p>Nombre del medico:</p>
+                                         <h5>Dr ENRIQUE ANTONIO PAREDES</h5>
+                                      </div>
+                                      <div class="input_container">
+                                        <p>CODIGO:</p>
+                                         <h5>816159</h5>
+                                      </div>
+                                      <div class="input_container">
+                                        <p>Nombre del usuario:</p>
+                                         <h5><%= @customer.name %></h5>
+                                      </div>
+                                      <div class="input_container">
+                                        <p>centro en el que se realiza el procedimiento:</p>
+                                        <h6>REHABILITACIon y terapia fisica dr paredes lizandro</h6>
+                                      </div>
+                                      <div class="input_container">
+                                        <p>fecha en la que se realiza el procedimiento</p>
+                                        <h5>78/787/788</h5>
+                                      </div>
+
+                                      <div class="input_container">
+                                        <p class="float_nul">DIAGNOSTICO</p>
+                                        <h6 id="conclusion"></h6>
+                                      </div>
+
+                                      <div class="input_container">
+                                        <p class="float_nul">DESCRIPCION del procedimiento</p>
+                                        <h6 id="description"></h6>
+                                      </div>
+
+                                      <div class="input_container">
+                                        <p class="float_nul">plan a seguir</p>
+                                        <h6 id="plan"></h6>
+                                      </div>
+
+                                      <div class="input_container">
+                                        <p>firma del medico (a)</p>
+                                        <h5></h5>
+                                      </div>
+
+
+                                    </div>
+                                  </div>
+                                </div>
+
+
+
+                              </section>
+
+                              <div class="button_container_historial">
+                                <button type="button" name="button" class="btn btn-outline-secondary save_historial" onclick="guardarProcedimiento()">CERRAR Y GUARDAR</button>
+                                <button type="button" name="button" class="print_historial" onclick="javascript:printerProcedimiento('procedure_print');"><%= image_tag("printer.png")%>IMPRIMIR</button>
+                              </div>
+
+                            </div>
+
+                          </div>
+
+                        </div>
+
+                      </section>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
 
                   <!-- end humano senasa-->
