@@ -14,7 +14,6 @@
   }
   .content_procedure {
     width: 100% !important;
-    height: 100%!important;
     .antecedentes {
       font-weight: bold;
     }
@@ -57,6 +56,8 @@
 .procedimiento_container {
   .print_content,
    .content_procedure{
+     height: 90%!important;
+
     .title {
       H1 {
         text-align: center;
@@ -69,7 +70,20 @@
       }
     }
     .body_container {
+      margin-top: 60px;
+      .date_input_procedimiento {
+        background: none;
+        border: none;
+        padding: 0;
+      }
+
+      .firma {
+        margin-top: 60px;
+      }
       .content {
+        .firma {
+          padding-top: 60px;
+        }
         .input_container {
           width: 100%;
           padding: 10px 0px;
@@ -239,6 +253,63 @@
 .content_procedure {
   width: 528px;
   height: 816px;
+  .title {
+    H1 {
+      text-align: center;
+      font-size: 18px;
+    }
+    H2 {
+      text-align: center;
+      font-size: 18px;
+      margin-top: 50px;
+    }
+  }
+  .body_container {
+    margin-top: 60px;
+    .date_input_procedimiento {
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    .firma {
+      margin-top: 60px;
+    }
+    .content {
+      .input_container {
+        width: 100%;
+        padding: 10px 0px;
+
+        p {
+         text-transform: uppercase;
+         font-size: 16px;
+         margin: 0;
+         float:left;
+
+          }
+      h5 {
+        border-bottom: 1px solid grey;
+        display: flex;
+        font-size: 15px;
+        padding-left: 10px;
+        text-transform: uppercase;
+
+      }
+      h6 {
+        border-bottom: 1px solid grey;
+        padding-top: 25px;
+        padding-left: 10px;
+        font-size: 15px;
+        text-transform: uppercase;
+
+
+
+      }
+      .float_nul {
+        float: none !important;
+      }
+      }
+    }
+  }
   .header, .header_historial {
     padding: 20px 15px 0px 15px;
     text-align: center;

@@ -665,12 +665,16 @@ Editar Cliente
                                        <h5><%= @customer.name %></h5>
                                     </div>
                                     <div class="input_container">
+                                      <p>NSS:</p>
+                                       <h5><%= @customer.affiliate_number %></h5>
+                                    </div>
+                                    <div class="input_container">
                                       <p>centro en el que se realiza el procedimiento:</p>
                                       <h6>REHABILITACIon y terapia fisica dr paredes lizandro</h6>
                                     </div>
                                     <div class="input_container">
-                                      <p>fecha en la que se realiza el procedimiento</p>
-                                      <h5>78/787/788</h5>
+                                      <p>fecha en la que se realiza el procedimiento:</p>
+                                      <h5> <input type="text" class="date_input_procedimiento" name="" value="<%= DateTime.now.to_date.strftime("%d/%m/%Y")%>">
                                     </div>
 
                                     <div class="input_container">
@@ -688,9 +692,9 @@ Editar Cliente
                                       <h6 id="plan"></h6>
                                     </div>
 
-                                    <div class="input_container">
+                                    <div class="input_container firma">
                                       <p>firma del medico (a)</p>
-                                      <h5></h5>
+                                      <h5>&nbsp;&nbsp;&nbsp;&nbsp;</h5>
                                     </div>
 
 
@@ -1086,12 +1090,16 @@ Editar Cliente
                                          <h5><%= @customer.name %></h5>
                                       </div>
                                       <div class="input_container">
+                                        <p>NSS:</p>
+                                         <h5><%= @customer.affiliate_number %></h5>
+                                      </div>
+                                      <div class="input_container">
                                         <p>centro en el que se realiza el procedimiento:</p>
                                         <h6>REHABILITACIon y terapia fisica dr paredes lizandro</h6>
                                       </div>
                                       <div class="input_container">
-                                        <p>fecha en la que se realiza el procedimiento</p>
-                                        <h5>78/787/788</h5>
+                                        <p>fecha en la que se realiza el procedimiento:</p>
+                                        <h5> <input type="text" class="date_input_procedimiento" name="" value="<%= DateTime.now.to_date.strftime("%d/%m/%Y")%>">
                                       </div>
 
                                       <div class="input_container">
@@ -1109,9 +1117,9 @@ Editar Cliente
                                         <h6 id="plan"></h6>
                                       </div>
 
-                                      <div class="input_container">
+                                      <div class="input_container firma">
                                         <p>firma del medico (a)</p>
-                                        <h5></h5>
+                                        <h5>&nbsp;&nbsp;&nbsp;&nbsp;</h5>
                                       </div>
 
 
@@ -1782,12 +1790,16 @@ Editar Cliente
                                              <h5><%= @customer.name %></h5>
                                           </div>
                                           <div class="input_container">
+                                            <p>NSS:</p>
+                                             <h5><%= @customer.affiliate_number %></h5>
+                                          </div>
+                                          <div class="input_container">
                                             <p>centro en el que se realiza el procedimiento:</p>
                                             <h6>REHABILITACIon y terapia fisica dr paredes lizandro</h6>
                                           </div>
                                           <div class="input_container">
-                                            <p>fecha en la que se realiza el procedimiento</p>
-                                            <h5>78/787/788</h5>
+                                            <p>fecha en la que se realiza el procedimiento:</p>
+                                            <h5><%= procedure.created_at.to_date.strftime("%d/%m/%Y") %></h5>
                                           </div>
 
                                           <div class="input_container">
@@ -1805,9 +1817,9 @@ Editar Cliente
                                             <h6><%= procedure.plan %></h6>
                                           </div>
 
-                                          <div class="input_container">
+                                          <div class="input_container firma">
                                             <p>firma del medico (a)</p>
-                                            <h5></h5>
+                                            <h5>&nbsp;&nbsp;&nbsp;&nbsp;</h5>
                                           </div>
 
 
