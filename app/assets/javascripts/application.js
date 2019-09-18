@@ -219,7 +219,7 @@ $(function(){
 
     // view more slideDown
     $(' #view_info').hover(function () {
-      $('#customer_info ').animate({height: "60%"},700);
+      $('#customer_info ').animate({height: "53%"},700);
       $('.customer_info ').addClass('class_auto_over');
     });
 
