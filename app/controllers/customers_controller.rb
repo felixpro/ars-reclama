@@ -24,7 +24,7 @@ class CustomersController < ApplicationController
       @customers = Customer.search(search_term)
       # return our filtered list here
     else
-      @customers = Customer.all
+      @customers = Customer.all.order('created_at DESC');
     end
 
 
