@@ -6,16 +6,21 @@
   font-family: Ayuthaya;
 }
 
+#reclamation_therapist {
+  width: 100%;
+}
 
-
+.container_terapist {
+  overflow: hidden;
+}
 
 
 
 .delete_historial {
   a {
     position: relative;
-    top: -40px;
-    left: 100px;
+      left: -55px;
+      top: -40px;
 &:active,
 &:focus,
 &:hover,

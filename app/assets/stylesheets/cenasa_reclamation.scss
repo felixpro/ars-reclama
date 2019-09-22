@@ -1,4 +1,6 @@
-
+.modal-content {
+  border: none !important;
+}
 
 @media print {
   body {
@@ -14,9 +16,19 @@
   }
   .content_procedure {
     width: 100% !important;
+    padding: 100px;
     .antecedentes {
       font-weight: bold;
     }
+    .doctor_name {
+      margin-top: 70px;
+    }
+    .content {
+      .space_input {
+        margin-top: 30px;
+      }
+    }
+
 
   }
 
@@ -69,56 +81,7 @@
         margin-top: 50px;
       }
     }
-    .body_container {
-      margin-top: 60px;
-      .date_input_procedimiento {
-        background: none;
-        border: none;
-        padding: 0;
-      }
 
-      .firma {
-        margin-top: 60px;
-      }
-      .content {
-        .firma {
-          padding-top: 60px;
-        }
-        .input_container {
-          width: 100%;
-          padding: 10px 0px;
-
-          p {
-           text-transform: uppercase;
-           font-size: 16px;
-           margin: 0;
-           float:left;
-
-            }
-        h5 {
-          border-bottom: 1px solid grey;
-          display: flex;
-          font-size: 15px;
-          padding-left: 10px;
-          text-transform: uppercase;
-
-        }
-        h6 {
-          border-bottom: 1px solid grey;
-          padding-top: 25px;
-          padding-left: 10px;
-          font-size: 15px;
-          text-transform: uppercase;
-
-
-
-        }
-        .float_nul {
-          float: none !important;
-        }
-        }
-      }
-    }
   }
 }
 .content_clinic {
@@ -274,6 +237,25 @@
     .firma {
       margin-top: 60px;
     }
+    .space_input {
+      .text_space {
+        padding-bottom: 20px;
+      }
+    }
+    .conlusion_content {
+      padding-left: 15px;
+       span {
+         position: relative;
+         top: 20px;
+       }
+
+
+       h6 {
+         padding-top: 0 !important;
+         padding-left: 20px !important;
+
+       }
+    }
     .content {
       .input_container {
         width: 100%;
@@ -283,15 +265,15 @@
          text-transform: uppercase;
          font-size: 16px;
          margin: 0;
-         float:left;
+         display: inline;
 
           }
       h5 {
         border-bottom: 1px solid grey;
-        display: flex;
         font-size: 15px;
         padding-left: 10px;
         text-transform: uppercase;
+        display: inline;
 
       }
       h6 {

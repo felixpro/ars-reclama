@@ -89,6 +89,6 @@ class ReclamationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reclamation_params
-      params.require(:reclamation).permit(:customer_id, :authNum, :therapiesNum, :doctor, :creationDate, :ensureReclam, :diagnostic)
+      params.require(:reclamation).permit(:customer_id, :authNum, :therapiesNum, :doctor, :creationDate, :ensureReclam, :diagnostic, :therapist)
     end
 end

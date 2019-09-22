@@ -612,17 +612,18 @@ Editar Cliente
                             <%= form_for([@customer, @customer.procedure.build], remote: true) do |form| %>
 
                             <div class="box_content">
-                              <p>diagnosticos</p>
-                              <%= form.text_area :conclusion, onkeyup: "conclusion()", id: "input_conclusion" %>
+                              <p>Diagnosticos:</p>
+                              1 - <%= form.text_area :conclusion, onkeyup: "conclusion()", id: "input_conclusion", style: "margin-bottom:15px;" %>
+                              2 - <%= form.text_area :conclusion1, onkeyup: "conclusion1()", id: "input_conclusion1" %>
                             </div>
 
                             <div class="box_content">
-                              <p>descripcion del procedimiento</p>
+                              <p>Descripcion del procedimiento:</p>
                               <%= form.text_area :description, onkeyup: "description()", id: "input_description" %>
                             </div>
 
                             <div class="box_content">
-                              <p> plan a seguir</p>
+                              <p>Plan a seguir:</p>
                               <%= form.text_area :plan, onkeyup: "plan()", id: "input_plan" %>
 
                             </div>
@@ -653,48 +654,62 @@ Editar Cliente
                                 <div class="body_container">
                                   <div class="content">
                                     <div class="input_container">
-                                      <p>Nombre del medico:</p>
+                                      <p class="doctor_name">&#8226; Nombre del medico:</p>
                                        <h5>Dr ENRIQUE ANTONIO PAREDES</h5>
                                     </div>
                                     <div class="input_container">
-                                      <p>CODIGO:</p>
+                                      <p>&#8226; CODIGO:</p>
                                        <h5>816159</h5>
                                     </div>
                                     <div class="input_container">
-                                      <p>Nombre del usuario:</p>
+                                      <p>&#8226; Nombre del usuario:</p>
                                        <h5><%= @customer.name %></h5>
                                     </div>
                                     <div class="input_container">
-                                      <p>NSS:</p>
+                                      <p>&#8226; NSS:</p>
                                        <h5><%= @customer.affiliate_number %></h5>
                                     </div>
                                     <div class="input_container">
-                                      <p>centro en el que se realiza el procedimiento:</p>
-                                      <h6>REHABILITACIon y terapia fisica dr paredes lizandro</h6>
+                                      <p>&#8226; centro en el que se realiza el procedimiento:</p>
+                                      <h6 style="display: inline-flex;">REHABILITACIon y terapia fisica dr paredes lizandro</h6>
                                     </div>
                                     <div class="input_container">
-                                      <p>fecha en la que se realiza el procedimiento:</p>
+                                      <p>&#8226; fecha en la que se realiza el procedimiento:</p>
                                       <h5> <input type="text" class="date_input_procedimiento" name="" value="<%= DateTime.now.to_date.strftime("%d/%m/%Y")%>">
                                     </div>
 
-                                    <div class="input_container">
-                                      <p class="float_nul">DIAGNOSTICO</p>
-                                      <h6 id="conclusion"></h6>
+                                    <div class="input_container space_input">
+                                      <p class="float_nul">&#8226; DIAGNOSTICOS</p>
+                                      <div class="text_space"></div>
+                                      <div class="conlusion_content">
+                                        <span>1.</span>
+                                        <h6 id="conclusion">&nbsp;&nbsp;</h6>
+                                      </div>
+                                      <div class="conlusion_content">
+                                        <span>2.</span>
+                                        <h6 id="conclusion1">&nbsp;&nbsp;</h6>
+                                      </div>
                                     </div>
 
-                                    <div class="input_container">
-                                      <p class="float_nul">DESCRIPCION del procedimiento</p>
+
+                                    <div class="input_container space_input">
+                                      <p class="float_nul">&#8226; DESCRIPCION del procedimiento</p>
                                       <h6 id="description"></h6>
                                     </div>
 
-                                    <div class="input_container">
-                                      <p class="float_nul">plan a seguir</p>
+                                    <div class="input_container space_input">
+                                      <p class="float_nul">&#8226; plan a seguir</p>
                                       <h6 id="plan"></h6>
                                     </div>
 
-                                    <div class="input_container firma">
-                                      <p>firma del medico (a)</p>
-                                      <h5>&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                    <div class="input_container space_input firma">
+                                      <p> &#8226; firma del medico (a)</p>
+                                      <h5>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      </h5>
                                     </div>
 
 
@@ -1037,17 +1052,18 @@ Editar Cliente
                               <%= form_for([@customer, @customer.procedure.build], remote: true) do |form| %>
 
                               <div class="box_content">
-                                <p>diagnosticos</p>
-                                <%= form.text_area :conclusion, onkeyup: "conclusion()", id: "input_conclusion" %>
+                                <p>Diagnosticos:</p>
+                                1 - <%= form.text_area :conclusion, onkeyup: "conclusion()", id: "input_conclusion", style: "margin-bottom:15px;" %>
+                                2 - <%= form.text_area :conclusion1, onkeyup: "conclusion1()", id: "input_conclusion1" %>
                               </div>
 
                               <div class="box_content">
-                                <p>descripcion del procedimiento</p>
+                                <p>Descripcion del procedimiento:</p>
                                 <%= form.text_area :description, onkeyup: "description()", id: "input_description" %>
                               </div>
 
                               <div class="box_content">
-                                <p> plan a seguir</p>
+                                <p>Plan a seguir:</p>
                                 <%= form.text_area :plan, onkeyup: "plan()", id: "input_plan" %>
 
                               </div>
@@ -1078,48 +1094,65 @@ Editar Cliente
                                   <div class="body_container">
                                     <div class="content">
                                       <div class="input_container">
-                                        <p>Nombre del medico:</p>
+                                        <p class="doctor_name">&#8226; Nombre del medico:</p>
                                          <h5>Dr ENRIQUE ANTONIO PAREDES</h5>
                                       </div>
                                       <div class="input_container">
-                                        <p>CODIGO:</p>
+                                        <p>&#8226; CODIGO:</p>
                                          <h5>816159</h5>
                                       </div>
                                       <div class="input_container">
-                                        <p>Nombre del usuario:</p>
+                                        <p>&#8226; Nombre del usuario:</p>
                                          <h5><%= @customer.name %></h5>
                                       </div>
                                       <div class="input_container">
-                                        <p>NSS:</p>
+                                        <p>&#8226; NSS:</p>
                                          <h5><%= @customer.affiliate_number %></h5>
                                       </div>
                                       <div class="input_container">
-                                        <p>centro en el que se realiza el procedimiento:</p>
-                                        <h6>REHABILITACIon y terapia fisica dr paredes lizandro</h6>
+                                        <p>&#8226; centro en el que se realiza el procedimiento:</p>
+                                        <h6 style="display: inline-flex;">REHABILITACIon y terapia fisica dr paredes lizandro</h6>
                                       </div>
                                       <div class="input_container">
-                                        <p>fecha en la que se realiza el procedimiento:</p>
+                                        <p>&#8226; fecha en la que se realiza el procedimiento:</p>
                                         <h5> <input type="text" class="date_input_procedimiento" name="" value="<%= DateTime.now.to_date.strftime("%d/%m/%Y")%>">
                                       </div>
 
-                                      <div class="input_container">
-                                        <p class="float_nul">DIAGNOSTICO</p>
-                                        <h6 id="conclusion"></h6>
+
+                                      <div class="input_container space_input">
+                                        <p class="float_nul">&#8226; DIAGNOSTICOS</p>
+                                        <div class="text_space"></div>
+                                        <div class="conlusion_content">
+                                          <span>1.</span>
+                                          <h6 id="conclusion">&nbsp;&nbsp;</h6>
+                                        </div>
+                                        <div class="conlusion_content">
+                                          <span>2.</span>
+                                          <h6 id="conclusion1">&nbsp;&nbsp;</h6>
+                                        </div>
                                       </div>
 
+
                                       <div class="input_container">
-                                        <p class="float_nul">DESCRIPCION del procedimiento</p>
+                                        <p class="float_nul">&#8226; DESCRIPCION del procedimiento</p>
                                         <h6 id="description"></h6>
                                       </div>
 
                                       <div class="input_container">
-                                        <p class="float_nul">plan a seguir</p>
+                                        <p class="float_nul">&#8226; plan a seguir</p>
                                         <h6 id="plan"></h6>
                                       </div>
 
                                       <div class="input_container firma">
-                                        <p>firma del medico (a)</p>
-                                        <h5>&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                        <p>&#8226; firma del medico (a)</p>
+                                        <h5>
+                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                                        </h5>
                                       </div>
 
 
@@ -1451,6 +1484,7 @@ Editar Cliente
                   <h1>Agregar Terapias</h1>
 
                   <%= form_for([@customer, @customer.reclamation.build], remote: true) do |f| %>
+
                   <div class="field input_content">
                     <%= f.label 'Terapias' %>
                     <%= f.number_field :therapiesNum, id: "add_therapie_input" %>
@@ -1668,11 +1702,7 @@ Editar Cliente
               <div class="therapie_container show_section_histories" id="done_therapies">
 
                 <% @procedures.each do |procedure| %>
-                <span class="delete_historial">
-                  <%= link_to customer_procedure_path(procedure.customer, procedure), method: :delete, data: { confirm: 'Estas seguro que deseas eliminar este historial?', remote: true } do %>
-                    <%= image_tag("delete_historial.png") %>
-                  <% end %>
-                 </span>
+
 
 
                   <% @identifierHistorial = @identifierHistorial + 1 %>
@@ -1681,6 +1711,11 @@ Editar Cliente
                       <p class="date_reclam"><%= procedure.created_at.to_date %></p>
                       <p class="ensure">ARS HUMANO</p>
                     </button>
+                    <span class="delete_historial">
+                      <%= link_to customer_procedure_path(procedure.customer, procedure), method: :delete, data: { confirm: 'Estas seguro que deseas eliminar este historial?', remote: true } do %>
+                        <%= image_tag("delete_historial.png") %>
+                      <% end %>
+                     </span>
 
                   <div class="modal fade historial_content " id="procedures<%= @identifierHistorial %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog  modal-dialog-centered" role="document">
@@ -1739,19 +1774,26 @@ Editar Cliente
                                 <div class="customer_data">
 
 
-
-                                  <div class="box_content">
-                                    <p>diagnosticos</p>
-                                    <h6><%= procedure.conclusion %></h6>
+                                  <div class="input_container space_input">
+                                    <p class="float_nul">DIAGNOSTICOS</p>
+                                    <div class="text_space"></div>
+                                    <div class="conlusion_content">
+                                      <span>1.</span>
+                                      <h6><%= procedure.conclusion %></h6>
+                                    </div>
+                                    <div class="conlusion_content">
+                                      <span>2.</span>
+                                      <h6><%= procedure.conclusion1 %></h6>
+                                    </div>
                                   </div>
 
-                                  <div class="box_content">
-                                    <p>descripcion del procedimiento</p>
+                                  <div class="box_content space_input">
+                                    <p>Descripcion del procedimiento</p>
                                     <h6><%= procedure.description %></h6>
                                   </div>
 
-                                  <div class="box_content">
-                                    <p> plan a seguir</p>
+                                  <div class="box_content space_input">
+                                    <p>Plan a seguir</p>
                                     <h6><%= procedure.plan %></h6>
 
 
@@ -1778,48 +1820,61 @@ Editar Cliente
                                       <div class="body_container">
                                         <div class="content">
                                           <div class="input_container">
-                                            <p>Nombre del medico:</p>
+                                            <p class="doctor_name">&#8226; Nombre del medico:</p>
                                              <h5>Dr ENRIQUE ANTONIO PAREDES</h5>
                                           </div>
                                           <div class="input_container">
-                                            <p>CODIGO:</p>
+                                            <p>&#8226; CODIGO:</p>
                                              <h5>816159</h5>
                                           </div>
                                           <div class="input_container">
-                                            <p>Nombre del usuario:</p>
+                                            <p>&#8226; Nombre del usuario:</p>
                                              <h5><%= @customer.name %></h5>
                                           </div>
                                           <div class="input_container">
-                                            <p>NSS:</p>
+                                            <p>&#8226; NSS:</p>
                                              <h5><%= @customer.affiliate_number %></h5>
                                           </div>
                                           <div class="input_container">
-                                            <p>centro en el que se realiza el procedimiento:</p>
-                                            <h6>REHABILITACIon y terapia fisica dr paredes lizandro</h6>
+                                            <p>&#8226; centro en el que se realiza el procedimiento:</p>
+                                            <h6 style="display: inline-flex;">REHABILITACIon y terapia fisica dr paredes lizandro</h6>
                                           </div>
                                           <div class="input_container">
-                                            <p>fecha en la que se realiza el procedimiento:</p>
+                                            <p>&#8226; fecha en la que se realiza el procedimiento:</p>
                                             <h5><%= procedure.created_at.to_date.strftime("%d/%m/%Y") %></h5>
                                           </div>
 
-                                          <div class="input_container">
-                                            <p class="float_nul">DIAGNOSTICO</p>
-                                            <h6><%= procedure.conclusion %></h6>
+                                          <div class="input_container space_input">
+                                            <p class="float_nul">&#8226; DIAGNOSTICOS</p>
+                                            <div class="text_space"></div>
+                                            <div class="conlusion_content">
+                                              <span>1.</span>
+                                              <h6><%= procedure.conclusion %></h6>
+                                            </div>
+                                            <div class="conlusion_content">
+                                              <span>2.</span>
+                                              <h6><%= procedure.conclusion1 %></h6>
+                                            </div>
                                           </div>
 
-                                          <div class="input_container">
-                                            <p class="float_nul">DESCRIPCION del procedimiento</p>
+                                          <div class="input_container space_input">
+                                            <p class="float_nul">&#8226; DESCRIPCION del procedimiento</p>
                                             <h6><%= procedure.description %></h6>
                                           </div>
 
-                                          <div class="input_container">
-                                            <p class="float_nul">plan a seguir</p>
+                                          <div class="input_container space_input">
+                                            <p class="float_nul">&#8226; plan a seguir</p>
                                             <h6><%= procedure.plan %></h6>
                                           </div>
 
                                           <div class="input_container firma">
-                                            <p>firma del medico (a)</p>
-                                            <h5>&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                            <p>&#8226; firma del medico (a)</p>
+                                            <h5>
+                                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </h5>
                                           </div>
 
 
@@ -1856,20 +1911,19 @@ Editar Cliente
             <div class="tab-pane active" id="Reclamaciones">
               <% if @customer.insurance === "ARS Humano" %>
 
-
               <section class="reclam_historial_content reclamation_section historial_humano">
                 <% @historialReclamation.each do |reclamation| %>
-                <span class="delete_historial">
-                  <%= link_to customer_reclamation_path(reclamation.customer, reclamation), method: :delete, data: { confirm: 'Estas seguro que deseas eliminar este historial?', remote: true } do %>
-                    <%= image_tag("delete_historial.png", id: "delete_img_humano") %>
-                  <% end %>
-                 </span>
                   <% @identifier = @identifier + 1 %>
                     <button type="button" class="reclam_button" data-toggle="modal" data-target="#historial<%= @identifier %>" onclick="dateFuntion()" id="btn_hover_humano">
                       <p class="r">R</p>
                       <p class="date_reclam"><%= reclamation.creationDate %></p>
                       <p class="ensure">ARS HUMANO</p>
                     </button>
+                    <span class="delete_historial">
+                      <%= link_to customer_reclamation_path(reclamation.customer, reclamation), method: :delete, data: { confirm: 'Estas seguro que deseas eliminar este historial?', remote: true } do %>
+                        <%= image_tag("delete_historial.png", id: "delete_img_humano") %>
+                      <% end %>
+                     </span>
                     <div class="modal fade new_reclamation" id="historial<%= @identifier %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                       <div class="modal-dialog modal-full" role="document">
                         <div class="modal-content" style="height:100%;">
@@ -1988,7 +2042,10 @@ Editar Cliente
 
                                         <div class="field">
                                           <p>Medico tratante</p>
-                                          <span>Enrique Paredes L.</span>
+                                          <% if reclamation.therapist === 'Dr_Enrique_Antonio_paredes' || reclamation.therapist === 'Lic_Josefina_Garcia' || reclamation.therapist === 'Lic_Alejandro_Colón'%>
+                                          <span class="container_terapist"><%= reclamation.therapist.tr('_', ' ') %></span>
+                                          <%else%>
+                                          <% end %>
                                         </div>
 
                                         <div>
@@ -2127,7 +2184,10 @@ Editar Cliente
                                                 <div class="col-6">
                                                   <div class="inputs_box">
                                                     <h5>Médico:</h5>
-                                                    <p>Dr. Enrique Paredes Lizandro</p>
+                                                    <% if reclamation.therapist === 'Dr_Enrique_Antonio_paredes' || reclamation.therapist === 'Lic_Josefina_Garcia' || reclamation.therapist === 'Lic_Alejandro_Colón'%>
+                                                    <p ><%= reclamation.therapist.tr('_', ' ') %></p>
+                                                    <%else%>
+                                                    <% end %>
                                                   </div>
                                                   <div class="inputs_box">
                                                     <h5>Código:</h5>
@@ -2225,16 +2285,26 @@ Editar Cliente
                 </section>
               </div>
 
+
+
+
+
                 <% elsif @customer.insurance === "SENASA" %>
 
-                <section class="reclam_historial_content reclamation_section">
+                <section class="reclam_historial_content reclamation_section ">
                   <% @historialReclamation.each do |reclamation| %>
+
                     <% @identifier = @identifier + 1 %>
-                      <button type="button" class="reclam_button" data-toggle="modal" data-target="#historial<%= @identifier %>" onclick="dateFuntion()">
+                      <button type="button" class="reclam_button" data-toggle="modal" data-target="#historial<%= @identifier %>" onclick="dateFuntion()" id="btn_hover_humano">
                         <p class="r">R</p>
                         <p class="date_reclam"><%= reclamation.creationDate %></p>
                         <p class="ensure">SENASA</p>
                       </button>
+                      <span class="delete_historial">
+                        <%= link_to customer_reclamation_path(reclamation.customer, reclamation), method: :delete, data: { confirm: 'Estas seguro que deseas eliminar este historial?', remote: true } do %>
+                          <%= image_tag("delete_historial.png", id: "delete_img_humano") %>
+                        <% end %>
+                       </span>
                       <div class="modal fade new_reclamation" id="historial<%= @identifier %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-full" role="document">
                           <div class="modal-content" style="height:100%;">
@@ -2353,7 +2423,10 @@ Editar Cliente
 
                                           <div class="field">
                                             <p>Medico tratante</p>
-                                            <span>Enrique Paredes L.</span>
+                                            <% if reclamation.therapist === 'Dr_Enrique_Antonio_paredes' || reclamation.therapist === 'Lic_Josefina_Garcia' || reclamation.therapist === 'Lic_Alejandro_Colón'%>
+                                            <span class="container_terapist"><%= reclamation.therapist.tr('_', ' ') %></span>
+                                            <%else%>
+                                            <% end %>
                                           </div>
 
                                           <div>
@@ -2500,7 +2573,11 @@ Editar Cliente
                                                 <div class="col-lg-6 col-md-6 col-xs-6">
                                                   <div class="nombreps padding_right_corretion">
                                                     <p class="title title_1">Médico Tratante:</p>
-                                                    <p class="number">Dr. Enrique Paredes Lizandro</p>
+                                                    <% if reclamation.therapist === 'Dr_Enrique_Antonio_paredes' || reclamation.therapist === 'Lic_Josefina_Garcia' || reclamation.therapist === 'Lic_Alejandro_Colón'%>
+                                                    <p class="number " ><%= reclamation.therapist.tr('_', ' ') %></p>
+                                                    <%else%>
+                                                    <% end %>
+
                                                   </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-3 col-xs-3">
@@ -3289,6 +3366,8 @@ Editar Cliente
             <div class="modal-content" style="height:100%;">
 
               <div class="modal-body">
+                <button type="button" name="button" onclick="pon()">Precione aqui</button>
+
                 <div class="hide_navbar ">
                   <nav class="navbar container navbar-expand-lg navbar-light ">
                     <a class="navbar-brand" href="#"><%=image_tag("brand.png", class: "nav_logo")%></a>
@@ -3314,8 +3393,8 @@ Editar Cliente
                 <aside class="sidebar">
                   <div class="img_hospital">
                     <%= link_to :controller => 'customers', :action => 'index', onclick:'reloadTimer()' do %>
-<%=image_tag("logo_clinica_1.png")%>
-<% end%>
+                      <%=image_tag("logo_clinica_1.png")%>
+                    <% end%>
                   </div>
                   <ul>
                     <li>
@@ -3412,11 +3491,14 @@ Editar Cliente
 
                             </div>
                             <div class="second_row">
-
+                              <% if @customer.insurance === "SENASA" %>
                               <div class="field">
                                 <p>Medico tratante</p>
-                                <span>Enrique Paredes L.</span>
+                                <span><%= f.select :therapist, Reclamation.therapists.keys.to_a %></span>
                               </div>
+                              <% else%>
+                              <% end %>
+
 
                               <div>
                                 <p>Dirección</p>
@@ -3586,7 +3668,7 @@ Editar Cliente
                                     <div class="col-lg-6 col-md-6 col-xs-6">
                                       <div class="nombreps padding_right_corretion">
                                         <p class="title title_1">Médico Tratante:</p>
-                                        <p class="number">Dr. Enrique Paredes Lizandro</p>
+                                        <p class="number therapist" ></p>
                                       </div>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-xs-3">
@@ -4070,7 +4152,6 @@ Editar Cliente
 
               <%= form_for([@customer, @customer.reclamation.build], remote: true) do |f| %>
 
-
                 <div style="display:none;">
                   <%= f.text_field :ensureReclam, :value => "identifier" %>
                 </div>
@@ -4145,16 +4226,19 @@ Editar Cliente
 
                           </div>
                           <div class="second_row">
-
+                              <!-- Sentencia para evitar problemas con los id -->
+                            <% if @customer.insurance === "ARS Humano" %>
                             <div class="field">
                               <p>Medico tratante</p>
-                              <span>Enrique Paredes L.</span>
+                              <span><%= f.select :therapist, Reclamation.therapists.keys.to_a %></span>
                             </div>
-
+                            <% else%>
+                            <% end %>
                             <div>
                               <p>No. de Afiliado</p>
                               <span><%= @customer.affiliate_number %></span>
                             </div>
+
 
                             <div class="field therapies_input">
                               <p>Diagnostico</p>
@@ -4312,7 +4396,7 @@ Editar Cliente
                                     <div class="col-6">
                                       <div class="inputs_box">
                                         <h5>Médico:</h5>
-                                        <p>Dr. Enrique Paredes Lizandro</p>
+                                        <p class="therapist"></p>
                                       </div>
                                       <div class="inputs_box">
                                         <h5>Código:</h5>

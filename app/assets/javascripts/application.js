@@ -24,6 +24,7 @@
 $.jMaskGlobals.watchDataMask = true;
 
 
+
 /// alert desapear funtion
 $(function() {
   setTimeout(function () {
@@ -32,7 +33,32 @@ $(function() {
 });
 
 
+
+
+
 $(function(){
+
+ // therapist update
+   var input_data = $('#reclamation_therapist').val(); // just an example
+   var array = input_data.split("_")
+   var result = array[0]+ " " + array[1] + " " + array[2] + " " + array[3]
+
+   $('.therapist').html("");
+   $('.therapist').append(result.replace('undefined', ''));
+
+
+  // change the therapist print section when change button
+  $('#reclamation_therapist').on('change', function() {
+    // delete underscore
+    var input_data = $('#reclamation_therapist').val(); // just an example
+    var array = input_data.split("_")
+    var result = array[0]+ " " + array[1] + " " + array[2] + " " + array[3]
+
+    $('.therapist').html("");
+    $('.therapist').append(result.replace('undefined', ''));
+
+  });
+
 
 
 
@@ -156,6 +182,10 @@ function reloadP() {
   localStorage.setItem("therapieNum", $('#input_1_therapie').val());
   localStorage.setItem("therapieNum_humano", $('#humano_terapias').val());
   localStorage.setItem("multiple_insuranse", $('#multiple_insuranse').val());
+  localStorage.setItem("therapist", $('#reclamation_therapist').val());
+
+
+
 
   setTimeout(function () {
   location.reload(true);
@@ -226,8 +256,6 @@ $(function(){
     $('aside, .left_section').hover(function () {
       $('#customer_info').animate({height: "220px"},700);
         $('.customer_info ').removeClass('class_auto_over');
-
-
     })
 
   });
@@ -277,6 +305,11 @@ function dateFuntion_2() {
 function conclusion() {
   $('#conclusion').html('')
   $('#conclusion').append($('#input_conclusion').val());
+};
+
+function conclusion1() {
+  $('#conclusion1').html('')
+  $('#conclusion1').append($('#input_conclusion1').val());
 };
 
 function description() {
@@ -446,6 +479,10 @@ localStorage.setItem("therapieNum", $('#input_1_therapie').val());
 localStorage.setItem("therapieNum_humano", $('#humano_terapias').val());
 localStorage.setItem("multiple_insuranse", $('#multiple_insuranse').val());
 
+localStorage.setItem("therapist", $('#reclamation_therapist').val());
+
+
+
 
 
 setTimeout(function () {
@@ -479,8 +516,9 @@ var dataDiagnostic_humano = localStorage.getItem("diagnostic_humano");
 
 var dataTherapie = localStorage.getItem("therapieNum");
 var dataTherapie_humano = localStorage.getItem("therapieNum_humano");
-
 var multiple_insuranse = localStorage.getItem("multiple_insuranse");
+
+var therapist = localStorage.getItem("therapist");
 
 // multiple_insuranse_humano
 $('#multiple_insuranse').val(multiple_insuranse);
@@ -541,6 +579,18 @@ $('#multiple_insuranse').val(multiple_insuranse);
   }
 
 
+  // doctor therapist
+
+  $('#reclamation_therapist').val(therapist)
+
+  var input_data = therapist;
+  var array = input_data.split("_")
+  var result = array[0]+ " " + array[1] + " " + array[2] + " " + array[3]
+
+  $('.therapist').html("");
+  $('.therapist').append(result.replace('undefined', ''));
+
+
 
   // Auth num
   $('#authNum').trigger('click');
@@ -577,6 +627,7 @@ $('#multiple_insuranse').val(multiple_insuranse);
   localStorage.setItem("diagnostic", "off");
   localStorage.setItem("therapieNum","off");
   localStorage.setItem("multiple_insuranse", "off");
+  localStorage.setItem("therapist", "off");
 
 
 } else {}
@@ -687,6 +738,8 @@ function printerProcedimiento(divID) {
 //Get the HTML of div
 localStorage.setItem("printer_procedimiento", "on");
 localStorage.setItem("conclusion",    $('#input_conclusion').val());
+localStorage.setItem("conclusion1",    $('#input_conclusion1').val());
+
 localStorage.setItem("description",    $('#input_description').val());
 localStorage.setItem("plan",    $('#input_plan').val());
 
@@ -723,8 +776,14 @@ if (localStorage.getItem("printer_procedimiento") === "on" ) {
 
 
 var conclusion = localStorage.getItem("conclusion");
+var conclusion1 = localStorage.getItem("conclusion1");
+
 var description = localStorage.getItem("description");
 var plan = localStorage.getItem("plan");
+
+// conclusion1
+$('#input_conclusion1').val(conclusion1);
+$('#conclusion1').append(conclusion1);
 
 // conclusion
 $('#input_conclusion').val(conclusion);
