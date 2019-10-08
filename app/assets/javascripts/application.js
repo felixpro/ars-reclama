@@ -611,6 +611,7 @@ $('#multiple_insuranse').val(multiple_insuranse);
   // Diagnostic
   $('#diagnostic_text').trigger('click');
   $('#diagnostic_text').val(dataDiagnostic);
+  $('#input_diagnostic').html("");
   $('#input_diagnostic').append(dataDiagnostic);
 
   // Diagnostic humano
