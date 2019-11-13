@@ -13,12 +13,27 @@
     <%= yield %>
 
     <% flash.each do |key, value| %>
-      <div class="alert success" id="alert">
+
+      <% if key === 'warning'%>
+
+      <div class="alert success_warning" id="alert">
+        <div>
+          <%=image_tag("warning.png")%>
+          <p><%= value %></p>
+        </div>
+      </div>
+
+      <% elsif%>
+
+      <div class="alert success_alert" id="alert">
         <div>
           <%=image_tag("Shape.png")%>
           <p><%= value %></p>
         </div>
       </div>
+
+      <% end %>
+
     <% end %>
 
 

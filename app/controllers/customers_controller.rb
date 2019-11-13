@@ -24,7 +24,7 @@ class CustomersController < ApplicationController
       @customers = Customer.search(search_term)
       # return our filtered list here
     else
-      @customers = Customer.all.order('created_at DESC');
+      @customers = Customer.all.order('created_at DESC').limit(15);
     end
 
 
@@ -170,8 +170,8 @@ class CustomersController < ApplicationController
         format.html { redirect_to(@customer,  success: 'Guardado Correctamente') }
         format.json { respond_with_bip(@customer) }
       else
-        format.html { render :action => "edit" }
-        format.json { respond_with_bip(@customer) }
+        format.html { redirect_to(@customer,  warning: 'Cliente ya existe ') }
+
       end
     end
   end
