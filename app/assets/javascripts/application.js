@@ -38,6 +38,17 @@ $(function() {
 
 $(function(){
 
+// Add date to procedures
+  setTimeout(function () {
+
+    if ($('#conclusion2').val().length < 1) {
+      $('#conclusion2').html('')
+      $('#conclusion2').append($('#input_conclusion2').val());
+    }
+  }, 2000);
+
+
+
  // therapist update
    var input_data = $('#reclamation_therapist').val(); // just an example
    var array = input_data.split("_")
@@ -238,6 +249,7 @@ function reloadTimer() {
 
 $(function(){
 
+
   // add diagnostic to the print section when starting
   $('#input_diagnostic').html('')
   $('#input_diagnostic').append($('#diagnostic_text').val());
@@ -311,6 +323,12 @@ function conclusion1() {
   $('#conclusion1').html('')
   $('#conclusion1').append($('#input_conclusion1').val());
 };
+
+function conclusion2() {
+  $('#conclusion2').html('')
+  $('#conclusion2').append($('#input_conclusion2').val());
+};
+
 
 function description() {
   $('#description').html('')
@@ -740,6 +758,7 @@ function printerProcedimiento(divID) {
 localStorage.setItem("printer_procedimiento", "on");
 localStorage.setItem("conclusion",    $('#input_conclusion').val());
 localStorage.setItem("conclusion1",    $('#input_conclusion1').val());
+localStorage.setItem("conclusion2",    $('#input_conclusion2').val());
 
 localStorage.setItem("description",    $('#input_description').val());
 localStorage.setItem("plan",    $('#input_plan').val());
@@ -778,6 +797,7 @@ if (localStorage.getItem("printer_procedimiento") === "on" ) {
 
 var conclusion = localStorage.getItem("conclusion");
 var conclusion1 = localStorage.getItem("conclusion1");
+var conclusion2 = localStorage.getItem("conclusion2");
 
 var description = localStorage.getItem("description");
 var plan = localStorage.getItem("plan");
@@ -785,6 +805,11 @@ var plan = localStorage.getItem("plan");
 // conclusion1
 $('#input_conclusion1').val(conclusion1);
 $('#conclusion1').append(conclusion1);
+
+// conclusion2
+$('#input_conclusion2').val(conclusion2);
+$('#conclusion2').append(conclusion2);
+
 
 // conclusion
 $('#input_conclusion').val(conclusion);

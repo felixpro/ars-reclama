@@ -10,6 +10,7 @@
   </head>
   <body>
 
+
     <%= yield %>
 
     <% flash.each do |key, value| %>
@@ -643,6 +644,11 @@ Editar Cliente
 
                             </div>
 
+                            <div class="box_content">
+                              <p>Fecha</p>
+                              <%= form.text_area :conclusion2,:value => DateTime.now.to_date.strftime("%d/%m/%Y"), onkeyup: "conclusion2()", id: "input_conclusion2" %>
+                            </div>
+
 
                           </div>
                         </div>
@@ -690,7 +696,7 @@ Editar Cliente
                                     </div>
                                     <div class="input_container">
                                       <p>&#8226; fecha en la que se realiza el procedimiento:</p>
-                                      <h5> <input type="text" class="date_input_procedimiento" name="" value="<%= DateTime.now.to_date.strftime("%d/%m/%Y")%>">
+                                      <h5 id="conclusion2"></h5>
                                     </div>
 
                                     <div class="input_container space_input">
@@ -706,6 +712,11 @@ Editar Cliente
                                       </div>
                                     </div>
 
+
+                                    <div class="input_container space_input">
+                                      <p class="float_nul">&#8226; DESCRIPCION del procedimiento</p>
+                                      <h6 id="description"></h6>
+                                    </div>
 
                                     <div class="input_container space_input">
                                       <p class="float_nul">&#8226; DESCRIPCION del procedimiento</p>
@@ -1080,7 +1091,11 @@ Editar Cliente
                               <div class="box_content">
                                 <p>Plan a seguir:</p>
                                 <%= form.text_area :plan, onkeyup: "plan()", id: "input_plan" %>
+                              </div>
 
+                              <div class="box_content">
+                                <p>Fecha</p>
+                                <%= form.text_area :conclusion2,:value => DateTime.now.to_date.strftime("%d/%m/%Y"), onkeyup: "conclusion2()", id: "input_conclusion2" %>
                               </div>
 
 
@@ -1130,7 +1145,7 @@ Editar Cliente
                                       </div>
                                       <div class="input_container">
                                         <p>&#8226; fecha en la que se realiza el procedimiento:</p>
-                                        <h5> <input type="text" class="date_input_procedimiento" name="" value="<%= DateTime.now.to_date.strftime("%d/%m/%Y")%>">
+                                        <h5 id="conclusion2"></h5>
                                       </div>
 
 
@@ -1856,7 +1871,7 @@ Editar Cliente
                                           </div>
                                           <div class="input_container">
                                             <p>&#8226; fecha en la que se realiza el procedimiento:</p>
-                                            <h5><%= procedure.created_at.to_date.strftime("%d/%m/%Y") %></h5>
+                                            <h5><%= procedure.conclusion2 %></h5> <!-- Fecha -->
                                           </div>
 
                                           <div class="input_container space_input">
