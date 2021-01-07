@@ -24,7 +24,7 @@ class CustomersController < ApplicationController
       @customers = Customer.search(search_term)
       # return our filtered list here
     else
-      @customers = Customer.all.order('created_at DESC').limit(15);
+      @customers = Customer.all.limit(10)
     end
 
 
