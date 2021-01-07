@@ -28,9 +28,9 @@ class CustomersController < ApplicationController
     end
 
 
-    @customer_total = Customer.all
+    @customer_total = Customer.all.limit(10)
     @customerNew = Customer.new
-    @reclamations = Reclamation.all
+    @reclamations = Reclamation.all.limit(10)
     @reclamation_number = 0;
     @identifier = 0;
 
