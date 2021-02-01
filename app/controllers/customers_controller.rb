@@ -24,13 +24,13 @@ class CustomersController < ApplicationController
       @customers = Customer.search(search_term)
       # return our filtered list here
     else
-      @customers = Customer.all.limit(10)
+      @customers = Customer.all.order('created_at DESC').limit(15);
     end
 
 
-    @customer_total = Customer.all.limit(10)
+    @customer_total = Customer.all.order('created_at DESC').limit(15);
     @customerNew = Customer.new
-    @reclamations = Reclamation.all.limit(10)
+    @reclamations = Reclamation.all.order('created_at DESC').limit(15);
     @reclamation_number = 0;
     @identifier = 0;
 
