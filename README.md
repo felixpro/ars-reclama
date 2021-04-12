@@ -36,6 +36,12 @@ yarn
 
 ## Starting Development
 
+Install yarn:
+
+```bash
+npm install --global yarn
+```
+
 Start the app in the `dev` environment:
 
 ```bash
