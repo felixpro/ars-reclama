@@ -1,37 +1,13 @@
-## Install
+# Electron (electron-builder) + TypeScript + React + Tailwind + Parcel
 
-- **If you have installation or compilation issues with this project, please see [our debugging guide](https://github.com/electron-react-boilerplate/electron-react-boilerplate/issues/400)**
+# How to use
 
-First, clone the repo via git and install dependencies:
+To start the development app locally, run:
 
-```bash
-git clone --depth 1 --single-branch https://github.com/electron-react-boilerplate/electron-react-boilerplate.git your-project-name
-cd your-project-name
-yarn
-```
+    $ npm start
 
-## Starting Development
+# Build for Production
 
-Install yarn:
+Build with electron-builder
 
-```bash
-npm install --global yarn
-```
-
-Start the app in the `dev` environment:
-
-```bash
-yarn start
-```
-
-## Packaging for Production
-
-To package apps for the local platform:
-
-```bash
-yarn package
-```
-
-## Docs
-
-See our [docs and guides here](https://electron-react-boilerplate.js.org/docs/installation)
+    $ npm run build
