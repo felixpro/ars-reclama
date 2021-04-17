@@ -1,33 +1,25 @@
 {
-  "compilerOptions": {
-    "target": "ES2018",
-    "module": "CommonJS",
-    "lib": ["dom", "esnext"],
-    "declaration": true,
-    "declarationMap": true,
-    "noEmit": true,
-    "jsx": "react",
-    "strict": true,
-    "pretty": true,
-    "sourceMap": true,
-    /* Additional Checks */
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    /* Module Resolution Options */
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "allowJs": true
-  },
-  "exclude": [
-    "test",
-    "release",
-    "src/main.prod.js",
-    "src/renderer.prod.js",
-    "src/dist",
-    ".erb/dll"
-  ]
+	"compilerOptions": {
+		"allowJs": true,
+		"alwaysStrict": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"isolatedModules": true,
+		"jsx": "preserve",
+		"lib": ["dom", "esnext"],
+		"module": "esnext",
+		"moduleResolution": "node",
+		"noEmit": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"resolveJsonModule": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"target": "es6",
+		"allowSyntheticDefaultImports": true,
+		"strictNullChecks": true
+	},
+	"exclude": ["node_modules", "dist", ".cache", "build"],
+	"include": ["./src/**/*.ts", "./src/**/*.tsx"]
 }
