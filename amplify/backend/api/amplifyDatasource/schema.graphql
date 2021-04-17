@@ -1,0 +1,35 @@
+type Client @model {
+  id: ID!
+  identificationCard: String
+  passport: String
+  affiliateNumber: Int
+  name: String
+  cellphoneNumber: String
+  email: String
+  contractNumber: Int
+  bornDate: String
+  sex: SexType
+  phoneNumber: String
+  admissionDate: String
+  addressStreet: String
+  addressNumber: Int
+  neighborhood: String
+  city: String
+}
+
+type WaitList @model {
+  id: ID!
+  client: Client
+  status: WaitListStatus
+  positionNumber: Int
+}
+
+enum WaitListStatus {
+  CONSULTA
+  ESPERA
+}
+
+enum SexType {
+  FEMENINO
+  MASCULINO
+}
