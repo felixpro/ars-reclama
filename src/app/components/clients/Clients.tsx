@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import { ClientsContext } from '../../context/client-context';
 
 const Clients = () => {
-	const clients = useContext(ClientsContext).clients;
+	const clientsContext = useContext(ClientsContext);
 
 	return (
 		<ul>
-			{clients?.map((client) => (
+			{clientsContext.clients?.map((client) => (
 				<li key={client.id}>{client.name}</li>
 			))}
 		</ul>
