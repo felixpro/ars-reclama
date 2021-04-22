@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const loggedUser = {
-	doctor: false,
+	doctor: true,
 };
 
 const hospitals = [
@@ -42,7 +42,7 @@ const Dropdown = () => {
 		}
 	}, []);
 
-	const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
 		e.preventDefault();
 		// update Actual option
 		setActualOption({ name: (e.target as HTMLInputElement).value });
@@ -52,7 +52,7 @@ const Dropdown = () => {
 
 	return (
 		<div>
-			<select value={actualOption.name} onBlur={handleChange}>
+			<select value={actualOption.name} onBlur={(e) => handleChange(e)}>
 				{options.map((option) => {
 					return (
 						<option key={option.name} value={option.name}>

@@ -9,7 +9,7 @@ const SideBar = () => {
 			<ul className="flex  justify-center flex-col ">
 				<li className="">
 					<a
-						href="https://www.youtube.com/"
+						href="https://www.npmjs.com/package/react-modal"
 						className="text-base  block  transition duration-500 ease-in-out  hover:bg-gray-500  transform"
 					>
 						Inicio
@@ -17,7 +17,7 @@ const SideBar = () => {
 				</li>
 				<li>
 					<a
-						href="https://www.youtube.com/"
+						href="https://www.npmjs.com/package/react-modal"
 						className="text-base  block  transition duration-500 ease-in-out  hover:bg-gray-500  transform"
 					>
 						Clientes
@@ -25,7 +25,7 @@ const SideBar = () => {
 				</li>
 				<li>
 					<a
-						href="https://www.youtube.com/"
+						href="https://www.npmjs.com/package/react-modal"
 						className="text-base  block transition duration-500 ease-in-out  hover:bg-gray-500  transform"
 					>
 						Medicamentos
@@ -33,7 +33,7 @@ const SideBar = () => {
 				</li>
 				<li>
 					<a
-						href="https://www.youtube.com/"
+						href="https://www.npmjs.com/package/react-modal"
 						className="text-base  block transition duration-500 ease-in-out  hover:bg-gray-500  transform"
 					>
 						Configuración
@@ -41,7 +41,7 @@ const SideBar = () => {
 				</li>
 				<li>
 					<a
-						href="https://www.youtube.com/"
+						href="https://www.npmjs.com/package/react-modal"
 						className="text-base  block transition duration-500 ease-in-out  hover:bg-gray-500  transform"
 					>
 						Ayuda

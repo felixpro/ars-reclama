@@ -1,7 +1,14 @@
 import React from 'react';
+import Search from './Search';
+import Modal from './Modal';
 
 const NavBar = () => {
-	return <h1>Nav Bar</h1>;
+	return (
+		<div>
+			<Modal />
+			<Search />
+		</div>
+	);
 };
 
 export default NavBar;
