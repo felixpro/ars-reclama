@@ -12,11 +12,13 @@ const WaitListStatus = {
   "ESPERA": "ESPERA"
 };
 
-const { Client, WaitList } = initSchema(schema);
+const { Client, WaitList, Hospital, Doctor } = initSchema(schema);
 
 export {
   Client,
   WaitList,
+  Hospital,
+  Doctor,
   SexType,
   WaitListStatus
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Dropdown from './Dropdown';
 const SideBar = () => {
 	return (
@@ -8,44 +9,44 @@ const SideBar = () => {
 			</div>
 			<ul className="flex  justify-center flex-col ">
 				<li className="">
-					<a
-						href="https://www.npmjs.com/package/react-modal"
+					<Link
+						to="/"
 						className="text-base  block  transition duration-500 ease-in-out  hover:bg-gray-500  transform"
 					>
 						Inicio
-					</a>
+					</Link>
 				</li>
 				<li>
-					<a
-						href="https://www.npmjs.com/package/react-modal"
+					<Link
+						to="/Clients"
 						className="text-base  block  transition duration-500 ease-in-out  hover:bg-gray-500  transform"
 					>
 						Clientes
-					</a>
+					</Link>
 				</li>
 				<li>
-					<a
-						href="https://www.npmjs.com/package/react-modal"
-						className="text-base  block transition duration-500 ease-in-out  hover:bg-gray-500  transform"
+					<Link
+						to="/Medicine"
+						className="text-base  block  transition duration-500 ease-in-out  hover:bg-gray-500  transform"
 					>
 						Medicamentos
-					</a>
+					</Link>
 				</li>
 				<li>
-					<a
-						href="https://www.npmjs.com/package/react-modal"
-						className="text-base  block transition duration-500 ease-in-out  hover:bg-gray-500  transform"
+					<Link
+						to="/Configuration"
+						className="text-base  block  transition duration-500 ease-in-out  hover:bg-gray-500  transform"
 					>
-						Configuración
-					</a>
+						Configuracion
+					</Link>
 				</li>
 				<li>
-					<a
-						href="https://www.npmjs.com/package/react-modal"
-						className="text-base  block transition duration-500 ease-in-out  hover:bg-gray-500  transform"
+					<Link
+						to="/Help"
+						className="text-base  block  transition duration-500 ease-in-out  hover:bg-gray-500  transform"
 					>
 						Ayuda
-					</a>
+					</Link>
 				</li>
 			</ul>
 		</div>

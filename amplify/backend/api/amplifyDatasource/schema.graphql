@@ -33,3 +33,13 @@ enum SexType {
   FEMENINO
   MASCULINO
 }
+
+type Hospital @model {
+	id: ID!
+	name: String!
+}
+
+type Doctor @model {
+	id: ID!
+	name: String!
+}

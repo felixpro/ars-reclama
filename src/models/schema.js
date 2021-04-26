@@ -162,6 +162,60 @@ export const schema = {
                     "properties": {}
                 }
             ]
+        },
+        "Hospital": {
+            "name": "Hospital",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "Hospitals",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                }
+            ]
+        },
+        "Doctor": {
+            "name": "Doctor",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "Doctors",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                }
+            ]
         }
     },
     "enums": {
@@ -181,5 +235,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "d5a58bc38ccf31ccb5aa20bb0b492bf6"
+    "version": "e01e2b6624fa63c9ee7b6de22c14d879"
 };

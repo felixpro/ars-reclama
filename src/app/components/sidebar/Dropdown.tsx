@@ -1,22 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { HospitalsContext } from '../../context/hospital-context';
+import { DoctorsContext } from '../../context/doctor-context';
 
 const loggedUser = {
 	doctor: true,
 };
-
-const hospitals = [
-	{ name: 'La altagracia' },
-	{ name: 'Villa nueva' },
-	{ name: 'Los monglares' },
-	{ name: 'Los faroles' },
-];
-
-const doctors = [
-	{ name: 'Gustavo mejia' },
-	{ name: 'Felix Pujols' },
-	{ name: 'Juan de la cruz' },
-	{ name: 'Lucas bandorti' },
-];
 
 interface IactualOption {
 	name: string;
@@ -30,24 +18,25 @@ type ItypeOption = typeOption[];
 const Dropdown = () => {
 	const [actualOption, setActualOption] = useState<IactualOption>([]);
 	const [options, setOptions] = useState<ItypeOption>([]);
+	const HospitalsArray = useContext(HospitalsContext).hospitals;
+	const DoctorsArray = useContext(DoctorsContext).doctors;
 
 	useEffect(() => {
 		// Validate logged user
 		if (loggedUser.doctor === false) {
-			setActualOption(doctors[0]);
-			setOptions(doctors);
+			setActualOption(DoctorsArray[0]);
+			setOptions(DoctorsArray);
 		} else {
-			setActualOption(hospitals[0]);
-			setOptions(hospitals);
+			setActualOption(HospitalsArray[0]);
+			setOptions(HospitalsArray);
 		}
 	}, []);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
 		e.preventDefault();
-		// update Actual option
 		setActualOption({ name: (e.target as HTMLInputElement).value });
 
-		// update context
+		// update context with new value
 	};
 
 	return (

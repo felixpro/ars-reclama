@@ -40,3 +40,17 @@ export declare class WaitList {
   constructor(init: ModelInit<WaitList>);
   static copyOf(source: WaitList, mutator: (draft: MutableModel<WaitList>) => MutableModel<WaitList> | void): WaitList;
 }
+
+export declare class Hospital {
+  readonly id: string;
+  readonly name: string;
+  constructor(init: ModelInit<Hospital>);
+  static copyOf(source: Hospital, mutator: (draft: MutableModel<Hospital>) => MutableModel<Hospital> | void): Hospital;
+}
+
+export declare class Doctor {
+  readonly id: string;
+  readonly name: string;
+  constructor(init: ModelInit<Doctor>);
+  static copyOf(source: Doctor, mutator: (draft: MutableModel<Doctor>) => MutableModel<Doctor> | void): Doctor;
+}
