@@ -56,14 +56,12 @@
         "react": "^16.13.1",
         "react-autosuggest": "^10.1.0",
         "react-dom": "^16.13.1",
-        "react-modal": "^3.13.1",
-        "react-router-dom": "^5.2.0",
-        "react-search-autocomplete": "^5.0.3",
-        "tailwindcss": "^1.6.1"
+        "react-router-dom": "^5.2.0"
     },
     "devDependencies": {
         "@babel/plugin-syntax-dynamic-import": "^7.8.3",
         "@fullhuman/postcss-purgecss": "^2.3.0",
+        "@tailwindcss/postcss7-compat": "^2.1.2",
         "@types/node": "^14.0.27",
         "@types/react": "^16.9.44",
         "@types/react-dom": "^16.9.8",
@@ -85,7 +83,9 @@
         "inquirer": "^6.5.1",
         "lint-staged": "^10.2.11",
         "parcel-bundler": "^1.12.4",
+        "postcss": "^7.0.35",
         "prettier": "^2.0.5",
+        "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.2",
         "typescript": "^3.9.7",
         "wait-on": "^5.1.0"
     }
