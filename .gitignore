@@ -3,6 +3,7 @@ node_modules
 dist
 build
 package-lock.json
+.DS_Store
 
 #amplify
 amplify/\#current-cloud-backend
