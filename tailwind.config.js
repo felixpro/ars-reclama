@@ -1,12 +1,7 @@
 module.exports = {
 	purge: false,
 	theme: {
-		extend: {
-			width: {
-				section2m: '427px',
-				sectionSearchInput: '6.75rem',
-			},
-		},
+		extend: {},
 		screens: {
 			'2sm': '973px',
 			'2lg': '1155px',
