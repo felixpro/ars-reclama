@@ -1,21 +1,26 @@
 import React, { useContext } from 'react';
 import { ClientsContext } from '../../context/client-context';
 import addIcon from '../../../assets/images/icono_agregar.svg';
-import searchIcon from '../../../assets/images/icono_buscar.svg';
+import SearchInput from '../searchInput/SearchInput';
 
 const Clients = () => {
 	const clientsContext = useContext(ClientsContext);
 
 	return (
-		<div className="flex flex-row p-3">
-			<div className="flex flex-row pl-9 pt-5 pr-8 pb-5 rounded-lg border-0 bg-white-section">
+		<div className="flex flex-row">
+			<div className="flex flex-row m-3 pl-9 pt-5 pr-8 pb-5 rounded-lg border-0 bg-white-section w-427 m-42">
 				<span className="mr-24" style={{ fontFamily: 'Raleway-Bold' }}>
 					Clientes
 				</span>
 				<img alt="" src={addIcon} className="mr-4" />
-				<img alt="" src={searchIcon} className="mr-2" />
-
-				<input type="text" placeholder="Buscar cliente" className="w-28" />
+				<SearchInput />
+			</div>
+			<div className="flex flex-row m-3 pl-9 pt-5 pr-8 pb-5 rounded-lg border-0 bg-white-section w-427 m-42">
+				<span className="mr-24" style={{ fontFamily: 'Raleway-Bold' }}>
+					Clientes
+				</span>
+				<img alt="" src={addIcon} className="mr-4" />
+				<SearchInput />
 			</div>
 			<ul>
 				{clientsContext.clients?.map((client) => (

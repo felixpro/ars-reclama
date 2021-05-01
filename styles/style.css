@@ -6,3 +6,12 @@
     font-family: 'Raleway-Bold';
     src: url("../src/assets/fonts/Raleway-Bold.ttf") format("truetype");
 }
+
+@layer utilities {
+    .w-427 {
+        width: 427px;
+    }
+    .m-42 {
+        margin: 42px;
+    }
+}

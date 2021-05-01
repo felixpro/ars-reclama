@@ -1,0 +1,4 @@
+.SectionCell {
+    display: flex;
+    flex-direction: row;
+}

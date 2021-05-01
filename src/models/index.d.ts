@@ -29,6 +29,7 @@ export declare class Client {
   readonly addressNumber?: number;
   readonly neighborhood?: string;
   readonly city?: string;
+  readonly bloodType?: string;
   constructor(init: ModelInit<Client>);
   static copyOf(source: Client, mutator: (draft: MutableModel<Client>) => MutableModel<Client> | void): Client;
 }

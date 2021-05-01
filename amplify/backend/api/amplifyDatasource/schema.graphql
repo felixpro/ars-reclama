@@ -15,6 +15,7 @@ type Client @model {
   addressNumber: Int
   neighborhood: String
   city: String
+  bloodType: String
 }
 
 type WaitList @model {

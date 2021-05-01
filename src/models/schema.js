@@ -116,6 +116,13 @@ export const schema = {
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
+                },
+                "bloodType": {
+                    "name": "bloodType",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -181,5 +188,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "d5a58bc38ccf31ccb5aa20bb0b492bf6"
+    "version": "30168a0be9474fd4932392f1ac29d021"
 };
