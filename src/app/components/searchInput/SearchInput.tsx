@@ -8,11 +8,12 @@ interface SearchInputProps {
 const SearchInput: React.FC<SearchInputProps> = (props) => {
 	return (
 		<>
-			<img alt="" src={searchIcon} className="mr-2" />
+			<img alt="" src={searchIcon} className="mr-2.5" />
 			<input
 				type="text"
 				placeholder="Buscar cliente"
 				className="w-28"
+				style={{ fontFamily: 'Raleway-SemiBold' }}
 				onChange={(event) => {
 					if (props.onChange) {
 						props.onChange(event.target.value);
