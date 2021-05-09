@@ -5,6 +5,7 @@ import HospitalContextProvider from './app/context/hospital-context';
 import DoctorContextProvider from './app/context/doctor-context';
 
 import Home from './app/pages/Home';
+
 import Clients from './app/pages/Clients';
 import Configuration from './app/pages/Configuration';
 import Medicine from './app/pages/Medicine';
