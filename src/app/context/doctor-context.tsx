@@ -7,10 +7,10 @@ interface DoctorContextProps {
 
 // Create interface for hospital object
 const doctorsData = [
-	{ name: 'Gustavo mejia', id: '0' },
-	{ name: 'Felix Pujols', id: '1' },
-	{ name: 'Juan de la cruz', id: '2' },
-	{ name: 'Lucas bandorti', id: '3' },
+	{ label: 'Gustavo Me', value: '0' },
+	{ label: 'Felix Pu', value: '1' },
+	{ label: 'Juan', value: '2' },
+	{ label: 'Lucas ban', value: '3' },
 ];
 
 export const DoctorsContext = React.createContext<Partial<DoctorContextProps>>({});

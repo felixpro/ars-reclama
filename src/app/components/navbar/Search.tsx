@@ -5,20 +5,20 @@ import Autosuggest from 'react-autosuggest';
 const languages = [
 	{
 		name: 'Felix Pujols',
-		year: 1972,
+		id: 1,
 	},
 	{
 		name: 'Elm',
-		year: 2012,
+		id: 2,
 	},
 	{
 		name: 'Elmawesrtf',
-		year: 2012,
+		id: 3,
 	},
 ];
 
 // Teach Autosuggest how to calculate suggestions for any given input value.
-const getSuggestions = (value) => {
+const getSuggestions = (value: string) => {
 	const inputValue = value.trim().toLowerCase();
 	const inputLength = inputValue.length;
 
@@ -30,10 +30,10 @@ const getSuggestions = (value) => {
 // When suggestion is clicked, Autosuggest needs to populate the input
 // based on the clicked suggestion. Teach Autosuggest how to calculate the
 // input value for every given suggestion.
-const getSuggestionValue = (suggestion) => suggestion.name;
+const getSuggestionValue = (suggestion: Record<string, any>) => suggestion.name;
 
 // Use your imagination to render suggestions.
-const renderSuggestion = (suggestion) => <div>{suggestion.name}</div>;
+const renderSuggestion = (suggestion: Record<string, any>) => <div>{suggestion.name}</div>;
 
 class Search extends React.Component {
 	constructor() {
@@ -76,21 +76,33 @@ class Search extends React.Component {
 
 		// Autosuggest will pass through all these props to the input.
 		const inputProps = {
-			placeholder: 'Type a programming language',
+			placeholder: 'Buscar',
 			value,
 			onChange: this.onChange,
 		};
 
 		// Finally, render it!
 		return (
-			<Autosuggest
-				suggestions={suggestions}
-				onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-				onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-				getSuggestionValue={getSuggestionValue}
-				renderSuggestion={renderSuggestion}
-				inputProps={inputProps}
-			/>
+			<div className=" sidebar-search-form flex justify-start items-center w-44 bg-gray-200 pl-4 pr-2 rounded-xl h-11">
+				<div className="mr-3">
+					<svg width="21" height="22" className="fill-current">
+						<path
+							d="M8.79883 17.5139C10.4609 17.5139 12.0107 17.031 13.3247 16.2L17.8169 20.6921C18.1426 21.0291 18.5806 21.1863 19.041 21.1863C20.0181 21.1863 20.7368 20.4338 20.7368 19.468C20.7368 19.03 20.5796 18.592 20.2539 18.2551L15.7954 13.7966C16.7163 12.449 17.2441 10.8206 17.2441 9.0686C17.2441 4.43042 13.4482 0.623291 8.79883 0.623291C4.17188 0.623291 0.364746 4.41919 0.364746 9.0686C0.364746 13.718 4.16064 17.5139 8.79883 17.5139ZM8.79883 15.0769C5.5083 15.0769 2.80176 12.3704 2.80176 9.0686C2.80176 5.76685 5.5083 3.0603 8.79883 3.0603C12.1006 3.0603 14.8071 5.76685 14.8071 9.0686C14.8071 12.3704 12.1006 15.0769 8.79883 15.0769Z"
+							fill="#676A6E"
+						/>
+					</svg>
+				</div>
+				<div className="searchInput">
+					<Autosuggest
+						suggestions={suggestions}
+						onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+						onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+						getSuggestionValue={getSuggestionValue}
+						renderSuggestion={renderSuggestion}
+						inputProps={inputProps}
+					/>
+				</div>
+			</div>
 		);
 	}
 }
