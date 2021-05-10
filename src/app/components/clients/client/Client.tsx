@@ -14,10 +14,7 @@ interface ClientProps {
 const ClientFC: React.FC<ClientProps> = (props) => {
 	return (
 		<>
-			<div
-				className="flex flex-row pl-9 pt-5 pr-8 pb-5"
-				style={{ borderBottomColor: '#EDF3F1' }}
-			>
+			<div className="section-cell" style={{ borderBottomColor: '#EDF3F1' }}>
 				<img alt="" src={props.image} className="mr-6" />
 				<div className="flex flex-col mr-24">
 					<span style={{ fontFamily: 'Raleway-Bold', fontSize: '16px' }}>
@@ -37,7 +34,7 @@ const ClientFC: React.FC<ClientProps> = (props) => {
 				<img alt="" src={editIcon} className="mr-8" />
 				<img alt="" src={shareIcon} />
 			</div>
-			<div className=" border-b-2 ml-9" style={{ borderBottomColor: '#EDF3F1' }} />
+			<div className="border-b-2 ml-9" style={{ borderBottomColor: '#EDF3F1' }} />
 		</>
 	);
 };

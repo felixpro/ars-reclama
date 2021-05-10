@@ -16,13 +16,20 @@ type Client @model {
   neighborhood: String
   city: String
   bloodType: String
+  healthInsurance: HealthInsurance;
 }
 
-type WaitList @model {
+type WaitingList @model {
   id: ID!
   client: Client
   status: WaitListStatus
   positionNumber: Int
+}
+
+type HealthInsurance {
+  id: ID!
+  name: String
+  imageName: String
 }
 
 enum WaitListStatus {
