@@ -14,6 +14,21 @@ module.exports = {
 			white: {
 				section: '#FFFFFF',
 			},
+			mountainMeadow: {
+				default: '#17CB9A',
+			},
+			gallery: {
+				default: '#EFEFEF',
+			},
+			black: {
+				default: '#000000',
+			},
+			pigeonPost: {
+				default: '#5552AD',
+			},
+			glacier: {
+				default: '#84BBC7',
+			},
 		},
 	},
 };

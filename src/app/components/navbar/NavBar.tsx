@@ -22,7 +22,7 @@ const NavBar: React.FC<INavbar> = ({ SetsidebarToggle, sidebarToggle, pagePath }
 	};
 
 	return (
-		<div className="flex justify-between items-center pr-10 bg-white pt-3.5 pb-3.5 2sm:ml-0.5 mb-0.5">
+		<div className="flex justify-between items-center pr-10 bg-white-section pt-3.5 pb-3.5 2sm:ml-0.5 mb-0.5">
 			<div className="flex items-center">
 				<button className="block 2sm:hidden pl-7" onClick={() => handleToggle()}>
 					<svg width="26" height="17">
@@ -35,7 +35,7 @@ const NavBar: React.FC<INavbar> = ({ SetsidebarToggle, sidebarToggle, pagePath }
 					<p
 						className={` ml-6 2sm:ml-20  h-6 text-lg ${
 							pagePath.path1 !== null
-								? 'border-b-2 border-green-500  text-green-500 mb-1'
+								? 'border-b-2 border-green-500  text-mountainMeadow-default mb-1'
 								: null
 						}   `}
 					>

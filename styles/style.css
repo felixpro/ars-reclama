@@ -4,11 +4,29 @@
 
 @font-face {
 	font-family: 'Raleway-Bold';
-	src: url('../src/assets/fonts/Raleway-Bold.ttf') format('truetype');
+	src: url('../src/assets/fonts/sf/SF-Compact-Display-Bold.otf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Raleway-Regular';
+	src: url('../src/assets/fonts/sf/SF-Compact-Display-Regular.otf') format('truetype');
+}
+
+.outline-none {
+	outline: none !important;
+}
+
+button,
+input {
+	outline: none !important;
 }
 
 body {
 	background-color: #e5e5e5;
+}
+
+.newCustomer-modal-btn {
+	background: linear-gradient(296.45deg, #7f00ff -5.29%, #e100ff 121.02%);
 }
 
 .react-autosuggest__input {

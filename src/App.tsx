@@ -25,6 +25,7 @@ export const App = () => {
 	const [sidebarToggle, SetsidebarToggle] = useState(false);
 	const [pagePath, SetPagePath] = useState<Ipath>(pathInitialState);
 
+
 	const handlePath = (principal: string | null, path1: string | null) => {
 		// Verify what variable was change before add changes to state
 		SetPagePath({
@@ -40,14 +41,15 @@ export const App = () => {
 					<Router>
 						<div className="relative min-h-screen flex">
 							<div
-								className={` absolute -left-60 2sm:static transform transition-transform duration-500 ease-in-out  ${
-									sidebarToggle ? 'translate-x-60' : 'translate-x-0'
+								className={` absolute -left-60 2sm:static  duration-500 ease-in-out 2sm:translate-x-0 2sm:transform-none ${
+									sidebarToggle ? 'transform translate-x-60' : ''
 								}`}
 							>
 								<SideBar
 									sidebarToggle={sidebarToggle}
 									SetsidebarToggle={SetsidebarToggle}
 									SetPagePath={SetPagePath}
+									pagePath={pagePath}
 								/>
 							</div>
 
