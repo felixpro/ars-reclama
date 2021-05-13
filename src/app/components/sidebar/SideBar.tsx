@@ -23,7 +23,7 @@ const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
 	};
 
 	return (
-		<div className="relative min-h-screen flex ">
+		<div className="relative min-h-screen flex sidebar-container ">
 			<div className="bg-white-section text-blue w-60">
 				<button
 					className="block 2sm:hidden flex justify-end w-full pr-3.5 pt-3.5"
@@ -50,7 +50,7 @@ const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
 							<Link
 								to="/"
 								onClick={() => handleClick({ principal: 'Inicio', path1: null })}
-								className={`font-RalewayRegular  ${
+								className={`font-RalewayRegular  bgHoverLink  ${
 									pagePath.principal === 'Inicio'
 										? 'text-mountainMeadow-default'
 										: 'text-black-default'
@@ -75,7 +75,7 @@ const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
 							<Link
 								to="/Clients"
 								onClick={() => handleClick({ principal: 'Clientes', path1: null })}
-								className={`font-RalewayRegular ${
+								className={`font-RalewayRegular  bgHoverLink ${
 									pagePath.principal === 'Clientes'
 										? 'text-mountainMeadow-default'
 										: 'text-black-default'
@@ -101,7 +101,7 @@ const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
 								onClick={() =>
 									handleClick({ principal: 'Medicamentos', path1: null })
 								}
-								className={`font-RalewayRegular ${
+								className={`font-RalewayRegular  bgHoverLink ${
 									pagePath.principal === 'Medicamentos'
 										? 'text-mountainMeadow-default'
 										: 'text-black-default'
@@ -127,7 +127,7 @@ const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
 								onClick={() =>
 									handleClick({ principal: 'Configuracion', path1: null })
 								}
-								className={`font-RalewayRegular ${
+								className={`font-RalewayRegular  bgHoverLink ${
 									pagePath.principal === 'Configuracion'
 										? 'text-mountainMeadow-default'
 										: 'text-black-default'
@@ -151,7 +151,7 @@ const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
 							<Link
 								to="/Help"
 								onClick={() => handleClick({ principal: 'Ayuda', path1: null })}
-								className={`font-RalewayRegular ${
+								className={`font-RalewayRegular  bgHoverLink ${
 									pagePath.principal === 'Ayuda'
 										? 'text-mountainMeadow-default'
 										: 'text-black-default'
