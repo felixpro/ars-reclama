@@ -41,7 +41,7 @@ export const App = () => {
 					<Router>
 						<div className="relative min-h-screen flex">
 							<div
-								className={` absolute -left-60 2sm:static  duration-500 ease-in-out 2sm:translate-x-0 2sm:transform-none ${
+								className={` absolute -left-60 2sm:static  duration-500 ease-in-out  2sm:transform-none ${
 									sidebarToggle ? 'transform translate-x-60' : ''
 								}`}
 							>

@@ -22,6 +22,11 @@ const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
 		SetsidebarToggle(false);
 	};
 
+	// If the user resize the app close the sidebar if it's open
+	window.onresize = function () {
+		SetsidebarToggle(false);
+	};
+
 	return (
 		<div className="relative min-h-screen flex sidebar-container ">
 			<div className="bg-white-section text-blue w-60">
@@ -29,7 +34,7 @@ const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
 					className="block 2sm:hidden flex justify-end w-full pr-3.5 pt-3.5"
 					onClick={() => SetsidebarToggle(false)}
 				>
-					<img src={close} alt="" className="" />
+					<img src={close} alt="" />
 				</button>
 
 				<div className="flex justify-center">
