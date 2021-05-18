@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import Dropdown from './Dropdown';
 import arsLogo from '../../../assets/images/logo_arsreclama.svg';
-import close from '../../../assets/images/close.png';
 
 interface Ipath {
 	principal: string;
@@ -34,7 +33,18 @@ const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
 					className="block 2sm:hidden flex justify-end w-full pr-3.5 pt-3.5"
 					onClick={() => SetsidebarToggle(false)}
 				>
-					<img src={close} alt="" />
+					<svg
+						width="14"
+						height="14"
+						viewBox="0 0 14 14"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							d="M0.78613 2.51651L5.05501 6.78539L0.78613 11.0543C0.292398 11.548 0.284802 12.3608 0.78613 12.8621C1.27986 13.3558 2.09262 13.3482 2.58635 12.8545L6.85523 8.58561L11.1241 12.8545C11.6102 13.3406 12.423 13.3482 12.9167 12.8545C13.4105 12.3608 13.4029 11.548 12.9167 11.0619L8.64786 6.79299L12.9167 2.52411C13.4029 2.03797 13.4105 1.22521 12.9167 0.731481C12.4154 0.230154 11.6027 0.23775 11.1165 0.723885L6.84764 4.99277L2.57876 0.723885C2.09262 0.23775 1.27986 0.230154 0.78613 0.723885C0.292398 1.21762 0.299994 2.03038 0.78613 2.51651Z"
+							fill="#80868B"
+						/>
+					</svg>
 				</button>
 
 				<div className="flex justify-center">
@@ -55,11 +65,11 @@ const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
 							<Link
 								to="/"
 								onClick={() => handleClick({ principal: 'Inicio', path1: null })}
-								className={`font-RalewayRegular  bgHoverLink  ${
+								className={`raleway-font not-italic font-normal  bgHoverLink  ${
 									pagePath.principal === 'Inicio'
-										? 'text-mountainMeadow-default'
+										? 'text-mountainMeadow-default font-medium sidebarBG'
 										: 'text-black-default'
-								}   hover:text-mountainMeadow-default  flex block transition duration-500 ease-in-out  hover:bg-gray-500  transform pb-3 pt-3 pl-10`}
+								}   hover:text-mountainMeadow-default  flex block transition duration-500 ease-in-out  hover:bg-gray-500  transform pb-6 pt-6 pl-10 `}
 							>
 								<svg
 									width="26"
@@ -80,18 +90,18 @@ const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
 							<Link
 								to="/Clients"
 								onClick={() => handleClick({ principal: 'Clientes', path1: null })}
-								className={`font-RalewayRegular  bgHoverLink ${
+								className={`raleway-font not-italic font-normal  bgHoverLink ${
 									pagePath.principal === 'Clientes'
-										? 'text-mountainMeadow-default'
+										? 'text-mountainMeadow-default font-medium sidebarBG'
 										: 'text-black-default'
-								}   hover:text-mountainMeadow-default  flex block transition duration-500 ease-in-out  hover:bg-gray-500  transform pb-3 pt-3 pl-10`}
+								}   hover:text-mountainMeadow-default  flex block transition duration-500 ease-in-out  hover:bg-gray-500  transform pb-6 pt-6 pl-10 `}
 							>
 								<svg
 									width="30"
 									height="19"
-									className={` fill-current mr-5 ${
+									className={` fill-current mr-4 ${
 										pagePath.principal === 'Clientes'
-											? 'text-mountainMeadow-default '
+											? 'text-mountainMeadow-default'
 											: 'text-pigeonPost-default '
 									}`}
 								>
@@ -106,18 +116,18 @@ const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
 								onClick={() =>
 									handleClick({ principal: 'Medicamentos', path1: null })
 								}
-								className={`font-RalewayRegular  bgHoverLink ${
+								className={`raleway-font not-italic font-normal  bgHoverLink ${
 									pagePath.principal === 'Medicamentos'
-										? 'text-mountainMeadow-default'
+										? 'text-mountainMeadow-default font-medium sidebarBG'
 										: 'text-black-default'
-								}   hover:text-mountainMeadow-default  flex block transition duration-500 ease-in-out  hover:bg-gray-500  transform pb-3 pt-3 pl-10`}
+								}   hover:text-mountainMeadow-default  flex block transition duration-500 ease-in-out  hover:bg-gray-500  transform pb-6 pt-6 pl-10 `}
 							>
 								<svg
 									width="27"
 									height="21"
 									className={` fill-current mr-5 ${
 										pagePath.principal === 'Medicamentos'
-											? 'text-mountainMeadow-default '
+											? 'text-mountainMeadow-default'
 											: 'text-pigeonPost-default '
 									}`}
 								>
@@ -132,11 +142,11 @@ const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
 								onClick={() =>
 									handleClick({ principal: 'Configuracion', path1: null })
 								}
-								className={`font-RalewayRegular  bgHoverLink ${
+								className={`raleway-font not-italic font-normal  bgHoverLink ${
 									pagePath.principal === 'Configuracion'
-										? 'text-mountainMeadow-default'
+										? 'text-mountainMeadow-default font-medium sidebarBG'
 										: 'text-black-default'
-								}   hover:text-mountainMeadow-default  flex block transition duration-500 ease-in-out  hover:bg-gray-500  transform pb-3 pt-3 pl-10`}
+								}   hover:text-mountainMeadow-default  flex block transition duration-500 ease-in-out  hover:bg-gray-500  transform pb-6 pt-6 pl-10 `}
 							>
 								<svg
 									width="24"
@@ -156,11 +166,11 @@ const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
 							<Link
 								to="/Help"
 								onClick={() => handleClick({ principal: 'Ayuda', path1: null })}
-								className={`font-RalewayRegular  bgHoverLink ${
+								className={`raleway-font not-italic font-normal  bgHoverLink ${
 									pagePath.principal === 'Ayuda'
-										? 'text-mountainMeadow-default'
+										? 'text-mountainMeadow-default font-medium sidebarBG'
 										: 'text-black-default'
-								}   hover:text-mountainMeadow-default  flex block transition duration-500 ease-in-out  hover:bg-gray-500  transform pb-3 pt-3 pl-10`}
+								}   hover:text-mountainMeadow-default  flex block transition duration-500 ease-in-out  hover:bg-gray-500  transform pb-6 pt-6 pl-10 `}
 							>
 								<svg
 									width="23"

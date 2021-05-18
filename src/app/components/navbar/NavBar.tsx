@@ -33,10 +33,10 @@ const NavBar: React.FC<INavbar> = ({ SetsidebarToggle, sidebarToggle, pagePath }
 				</button>
 				<div className="flex items-center">
 					<p
-						className={` ml-6 2sm:ml-20  h-6 text-lg ${
+						className={` ml-6 2sm:ml-10  h-6 text-lg  raleway-font font-bold ${
 							pagePath.path1 !== null
 								? 'border-b-2 border-green-500  text-mountainMeadow-default mb-1'
-								: null
+								: 'text-azulMarino-default '
 						}   `}
 					>
 						{pagePath.principal}

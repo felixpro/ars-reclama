@@ -16,7 +16,7 @@ type ItypeOption = typeOption[];
 const Dropdown = () => {
 	const [actualOption, setActualOption] = useState<IactualOption>([]);
 	const [options, setOptions] = useState<ItypeOption>([]);
-	const [doctorState, SetDoctorState] = useState<boolean>(false);
+	const [doctorState, SetDoctorState] = useState<boolean>(true);
 
 	const HospitalsArray = useContext(HospitalsContext).hospitals;
 	const DoctorsArray = useContext(DoctorsContext).doctors;
@@ -43,12 +43,12 @@ const Dropdown = () => {
 							type="checkbox"
 							onChange={() => methods.addItem(option)}
 							checked={state.values.indexOf(option) !== -1}
-							className="checkmark "
+							className="checkmark text-azulMarino-default"
 							id="inputIcon"
 						/>
 
 						<span className="iconContainer"> </span>
-						<p>{option.label}</p>
+						<p className="text-azulMarino-default raleway-font">{option.label}</p>
 					</div>
 				))}
 				<button className="pt-5 pb-4">Cerrar Session</button>
@@ -59,13 +59,13 @@ const Dropdown = () => {
 
 	return (
 		<div className="sideBard-dropdown">
-			<p className="text-center">
+			<p className="text-center raleway-font font-medium">
 				Selecciona {doctorState ? <span> hospital</span> : <span> el doctor</span>}
 			</p>
-			<div className="flex justify-center pt-6">
+			<div className="flex justify-center pt-1MNPQWT">
 				<div className="w-48 drop-button-container rounded-t-lg p-2.5">
 					<Select
-						className="input-select "
+						className="input-select raleway-font font-medium"
 						placeholder="Clickme"
 						onChange={() => undefined}
 						values={[actualOption]}

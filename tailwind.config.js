@@ -24,10 +24,13 @@ module.exports = {
 				default: '#000000',
 			},
 			pigeonPost: {
-				default: '#5552AD',
+				default: '#BBBADE',
 			},
 			glacier: {
 				default: '#84BBC7',
+			},
+			azulMarino: {
+				default: '#3F48AD',
 			},
 		},
 	},

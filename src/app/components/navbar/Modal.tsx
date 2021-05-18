@@ -30,7 +30,7 @@ const ModalView = () => {
 	return (
 		<div>
 			<button
-				className="newCustomer-modal-btn flex items-center justify-center w-48  rounded-xl text-white-section pt-3 pb-3 mr-6 "
+				className="raleway-font font-medium newCustomer-modal-btn flex items-center justify-center w-48  rounded-xl text-white-section pt-3 pb-3 mr-6 "
 				onClick={openModal}
 			>
 				<svg width="17" height="17" className="fill-current mr-2.5">

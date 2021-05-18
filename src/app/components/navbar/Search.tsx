@@ -83,7 +83,7 @@ class Search extends React.Component {
 
 		// Finally, render it!
 		return (
-			<div className=" sidebar-search-form flex justify-start items-center w-44 bg-gallery-default pl-4 pr-2 rounded-xl h-11">
+			<div className=" sidebar-search-form flex justify-start items-center w-44 bg-gallery-default pl-4 pr-2 rounded-xl h-12">
 				<div className="mr-3">
 					<svg width="21" height="22" className="fill-current">
 						<path
@@ -92,7 +92,7 @@ class Search extends React.Component {
 						/>
 					</svg>
 				</div>
-				<div className="searchInput">
+				<div className="searchInput raleway-font">
 					<Autosuggest
 						suggestions={suggestions}
 						onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
