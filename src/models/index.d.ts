@@ -5,12 +5,18 @@ export enum SexType {
   MASCULINO = "MASCULINO"
 }
 
-export enum WaitListStatus {
+export enum WaitingListStatus {
   CONSULTA = "CONSULTA",
-  ESPERA = "ESPERA"
+  ESPERA = "ESPERA",
+  TERMINADA = "TERMINADA"
 }
 
-
+export declare class HealthInsurance {
+  readonly id: string;
+  readonly name?: string;
+  readonly imageName?: string;
+  constructor(init: ModelInit<HealthInsurance>);
+}
 
 export declare class Client {
   readonly id: string;
@@ -30,14 +36,18 @@ export declare class Client {
   readonly neighborhood?: string;
   readonly city?: string;
   readonly bloodType?: string;
+  readonly healthInsurance?: HealthInsurance;
+  readonly profileImage?: string;
   constructor(init: ModelInit<Client>);
   static copyOf(source: Client, mutator: (draft: MutableModel<Client>) => MutableModel<Client> | void): Client;
 }
 
-export declare class WaitList {
+export declare class WaitingList {
   readonly id: string;
-  readonly status?: WaitListStatus | keyof typeof WaitListStatus;
-  readonly positionNumber?: number;
-  constructor(init: ModelInit<WaitList>);
-  static copyOf(source: WaitList, mutator: (draft: MutableModel<WaitList>) => MutableModel<WaitList> | void): WaitList;
+  readonly clientId: string;
+  readonly client?: Client;
+  readonly status: WaitingListStatus | keyof typeof WaitingListStatus;
+  readonly positionNumber: number;
+  constructor(init: ModelInit<WaitingList>);
+  static copyOf(source: WaitingList, mutator: (draft: MutableModel<WaitingList>) => MutableModel<WaitingList> | void): WaitingList;
 }

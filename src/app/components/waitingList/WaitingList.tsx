@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import SearchInput from '../../components/searchInput/SearchInput';
 import WaitingListItem from './waitingListItem/WaitingListItem';
+import { WaitingListsContext } from '../../context/waiting-list-context';
 
 const WaitingList = () => {
+	const waitingListsContext = useContext(WaitingListsContext);
+
+	const inProcessWaitingLists = waitingListsContext.waitingLists.filter(
+		(waitingList) => waitingList.status === 'CONSULTA'
+	);
+	const pendingWaitingLists = waitingListsContext.waitingLists.filter(
+		(waitingList) => waitingList.status === 'ESPERA'
+	);
+
+	useEffect(() => {
+		waitingListsContext.fetchWaitingLists();
+	}, []);
+
 	return (
 		<div className="flex flex-col rounded-lg border-0 bg-white-section w-427 h-screen ml-9 mr-42 my-6">
 			<div className="section-cell border-b-2" style={{ borderBottomColor: '#EDF3F1' }}>
@@ -26,7 +40,18 @@ const WaitingList = () => {
 			>
 				En consulta
 			</span>
-			<WaitingListItem status="in progress" includeLineSeparator={false} />
+			{inProcessWaitingLists.map((waitingList, index) => {
+				return (
+					<WaitingListItem
+						key={waitingList.id}
+						status={waitingList.status}
+						positionNumber={waitingList.positionNumber}
+						clientName={waitingList.client?.name}
+						clientHealthInsurrance={waitingList.client?.healthInsurance?.name}
+						includeLineSeparator={index + 1 != inProcessWaitingLists.length}
+					/>
+				);
+			})}
 			<span
 				className="section-cell"
 				style={{
@@ -38,7 +63,18 @@ const WaitingList = () => {
 			>
 				En espera
 			</span>
-			<WaitingListItem status="pending" />
+			{pendingWaitingLists.map((waitingList, index) => {
+				return (
+					<WaitingListItem
+						key={waitingList.id}
+						status={waitingList.status}
+						positionNumber={waitingList.positionNumber}
+						clientName={waitingList.client?.name}
+						clientHealthInsurrance={waitingList.client?.healthInsurance?.name}
+						includeLineSeparator={index + 1 != inProcessWaitingLists.length}
+					/>
+				);
+			})}
 		</div>
 	);
 };

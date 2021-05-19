@@ -4,15 +4,18 @@ import { DataStore } from '@aws-amplify/datastore';
 
 interface ClientContextProps {
 	clients: Client[];
-	fetchClients: () => void;
+	fetchClients: (filterText: string) => void;
 }
 
-export const ClientsContext = React.createContext<Partial<ClientContextProps>>({});
+export const ClientsContext = React.createContext<ClientContextProps>({
+	clients: [],
+	fetchClients: () => null,
+});
 
 const ContextProvider: React.FC = (props) => {
 	const [clients, setClients] = useState<Client[]>([]);
 
-	const fetchClients = async () => {
+	const fetchClients = async (filterText: string) => {
 		try {
 			const clients = await DataStore.query(Client);
 			setClients(clients);

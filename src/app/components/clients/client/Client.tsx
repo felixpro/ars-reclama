@@ -4,9 +4,9 @@ import editIcon from '../../../../assets/images/icono_editar.svg';
 import shareIcon from '../../../../assets/images/icono_compartir.svg';
 
 interface ClientProps {
-	image: string;
-	name: string;
-	bloodType: string;
+	image?: string;
+	name?: string;
+	bloodType?: string;
 	onEdit: (client: Client) => void;
 	onSend: (client: Client) => void;
 }

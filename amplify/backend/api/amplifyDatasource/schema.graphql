@@ -16,14 +16,16 @@ type Client @model {
   neighborhood: String
   city: String
   bloodType: String
-  healthInsurance: HealthInsurance;
+  healthInsurance: HealthInsurance
+  profileImage: String
 }
 
 type WaitingList @model {
   id: ID!
-  client: Client
-  status: WaitListStatus
-  positionNumber: Int
+  clientId: ID!
+  client: Client @connection(fields: ["clientId"])
+  status: WaitingListStatus!
+  positionNumber: Int!
 }
 
 type HealthInsurance {
@@ -32,9 +34,10 @@ type HealthInsurance {
   imageName: String
 }
 
-enum WaitListStatus {
+enum WaitingListStatus {
   CONSULTA
   ESPERA
+  TERMINADA
 }
 
 enum SexType {

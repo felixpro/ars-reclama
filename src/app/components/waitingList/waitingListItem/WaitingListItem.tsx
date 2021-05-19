@@ -1,10 +1,14 @@
 import React from 'react';
 import arrowDownIcon from '../../../../assets/images/arrow-down-icon.svg';
 import removeICon from '../../../../assets/images/remove-icon.svg';
+import { WaitingListStatus } from '../../../../models';
 
 interface WaitingListItemProps {
-	status: string;
+	status: keyof typeof WaitingListStatus;
 	includeLineSeparator?: boolean;
+	positionNumber: number;
+	clientName?: string;
+	clientHealthInsurrance?: string;
 }
 
 const WaitingListItem: React.FC<WaitingListItemProps> = (props) => {
@@ -14,7 +18,7 @@ const WaitingListItem: React.FC<WaitingListItemProps> = (props) => {
 	let buttonBorderColor = '';
 	let buttonTextColor = '';
 
-	if (props.status === 'pending') {
+	if (props.status === 'ESPERA') {
 		orderBackgroundColor = '#3F48AD';
 		buttonBorderWidth = '2px';
 		buttonTextColor = '#6E6D8C';
@@ -39,13 +43,13 @@ const WaitingListItem: React.FC<WaitingListItemProps> = (props) => {
 							color: '#FFFFFF',
 						}}
 					>
-						03
+						{props.positionNumber}
 					</span>
 					<img alt="" src={arrowDownIcon} />
 				</div>
 				<div className="flex flex-col mr-6">
 					<span style={{ fontFamily: 'Raleway-Bold', fontSize: '16px' }}>
-						Abbie Wilson
+						{props.clientName}
 					</span>
 					<span
 						className=" whitespace-nowrap"
@@ -55,7 +59,7 @@ const WaitingListItem: React.FC<WaitingListItemProps> = (props) => {
 							opacity: '59.15%',
 						}}
 					>
-						ARS Humano
+						{props.clientHealthInsurrance}
 					</span>
 				</div>
 				<button
@@ -69,7 +73,7 @@ const WaitingListItem: React.FC<WaitingListItemProps> = (props) => {
 						fontSize: '16px',
 					}}
 				>
-					{props.status === 'pending' ? 'A Consulta' : 'Terminada'}
+					{props.status === 'ESPERA' ? 'A Consulta' : 'Terminada'}
 				</button>
 				<img alt="" src={removeICon} />
 			</div>

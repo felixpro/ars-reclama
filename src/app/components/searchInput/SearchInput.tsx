@@ -12,7 +12,7 @@ const SearchInput: React.FC<SearchInputProps> = (props) => {
 			<input
 				type="text"
 				placeholder="Buscar cliente"
-				className="w-28"
+				className="w-28 outline-none"
 				style={{ fontFamily: 'Raleway-SemiBold' }}
 				onChange={(event) => {
 					if (props.onChange) {

@@ -123,6 +123,22 @@ export const schema = {
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
+                },
+                "healthInsurance": {
+                    "name": "healthInsurance",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "HealthInsurance"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "profileImage": {
+                    "name": "profileImage",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -134,8 +150,8 @@ export const schema = {
                 }
             ]
         },
-        "WaitList": {
-            "name": "WaitList",
+        "WaitingList": {
+            "name": "WaitingList",
             "fields": {
                 "id": {
                     "name": "id",
@@ -144,25 +160,46 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "clientId": {
+                    "name": "clientId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "client": {
+                    "name": "client",
+                    "isArray": false,
+                    "type": {
+                        "model": "Client"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": "id",
+                        "targetName": "clientId"
+                    }
+                },
                 "status": {
                     "name": "status",
                     "isArray": false,
                     "type": {
-                        "enum": "WaitListStatus"
+                        "enum": "WaitingListStatus"
                     },
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "positionNumber": {
                     "name": "positionNumber",
                     "isArray": false,
                     "type": "Int",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 }
             },
             "syncable": true,
-            "pluralName": "WaitLists",
+            "pluralName": "WaitingLists",
             "attributes": [
                 {
                     "type": "model",
@@ -179,14 +216,42 @@ export const schema = {
                 "MASCULINO"
             ]
         },
-        "WaitListStatus": {
-            "name": "WaitListStatus",
+        "WaitingListStatus": {
+            "name": "WaitingListStatus",
             "values": [
                 "CONSULTA",
-                "ESPERA"
+                "ESPERA",
+                "TERMINADA"
             ]
         }
     },
-    "nonModels": {},
-    "version": "30168a0be9474fd4932392f1ac29d021"
+    "nonModels": {
+        "HealthInsurance": {
+            "name": "HealthInsurance",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "imageName": {
+                    "name": "imageName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            }
+        }
+    },
+    "version": "8adfc781190a0f8360b39453ed86482a"
 };

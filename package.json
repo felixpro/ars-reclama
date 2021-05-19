@@ -1,9 +1,8 @@
 {
-    "name": "react-electron-tailwind-typescript-parcel-boilerplate",
-    "description": "boilerplate for react + electron + typescript + tailwind + parcel",
+    "name": "ARSReclama",
+    "description": "",
     "version": "1.0.0",
     "main": "electron.js",
-    "author": "siblanco.dev <hallo@siblanco.dev>",
     "scripts": {
         "start": "concurrently \"npm run react:watch\" \"wait-on -i 100 -s 1 http://localhost:1234 && npm run electron\"",
         "react:watch": "parcel index.html --out-dir build",
