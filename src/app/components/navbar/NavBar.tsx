@@ -60,7 +60,9 @@ const NavBar: React.FC<INavbar> = ({ SetsidebarToggle, sidebarToggle, pagePath }
 								/>
 							</svg>
 
-							<p className="pl-2.5">{pagePath.path1}</p>
+							<p className="pl-2.5 raleway-font font-bold text-azulMarino-default text-lg">
+								{pagePath.path1}
+							</p>
 						</div>
 					) : null}
 				</div>

@@ -18,6 +18,7 @@ const Dropdown = () => {
 	const [options, setOptions] = useState<ItypeOption>([]);
 	const [doctorState, SetDoctorState] = useState<boolean>(true);
 
+
 	const HospitalsArray = useContext(HospitalsContext).hospitals;
 	const DoctorsArray = useContext(DoctorsContext).doctors;
 
@@ -33,11 +34,12 @@ const Dropdown = () => {
 	}, []);
 
 
+
 	const dropdownRenderer = ({ props, state, methods }) => {
 		return (
 			<div className="insideDropdown ">
 				{props.options.map((option) => (
-					<div key={option.value} onClick={() => { setActualOption(option) return methods.addItem(option); }} className=" flex .w-48 pt-2 pb-2">
+					<div  key={option.value} onClick={() => { setActualOption(option) return methods.addItem(option); }} className=" flex .w-48 pt-2 pb-2">
 						<label htmlFor="inputIcon"> </label>
 						<input
 							type="checkbox"
@@ -51,7 +53,7 @@ const Dropdown = () => {
 						<p className="text-azulMarino-default raleway-font">{option.label}</p>
 					</div>
 				))}
-				<button className="pt-5 pb-4">Cerrar Session</button>
+				<button className="pt-5 pb-4 raleway-font font-medium text-azulMarino-default">Cerrar Session</button>
 			</div>
 		);
 	};
@@ -59,21 +61,22 @@ const Dropdown = () => {
 
 	return (
 		<div className="sideBard-dropdown">
-			<p className="text-center raleway-font font-medium">
+			<p className="text-center raleway-font font-medium text-sm text-neutralBlack-default">
 				Selecciona {doctorState ? <span> hospital</span> : <span> el doctor</span>}
 			</p>
-			<div className="flex justify-center pt-1MNPQWT">
-				<div className="w-48 drop-button-container rounded-t-lg p-2.5">
+			<div className="flex justify-center pt-1" >
+				<div className="w-48 drop-button-container rounded-t-lg p-2.5" >
 					<Select
 						className="input-select raleway-font font-medium"
-						placeholder="Clickme"
+						placeholder="Sin selección"
 						onChange={() => undefined}
 						values={[actualOption]}
 						options={options}
 						dropdownRenderer={dropdownRenderer}
+						searchable={false}
+						
 					/>
 				</div>
-
 			</div>
 		</div>
 	);

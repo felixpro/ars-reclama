@@ -32,6 +32,9 @@ module.exports = {
 			azulMarino: {
 				default: '#3F48AD',
 			},
+			neutralBlack: {
+				default: '#676A6E',
+			},
 		},
 	},
 };

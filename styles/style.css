@@ -23,6 +23,9 @@
 	font-style: normal;
 }
 
+.provisional {
+	background:red;
+}
 
 body {
 	background-color: #e5e5e5;
@@ -72,6 +75,27 @@ input {
 	font-weight: 700;
 	color: #3f48ad;
 }
+
+/* Dropdown button icon */
+.sideBard-dropdown .css-1aarvou-DropdownHandleComponent svg {
+	stroke: #3F48AD;
+	stroke-width: 2px;
+	
+}
+.sideBard-dropdown .css-1aarvou-DropdownHandleComponent:hover path {
+	stroke: #3F48AD;
+	stroke-width: 2px;
+}
+
+.sideBard-dropdown .react-dropdown-select-dropdown-handle svg{
+	stroke: #3F48AD;
+	stroke-width: 2px;
+   margin-bottom: 3px;
+
+}
+
+
+
 
 .sideBard-dropdown .checkbox svg {
 	color: #3f48ad;
