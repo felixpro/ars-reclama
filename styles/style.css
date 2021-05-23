@@ -142,13 +142,36 @@ input {
 
 .sidebar-search-form .react-autosuggest__suggestions-container {
 	position: absolute;
-	width: 160px;
-	background: #ffffff;
-	box-shadow: 0px 9px 12px rgba(0, 0, 0, 0.147126);
+	right: 46px;
+	top: 70px;
+
 }
 
 .sidebar-search-form .react-autosuggest__suggestions-container--open {
 	padding: 15px;
-	right: 46px;
-	top: 60px;
+	width: 250px;
+	height: 243px;
+	background: #F5F6FB;
+	box-shadow: 0px 9px 12px rgba(0, 0, 0, 0.147126);
+	border-radius: 10px;
+	border: 2px solid #9CBEB3;
+	overflow-y: scroll;
+}
+
+/* Search home page style*/
+.react-autosuggest__suggestions-container--open::-webkit-scrollbar {
+	width:4px;
+}
+.react-autosuggest__suggestions-container--open::-webkit-scrollbar-track {
+	background:transparent;
+
+	
+}
+.react-autosuggest__suggestions-container--open::-webkit-scrollbar-thumb {
+  background: #C4C4C4;
+}
+
+
+.react-autosuggest__suggestions-container--open::-webkit-scrollbar-button {
+  margin-right: 50px;
 }

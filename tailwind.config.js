@@ -35,6 +35,9 @@ module.exports = {
 			neutralBlack: {
 				default: '#676A6E',
 			},
+			greyWhite: {
+				default: ' #F5F6FB',
+			},
 		},
 	},
 };
