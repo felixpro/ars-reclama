@@ -25,7 +25,6 @@ export const App = () => {
 	const [sidebarToggle, SetsidebarToggle] = useState(false);
 	const [pagePath, SetPagePath] = useState<Ipath>(pathInitialState);
 
-
 	const handlePath = (principal: string | null, path1: string | null) => {
 		// Verify what variable was change before add changes to state
 		SetPagePath({

@@ -4,9 +4,8 @@ import React from 'react';
 const Clients = ({ handlePath }) => {
 	return (
 		<div>
-			<button onClick={() => handlePath(null, 'Juanita Lora')}>add client path</button>
-
 			<h1>Clientes</h1>
+			<button onClick={() => handlePath(null, 'Juanita Lora')}>add client path</button>
 		</div>
 	);
 };

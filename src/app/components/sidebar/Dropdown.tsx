@@ -16,17 +16,17 @@ type ItypeOption = typeOption[];
 const Dropdown = () => {
 	const [actualOption, setActualOption] = useState<IactualOption>([]);
 	const [options, setOptions] = useState<ItypeOption>([]);
-	const [doctorState, SetDoctorState] = useState<boolean>(true);
+	const [doctorState, SetDoctorState] = useState<boolean>(false);
 
 
 	const HospitalsArray = useContext(HospitalsContext).hospitals;
-	const DoctorsArray = useContext(DoctorsContext).doctors;
+	const {doctors, updateActualDoctor} = useContext(DoctorsContext);
 
 	useEffect(() => {
 		// Validate logged user
 		if (doctorState === false) {
-			setActualOption(DoctorsArray[0]);
-			setOptions(DoctorsArray);
+			setActualOption(doctors[0]);
+			setOptions(doctors);
 		} else {
 			setActualOption(HospitalsArray[0]);
 			setOptions(HospitalsArray);

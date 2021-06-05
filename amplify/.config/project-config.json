@@ -1,17 +1,17 @@
 {
-    "projectName": "ARSReclama",
-    "version": "2.0",
-    "frontend": "javascript",
-    "providers": [
-        "awscloudformation"
-    ],
-    "javascript": {
-        "framework": "react",
-        "config": {
-            "SourceDir": "src",
-            "DistributionDir": "build",
-            "BuildCommand": "npm run-script build",
-            "StartCommand": "npm run-script start"
-        }
+  "projectName": "ARSReclama",
+  "version": "3.1",
+  "frontend": "javascript",
+  "providers": [
+    "awscloudformation"
+  ],
+  "javascript": {
+    "framework": "react",
+    "config": {
+      "SourceDir": "src",
+      "DistributionDir": "build",
+      "BuildCommand": "npm run-script build",
+      "StartCommand": "npm run-script start"
     }
+  }
 }
