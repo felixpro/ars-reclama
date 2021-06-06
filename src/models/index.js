@@ -7,18 +7,19 @@ const SexType = {
   "MASCULINO": "MASCULINO"
 };
 
-const WaitingListStatus = {
+const WaitingListItemStatus = {
   "CONSULTA": "CONSULTA",
   "ESPERA": "ESPERA",
   "TERMINADA": "TERMINADA"
 };
 
-const { Client, WaitingList, HealthInsurance } = initSchema(schema);
+const { Client, HealthInsurance, WaitingList, WaitingListItem } = initSchema(schema);
 
 export {
   Client,
+  HealthInsurance,
   WaitingList,
+  WaitingListItem,
   SexType,
-  WaitingListStatus,
-  HealthInsurance
+  WaitingListItemStatus
 };

@@ -3,7 +3,7 @@ type Client @model {
   identificationCard: String
   passport: String
   affiliateNumber: Int
-  name: String
+  name: String!
   cellphoneNumber: String
   email: String
   contractNumber: Int
@@ -16,25 +16,34 @@ type Client @model {
   neighborhood: String
   city: String
   bloodType: String
-  healthInsurance: HealthInsurance
+  healthInsuranceId: ID!
+  healthInsurance: HealthInsurance @connection(fields: ["healthInsuranceId"])
   profileImage: String
 }
 
 type WaitingList @model {
   id: ID!
-  clientId: ID!
-  client: Client @connection(fields: ["clientId"])
-  status: WaitingListStatus!
+  createdAt: String
+  items: [WaitingListItem] @connection(keyName: "byWaitingList", fields: ["id"])
+}
+
+type WaitingListItem @model
+  @key(name: "byWaitingList", fields: ["waitingListID"]) {
+  id: ID!
+  waitingListID: ID!
+  clientID: ID!
+  client: Client @connection(fields: ["clientID"])
+  status: WaitingListItemStatus!
   positionNumber: Int!
 }
 
-type HealthInsurance {
+type HealthInsurance @model {
   id: ID!
-  name: String
+  name: String!
   imageName: String
 }
 
-enum WaitingListStatus {
+enum WaitingListItemStatus {
   CONSULTA
   ESPERA
   TERMINADA

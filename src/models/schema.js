@@ -35,7 +35,7 @@ export const schema = {
                     "name": "name",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "cellphoneNumber": {
@@ -124,14 +124,26 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "healthInsuranceId": {
+                    "name": "healthInsuranceId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "healthInsurance": {
                     "name": "healthInsurance",
                     "isArray": false,
                     "type": {
-                        "nonModel": "HealthInsurance"
+                        "model": "HealthInsurance"
                     },
                     "isRequired": false,
-                    "attributes": []
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": "id",
+                        "targetName": "healthInsuranceId"
+                    }
                 },
                 "profileImage": {
                     "name": "profileImage",
@@ -150,6 +162,40 @@ export const schema = {
                 }
             ]
         },
+        "HealthInsurance": {
+            "name": "HealthInsurance",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "imageName": {
+                    "name": "imageName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "HealthInsurances",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                }
+            ]
+        },
         "WaitingList": {
             "name": "WaitingList",
             "fields": {
@@ -160,8 +206,56 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "clientId": {
-                    "name": "clientId",
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "items": {
+                    "name": "items",
+                    "isArray": true,
+                    "type": {
+                        "model": "WaitingListItem"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "waitingListID"
+                    }
+                }
+            },
+            "syncable": true,
+            "pluralName": "WaitingLists",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                }
+            ]
+        },
+        "WaitingListItem": {
+            "name": "WaitingListItem",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "waitingListID": {
+                    "name": "waitingListID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "clientID": {
+                    "name": "clientID",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
@@ -178,14 +272,14 @@ export const schema = {
                     "association": {
                         "connectionType": "HAS_ONE",
                         "associatedWith": "id",
-                        "targetName": "clientId"
+                        "targetName": "clientID"
                     }
                 },
                 "status": {
                     "name": "status",
                     "isArray": false,
                     "type": {
-                        "enum": "WaitingListStatus"
+                        "enum": "WaitingListItemStatus"
                     },
                     "isRequired": true,
                     "attributes": []
@@ -199,11 +293,20 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "WaitingLists",
+            "pluralName": "WaitingListItems",
             "attributes": [
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byWaitingList",
+                        "fields": [
+                            "waitingListID"
+                        ]
+                    }
                 }
             ]
         }
@@ -216,8 +319,8 @@ export const schema = {
                 "MASCULINO"
             ]
         },
-        "WaitingListStatus": {
-            "name": "WaitingListStatus",
+        "WaitingListItemStatus": {
+            "name": "WaitingListItemStatus",
             "values": [
                 "CONSULTA",
                 "ESPERA",
@@ -225,33 +328,6 @@ export const schema = {
             ]
         }
     },
-    "nonModels": {
-        "HealthInsurance": {
-            "name": "HealthInsurance",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "name": {
-                    "name": "name",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "imageName": {
-                    "name": "imageName",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                }
-            }
-        }
-    },
-    "version": "8adfc781190a0f8360b39453ed86482a"
+    "nonModels": {},
+    "version": "4be480c892f8e9c40f411bfaa04e75e5"
 };

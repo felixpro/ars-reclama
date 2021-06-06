@@ -17,7 +17,13 @@ const ContextProvider: React.FC = (props) => {
 
 	const fetchClients = async (filterText: string) => {
 		try {
-			const clients = await DataStore.query(Client);
+			let clients = await DataStore.query(Client);
+			const filterTextValue = filterText.trim();
+			if (filterTextValue.length) {
+				clients = clients.filter((client) =>
+					client.name?.toLowerCase().includes(filterTextValue.toLocaleLowerCase())
+				);
+			}
 			setClients(clients);
 		} catch (error) {
 			console.log(error);

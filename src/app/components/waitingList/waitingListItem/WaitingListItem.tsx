@@ -4,9 +4,9 @@ import removeICon from '../../../../assets/images/remove-icon.svg';
 import { WaitingListStatus } from '../../../../models';
 
 interface WaitingListItemProps {
-	status: keyof typeof WaitingListStatus;
+	status: keyof typeof WaitingListStatus | undefined;
 	includeLineSeparator?: boolean;
-	positionNumber: number;
+	positionNumber: number | undefined;
 	clientName?: string;
 	clientHealthInsurrance?: string;
 }

@@ -16,7 +16,7 @@ const ClientFC: React.FC<ClientProps> = (props) => {
 		<>
 			<div className="section-cell" style={{ borderBottomColor: '#EDF3F1' }}>
 				<img alt="" src={props.image} className="mr-6" />
-				<div className="flex flex-col mr-24">
+				<div className="flex flex-col w-56">
 					<span style={{ fontFamily: 'Raleway-Bold', fontSize: '16px' }}>
 						{props.name}
 					</span>
