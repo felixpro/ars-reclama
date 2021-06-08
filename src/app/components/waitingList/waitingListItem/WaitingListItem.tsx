@@ -6,7 +6,7 @@ import { WaitingListStatus } from '../../../../models';
 interface WaitingListItemProps {
 	status: keyof typeof WaitingListStatus | undefined;
 	includeLineSeparator?: boolean;
-	positionNumber: number | undefined;
+	positionNumber: number;
 	clientName?: string;
 	clientHealthInsurrance?: string;
 }
@@ -43,11 +43,12 @@ const WaitingListItem: React.FC<WaitingListItemProps> = (props) => {
 							color: '#FFFFFF',
 						}}
 					>
+						{props.positionNumber <= 9 ? '0' : null}
 						{props.positionNumber}
 					</span>
 					<img alt="" src={arrowDownIcon} />
 				</div>
-				<div className="flex flex-col mr-6">
+				<div className="flex flex-col w-24 mr-6">
 					<span style={{ fontFamily: 'Raleway-Bold', fontSize: '16px' }}>
 						{props.clientName}
 					</span>

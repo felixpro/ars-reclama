@@ -5,7 +5,7 @@ import { DataStore } from '@aws-amplify/datastore';
 
 interface WaitingListContextProps {
 	waitingListItems: WaitingListItemType[];
-	getWaitingListItemsByWaitingListId: (waitingListId: string) => void;
+	getWaitingListItemsByWaitingListId: (waitingListId: string, clientFilter?: string) => void;
 }
 
 export const WaitingListsContext = React.createContext<WaitingListContextProps>({
@@ -16,17 +16,27 @@ export const WaitingListsContext = React.createContext<WaitingListContextProps>(
 const ContextProvider: React.FC = (props) => {
 	const [waitingListItems, setWaitingListItems] = useState<WaitingListItemType[]>([]);
 
-	const getWaitingListItemsByWaitingListId = async (waitingListId: string) => {
+	const getWaitingListItemsByWaitingListId = async (
+		waitingListId: string,
+		clientFilter?: string
+	) => {
 		try {
 			const waitingItems = (await DataStore.query(WaitingListItem)).filter(
 				(wi) => wi.waitingListID === waitingListId
 			);
+			setWaitingListItems([]);
 			waitingItems.forEach(async (waitingItem) => {
 				const client = await DataStore.query(Client, waitingItem.clientID);
 				const healthInsurance = client
 					? await DataStore.query(HealthInsurance, client.healthInsuranceId)
 					: null;
 				if (healthInsurance && client) {
+					if (
+						clientFilter &&
+						!client.name?.toLowerCase().includes(clientFilter.toLocaleLowerCase())
+					) {
+						return;
+					}
 					const transformedWaitingItem: WaitingListItemType = {
 						id: waitingItem.id,
 						status: waitingItem.status,
