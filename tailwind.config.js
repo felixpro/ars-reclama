@@ -38,6 +38,25 @@ module.exports = {
 			greyWhite: {
 				default: ' #F5F6FB',
 			},
+			summerGreen: {
+				default: '#9CBEB3',
+			},
+			osloGray: {
+				default: '#80868B',
+			},
+			red: {
+				default: '#FF0000',
+			},
+			blueLucki: {
+				default: '#1E2469',
+			},
+			greySnuff: {
+				default: '#D6D6EB',
+			},
+			grayStorm: {
+				default: '#6E6D8C',
+			},
+		
 		},
 	},
 };

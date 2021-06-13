@@ -77,9 +77,11 @@ const ContextProvider: React.FC = (props) => {
 			});
 	};
 
-	const fetchClient = (): void => {};
+	const fetchClient = (id: string): void => {
+		console.log('Console doctor');
+	};
 
-	const deleteClient = (id): void => {
+	const deleteClient = (id: string): void => {
 		DataStore.query(Client, id)
 			.then((res) => {
 				DataStore.delete(res)

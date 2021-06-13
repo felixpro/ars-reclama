@@ -22,10 +22,21 @@
 	font-weight: 500;
 	font-style: normal;
 }
-
-.provisional {
-	background:red;
+@font-face {
+	font-family: 'OpenSans-Light';
+	src: url('../src/assets/fonts/OpenSans-Light.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
 }
+
+@font-face {
+	font-family: 'OpenSans-regular';
+	src: url('../src/assets/fonts/OpenSans-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
 
 body {
 	background-color: #e5e5e5;
@@ -34,6 +45,14 @@ body {
 .raleway-font {
 	font-family: "Raleway";
 }
+.OpenSansLight {
+	font-family: "OpenSans-Light";
+}
+
+.OpenSansRegular {
+	font-family: "OpenSans-regular";
+}
+
 
 .outline-none {
 	outline: none !important;
@@ -175,3 +194,25 @@ input {
 .react-autosuggest__suggestions-container--open::-webkit-scrollbar-button {
   margin-right: 50px;
 }
+
+
+/*Clients form */
+.checkbox-label {
+    position: relative;
+    cursor: pointer;
+}
+.checkbox-label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+.checkbox-label .checkbox-custom {
+    content: url('../src//assets/images/radiobutton.svg');
+}
+
+
+.checkbox-label input:checked ~ .checkbox-custom {
+   content: url('../src//assets/images/active_radiobutton.svg');
+}
+
+
