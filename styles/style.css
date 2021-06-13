@@ -215,4 +215,9 @@ input {
    content: url('../src//assets/images/active_radiobutton.svg');
 }
 
-
+.date_input input::-webkit-calendar-picker-indicator{
+  position: absolute;
+  background:transparent;
+  width:115px !important;
+  
+}

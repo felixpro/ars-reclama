@@ -25,6 +25,7 @@ export enum WaitListStatus {
 
 
 export declare class Client {
+  [x: string]: any;
   readonly id: string;
   readonly identificationName?: IdentificationTypes | keyof typeof IdentificationTypes;
   readonly identificationData?: string;

@@ -8,6 +8,17 @@ import { DoctorsContext } from './doctor-context';
 import { IdentificationTypes } from '../../models';
 import { SexType } from '../../models';
 
+const clientArray = [
+	{ id: 45764, name: 'Felix Pujols', insurance: '402-263-6462-4' },
+	{ id: 45864, name: 'Javier Rudoz', insurance: '268-998-789-2' },
+	{ id: 45654, name: 'Denis  Lutors', insurance: '458-9847-4' },
+	{ id: 45264, name: 'Rauld mendez', insurance: '235-5865-6' },
+	{ id: 45614, name: 'Lucas Deibi ', insurance: '402-263-65462-4' },
+	{ id: 45064, name: 'Randy Duffer ', insurance: '486-998-789-2' },
+	{ id: 4564, name: 'Perris Chanlca', insurance: '268-947-4' },
+	{ id: 46564, name: 'Brandis Dopberman', insurance: '285-5865-6' },
+];
+
 interface ClientContextProps {
 	clients: Client[];
 	fetchClients: () => void;
@@ -99,7 +110,7 @@ const ContextProvider: React.FC = (props) => {
 	return (
 		<ClientsContext.Provider
 			value={{
-				clients: clients,
+				clients: clientArray,
 				createClient: createClient,
 				fetchClients: fetchClients,
 				deleteClient: deleteClient,

@@ -13,6 +13,7 @@ module.exports = {
 			},
 			white: {
 				section: '#FFFFFF',
+				lilac: '#F6F6FB',
 			},
 			mountainMeadow: {
 				default: '#17CB9A',
@@ -56,7 +57,9 @@ module.exports = {
 			grayStorm: {
 				default: '#6E6D8C',
 			},
-		
+			harp: {
+				default: '#D9EAE4',
+			},
 		},
 	},
 };

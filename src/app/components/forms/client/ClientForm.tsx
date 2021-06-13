@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import SearchResult from './SearchResult';
 
 function ClientForm() {
+	// ID input
+	const [idInputValue, setIdInputValue] = useState('');
+	const [inputFocus, setInputFocus] = useState(false);
+
 	// Handle ID checkboxs
 	const identificationRef: React.useRef<HTMLDivElement> = React.createRef();
 	const passportRef: React.useRef<HTMLDivElement> = React.createRef();
@@ -26,6 +31,7 @@ function ClientForm() {
 	};
 
 	useEffect(() => {
+		// identification true as default
 		identificationRef.current.checked = true;
 	}, []);
 
@@ -41,7 +47,7 @@ function ClientForm() {
 						</div>
 						<div className="col-span-6">
 							<p>Añadir a:</p>
-							<input type="text" />
+							<input type="text" className="bg-white-lilac" />
 						</div>
 					</div>
 				</div>
@@ -56,7 +62,7 @@ function ClientForm() {
 											id="identification"
 											name="identification"
 											value="identification"
-											className="input-id"
+											className="input-id "
 											ref={identificationRef}
 											onClick={() => handleCheckboxRef('identification')}
 										/>
@@ -87,15 +93,16 @@ function ClientForm() {
 									name="insurance"
 									id="insurance"
 									placeholder="Ej: 453-4847840-5"
-									className="border-2	border-summerGreen-default rounded-md w-56 h-11 pl-4 pr-7 text-base OpenSansRegular text-osloGray-default"
+									className="border-2	border-summerGreen-default rounded-md w-56 h-11 pl-4 pr-7 text-base OpenSansRegular text-osloGray-default bg-white-lilac"
+									onKeyUp={(e) => setIdInputValue(e.target.value)}
+									onFocus={() => setInputFocus(true)}
+									onBlur={() => {
+										setTimeout(function () {
+											setInputFocus(false);
+										}, 400);
+									}}
 								/>
-								<datalist id="clients">
-									<option>123-456</option>
-									<option>583-456</option>
-									<option>785-456</option>
-									<option>9583-456</option>
-									<option>203-456</option>
-								</datalist>
+								{inputFocus ? <SearchResult idInputValue={idInputValue} /> : null}
 							</div>
 						</div>
 						<div className="col-span-3 ">
@@ -106,7 +113,7 @@ function ClientForm() {
 								<select
 									name="insurances"
 									id="insurances"
-									className="border-2	border-summerGreen-default rounded-md w-56 h-11 pl-4 pr-7 text-base OpenSansRegular text-osloGray-default"
+									className="bg-white-lilac border-2	border-summerGreen-default rounded-md w-56 h-11 pl-4 pr-7 text-base OpenSansRegular text-osloGray-default"
 								>
 									<option value="volvo">Universal</option>
 									<option value="saab">Senasa</option>
@@ -123,7 +130,7 @@ function ClientForm() {
 									type="text"
 									name="name"
 									placeholder="Ej: Jose Perez"
-									className="border-2	border-summerGreen-default rounded-md w-56 h-11 pl-4 pr-7 text-base OpenSansRegular text-osloGray-default"
+									className="border-2	border-summerGreen-default rounded-md w-56 h-11 pl-4 pr-7 text-base OpenSansRegular text-osloGray-default bg-white-lilac"
 								/>
 							</label>
 						</div>
@@ -135,7 +142,7 @@ function ClientForm() {
 									type="text"
 									name="name"
 									placeholder="Ej: 829-279-5852"
-									className="border-2	border-summerGreen-default rounded-md w-56 h-11 pl-4 pr-7 text-base OpenSansRegular text-osloGray-default"
+									className="bg-white-lilac border-2	border-summerGreen-default rounded-md w-56 h-11 pl-4 pr-7 text-base OpenSansRegular text-osloGray-default"
 								/>
 							</label>
 						</div>
@@ -146,14 +153,35 @@ function ClientForm() {
 					<div className="col-span-3 ">2</div>
 					<div className="col-span-3 ">
 						<div className="flex items-center">
-							<label>
-								<p className="text-base OpenSansLight pb-1">Nacimiento y sexo</p>
-								<input
-									type="date"
-									name="name"
-									className="border-2	border-summerGreen-default rounded-md w-32 h-11 pl-4 pr-7 text-base OpenSansRegular text-osloGray-default"
-								/>
-							</label>
+							<div className="">
+								<label className="date_input">
+									<p className="text-base OpenSansLight pb-1">
+										Nacimiento y sexo
+									</p>
+									<div className=" bg-white-lilac flex items-center  border-2 border-summerGreen-default rounded-md w-32 h-11 pl-2 pr-1 text-base OpenSansRegular text-osloGray-default">
+										<svg
+											width="19"
+											height="18"
+											viewBox="0 0 19 18"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+											className="mr-2"
+										>
+											<path
+												d="M3.30273 17.8945H15.959C17.9121 17.8945 18.8984 16.9082 18.8984 14.9746V3.70508C18.8984 1.78125 17.9121 0.794922 15.959 0.794922H3.30273C1.34961 0.794922 0.353516 1.77148 0.353516 3.70508V14.9746C0.353516 16.9082 1.34961 17.8945 3.30273 17.8945ZM3.21484 16.2832C2.4043 16.2832 1.96484 15.8633 1.96484 15.0137V6.38086C1.96484 5.54102 2.4043 5.11133 3.21484 5.11133H16.0371C16.8379 5.11133 17.2969 5.54102 17.2969 6.38086V15.0137C17.2969 15.8633 16.8379 16.2832 16.0371 16.2832H3.21484ZM7.83398 8.39258H8.37109C8.70312 8.39258 8.81055 8.29492 8.81055 7.96289V7.42578C8.81055 7.10352 8.70312 6.99609 8.37109 6.99609H7.83398C7.50195 6.99609 7.39453 7.10352 7.39453 7.42578V7.96289C7.39453 8.29492 7.50195 8.39258 7.83398 8.39258ZM10.8809 8.39258H11.4277C11.75 8.39258 11.8574 8.29492 11.8574 7.96289V7.42578C11.8574 7.10352 11.75 6.99609 11.4277 6.99609H10.8809C10.5586 6.99609 10.4512 7.10352 10.4512 7.42578V7.96289C10.4512 8.29492 10.5586 8.39258 10.8809 8.39258ZM13.9375 8.39258H14.4746C14.8066 8.39258 14.9141 8.29492 14.9141 7.96289V7.42578C14.9141 7.10352 14.8066 6.99609 14.4746 6.99609H13.9375C13.6055 6.99609 13.498 7.10352 13.498 7.42578V7.96289C13.498 8.29492 13.6055 8.39258 13.9375 8.39258ZM4.77734 11.3906H5.32422C5.64648 11.3906 5.75391 11.293 5.75391 10.9707V10.4238C5.75391 10.1016 5.64648 10.0039 5.32422 10.0039H4.77734C4.45508 10.0039 4.34766 10.1016 4.34766 10.4238V10.9707C4.34766 11.293 4.45508 11.3906 4.77734 11.3906ZM7.83398 11.3906H8.37109C8.70312 11.3906 8.81055 11.293 8.81055 10.9707V10.4238C8.81055 10.1016 8.70312 10.0039 8.37109 10.0039H7.83398C7.50195 10.0039 7.39453 10.1016 7.39453 10.4238V10.9707C7.39453 11.293 7.50195 11.3906 7.83398 11.3906ZM10.8809 11.3906H11.4277C11.75 11.3906 11.8574 11.293 11.8574 10.9707V10.4238C11.8574 10.1016 11.75 10.0039 11.4277 10.0039H10.8809C10.5586 10.0039 10.4512 10.1016 10.4512 10.4238V10.9707C10.4512 11.293 10.5586 11.3906 10.8809 11.3906ZM13.9375 11.3906H14.4746C14.8066 11.3906 14.9141 11.293 14.9141 10.9707V10.4238C14.9141 10.1016 14.8066 10.0039 14.4746 10.0039H13.9375C13.6055 10.0039 13.498 10.1016 13.498 10.4238V10.9707C13.498 11.293 13.6055 11.3906 13.9375 11.3906ZM4.77734 14.3984H5.32422C5.64648 14.3984 5.75391 14.3008 5.75391 13.9785V13.4316C5.75391 13.1094 5.64648 13.0117 5.32422 13.0117H4.77734C4.45508 13.0117 4.34766 13.1094 4.34766 13.4316V13.9785C4.34766 14.3008 4.45508 14.3984 4.77734 14.3984ZM7.83398 14.3984H8.37109C8.70312 14.3984 8.81055 14.3008 8.81055 13.9785V13.4316C8.81055 13.1094 8.70312 13.0117 8.37109 13.0117H7.83398C7.50195 13.0117 7.39453 13.1094 7.39453 13.4316V13.9785C7.39453 14.3008 7.50195 14.3984 7.83398 14.3984ZM10.8809 14.3984H11.4277C11.75 14.3984 11.8574 14.3008 11.8574 13.9785V13.4316C11.8574 13.1094 11.75 13.0117 11.4277 13.0117H10.8809C10.5586 13.0117 10.4512 13.1094 10.4512 13.4316V13.9785C10.4512 14.3008 10.5586 14.3984 10.8809 14.3984Z"
+												fill="#80868B"
+											/>
+										</svg>
+
+										<input
+											type="date"
+											name="name"
+											className="bg-white-lilac h-full w-full flex justify-center OpenSansRegular text-sm"
+										/>
+									</div>
+								</label>
+							</div>
+
 							<div className="flex pb-2 pl-4 pt-7">
 								<label htmlFor="femenine" className="checkbox-label   flex">
 									<input
@@ -161,7 +189,7 @@ function ClientForm() {
 										id="femenine"
 										name="femenine"
 										value="femenine"
-										className="input-id"
+										className="input-id "
 										ref={femenineRef}
 										onClick={() => handleCheckboxGenderRef('F')}
 									/>
