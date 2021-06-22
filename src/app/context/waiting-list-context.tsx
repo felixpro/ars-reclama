@@ -92,17 +92,26 @@ const ContextProvider: React.FC = (props) => {
 		waitingListItemID: string,
 		status: keyof typeof WaitingListItemStatus
 	) => {
-		const newWaitingItems = waitingListItems.map((item) => {
-			if (item.id !== waitingListItemID) {
-				return item;
-			}
+		const waitingListItem = await DataStore.query(WaitingListItem, waitingListItemID);
+		if (waitingListItem) {
+			await DataStore.save(
+				WaitingListItem.copyOf(waitingListItem, (updated) => {
+					updated.status = status;
+				})
+			);
 
-			return {
-				...item,
-				status: status,
-			};
-		});
-		setWaitingListItems(newWaitingItems);
+			const newWaitingItems = waitingListItems.map((item) => {
+				if (item.id !== waitingListItemID) {
+					return item;
+				}
+
+				return {
+					...item,
+					status: status,
+				};
+			});
+			setWaitingListItems(newWaitingItems);
+		}
 	};
 
 	return (
