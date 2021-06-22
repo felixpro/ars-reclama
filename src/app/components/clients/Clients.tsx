@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ClientsContext } from '../../context/client-context';
+import { WaitingListsContext } from '../../context/waiting-list-context';
 import addIcon from '../../../assets/images/icono_agregar.svg';
 import SearchInput from '../searchInput/SearchInput';
 import ClientC from './client/Client';
@@ -10,20 +11,20 @@ import { DataStore } from '@aws-amplify/datastore';
 
 const Clients = () => {
 	const clientsContext = useContext(ClientsContext);
+	const waitingListsContext = useContext(WaitingListsContext);
 	const [filterText, setFilterText] = useState('');
-	const [loading, setLoading] = useState(true);
 
 	const handleEditClient = (client: Client) => {
 		console.log('test');
 	};
 
 	const handleSendClient = (client: Client) => {
-		console.log('test');
+		console.log('adding client');
+		waitingListsContext.addClientToCurrentWaitingList(client);
 	};
 
 	const handleSearchInput = (value: string) => {
 		setFilterText(value);
-		setLoading(true);
 	};
 
 	const generateHealthInsurranceData = () => {
@@ -71,7 +72,6 @@ const Clients = () => {
 	useEffect(() => {
 		const timeOut = setTimeout(() => {
 			clientsContext?.fetchClients(filterText);
-			setLoading(false);
 		}, 500);
 
 		return () => {
@@ -79,25 +79,20 @@ const Clients = () => {
 		};
 	}, [filterText]);
 
-	let clients: JSX.Element[] = clientsContext.clients?.map((client) => {
+	const clients: JSX.Element[] = clientsContext.clients?.map((client) => {
 		return (
 			<ClientC
 				key={client.id}
 				image={defaultClientImage}
-				name={client.name}
-				bloodType={client.bloodType}
+				client={client}
 				onEdit={handleEditClient}
 				onSend={handleSendClient}
 			/>
 		);
 	});
 
-	if (loading) {
-		clients = [<Spinner key={1} />];
-	}
-
 	return (
-		<div className="flex flex-col rounded-lg border-0 bg-white-section w-427 h-screen ml-42 my-6">
+		<div className="flex flex-col rounded-lg border-0 bg-white-section w-427 h-screen ml-42 my-6 overflow-y-auto">
 			<div className="section-cell border-b-2" style={{ borderBottomColor: '#EDF3F1' }}>
 				<span className="mr-107" style={{ fontFamily: 'Raleway-Bold', fontSize: '19px' }}>
 					Clientes

@@ -1,14 +1,17 @@
 import React from 'react';
 import arrowDownIcon from '../../../../assets/images/arrow-down-icon.svg';
 import removeICon from '../../../../assets/images/remove-icon.svg';
-import { WaitingListStatus } from '../../../../models';
+import { WaitingListItemStatus } from '../../../../models';
 
 interface WaitingListItemProps {
-	status: keyof typeof WaitingListStatus | undefined;
+	waitingItemID: string;
+	status: keyof typeof WaitingListItemStatus;
 	includeLineSeparator?: boolean;
 	positionNumber: number;
 	clientName?: string;
 	clientHealthInsurrance?: string;
+	onConsulta: (waitingListItemID: string) => void;
+	onTerminada: (waitingListItemID: string) => void;
 }
 
 const WaitingListItem: React.FC<WaitingListItemProps> = (props) => {
@@ -28,6 +31,17 @@ const WaitingListItem: React.FC<WaitingListItemProps> = (props) => {
 		buttonBackground = 'linear-gradient(323.86deg, #7F00FF -23.29%, #E100FF 144.64%)';
 		buttonTextColor = 'white';
 	}
+
+	const handleWaitingItemAction = (
+		status: keyof typeof WaitingListItemStatus,
+		waitingListItemID: string
+	) => {
+		if (status === 'ESPERA') {
+			props.onConsulta(waitingListItemID);
+		} else if (status === 'CONSULTA') {
+			props.onTerminada(waitingListItemID);
+		}
+	};
 
 	return (
 		<>
@@ -73,10 +87,16 @@ const WaitingListItem: React.FC<WaitingListItemProps> = (props) => {
 						fontFamily: 'Raleway-SemiBold',
 						fontSize: '16px',
 					}}
+					onClick={() => handleWaitingItemAction(props.status, props.waitingItemID)}
 				>
 					{props.status === 'ESPERA' ? 'A Consulta' : 'Terminada'}
 				</button>
-				<img alt="" src={removeICon} />
+				<input
+					type="image"
+					alt=""
+					src={removeICon}
+					onClick={() => props.onTerminada(props.waitingItemID)}
+				/>
 			</div>
 			{props.includeLineSeparator === false ? (
 				''

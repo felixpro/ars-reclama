@@ -4,7 +4,6 @@ import WaitingListItemC from './waitingListItem/WaitingListItem';
 import { WaitingListsContext } from '../../context/waiting-list-context';
 import { DataStore } from '@aws-amplify/datastore';
 import { WaitingList, WaitingListItem } from '../../../models';
-import Spinner from '../spinner/Spinner';
 
 const WaitingListC = () => {
 	const waitingListsContext = useContext(WaitingListsContext);
@@ -14,7 +13,6 @@ const WaitingListC = () => {
 	const inProcessWaitingItems = waitingListsContext.waitingListItems.filter(
 		(waitingListItem) => waitingListItem.status === 'CONSULTA'
 	);
-	console.log('inProcessWaitingItems', inProcessWaitingItems);
 	const pendingWaitingItems = waitingListsContext.waitingListItems.filter(
 		(waitingListItem) => waitingListItem.status === 'ESPERA'
 	);
@@ -93,39 +91,53 @@ const WaitingListC = () => {
 		setLoading(true);
 	};
 
-	let inProcessItems: JSX.Element[] = inProcessWaitingItems.map((waitingList, index) => {
+	const handleOnConsultaWaitingItem = (waitingListItemID: string) => {
+		waitingListsContext.updateWaitingListItemStatus(waitingListItemID, 'CONSULTA');
+	};
+
+	const handleOnTerminadaWaitingItem = (waitingListItemID: string) => {
+		waitingListsContext.updateWaitingListItemStatus(waitingListItemID, 'TERMINADA');
+	};
+
+	const inProcessItems: JSX.Element[] = inProcessWaitingItems.map((waitingListItem, index) => {
 		return (
 			<WaitingListItemC
-				key={waitingList.id}
-				status={waitingList.status}
-				positionNumber={waitingList.positionNumber}
-				clientName={waitingList.clientName}
-				clientHealthInsurrance={waitingList.clientHealthInsurrance}
+				key={waitingListItem.id}
+				waitingItemID={waitingListItem.id}
+				status={waitingListItem.status}
+				positionNumber={waitingListItem.positionNumber}
+				clientName={waitingListItem.clientName}
+				clientHealthInsurrance={waitingListItem.clientHealthInsurrance}
 				includeLineSeparator={index + 1 !== inProcessWaitingItems.length}
+				onConsulta={handleOnConsultaWaitingItem}
+				onTerminada={handleOnTerminadaWaitingItem}
 			/>
 		);
 	});
 
-	let pendingItems: JSX.Element[] = pendingWaitingItems.map((waitingList, index) => {
+	const pendingItems: JSX.Element[] = pendingWaitingItems.map((waitingListItem, index) => {
 		return (
 			<WaitingListItemC
-				key={waitingList.id}
-				status={waitingList.status}
-				positionNumber={waitingList.positionNumber}
-				clientName={waitingList.clientName}
-				clientHealthInsurrance={waitingList.clientHealthInsurrance}
+				key={waitingListItem.id}
+				waitingItemID={waitingListItem.id}
+				status={waitingListItem.status}
+				positionNumber={waitingListItem.positionNumber}
+				clientName={waitingListItem.clientName}
+				clientHealthInsurrance={waitingListItem.clientHealthInsurrance}
 				includeLineSeparator={index + 1 != pendingWaitingItems.length}
+				onConsulta={handleOnConsultaWaitingItem}
+				onTerminada={handleOnTerminadaWaitingItem}
 			/>
 		);
 	});
 
 	if (loading) {
-		inProcessItems = [<Spinner key={1} />];
-		pendingItems = [<Spinner key={1} />];
+		//inProcessItems = [<Spinner key={1} />];
+		//pendingItems = [<Spinner key={1} />];
 	}
 
 	return (
-		<div className="flex flex-col rounded-lg border-0 bg-white-section w-427 h-screen ml-9 mr-42 my-6">
+		<div className="flex flex-col rounded-lg border-0 bg-white-section w-427 h-screen ml-9 mr-42 my-6 overflow-y-auto">
 			<div className="section-cell border-b-2" style={{ borderBottomColor: '#EDF3F1' }}>
 				<span
 					className="mr-20 whitespace-nowrap"
