@@ -10,6 +10,7 @@ module.exports = {
 		colors: {
 			green: {
 				content: '#EDF3F1',
+				light: '#cacfd7',
 			},
 			white: {
 				section: '#FFFFFF',

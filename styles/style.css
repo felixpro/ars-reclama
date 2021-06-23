@@ -13,7 +13,7 @@
 	font-family: 'Raleway';
 	src: url('../src/assets/fonts/Raleway-Regular.ttf') format('truetype');
 	font-weight: normal;
-  	font-style: normal;
+	font-style: normal;
 }
 
 @font-face {
@@ -36,23 +36,20 @@
 	font-style: normal;
 }
 
-
-
 body {
 	background-color: #e5e5e5;
 }
 
 .raleway-font {
-	font-family: "Raleway";
+	font-family: 'Raleway';
 }
 .OpenSansLight {
-	font-family: "OpenSans-Light";
+	font-family: 'OpenSans-Light';
 }
 
 .OpenSansRegular {
-	font-family: "OpenSans-regular";
+	font-family: 'OpenSans-regular';
 }
-
 
 .outline-none {
 	outline: none !important;
@@ -63,20 +60,35 @@ input {
 	outline: none !important;
 }
 
-
 .sidebar-container .bgHoverLink:hover {
-	background:rgba(133, 187, 199, 0.08);
+	background: rgba(133, 187, 199, 0.08);
 }
 
 .sidebar-container .sidebarBG {
-	background:rgba(133, 187, 199, 0.08);
+	background: rgba(133, 187, 199, 0.08);
 }
 
-
-
-.newCustomer-modal-btn {
+.modal_clientForm_container .newCustomer-modal-btn {
 	background: linear-gradient(296.45deg, #7f00ff -5.29%, #e100ff 121.02%);
 }
+.modal_clientForm_container .newCustomer-modal-btn {
+	background: linear-gradient(296.45deg, #7f00ff -5.29%, #e100ff 121.02%);
+}
+
+ .modal_clientForm_container  modal.react-responsive-modal-modal {
+	max-width:none !important;
+	
+}
+
+.customModal {
+  max-width: 1210px !important;
+  width: 90% !important;
+  padding: 0 !important;
+}
+
+
+
+
 
 .react-autosuggest__input {
 	background-color: transparent;
@@ -90,31 +102,26 @@ input {
 	padding-left: 16.32px;
 }
 
-.sideBard-dropdown .react-dropdown-select-type-single span{
+.sideBard-dropdown .react-dropdown-select-type-single span {
 	font-weight: 700;
 	color: #3f48ad;
 }
 
 /* Dropdown button icon */
 .sideBard-dropdown .css-1aarvou-DropdownHandleComponent svg {
-	stroke: #3F48AD;
+	stroke: #3f48ad;
 	stroke-width: 2px;
-	
 }
 .sideBard-dropdown .css-1aarvou-DropdownHandleComponent:hover path {
-	stroke: #3F48AD;
+	stroke: #3f48ad;
 	stroke-width: 2px;
 }
 
-.sideBard-dropdown .react-dropdown-select-dropdown-handle svg{
-	stroke: #3F48AD;
+.sideBard-dropdown .react-dropdown-select-dropdown-handle svg {
+	stroke: #3f48ad;
 	stroke-width: 2px;
-   margin-bottom: 3px;
-
+	margin-bottom: 3px;
 }
-
-
-
 
 .sideBard-dropdown .checkbox svg {
 	color: #3f48ad;
@@ -163,61 +170,83 @@ input {
 	position: absolute;
 	right: 46px;
 	top: 70px;
-
 }
 
 .sidebar-search-form .react-autosuggest__suggestions-container--open {
 	padding: 15px;
 	width: 250px;
 	height: 243px;
-	background: #F5F6FB;
+	background: #f5f6fb;
 	box-shadow: 0px 9px 12px rgba(0, 0, 0, 0.147126);
 	border-radius: 10px;
-	border: 2px solid #9CBEB3;
+	border: 2px solid #9cbeb3;
 	overflow-y: scroll;
 }
 
 /* Search home page style*/
+
 .react-autosuggest__suggestions-container--open::-webkit-scrollbar {
-	width:4px;
+	width: 8px;
+	border-radius: 20px !important;
+
 }
 .react-autosuggest__suggestions-container--open::-webkit-scrollbar-track {
-	background:transparent;
-
-	
+	background: transparent;
 }
 .react-autosuggest__suggestions-container--open::-webkit-scrollbar-thumb {
-  background: #C4C4C4;
+	background: #c4c4c4;
+	border-radius: 20px !important;
 }
-
-
-.react-autosuggest__suggestions-container--open::-webkit-scrollbar-button {
-  margin-right: 50px;
-}
-
 
 /*Clients form */
-.checkbox-label {
-    position: relative;
-    cursor: pointer;
+
+.client-form .checkbox-label {
+	position: relative;
+	cursor: pointer;
+
 }
-.checkbox-label input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
+.client-form .checkbox-label input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
 }
-.checkbox-label .checkbox-custom {
-    content: url('../src//assets/images/radiobutton.svg');
+.client-form .checkbox-label .checkbox-custom {
+	content: url('../src//assets/images/radiobutton.svg');
+}
+
+.client-form .checkbox-label input:checked ~ .checkbox-custom {
+	content: url('../src//assets/images/active_radiobutton.svg');
+}
+
+.client-form .date_input input::-webkit-calendar-picker-indicator {
+	position: absolute;
+	background: transparent;
+	width: 115px !important;
+}
+
+.client-form .doctor_dropdown select::after {
+	content: '';
+	width: 0.8em;
+	height: 0.5em;
+	background-color: var(--select-arrow);
+	clip-path: polygon(100% 0%, 0 0%, 50% 100%);
 }
 
 
-.checkbox-label input:checked ~ .checkbox-custom {
-   content: url('../src//assets/images/active_radiobutton.svg');
+/*Insurance input dropdown*/
+.insurance_container::-webkit-scrollbar {
+	width: 8px;
+	border-radius: 20px !important;
+}
+.insurance_container::-webkit-scrollbar-track {
+	background: transparent;
+}
+.insurance_container::-webkit-scrollbar-thumb {
+	background: #c4c4c4;
+	border-radius: 20px !important;
+
 }
 
-.date_input input::-webkit-calendar-picker-indicator{
-  position: absolute;
-  background:transparent;
-  width:115px !important;
-  
+.input_insurance {
+	background: transparent;
 }

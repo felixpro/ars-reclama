@@ -8,14 +8,11 @@ type Client @model {
 	bornDate: String
 	sex: SexType
 	phoneNumber: String
-	admissionDate: String
 	addressStreet: String
-	addressNumber: Int
-	neighborhood: String
 	city: String
 	sector: String
 	BloodType: String
-	Empresa: String
+	company: String
 	insuranceSelected: String
 	Insurances: [Insurance] @connection(keyName: "byInsurance", fields: ["id"])
 	doctors: [ClientDoctor] @connection(keyName: "byClient", fields: ["id"])
@@ -45,12 +42,13 @@ type Hospital @model {
 
 type WaitList @model {
 	id: ID!
-	client: Client 
+	client: Client
 	status: WaitListStatus
 	positionNumber: Int
 }
 
-type ClientDoctor @model(queries: null)
+type ClientDoctor
+	@model(queries: null)
 	@key(name: "byClient", fields: ["clientID", "doctorID"])
 	@key(name: "byDoctor", fields: ["doctorID", "clientID"]) {
 	id: ID!
@@ -60,8 +58,7 @@ type ClientDoctor @model(queries: null)
 	doctor: Doctor! @connection(fields: ["doctorID"])
 }
 
-type Insurance @model
-	@key(name: "byInsurance" fields: ["clientID"]) {
+type Insurance @model @key(name: "byInsurance", fields: ["clientID"]) {
 	id: ID!
 	clientID: ID
 	name: String!
@@ -70,7 +67,8 @@ type Insurance @model
 	affiliateType: AffiliateTypes
 }
 
-type HospitalDoctor @model(queries: null)
+type HospitalDoctor
+	@model(queries: null)
 	@key(name: "byDoctorhp", fields: ["hospitalID", "doctorID"])
 	@key(name: "byHospital", fields: ["doctorID", "hospitalID"]) {
 	id: ID!
@@ -79,8 +77,6 @@ type HospitalDoctor @model(queries: null)
 	doctor: Doctor! @connection(fields: ["hospitalID"])
 	hospital: Hospital! @connection(fields: ["doctorID"])
 }
-
-
 
 enum WaitListStatus {
 	CONSULTA
@@ -104,5 +100,9 @@ enum IdentificationTypes {
 	PASAPORTE
 }
 
+enum IdentificationTypes {
+	CEDULA
+	PASAPORTE
+}
 
 

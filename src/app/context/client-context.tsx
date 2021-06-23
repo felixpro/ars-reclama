@@ -1,6 +1,9 @@
+
+
 import React, { useState, useContext } from 'react';
 import { DataStore } from '@aws-amplify/datastore';
 import { Client } from '../../models';
+import { Insurance } from '../../models';
 
 import { ClientDoctor } from '../../models';
 import { DoctorsContext } from './doctor-context';
@@ -22,7 +25,7 @@ const clientArray = [
 interface ClientContextProps {
 	clients: Client[];
 	fetchClients: () => void;
-	createClient: () => void;
+	createClient: (clientData: Client, insuranceData: Insurance) => void;
 	deleteClient: (id: string) => void;
 	updateClient: (id: string) => void;
 	fetchClient: (id: string) => void;
@@ -33,44 +36,25 @@ export const ClientsContext = React.createContext<Partial<ClientContextProps>>({
 const ContextProvider: React.FC = (props) => {
 	const [clients, setClients] = useState<Client[]>([]);
 
-	const { actualDoctor, updateActualDoctor } = useContext(DoctorsContext);
+	// const { actualDoctor, updateActualDoctor } = useContext(DoctorsContext);
 
-	const createClient = (): void => {
-		DataStore.save(
-			new Client({
-				identificationName: IdentificationTypes.CEDULA,
-				identificationData: 'Cedula',
-				name: 'fyuhui,gjk Dunas',
-				cellphoneNumber: '+18292301846',
-				email: 'Francis.fr@gmail.com',
-				bornDate: '15/01/2021',
-				sex: SexType.FEMENINO,
-				phoneNumber: '8097891564',
-				admissionDate: '15/01/2021',
-				addressStreet: 'C/1 #23',
-				addressNumber: 11517,
-				neighborhood: 'Cancino Adentro',
-				city: 'Santo Domingo',
-				sector: 'Cancino Adentro',
-				BloodType: '0+',
-				Empresa: 'Panaderia Jhon',
-				insuranceSelected: 'Cenasa',
-				Insurances: [],
-			})
-		)
+	const createClient = (clientData: Client | any, insuranceData: Insurance | any): void => {
+		DataStore.save(new Client(clientData))
 			.then((res) => {
-				// antes de crear un cliente segurarse de correro la funcion que actualiza actualDoctor
-				// Create relation between clients and doctors
-				DataStore.save(new ClientDoctor({ client: res, doctor: actualDoctor }))
+				// Create insurance
+				DataStore.save(new Insurance(insuranceData))
 					.then((res) => {
-						console.log('Relacion creada correctamente', res);
+						console.log('Seguro creada correctamente', res);
 					})
 					.catch((error) => {
-						console.log('Fallo al crear relacion', error);
+						console.log('Fallo al crear Seguro', error);
 						// Delete client created withoutrelation
 						deleteClient(res.id);
 					});
+
 				console.log('Cliente creado correctamente', res);
+
+				// Create relation between clients and doctors
 			})
 			.catch((error) => {
 				console.log('Error al crear cliente', error);

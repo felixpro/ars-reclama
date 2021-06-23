@@ -70,29 +70,8 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "admissionDate": {
-                    "name": "admissionDate",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "addressStreet": {
                     "name": "addressStreet",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "addressNumber": {
-                    "name": "addressNumber",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "neighborhood": {
-                    "name": "neighborhood",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -119,8 +98,8 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "Empresa": {
-                    "name": "Empresa",
+                "company": {
+                    "name": "company",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -602,5 +581,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "b210b107eff2cf9af156c036a4abc311"
+    "version": "362fa1fd8599e3811245eeb6cf0bec8b"
 };

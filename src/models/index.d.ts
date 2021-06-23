@@ -25,7 +25,6 @@ export enum WaitListStatus {
 
 
 export declare class Client {
-  [x: string]: any;
   readonly id: string;
   readonly identificationName?: IdentificationTypes | keyof typeof IdentificationTypes;
   readonly identificationData?: string;
@@ -35,14 +34,11 @@ export declare class Client {
   readonly bornDate?: string;
   readonly sex?: SexType | keyof typeof SexType;
   readonly phoneNumber?: string;
-  readonly admissionDate?: string;
   readonly addressStreet?: string;
-  readonly addressNumber?: number;
-  readonly neighborhood?: string;
   readonly city?: string;
   readonly sector?: string;
   readonly BloodType?: string;
-  readonly Empresa?: string;
+  readonly company?: string;
   readonly insuranceSelected?: string;
   readonly Insurances?: (Insurance | null)[];
   readonly doctors?: (ClientDoctor | null)[];
