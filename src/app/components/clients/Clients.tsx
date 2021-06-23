@@ -5,7 +5,6 @@ import addIcon from '../../../assets/images/icono_agregar.svg';
 import SearchInput from '../searchInput/SearchInput';
 import ClientC from './client/Client';
 import { Client, HealthInsurance } from '../../../models';
-import Spinner from '../spinner/Spinner';
 import defaultClientImage from '../../../assets/images/img_cliente.svg';
 import { DataStore } from '@aws-amplify/datastore';
 
@@ -15,11 +14,10 @@ const Clients = () => {
 	const [filterText, setFilterText] = useState('');
 
 	const handleEditClient = (client: Client) => {
-		console.log('test');
+		//TO-DO
 	};
 
 	const handleSendClient = (client: Client) => {
-		console.log('adding client');
 		waitingListsContext.addClientToCurrentWaitingList(client);
 	};
 

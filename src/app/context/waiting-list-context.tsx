@@ -51,8 +51,6 @@ const ContextProvider: React.FC = (props) => {
 						clientHealthInsurrance: healthInsurance.name,
 						clientName: client.name,
 					};
-					console.log('transformedWaitingItem', transformedWaitingItem);
-					console.log('waitingListItems', waitingListItems);
 					setWaitingListItems((waitingItems) =>
 						waitingItems.concat(transformedWaitingItem)
 					);

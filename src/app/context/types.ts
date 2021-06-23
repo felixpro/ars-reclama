@@ -7,3 +7,10 @@ export type WaitingListItemType = {
 	clientName: string;
 	clientHealthInsurrance: string;
 };
+
+export type ClientType = {
+	id: string;
+	name: string;
+	healthInsuranceId: string;
+	healthInsurance: string;
+};

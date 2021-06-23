@@ -1,13 +1,13 @@
 import React from 'react';
-import { Client } from '../../../../models';
 import editIcon from '../../../../assets/images/icono_editar.svg';
 import shareIcon from '../../../../assets/images/icono_compartir.svg';
+import { ClientType } from '../../../context/types';
 
 interface ClientProps {
 	image?: string;
-	client: Client;
-	onEdit: (client: Client) => void;
-	onSend: (client: Client) => void;
+	client: ClientType;
+	onEdit: (client: ClientType) => void;
+	onSend: (client: ClientType) => void;
 }
 
 const ClientFC: React.FC<ClientProps> = (props) => {
@@ -27,7 +27,7 @@ const ClientFC: React.FC<ClientProps> = (props) => {
 							opacity: '59.15%',
 						}}
 					>
-						Tipo de Sangre: {props.client.bloodType}
+						{props.client.healthInsurance}
 					</span>
 				</div>
 				<img alt="" src={editIcon} className="mr-8" />

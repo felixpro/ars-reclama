@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Client } from '../../models';
+import { Client, HealthInsurance } from '../../models';
 import { DataStore } from '@aws-amplify/datastore';
+import { ClientType } from './types';
 
 interface ClientContextProps {
-	clients: Client[];
+	clients: ClientType[];
 	fetchClients: (filterText: string) => void;
 }
 
@@ -13,7 +14,7 @@ export const ClientsContext = React.createContext<ClientContextProps>({
 });
 
 const ContextProvider: React.FC = (props) => {
-	const [clients, setClients] = useState<Client[]>([]);
+	const [clients, setClients] = useState<ClientType[]>([]);
 
 	const fetchClients = async (filterText: string) => {
 		try {
@@ -24,7 +25,19 @@ const ContextProvider: React.FC = (props) => {
 					client.name?.toLowerCase().includes(filterTextValue.toLocaleLowerCase())
 				);
 			}
-			setClients(clients);
+			clients.forEach(async (client) => {
+				const healthInsurance = await DataStore.query(
+					HealthInsurance,
+					client.healthInsuranceId
+				);
+				const transformedClient: ClientType = {
+					id: client.id,
+					name: client.name,
+					healthInsuranceId: client.healthInsuranceId,
+					healthInsurance: healthInsurance ? healthInsurance.name : '',
+				};
+				setClients((clients) => clients.concat(transformedClient));
+			});
 		} catch (error) {
 			console.log(error);
 		}
