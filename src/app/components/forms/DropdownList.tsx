@@ -10,20 +10,29 @@ type IDropdownList = {
 
 const options = [
 	{ name: 'felix Pujols' },
+	{ name: 'Lucaes Daniel' },
+	{ name: 'Luaqcas Daniel' },
+	{ name: 'Lubcas Daniel' },
 	{ name: 'Lucas Daniel' },
-	{ name: 'Lucas Daniel' },
-	{ name: 'Lucas Daniel' },
-	{ name: 'Lucas Daniel' },
-	{ name: 'Lucas Daniel' },
-	{ name: 'felix Pujols' },
+	{ name: 'Luccas Danytiel' },
+	{ name: 'felix Pu6jols' },
 ];
 
-const DropdownList = ({ register }) => {
+const DropdownList = ({ SetFormsValues, formsValues }) => {
 	const [optionSelected, SetOptionSelected] = useState({ name: 'Sin seguro' });
 	const [toggleInput, SetToggleInput] = useState(false);
 
 	const handleDropDown = () => {
 		SetToggleInput(false);
+	};
+
+	const handleSelectAction = (data: string): void => {
+		SetOptionSelected({ name: data });
+		SetFormsValues({
+			...formsValues,
+			insuranceSelected: data,
+		});
+		handleDropDown();
 	};
 
 	return (
@@ -34,7 +43,7 @@ const DropdownList = ({ register }) => {
 						<div className="flex justify-center items-center w-32">
 							<input
 								type="text"
-								{...register('identification')}
+								name="insuranceSelected"
 								value={optionSelected.name}
 								className=" w-40 absolute h-14 ml-6 pr-11 input_insurance text-center"
 								onClick={() => SetToggleInput(toggleInput ? false : true)}
@@ -73,10 +82,7 @@ const DropdownList = ({ register }) => {
 						<div key={option.name}>
 							<button
 								className="flex items-center w-full justify-between hover:bg-white-section pl-3.5 h-11 flex items-centers rounded-lg"
-								onClick={() => {
-									SetOptionSelected({ name: option.name });
-									handleDropDown();
-								}}
+								onClick={() => handleSelectAction(option.name)}
 							>
 								{option.name}
 							</button>

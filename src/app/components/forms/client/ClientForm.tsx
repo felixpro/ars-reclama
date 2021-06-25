@@ -1,39 +1,58 @@
 import React, { useState, useEffect, useContext } from 'react';
 import SearchResult from './SearchResult';
 import { useForm } from 'react-hook-form';
-import { useFormik } from 'formik';
+import { useFormik, Field } from 'formik';
 
 import { ClientsContext } from '../../../context/client-context';
 import DropdownList from '../../forms/DropdownList';
 
 function ClientForm() {
-	const { createClient } = useContext(ClientsContext);
-
-	// ID input
-	const [idInputValue, setIdInputValue] = useState('');
 	const [inputFocus, setInputFocus] = useState(false);
+	const [formsValues, SetFormsValues] = useState({
+		identification: { passport: false, id: true },
+		identificationData: '',
+		name: '',
+		cellphoneNumber: '',
+		email: '',
+		bornDate: '',
+		sex: { femenine: false, masculine: false },
+		phoneNumber: '',
+		addressStreet: '',
+		city: '',
+		sector: '',
+		BloodType: '',
+		company: '',
+		insuranceSelected: '',
+		affiliateNumber: '',
+		affiliateType: '',
+		contractNumber: '',
+	});
 
 	// Handle ID checkboxs
 	const identificationRef: React.useRef<HTMLDivElement> = React.createRef();
 	const passportRef: React.useRef<HTMLDivElement> = React.createRef();
-
 	const handleCheckboxRef = (target: string) => {
 		if (target === 'identification') {
 			passportRef.current.checked = false;
+			SetFormsValues({ ...formsValues, identification: { passport: false, id: true } });
+			console.log('Passport true');
 		} else if (target === 'passport') {
 			identificationRef.current.checked = false;
+			SetFormsValues({ ...formsValues, identification: { passport: true, id: false } });
+			console.log('Passport true');
 		}
 	};
 
 	// Handle gender checkboxs
 	const masculineRef: React.useRef<HTMLDivElement> = React.createRef();
 	const femenineRef: React.useRef<HTMLDivElement> = React.createRef();
-
 	const handleCheckboxGenderRef = (target: string) => {
 		if (target === 'M') {
 			femenineRef.current.checked = false;
+			SetFormsValues({ ...formsValues, sex: { femenine: false, masculine: true } });
 		} else if (target === 'F') {
 			masculineRef.current.checked = false;
+			SetFormsValues({ ...formsValues, sex: { femenine: true, masculine: false } });
 		}
 	};
 
@@ -43,13 +62,10 @@ function ClientForm() {
 	}, []);
 
 	const formik = useFormik({
-		initialValues: {
-			passport: '',
-			identification: '',
-			identificationData: idInputValue,
-		},
+		enableReinitialize: true,
+		initialValues: formsValues,
 		onSubmit: (values) => {
-			alert(JSON.stringify(values));
+			console.log(JSON.stringify(values));
 		},
 	});
 
@@ -65,7 +81,10 @@ function ClientForm() {
 						</div>
 						<div className="col-span-6">
 							<div className="flex justify-end">
-								{/* <DropdownList register={register} /> */}
+								<DropdownList
+									SetFormsValues={SetFormsValues}
+									formsValues={formsValues}
+								/>
 							</div>
 						</div>
 					</div>
@@ -83,8 +102,6 @@ function ClientForm() {
 											className="input-id "
 											ref={identificationRef}
 											onClick={() => handleCheckboxRef('identification')}
-											onChange={formik.handleChange}
-											value={formik.values.identification}
 										/>
 										<span className="checkbox-custom"></span>
 										<p className="pl-1.5 OpenSansRegular">
@@ -99,8 +116,6 @@ function ClientForm() {
 											type="checkbox"
 											id="passport"
 											name="passport"
-											onChange={formik.handleChange}
-											value={formik.values.passport}
 											className="input-id"
 											ref={passportRef}
 											onClick={() => handleCheckboxRef('passport')}
@@ -112,10 +127,15 @@ function ClientForm() {
 								<input
 									list="clients"
 									name="identificationData"
-									id="insurance"
+									id="identificationData"
 									placeholder="Ej: 453-4847840-5"
 									className="border-2	border-summerGreen-default rounded-md w-56 h-11 pl-4 pr-7 text-base OpenSansRegular text-osloGray-default bg-white-lilac"
-									onKeyUp={(e) => setIdInputValue(e.target.value)}
+									onKeyUp={(e) =>
+										SetFormsValues({
+											...formsValues,
+											identificationData: e.target.value,
+										})
+									}
 									onFocus={() => setInputFocus(true)}
 									onBlur={() => {
 										setTimeout(function () {
@@ -123,7 +143,9 @@ function ClientForm() {
 										}, 400);
 									}}
 								/>
-								{inputFocus ? <SearchResult idInputValue={idInputValue} /> : null}
+								{inputFocus ? (
+									<SearchResult idInputValue={formsValues.identificationData} />
+								) : null}
 							</div>
 						</div>
 						<div className="col-span-3  pt-8 2lg:pt-14 ">
@@ -132,6 +154,12 @@ function ClientForm() {
 								<input
 									type="text"
 									name="name"
+									onChange={(e) =>
+										SetFormsValues({
+											...formsValues,
+											name: e.target.value,
+										})
+									}
 									placeholder="Ej: Jose Perez"
 									className="border-2	border-summerGreen-default rounded-md w-56 h-11 pl-4 pr-7 text-base OpenSansRegular text-osloGray-default bg-white-lilac"
 								/>
@@ -162,6 +190,12 @@ function ClientForm() {
 											<input
 												type="date"
 												name="bornDate"
+												onChange={(e) =>
+													SetFormsValues({
+														...formsValues,
+														bornDate: e.target.value,
+													})
+												}
 												className="bg-white-lilac h-full w-full flex justify-center OpenSansRegular text-sm"
 											/>
 										</div>
@@ -207,6 +241,12 @@ function ClientForm() {
 								<input
 									type="tel"
 									name="cellphoneNumber"
+									onChange={(e) =>
+										SetFormsValues({
+											...formsValues,
+											cellphoneNumber: e.target.value,
+										})
+									}
 									placeholder="Ej: 829-279-5852"
 									className="bg-white-lilac border-2	border-summerGreen-default rounded-md w-56 h-11 pl-4 pr-7 text-base OpenSansRegular text-osloGray-default"
 								/>
@@ -219,6 +259,12 @@ function ClientForm() {
 								<input
 									type="text"
 									name="affiliateNumber"
+									onChange={(e) =>
+										SetFormsValues({
+											...formsValues,
+											affiliateNumber: e.target.value,
+										})
+									}
 									placeholder="Ej: 4563523"
 									className="bg-white-lilac border-2	border-summerGreen-default rounded-md w-56 h-11 pl-4 pr-7 text-base OpenSansRegular text-osloGray-default"
 								/>
@@ -230,7 +276,13 @@ function ClientForm() {
 								<input
 									type="text"
 									name="affiliateType"
-									placeholder="Ej: 4563523"
+									onChange={(e) =>
+										SetFormsValues({
+											...formsValues,
+											affiliateType: e.target.value,
+										})
+									}
+									placeholder="Ej: 45673523"
 									className="bg-white-lilac border-2	border-summerGreen-default rounded-md w-56 h-11 pl-4 pr-7 text-base OpenSansRegular text-osloGray-default"
 								/>
 							</label>
@@ -241,6 +293,12 @@ function ClientForm() {
 								<input
 									type="text"
 									name="contractNumber"
+									onChange={(e) =>
+										SetFormsValues({
+											...formsValues,
+											contractNumber: e.target.value,
+										})
+									}
 									placeholder="Ej: 829-279-5852"
 									className="bg-white-lilac border-2	border-summerGreen-default rounded-md w-56 h-11 pl-4 pr-7 text-base OpenSansRegular text-osloGray-default"
 								/>
@@ -252,6 +310,12 @@ function ClientForm() {
 								<input
 									type="email"
 									name="email"
+									onChange={(e) =>
+										SetFormsValues({
+											...formsValues,
+											email: e.target.value,
+										})
+									}
 									placeholder="Ej: jose@gmail.com"
 									className="bg-white-lilac border-2	border-summerGreen-default rounded-md w-56 h-11 pl-4 pr-7 text-base OpenSansRegular text-osloGray-default"
 								/>
@@ -263,6 +327,12 @@ function ClientForm() {
 								<input
 									type="text"
 									name="addressStreet"
+									onChange={(e) =>
+										SetFormsValues({
+											...formsValues,
+											addressStreet: e.target.value,
+										})
+									}
 									placeholder="Ej: Calle Primera, No. 23"
 									className="bg-white-lilac border-2	border-summerGreen-default rounded-md w-56 h-11 pl-4 pr-7 text-base OpenSansRegular text-osloGray-default"
 								/>
@@ -274,6 +344,12 @@ function ClientForm() {
 								<input
 									type="text"
 									name="sector"
+									onChange={(e) =>
+										SetFormsValues({
+											...formsValues,
+											sector: e.target.value,
+										})
+									}
 									placeholder="Ej: Cancino Adentro"
 									className="bg-white-lilac border-2	border-summerGreen-default rounded-md w-56 h-11 pl-4 pr-7 text-base OpenSansRegular text-osloGray-default"
 								/>
@@ -285,6 +361,12 @@ function ClientForm() {
 								<input
 									type="text"
 									name="city"
+									onChange={(e) =>
+										SetFormsValues({
+											...formsValues,
+											city: e.target.value,
+										})
+									}
 									placeholder="Ej: Santo Domingo"
 									className="bg-white-lilac border-2	border-summerGreen-default rounded-md w-56 h-11 pl-4 pr-7 text-base OpenSansRegular text-osloGray-default"
 								/>
@@ -296,6 +378,12 @@ function ClientForm() {
 								<input
 									type="tel"
 									name="phoneNumber"
+									onChange={(e) =>
+										SetFormsValues({
+											...formsValues,
+											phoneNumber: e.target.value,
+										})
+									}
 									placeholder="Ej: 829-279-5852"
 									className="bg-white-lilac border-2	border-summerGreen-default rounded-md w-56 h-11 pl-4 pr-7 text-base OpenSansRegular text-osloGray-default"
 								/>
@@ -307,6 +395,12 @@ function ClientForm() {
 								<input
 									type="text"
 									name="BloodType"
+									onChange={(e) =>
+										SetFormsValues({
+											...formsValues,
+											BloodType: e.target.value,
+										})
+									}
 									placeholder="Ej: B+"
 									className="bg-white-lilac border-2	border-summerGreen-default rounded-md w-56 h-11 pl-4 pr-7 text-base OpenSansRegular text-osloGray-default"
 								/>
@@ -318,6 +412,12 @@ function ClientForm() {
 								<input
 									type="text"
 									name="company"
+									onChange={(e) =>
+										SetFormsValues({
+											...formsValues,
+											company: e.target.value,
+										})
+									}
 									placeholder="Ej: Tesla"
 									className="bg-white-lilac border-2	border-summerGreen-default rounded-md w-56 h-11 pl-4 pr-7 text-base OpenSansRegular text-osloGray-default"
 								/>
