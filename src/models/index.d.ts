@@ -39,7 +39,6 @@ export declare class Client {
   readonly sector?: string;
   readonly BloodType?: string;
   readonly company?: string;
-  readonly insuranceSelected?: string;
   readonly Insurances?: (Insurance | null)[];
   readonly doctors?: (ClientDoctor | null)[];
   constructor(init: ModelInit<Client>);

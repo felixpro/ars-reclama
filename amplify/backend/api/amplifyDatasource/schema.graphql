@@ -13,7 +13,6 @@ type Client @model {
 	sector: String
 	BloodType: String
 	company: String
-	insuranceSelected: String
 	Insurances: [Insurance] @connection(keyName: "byInsurance", fields: ["id"])
 	doctors: [ClientDoctor] @connection(keyName: "byClient", fields: ["id"])
 }
@@ -95,10 +94,6 @@ enum AffiliateTypes {
 	PARENTESCO
 }
 
-enum IdentificationTypes {
-	CEDULA
-	PASAPORTE
-}
 
 enum IdentificationTypes {
 	CEDULA

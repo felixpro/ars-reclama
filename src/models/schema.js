@@ -105,13 +105,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "insuranceSelected": {
-                    "name": "insuranceSelected",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "Insurances": {
                     "name": "Insurances",
                     "isArray": true,
@@ -581,5 +574,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "362fa1fd8599e3811245eeb6cf0bec8b"
+    "version": "035f56c521bfa29ccf02dfe59f964e5e"
 };

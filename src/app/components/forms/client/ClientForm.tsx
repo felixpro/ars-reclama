@@ -3,10 +3,16 @@ import SearchResult from './SearchResult';
 import { useForm } from 'react-hook-form';
 import { useFormik, Field } from 'formik';
 
+import { AffiliateTypes } from '../../../../models';
+
 import { ClientsContext } from '../../../context/client-context';
 import DropdownList from '../../forms/DropdownList';
+import AffiliateDropdown from './AffiliateDropdown';
+import AffiliateDropdown from './AffiliateDropdown';
 
 function ClientForm() {
+	const { createClient } = useContext(ClientsContext);
+
 	const [inputFocus, setInputFocus] = useState(false);
 	const [formsValues, SetFormsValues] = useState({
 		identification: { passport: false, id: true },
@@ -65,7 +71,8 @@ function ClientForm() {
 		enableReinitialize: true,
 		initialValues: formsValues,
 		onSubmit: (values) => {
-			console.log(JSON.stringify(values));
+			const dataForm = JSON.parse(JSON.stringify(values));
+			createClient(dataForm);
 		},
 	});
 
@@ -257,7 +264,7 @@ function ClientForm() {
 							<label>
 								<p className="text-base OpenSansLight pb-1">No. de Afiliado*</p>
 								<input
-									type="text"
+									type="number"
 									name="affiliateNumber"
 									onChange={(e) =>
 										SetFormsValues({
@@ -271,27 +278,18 @@ function ClientForm() {
 							</label>
 						</div>
 						<div className="col-span-3  pt-8 2lg:pt-14 ">
-							<label>
-								<p className="text-base OpenSansLight pb-1">Tip de Afiliado*</p>
-								<input
-									type="text"
-									name="affiliateType"
-									onChange={(e) =>
-										SetFormsValues({
-											...formsValues,
-											affiliateType: e.target.value,
-										})
-									}
-									placeholder="Ej: 45673523"
-									className="bg-white-lilac border-2	border-summerGreen-default rounded-md w-56 h-11 pl-4 pr-7 text-base OpenSansRegular text-osloGray-default"
+								<p className="text-base OpenSansLight pb-1">Tipo de Afiliado*</p>
+								<AffiliateDropdown
+									SetFormsValues={SetFormsValues}
+									formsValues={formsValues}
 								/>
-							</label>
+							
 						</div>
 						<div className="col-span-3  pt-8 2lg:pt-14 ">
 							<label>
 								<p className="text-base OpenSansLight pb-1">No. de Contrato*</p>
 								<input
-									type="text"
+									type="number"
 									name="contractNumber"
 									onChange={(e) =>
 										SetFormsValues({

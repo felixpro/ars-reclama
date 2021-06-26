@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
-import { Insurance } from '../../../models';
+import onClickOutside from 'react-onclickoutside';
 
-type IDropdownList = {
-	data: {
-		label: string;
-		id: string;
-	};
-};
 
 const options = [
-	{ name: 'felix Pujols' },
-	{ name: 'Lucaes Daniel' },
-	{ name: 'Luaqcas Daniel' },
-	{ name: 'Lubcas Daniel' },
-	{ name: 'Lucas Daniel' },
-	{ name: 'Luccas Danytiel' },
-	{ name: 'felix Pu6jols' },
+	{ name: 'ARS SENASA' },
+	{ name: 'ARS UNIVERSAL' },
+	{ name: 'MAPFRE SALUD' },
+	{ name: 'ARS HUMANO' },
+	{ name: 'ARS PALIC' },
+	{ name: 'ARS RENACER' },
+	{ name: 'Futuro' },
+	{ name: 'APS' },
+	{ name: 'ARS CMD' },
+	{ name: 'ARS YUNEN' },
+	{ name: 'ARS GMA' },
+	{ name: 'META SALUD ARS' },
+	{ name: 'ARS RESERVAS' },
 ];
 
 const DropdownList = ({ SetFormsValues, formsValues }) => {
@@ -35,6 +35,8 @@ const DropdownList = ({ SetFormsValues, formsValues }) => {
 		handleDropDown();
 	};
 
+	DropdownList.handleClickOutside = () => SetToggleInput(false);
+
 	return (
 		<div>
 			<div className="">
@@ -47,11 +49,6 @@ const DropdownList = ({ SetFormsValues, formsValues }) => {
 								value={optionSelected.name}
 								className=" w-40 absolute h-14 ml-6 pr-11 input_insurance text-center"
 								onClick={() => SetToggleInput(toggleInput ? false : true)}
-								onBlur={() => {
-									setTimeout(function () {
-										handleDropDown();
-									}, 400);
-								}}
 								onChange={() => null}
 							/>
 						</div>
@@ -94,4 +91,8 @@ const DropdownList = ({ SetFormsValues, formsValues }) => {
 	);
 };
 
-export default DropdownList;
+const clickOutsideConfig = {
+	handleClickOutside: () => DropdownList.handleClickOutside,
+};
+
+export default onClickOutside(DropdownList, clickOutsideConfig);

@@ -1,5 +1,3 @@
-
-
 import React, { useState, useContext } from 'react';
 import { DataStore } from '@aws-amplify/datastore';
 import { Client } from '../../models';
@@ -25,7 +23,7 @@ const clientArray = [
 interface ClientContextProps {
 	clients: Client[];
 	fetchClients: () => void;
-	createClient: (clientData: Client, insuranceData: Insurance) => void;
+	createClient: (clientData: Record<string, unknown>) => void;
 	deleteClient: (id: string) => void;
 	updateClient: (id: string) => void;
 	fetchClient: (id: string) => void;
@@ -33,13 +31,42 @@ interface ClientContextProps {
 
 export const ClientsContext = React.createContext<Partial<ClientContextProps>>({});
 
-const ContextProvider: React.FC = (props) => {
+const ContextProvider: IContextProvider = (props) => {
 	const [clients, setClients] = useState<Client[]>([]);
 
 	// const { actualDoctor, updateActualDoctor } = useContext(DoctorsContext);
 
-	const createClient = (clientData: Client | any, insuranceData: Insurance | any): void => {
-		DataStore.save(new Client(clientData))
+	const createClient = (dataForm): void => {
+		const passport = dataForm.identification.passport ? IdentificationTypes.PASAPORTE : null;
+		const identification = dataForm.identification.id ? IdentificationTypes.CEDULA : null;
+
+ 		const femenine = dataForm.sex.femenine ? SexType.FEMENINO : null;
+		const masculine = dataForm.sex.masculine ? SexType.MASCULINO : null;
+
+		const clientObj: Client = {
+			identificationName: passport || identification,
+			identificationData: dataForm.identificationData,
+			name: dataForm.name,
+			cellphoneNumber: dataForm.cellphoneNumber,
+			email: dataForm.email,
+			bornDate: dataForm.bornDate,
+			sex: femenine || masculine,
+			phoneNumber: dataForm.phoneNumber,
+			addressStreet: dataForm.addressStreet,
+			city: dataForm.city,
+			sector: dataForm.sector,
+			BloodType: dataForm.BloodType,
+			company: dataForm.company,
+		};
+
+		const insuranceData: Insurance = {
+			name: dataForm.insuranceSelected,
+			contractNumber: parseInt(dataForm.contractNumber),
+			affiliateNumber: parseInt(dataForm.affiliateNumber),
+			affiliateType: dataForm.affiliateType,
+		};
+
+		DataStore.save(new Client(clientObj))
 			.then((res) => {
 				// Create insurance
 				DataStore.save(new Insurance(insuranceData))
@@ -53,7 +80,6 @@ const ContextProvider: React.FC = (props) => {
 					});
 
 				console.log('Cliente creado correctamente', res);
-
 				// Create relation between clients and doctors
 			})
 			.catch((error) => {
