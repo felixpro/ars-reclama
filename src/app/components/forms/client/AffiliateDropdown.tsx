@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { AffiliateTypes } from '../../../../models';
+import { Field, ErrorMessage } from 'formik';
 
 const DropdownList = ({ SetFormsValues, formsValues }) => {
-	const [optionSelected, SetOptionSelected] = useState({ name: 'Sin seguro' });
+	const [optionSelected, SetOptionSelected] = useState({ name: 'Ej: Principal' });
 	const [toggleInput, SetToggleInput] = useState(false);
 
 	const handleDropDown = () => {
@@ -13,12 +14,12 @@ const DropdownList = ({ SetFormsValues, formsValues }) => {
 		SetOptionSelected({ name: data });
 		SetFormsValues({
 			...formsValues,
-			insuranceSelected: data,
+			affiliateType: data,
 		});
 		handleDropDown();
 	};
 
-	function capitalizeFirstLetter(string) {
+	function capitalizeFirstLetter(string: string) {
 		return string[0].toUpperCase() + string.slice(1);
 	}
 
@@ -28,7 +29,7 @@ const DropdownList = ({ SetFormsValues, formsValues }) => {
 				<div>
 					<div className="bg-white-lilac flex items-center justify-between border-2 border-summerGreen-default rounded-md w-56 h-11 pl-4 pr-7 text-base OpenSansRegular text-osloGray-default">
 						<div className="flex justify-center items-center w-32">
-							<input
+							<Field
 								type="text"
 								name="affiliateType"
 								value={optionSelected.name}
@@ -42,7 +43,6 @@ const DropdownList = ({ SetFormsValues, formsValues }) => {
 								onChange={() => null}
 							/>
 						</div>
-
 						<div className="w-8 h-14 flex justify-center items-center bo ">
 							<svg
 								width="11"
@@ -63,34 +63,36 @@ const DropdownList = ({ SetFormsValues, formsValues }) => {
 					</div>
 				</div>
 			</div>
-			{toggleInput ? (
-				<div className="w-56 max-h-60 absolute rounded-lg border-2 border-harp-default bg-greyWhite-default pl-4 pr-2 pb-4 pt-4 mt-1.5 overflow-x-hidden overflow-y-scroll insurance_container ">
-					<button
-						className="flex items-center w-full justify-between hover:bg-white-section pl-3.5 h-11 flex items-centers rounded-lg"
-						onClick={() => handleSelectAction(AffiliateTypes.PRINCIPAL)}
-					>
-						{capitalizeFirstLetter(AffiliateTypes.PRINCIPAL.toLowerCase())}
-					</button>
-					<button
-						className="flex items-center w-full justify-between hover:bg-white-section pl-3.5 h-11 flex items-centers rounded-lg"
-						onClick={() => handleSelectAction(AffiliateTypes.TITULAR)}
-					>
-						{capitalizeFirstLetter(AffiliateTypes.TITULAR.toLowerCase())}
-					</button>
-					<button
-						className="flex items-center w-full justify-between hover:bg-white-section pl-3.5 h-11 flex items-centers rounded-lg"
-						onClick={() => handleSelectAction(AffiliateTypes.DEPENDIENTE)}
-					>
-						{capitalizeFirstLetter(AffiliateTypes.DEPENDIENTE.toLowerCase())}
-					</button>
-					<button
-						className="flex items-center w-full justify-between hover:bg-white-section pl-3.5 h-11 flex items-centers rounded-lg"
-						onClick={() => handleSelectAction(AffiliateTypes.PARENTESCO)}
-					>
-						{capitalizeFirstLetter(AffiliateTypes.PARENTESCO.toLowerCase())}
-					</button>
-				</div>
-			) : null}
+			<div className=" z-10">
+				{toggleInput ? (
+					<div className="w-56 max-h-60 absolute rounded-lg border-2 border-harp-default bg-greyWhite-default pl-4 pr-2 pb-4 pt-4 mt-1.5 overflow-x-hidden overflow-y-scroll insurance_container ">
+						<button
+							className="flex items-center w-full justify-between hover:bg-white-section pl-3.5 h-11 flex items-centers rounded-lg"
+							onClick={() => handleSelectAction(AffiliateTypes.PRINCIPAL)}
+						>
+							{capitalizeFirstLetter(AffiliateTypes.PRINCIPAL.toLowerCase())}
+						</button>
+						<button
+							className="flex items-center w-full justify-between hover:bg-white-section pl-3.5 h-11 flex items-centers rounded-lg"
+							onClick={() => handleSelectAction(AffiliateTypes.TITULAR)}
+						>
+							{capitalizeFirstLetter(AffiliateTypes.TITULAR.toLowerCase())}
+						</button>
+						<button
+							className="flex items-center w-full justify-between hover:bg-white-section pl-3.5 h-11 flex items-centers rounded-lg"
+							onClick={() => handleSelectAction(AffiliateTypes.DEPENDIENTE)}
+						>
+							{capitalizeFirstLetter(AffiliateTypes.DEPENDIENTE.toLowerCase())}
+						</button>
+						<button
+							className="flex items-center w-full justify-between hover:bg-white-section pl-3.5 h-11 flex items-centers rounded-lg"
+							onClick={() => handleSelectAction(AffiliateTypes.PARENTESCO)}
+						>
+							{capitalizeFirstLetter(AffiliateTypes.PARENTESCO.toLowerCase())}
+						</button>
+					</div>
+				) : null}
+			</div>
 		</div>
 	);
 };

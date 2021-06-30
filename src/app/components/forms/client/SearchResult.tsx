@@ -1,15 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ClientsContext } from '../../../context/client-context';
+import MaskedInput from 'react-text-mask';
 
-function SearchResult({ idInputValue }) {
+function SearchResult({ idInputValue, keyUpQuantity }) {
 	const { clients } = useContext(ClientsContext);
 	const [clientsResult, SetClientsResult] = useState([]);
 
 	const handleChange = () => {
-		const lettersNumber = idInputValue.length;
+		// slice the value and check if each part match with value typed in the input
 		const clientMach = clients
 			? clients
-					.filter((client) => client.insurance.slice(0, lettersNumber) === idInputValue)
+					.filter(
+						(client) =>
+							client.insurance.slice(0, keyUpQuantity) ===
+							idInputValue.slice(0, keyUpQuantity)
+					)
 					.slice(0, 4)
 			: 0;
 		SetClientsResult(clientMach);

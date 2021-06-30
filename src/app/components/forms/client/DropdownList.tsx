@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import onClickOutside from 'react-onclickoutside';
-
+import { Field, ErrorMessage } from 'formik';
 
 const options = [
+	{ name: 'Sin seguro' },
 	{ name: 'ARS SENASA' },
 	{ name: 'ARS UNIVERSAL' },
 	{ name: 'MAPFRE SALUD' },
@@ -35,6 +36,13 @@ const DropdownList = ({ SetFormsValues, formsValues }) => {
 		handleDropDown();
 	};
 
+	useEffect(() => {
+		SetFormsValues({
+			...formsValues,
+			insuranceSelected: optionSelected.name,
+		});
+	}, [])
+
 	DropdownList.handleClickOutside = () => SetToggleInput(false);
 
 	return (
@@ -43,13 +51,12 @@ const DropdownList = ({ SetFormsValues, formsValues }) => {
 				<div>
 					<div className="border-2 border-green-content flex items-center justify-between rounded-lg w-44 h-14   text-base OpenSansRegular text-black-default">
 						<div className="flex justify-center items-center w-32">
-							<input
+							<Field
 								type="text"
 								name="insuranceSelected"
 								value={optionSelected.name}
 								className=" w-40 absolute h-14 ml-6 pr-11 input_insurance text-center"
 								onClick={() => SetToggleInput(toggleInput ? false : true)}
-								onChange={() => null}
 							/>
 						</div>
 
@@ -71,22 +78,27 @@ const DropdownList = ({ SetFormsValues, formsValues }) => {
 							</svg>
 						</div>
 					</div>
+					<p className="text-red-default text-sm OpenSansRegular pt-1.5">
+						<ErrorMessage name="insuranceSelected" />
+					</p>
 				</div>
 			</div>
-			{toggleInput ? (
-				<div className="w-56 max-h-60 absolute rounded-lg border-2 border-harp-default bg-greyWhite-default pl-4 pr-4 pb-4 pt-4 mt-1.5 overflow-x-hidden overflow-y-scroll insurance_container ">
-					{options.map((option) => (
-						<div key={option.name}>
-							<button
-								className="flex items-center w-full justify-between hover:bg-white-section pl-3.5 h-11 flex items-centers rounded-lg"
-								onClick={() => handleSelectAction(option.name)}
-							>
-								{option.name}
-							</button>
-						</div>
-					))}
-				</div>
-			) : null}
+			<div className="relative right-12 z-10">
+				{toggleInput ? (
+					<div className="w-56 max-h-60 absolute rounded-lg border-2 border-harp-default bg-greyWhite-default pl-4 pr-4 pb-4 pt-4 mt-1.5 overflow-x-hidden overflow-y-scroll insurance_container ">
+						{options.map((option) => (
+							<div key={option.name}>
+								<button
+									className="flex items-center w-full justify-between hover:bg-white-section pl-3.5 h-11 flex items-centers rounded-lg"
+									onClick={() => handleSelectAction(option.name)}
+								>
+									{option.name}
+								</button>
+							</div>
+						))}
+					</div>
+				) : null}
+			</div>
 		</div>
 	);
 };

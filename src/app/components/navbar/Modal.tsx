@@ -29,7 +29,7 @@ const ModalView = () => {
 					modal: 'customModal',
 				}}
 			>
-				<ClientForm />
+				<ClientForm onCloseModal={onCloseModal} />
 			</Modal>
 		</div>
 	);
