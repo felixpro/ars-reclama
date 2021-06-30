@@ -59,15 +59,17 @@ const ContextProvider: IContextProvider = (props) => {
 			company: dataForm.company,
 		};
 
-		const insuranceData: Insurance = {
-			name: dataForm.insuranceSelected,
-			contractNumber: parseInt(dataForm.contractNumber),
-			affiliateNumber: parseInt(dataForm.affiliateNumber),
-			affiliateType: dataForm.affiliateType,
-		};
+	
 
 		DataStore.save(new Client(clientObj))
 			.then((res) => {
+				const insuranceData: Insurance = {
+					clientID: res.id,
+					name: dataForm.insuranceSelected,
+					contractNumber: parseInt(dataForm.contractNumber),
+					affiliateNumber: parseInt(dataForm.affiliateNumber),
+					affiliateType: dataForm.affiliateType,
+				};
 				// Create insurance
 				DataStore.save(new Insurance(insuranceData))
 					.then((res) => {
