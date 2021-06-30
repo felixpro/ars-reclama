@@ -54,8 +54,8 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "sex": {
-                    "name": "sex",
+                "gender": {
+                    "name": "gender",
                     "isArray": false,
                     "type": {
                         "enum": "SexType"
@@ -574,5 +574,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "035f56c521bfa29ccf02dfe59f964e5e"
+    "version": "a6138b16f01a151138af5c5ad8c7e929"
 };

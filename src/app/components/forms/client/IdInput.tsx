@@ -5,7 +5,7 @@ import MaskedInput from 'react-text-mask';
 import SearchResult from './SearchResult';
 import { Field } from 'formik';
 
-const IdInput = ({ SetFormsValues, formsValues }) => {
+const IdInput = ({ SetFormsValues, formsValues, untrackedValues }) => {
 	const [inputFocus, setInputFocus] = useState(false);
 	const [keyUpQuantity, SetKeyUpQuantity] = useState(0);
 
@@ -56,7 +56,7 @@ const IdInput = ({ SetFormsValues, formsValues }) => {
 					render={({ field }) => (
 						<MaskedInput
 							{...field}
-							mask={formsValues.identification.passport ? passportMask : idMask}
+							mask={untrackedValues.identification.passport ? passportMask : idMask}
 							placeholder="Ej: 453-4847840-5"
 							type="text"
 							onKeyUp={(e) => handleKeyUp(e.target.value)}

@@ -32,7 +32,7 @@ export declare class Client {
   readonly cellphoneNumber?: string;
   readonly email?: string;
   readonly bornDate?: string;
-  readonly sex?: SexType | keyof typeof SexType;
+  readonly gender?: SexType | keyof typeof SexType;
   readonly phoneNumber?: string;
   readonly addressStreet?: string;
   readonly city?: string;

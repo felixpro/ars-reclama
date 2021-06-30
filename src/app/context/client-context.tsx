@@ -40,8 +40,8 @@ const ContextProvider: IContextProvider = (props) => {
 		const passport = dataForm.identification.passport ? IdentificationTypes.PASAPORTE : null;
 		const identification = dataForm.identification.id ? IdentificationTypes.CEDULA : null;
 
- 		const femenine = dataForm.sex.femenine ? SexType.FEMENINO : null;
-		const masculine = dataForm.sex.masculine ? SexType.MASCULINO : null;
+ 		const femenine = dataForm.gender.femenine ? SexType.FEMENINO : null;
+		const masculine = dataForm.gender.masculine ? SexType.MASCULINO : null;
 
 		const clientObj: Client = {
 			identificationName: passport || identification,
@@ -50,7 +50,7 @@ const ContextProvider: IContextProvider = (props) => {
 			cellphoneNumber: dataForm.cellphoneNumber,
 			email: dataForm.email,
 			bornDate: dataForm.bornDate,
-			sex: femenine || masculine,
+			gender: femenine || masculine,
 			phoneNumber: dataForm.phoneNumber,
 			addressStreet: dataForm.addressStreet,
 			city: dataForm.city,

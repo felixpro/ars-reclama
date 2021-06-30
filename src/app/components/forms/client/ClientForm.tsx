@@ -21,7 +21,6 @@ function ClientForm({ onCloseModal }) {
 	});
 
 	const [formsValues, SetFormsValues] = useState({
-		identification: { passport: false, id: true },
 		identificationData: '',
 		name: '',
 		cellphoneNumber: '',
@@ -46,14 +45,12 @@ function ClientForm({ onCloseModal }) {
 				...untrackedValues,
 				identification: { passport: false, id: true },
 			});
-			SetFormsValues({ ...formsValues, identification: { passport: false, id: true } });
 		} else if (target === 'passport') {
 			identificationRef.current.checked = false;
 			SetUntrackedValues({
 				...untrackedValues,
 				identification: { passport: true, id: false },
 			});
-			SetFormsValues({ ...formsValues, identification: { passport: true, id: false } });
 		}
 	};
 
@@ -128,31 +125,12 @@ function ClientForm({ onCloseModal }) {
 			/^[a-zA-Z0-9 \s,._ )('-]{3,}$/,
 			'Solo puntos, comas y guiones permitidos'
 		),
-		BloodType: Yup.string().max(5, 'Minimo 5 letras'),
 		company: Yup.string().matches(
 			/^[a-zA-Z0-9 \s,._ )('-]{3,}$/,
 			'Solo puntos, comas y guiones permitidos'
 		),
-		insuranceSelected: Yup.string(),
-		affiliateNumber:
-			formsValues.insuranceSelected !== 'Sin seguro'
-				? Yup.string()
-						.required('Campo requerido')
-						.matches(/^[a-zA-Z0-9 \s,._ )('-]{3,}$/, 'Solo puntos y comas permitidos')
-				: Yup.string(),
-		affiliateType:
-			formsValues.insuranceSelected !== 'Sin seguro'
-				? Yup.string().matches(
-						/^[a-zA-Z0-9 \s,._ )('-]{3,}$/,
-						'Solo puntos y comas permitidos'
-				  )
-				: Yup.string(),
-		contractNumber:
-			formsValues.insuranceSelected !== 'Sin seguro'
-				? Yup.string()
-						.required('Campo requerido')
-						.matches(/^[a-zA-Z0-9 \s,._ )('-]{3,}$/, 'Solo puntos y comas permitidos')
-				: Yup.string(),
+		affiliateNumber: Yup.string().matches(/^[a-zA-Z0-9 \s,._ )('-]{3,}$/, 'Solo puntos y comas permitidos'),
+		contractNumber: Yup.string().matches(/^[a-zA-Z0-9 \s,._ )('-]{3,}$/, 'Solo puntos y comas permitidos'),		
 	});
 
 	return (
@@ -161,8 +139,9 @@ function ClientForm({ onCloseModal }) {
 			validationSchema={validationSchema}
 			onSubmit={(values, { resetForm }) => {
 				// update inputs that Formik cannot extract values
+				const objValue = JSON.parse(JSON.stringify(values));
 				const formValue = { ...JSON.parse(JSON.stringify(values)), ...untrackedValues };
-				console.log(formValue);
+				createClient(formValue)
 			}}
 		>
 			<div className="client-form  pr-0 pl-24 pt-14 pb-14 2lg:pr-11 2lg:pl-20  1/2xl:pr-16 1/2xl:pl-24 ">
@@ -225,6 +204,7 @@ function ClientForm({ onCloseModal }) {
 									<IdInput
 										SetFormsValues={SetFormsValues}
 										formsValues={formsValues}
+										untrackedValues={untrackedValues}
 									/>
 									<p className="text-red-default text-sm OpenSansRegular pt-1.5">
 										<ErrorMessage name="identificationData" />

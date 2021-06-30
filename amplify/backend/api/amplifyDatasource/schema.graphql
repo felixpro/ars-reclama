@@ -6,7 +6,7 @@ type Client @model {
 	cellphoneNumber: String
 	email: String
 	bornDate: String
-	sex: SexType
+	gender: SexType
 	phoneNumber: String
 	addressStreet: String
 	city: String
