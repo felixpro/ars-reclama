@@ -11,6 +11,7 @@ interface WaitingListContextProps {
 		waitingListItemID: string,
 		status: keyof typeof WaitingListItemStatus
 	) => void;
+	updateWaitingItemPositionNumber: (waitingListItemID: string, newPositionNumber: number) => void;
 }
 
 export const WaitingListsContext = React.createContext<WaitingListContextProps>({
@@ -18,6 +19,7 @@ export const WaitingListsContext = React.createContext<WaitingListContextProps>(
 	getWaitingListItemsByWaitingListId: () => null,
 	addClientToCurrentWaitingList: () => null,
 	updateWaitingListItemStatus: () => null,
+	updateWaitingItemPositionNumber: () => null,
 });
 
 const ContextProvider: React.FC = (props) => {
@@ -112,6 +114,118 @@ const ContextProvider: React.FC = (props) => {
 		}
 	};
 
+	const updateWaitingItemPositionNumber = async (
+		waitingListItemID: string,
+		newPositionNumber: number
+	) => {
+		const waitingListItem = await DataStore.query(WaitingListItem, waitingListItemID);
+		const currentItemWithPosition = waitingListItems.filter(
+			(wi) => wi.positionNumber === newPositionNumber
+		)[0];
+		if (waitingListItem) {
+			if (newPositionNumber < waitingListItem.positionNumber) {
+				const newWaitingItems = waitingListItems.map((item) => {
+					if (
+						item.positionNumber >= newPositionNumber &&
+						item.positionNumber < waitingListItem.positionNumber
+					) {
+						DataStore.query(WaitingListItem, item.id).then((itemToUpdate) => {
+							if (itemToUpdate) {
+								DataStore.save(
+									WaitingListItem.copyOf(itemToUpdate, (updated) => {
+										updated.positionNumber = item.positionNumber + 1;
+									})
+								);
+							}
+						});
+						return {
+							...item,
+							positionNumber: item.positionNumber + 1,
+						};
+					}
+
+					if (item.id === waitingListItemID) {
+						DataStore.query(WaitingListItem, item.id).then((itemToUpdate) => {
+							if (itemToUpdate) {
+								DataStore.save(
+									WaitingListItem.copyOf(itemToUpdate, (updated) => {
+										(updated.positionNumber = newPositionNumber),
+											(updated.status =
+												currentItemWithPosition.status !== item.status
+													? currentItemWithPosition.status
+													: item.status);
+									})
+								);
+							}
+						});
+
+						return {
+							...item,
+							positionNumber: newPositionNumber,
+							status:
+								currentItemWithPosition.status !== item.status
+									? currentItemWithPosition.status
+									: item.status,
+						};
+					}
+
+					return item;
+				});
+				setWaitingListItems(newWaitingItems);
+			}
+
+			if (newPositionNumber > waitingListItem.positionNumber) {
+				const newWaitingItems = waitingListItems.map((item) => {
+					if (
+						item.positionNumber > waitingListItem.positionNumber &&
+						item.positionNumber <= newPositionNumber
+					) {
+						DataStore.query(WaitingListItem, item.id).then((itemToUpdate) => {
+							if (itemToUpdate) {
+								DataStore.save(
+									WaitingListItem.copyOf(itemToUpdate, (updated) => {
+										(updated.positionNumber = item.positionNumber - 1),
+											(updated.status =
+												currentItemWithPosition.status !== item.status
+													? currentItemWithPosition.status
+													: item.status);
+									})
+								);
+							}
+						});
+						return {
+							...item,
+							positionNumber: item.positionNumber - 1,
+						};
+					}
+
+					if (item.id === waitingListItemID) {
+						DataStore.query(WaitingListItem, item.id).then((itemToUpdate) => {
+							if (itemToUpdate) {
+								DataStore.save(
+									WaitingListItem.copyOf(itemToUpdate, (updated) => {
+										updated.positionNumber = newPositionNumber;
+									})
+								);
+							}
+						});
+						return {
+							...item,
+							positionNumber: newPositionNumber,
+							status:
+								currentItemWithPosition.status !== item.status
+									? currentItemWithPosition.status
+									: item.status,
+						};
+					}
+
+					return item;
+				});
+				setWaitingListItems(newWaitingItems);
+			}
+		}
+	};
+
 	return (
 		<WaitingListsContext.Provider
 			value={{
@@ -119,6 +233,7 @@ const ContextProvider: React.FC = (props) => {
 				getWaitingListItemsByWaitingListId: getWaitingListItemsByWaitingListId,
 				addClientToCurrentWaitingList: addClientToCurrentWaitingList,
 				updateWaitingListItemStatus: updateWaitingListItemStatus,
+				updateWaitingItemPositionNumber: updateWaitingItemPositionNumber,
 			}}
 		>
 			{props.children}

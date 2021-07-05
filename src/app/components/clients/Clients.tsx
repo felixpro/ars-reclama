@@ -41,21 +41,21 @@ const Clients = () => {
 	const generateTestData = () => {
 		DataStore.save(
 			new Client({
-				name: 'Efrain Toribio Reyes',
+				name: 'Abbie Wilson',
 				bloodType: 'O+',
 				healthInsuranceId: '0262ef94-aaf4-47df-b78d-bc34b7bfa94f',
 			})
 		);
 		DataStore.save(
 			new Client({
-				name: 'Ramon Jimenez',
+				name: 'Francis Pujols',
 				bloodType: 'A+',
 				healthInsuranceId: 'e6748dcc-f8c5-4f49-b761-4567ba78d407',
 			})
 		);
 		DataStore.save(
 			new Client({
-				name: 'Manuel Diaz',
+				name: 'Felix Pujols',
 				bloodType: 'O+',
 				healthInsuranceId: '0262ef94-aaf4-47df-b78d-bc34b7bfa94f',
 			})

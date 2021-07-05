@@ -10,12 +10,12 @@ const WaitingListC = () => {
 	const [filterText, setFilterText] = useState('');
 	const [loading, setLoading] = useState(true);
 
-	const inProcessWaitingItems = waitingListsContext.waitingListItems.filter(
-		(waitingListItem) => waitingListItem.status === 'CONSULTA'
-	);
-	const pendingWaitingItems = waitingListsContext.waitingListItems.filter(
-		(waitingListItem) => waitingListItem.status === 'ESPERA'
-	);
+	const inProcessWaitingItems = waitingListsContext.waitingListItems
+		.filter((waitingListItem) => waitingListItem.status === 'CONSULTA')
+		.sort((a, b) => a.positionNumber.toString().localeCompare(b.positionNumber.toString()));
+	const pendingWaitingItems = waitingListsContext.waitingListItems
+		.filter((waitingListItem) => waitingListItem.status === 'ESPERA')
+		.sort((a, b) => a.positionNumber.toString().localeCompare(b.positionNumber.toString()));
 
 	const generateWaitingListTestData = async () => {
 		await DataStore.save(
@@ -61,11 +61,12 @@ const WaitingListC = () => {
 			setLoading(false);
 		}, 500);
 
+		//generateWaitingItemsTestData();
+
 		return () => {
 			clearTimeout(timeOut);
 		};
 
-		//generateWaitingItemsTestData();
 		//generateWaitingListTestData();
 	}, [filterText]);
 
@@ -154,7 +155,7 @@ const WaitingListC = () => {
 					fontSize: '16px',
 					color: '#676A6E',
 					paddingTop: '32.27px',
-					paddingBottom: '24.21px',
+					paddingBottom: '0px',
 				}}
 			>
 				En consulta
@@ -166,7 +167,7 @@ const WaitingListC = () => {
 					fontFamily: 'Raleway-Bold',
 					fontSize: '16px',
 					color: '#676A6E',
-					paddingBottom: '24.21px',
+					paddingBottom: '0px',
 				}}
 			>
 				En espera

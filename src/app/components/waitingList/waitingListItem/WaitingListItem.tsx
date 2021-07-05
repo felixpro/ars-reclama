@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import arrowDownIcon from '../../../../assets/images/arrow-down-icon.svg';
 import removeICon from '../../../../assets/images/remove-icon.svg';
 import { WaitingListItemStatus } from '../../../../models';
+import { WaitingListsContext } from '../../../context/waiting-list-context';
 
 interface WaitingListItemProps {
 	waitingItemID: string;
@@ -20,6 +21,11 @@ const WaitingListItem: React.FC<WaitingListItemProps> = (props) => {
 	let buttonBorderWidth = '';
 	let buttonBorderColor = '';
 	let buttonTextColor = '';
+	const waitingListsContext = useContext(WaitingListsContext);
+	const totalItems = waitingListsContext.waitingListItems.filter(
+		(waitingListItem) =>
+			waitingListItem.status === 'CONSULTA' || waitingListItem.status === 'ESPERA'
+	);
 
 	if (props.status === 'ESPERA') {
 		orderBackgroundColor = '#3F48AD';
@@ -43,9 +49,36 @@ const WaitingListItem: React.FC<WaitingListItemProps> = (props) => {
 		}
 	};
 
+	const get0PrefixValue = (value: number): string => {
+		return `${value > 9 ? '' : 0}${value}`;
+	};
+
+	const generateOptions = (): JSX.Element[] => {
+		const result: JSX.Element[] = [];
+		totalItems.forEach((item) => {
+			result.push(
+				<option
+					className="outline-none"
+					key={item.id}
+					value={get0PrefixValue(item.positionNumber)}
+				>
+					{get0PrefixValue(item.positionNumber)}
+				</option>
+			);
+		});
+		return result;
+	};
+
+	const handlePositionChange = (value: string) => {
+		waitingListsContext.updateWaitingItemPositionNumber(
+			props.waitingItemID,
+			Number.parseInt(value)
+		);
+	};
+
 	return (
 		<>
-			<div className="section-cell items-center" style={{ paddingTop: '0px' }}>
+			<div className="section-cell items-center">
 				<div
 					className="flex flex-row justify-center space-x-1.5 rounded mr-7"
 					style={{ backgroundColor: orderBackgroundColor, width: '54px', height: '26px' }}
@@ -57,17 +90,27 @@ const WaitingListItem: React.FC<WaitingListItemProps> = (props) => {
 							color: '#FFFFFF',
 						}}
 					>
-						{props.positionNumber <= 9 ? '0' : null}
-						{props.positionNumber}
+						<select
+							style={{
+								backgroundColor: orderBackgroundColor,
+							}}
+							value={get0PrefixValue(props.positionNumber)}
+							onChange={(event) => handlePositionChange(event.target.value)}
+						>
+							{generateOptions()}
+						</select>
 					</span>
-					<img alt="" src={arrowDownIcon} />
 				</div>
-				<div className="flex flex-col w-24 mr-6">
-					<span style={{ fontFamily: 'Raleway-Bold', fontSize: '16px' }}>
+				<div className="flex flex-col mr-6">
+					<span
+						className="w-24 truncate"
+						title={props.clientName}
+						style={{ fontFamily: 'Raleway-Bold', fontSize: '16px' }}
+					>
 						{props.clientName}
 					</span>
 					<span
-						className=" whitespace-nowrap"
+						className=" whitespace-nowrap w-24"
 						style={{
 							fontFamily: 'Raleway-Regular',
 							fontSize: '14px',
