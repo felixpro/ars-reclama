@@ -37,6 +37,7 @@ module.exports = {
             },
         ],
         '@typescript-eslint/no-explicit-any': 'off',
+        'jsx-a11y/no-onchange': 'off'
     },
     settings: {
         react: {
