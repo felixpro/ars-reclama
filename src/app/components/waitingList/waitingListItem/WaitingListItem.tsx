@@ -22,10 +22,12 @@ const WaitingListItem: React.FC<WaitingListItemProps> = (props) => {
 	let buttonBorderColor = '';
 	let buttonTextColor = '';
 	const waitingListsContext = useContext(WaitingListsContext);
-	const totalItems = waitingListsContext.waitingListItems.filter(
-		(waitingListItem) =>
-			waitingListItem.status === 'CONSULTA' || waitingListItem.status === 'ESPERA'
-	);
+	const totalItems = waitingListsContext.waitingListItems
+		.filter(
+			(waitingListItem) =>
+				waitingListItem.status === 'CONSULTA' || waitingListItem.status === 'ESPERA'
+		)
+		.sort((a, b) => a.positionNumber.toString().localeCompare(b.positionNumber.toString()));
 
 	if (props.status === 'ESPERA') {
 		orderBackgroundColor = '#3F48AD';
@@ -57,11 +59,7 @@ const WaitingListItem: React.FC<WaitingListItemProps> = (props) => {
 		const result: JSX.Element[] = [];
 		totalItems.forEach((item) => {
 			result.push(
-				<option
-					className="outline-none"
-					key={item.id}
-					value={get0PrefixValue(item.positionNumber)}
-				>
+				<option className="outline-none" key={item.id}>
 					{get0PrefixValue(item.positionNumber)}
 				</option>
 			);
