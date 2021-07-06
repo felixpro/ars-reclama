@@ -40,7 +40,7 @@ export declare class Client {
   readonly BloodType?: string;
   readonly company?: string;
   readonly Insurances?: (Insurance | null)[];
-  readonly doctors?: (ClientDoctor | null)[];
+  readonly HospitalDoctors?: (HospitalDoctorCliente | null)[];
   constructor(init: ModelInit<Client>);
   static copyOf(source: Client, mutator: (draft: MutableModel<Client>) => MutableModel<Client> | void): Client;
 }
@@ -56,12 +56,24 @@ export declare class Insurance {
   static copyOf(source: Insurance, mutator: (draft: MutableModel<Insurance>) => MutableModel<Insurance> | void): Insurance;
 }
 
-export declare class ClientDoctor {
+export declare class HospitalDoctorCliente {
   readonly id: string;
   readonly client: Client;
-  readonly doctor: Doctor;
-  constructor(init: ModelInit<ClientDoctor>);
-  static copyOf(source: ClientDoctor, mutator: (draft: MutableModel<ClientDoctor>) => MutableModel<ClientDoctor> | void): ClientDoctor;
+  readonly hospitalDoctor: HospitalDoctor;
+  constructor(init: ModelInit<HospitalDoctorCliente>);
+  static copyOf(source: HospitalDoctorCliente, mutator: (draft: MutableModel<HospitalDoctorCliente>) => MutableModel<HospitalDoctorCliente> | void): HospitalDoctorCliente;
+}
+
+export declare class HospitalDoctor {
+  readonly id: string;
+  readonly doctorID: string;
+  readonly hospitalID: string;
+  readonly doctor?: Doctor;
+  readonly hospital?: Hospital;
+  readonly waitList?: (WaitList | null)[];
+  readonly clients?: (HospitalDoctorCliente | null)[];
+  constructor(init: ModelInit<HospitalDoctor>);
+  static copyOf(source: HospitalDoctor, mutator: (draft: MutableModel<HospitalDoctor>) => MutableModel<HospitalDoctor> | void): HospitalDoctor;
 }
 
 export declare class Doctor {
@@ -73,18 +85,8 @@ export declare class Doctor {
   readonly title?: string;
   readonly phone?: string;
   readonly password?: string;
-  readonly clients?: (ClientDoctor | null)[];
-  readonly hospitals?: (HospitalDoctor | null)[];
   constructor(init: ModelInit<Doctor>);
   static copyOf(source: Doctor, mutator: (draft: MutableModel<Doctor>) => MutableModel<Doctor> | void): Doctor;
-}
-
-export declare class HospitalDoctor {
-  readonly id: string;
-  readonly doctor: Doctor;
-  readonly hospital: Hospital;
-  constructor(init: ModelInit<HospitalDoctor>);
-  static copyOf(source: HospitalDoctor, mutator: (draft: MutableModel<HospitalDoctor>) => MutableModel<HospitalDoctor> | void): HospitalDoctor;
 }
 
 export declare class Hospital {
@@ -93,13 +95,13 @@ export declare class Hospital {
   readonly phone?: string;
   readonly pssCode?: string;
   readonly rnc?: string;
-  readonly doctors?: (HospitalDoctor | null)[];
   constructor(init: ModelInit<Hospital>);
   static copyOf(source: Hospital, mutator: (draft: MutableModel<Hospital>) => MutableModel<Hospital> | void): Hospital;
 }
 
 export declare class WaitList {
   readonly id: string;
+  readonly hospitalDoctorID: string;
   readonly status?: WaitListStatus | keyof typeof WaitListStatus;
   readonly positionNumber?: number;
   constructor(init: ModelInit<WaitList>);

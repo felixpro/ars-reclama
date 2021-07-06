@@ -24,14 +24,14 @@ const WaitListStatus = {
   "ESPERA": "ESPERA"
 };
 
-const { Client, Insurance, ClientDoctor, Doctor, HospitalDoctor, Hospital, WaitList } = initSchema(schema);
+const { Client, Insurance, HospitalDoctorCliente, HospitalDoctor, Doctor, Hospital, WaitList } = initSchema(schema);
 
 export {
   Client,
   Insurance,
-  ClientDoctor,
-  Doctor,
+  HospitalDoctorCliente,
   HospitalDoctor,
+  Doctor,
   Hospital,
   WaitList,
   IdentificationTypes,

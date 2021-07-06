@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+import { DataStore } from '@aws-amplify/datastore';
+
 import { Hospital } from '../../models';
 
 interface HospitalContextProps {
 	hospitals: Hospital[];
-	createHospitals: () => Promise<void>;
-	fetchHospitals: () => Promise<void>;
-	deleteHospitals: () => Promise<void>;
-	updateHospitals: () => Promise<void>;
+	createHospital: () => void;
+	actualHospital: Hospital ;
 }
 
 const hospitalsData = [
@@ -16,33 +16,36 @@ const hospitalsData = [
 	{ label: 'Los faroles', value: '3' },
 ];
 
+const exampleHospital = {
+	name: 'Dario Contreras',
+	phone: '829231846',
+	pssCode: '455555',
+	rnc: 'RNC456666',
+};
+
 export const HospitalsContext = React.createContext<Partial<HospitalContextProps>>({});
 
 const HospitalsProvider: React.FC = (props) => {
 	const [hospitals, setHospitals] = useState<Hospital[]>([]);
+	const [actualHospital, setActualHospital] = useState<Hospital>();
 
-
-	const createHospitals = async (): Promise<void> => {
-		console.log('Console doctor');
-	};
-	const fetchHospitals = async (): Promise<void> => {
-		console.log('Console doctor');
-	};
-	const deleteHospitals = async (): Promise<void> => {
-		console.log('Console doctor');
-	};
-	const updateHospitals = async (): Promise<void> => {
-		console.log('Console doctor');
+	const createHospital = (): void => {
+		DataStore.save(new Hospital(exampleHospital))
+			.then((res) => {
+				console.log('Hospital creado correctamente', res);
+				setActualHospital(res);
+			})
+			.catch((error) => {
+				console.log('Error al crear el Hospital', error);
+			});
 	};
 
 	return (
 		<HospitalsContext.Provider
 			value={{
 				hospitals: hospitalsData,
-				createHospitals: createHospitals,
-				fetchHospitals: fetchHospitals,
-				deleteHospitals: deleteHospitals,
-				updateHospitals: updateHospitals,
+				createHospital: createHospital,
+				actualHospital: actualHospital,
 			}}
 		>
 			{props.children}

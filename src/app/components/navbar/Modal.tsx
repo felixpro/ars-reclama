@@ -5,7 +5,7 @@ import { Modal } from 'react-responsive-modal';
 import ClientForm from '../forms/client/ClientForm';
 
 const ModalView = () => {
-	const [open, setOpen] = useState(true);
+	const [open, setOpen] = useState(false);
 
 	const onOpenModal = () => setOpen(true);
 	const onCloseModal = () => setOpen(false);

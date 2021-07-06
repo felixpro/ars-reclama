@@ -119,11 +119,11 @@ export const schema = {
                         "associatedWith": "clientID"
                     }
                 },
-                "doctors": {
-                    "name": "doctors",
+                "HospitalDoctors": {
+                    "name": "HospitalDoctors",
                     "isArray": true,
                     "type": {
-                        "model": "ClientDoctor"
+                        "model": "HospitalDoctorCliente"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -209,8 +209,8 @@ export const schema = {
                 }
             ]
         },
-        "ClientDoctor": {
-            "name": "ClientDoctor",
+        "HospitalDoctorCliente": {
+            "name": "HospitalDoctorCliente",
             "fields": {
                 "id": {
                     "name": "id",
@@ -232,22 +232,22 @@ export const schema = {
                         "targetName": "clientID"
                     }
                 },
-                "doctor": {
-                    "name": "doctor",
+                "hospitalDoctor": {
+                    "name": "hospitalDoctor",
                     "isArray": false,
                     "type": {
-                        "model": "Doctor"
+                        "model": "HospitalDoctor"
                     },
                     "isRequired": true,
                     "attributes": [],
                     "association": {
                         "connectionType": "BELONGS_TO",
-                        "targetName": "doctorID"
+                        "targetName": "hospitalDoctorID"
                     }
                 }
             },
             "syncable": true,
-            "pluralName": "ClientDoctors",
+            "pluralName": "HospitalDoctorClientes",
             "attributes": [
                 {
                     "type": "model",
@@ -261,19 +261,109 @@ export const schema = {
                         "name": "byClient",
                         "fields": [
                             "clientID",
-                            "doctorID"
+                            "hospitalDoctorID"
                         ]
                     }
                 },
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byDoctor",
+                        "name": "byHospitalDoctor",
                         "fields": [
-                            "doctorID",
+                            "hospitalDoctorID",
                             "clientID"
                         ]
                     }
+                }
+            ]
+        },
+        "HospitalDoctor": {
+            "name": "HospitalDoctor",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "doctorID": {
+                    "name": "doctorID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "hospitalID": {
+                    "name": "hospitalID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "doctor": {
+                    "name": "doctor",
+                    "isArray": false,
+                    "type": {
+                        "model": "Doctor"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": "id",
+                        "targetName": "doctorID"
+                    }
+                },
+                "hospital": {
+                    "name": "hospital",
+                    "isArray": false,
+                    "type": {
+                        "model": "Hospital"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": "id",
+                        "targetName": "doctorID"
+                    }
+                },
+                "waitList": {
+                    "name": "waitList",
+                    "isArray": true,
+                    "type": {
+                        "model": "WaitList"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "hospitalDoctorID"
+                    }
+                },
+                "clients": {
+                    "name": "clients",
+                    "isArray": true,
+                    "type": {
+                        "model": "HospitalDoctorCliente"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "hospitalDoctor"
+                    }
+                }
+            },
+            "syncable": true,
+            "pluralName": "HospitalDoctors",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
                 }
             ]
         },
@@ -335,34 +425,6 @@ export const schema = {
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
-                },
-                "clients": {
-                    "name": "clients",
-                    "isArray": true,
-                    "type": {
-                        "model": "ClientDoctor"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "doctor"
-                    }
-                },
-                "hospitals": {
-                    "name": "hospitals",
-                    "isArray": true,
-                    "type": {
-                        "model": "HospitalDoctor"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "doctor"
-                    }
                 }
             },
             "syncable": true,
@@ -371,74 +433,6 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
-                }
-            ]
-        },
-        "HospitalDoctor": {
-            "name": "HospitalDoctor",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "doctor": {
-                    "name": "doctor",
-                    "isArray": false,
-                    "type": {
-                        "model": "Doctor"
-                    },
-                    "isRequired": true,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "hospitalID"
-                    }
-                },
-                "hospital": {
-                    "name": "hospital",
-                    "isArray": false,
-                    "type": {
-                        "model": "Hospital"
-                    },
-                    "isRequired": true,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "doctorID"
-                    }
-                }
-            },
-            "syncable": true,
-            "pluralName": "HospitalDoctors",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {
-                        "queries": null
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byDoctorhp",
-                        "fields": [
-                            "hospitalID",
-                            "doctorID"
-                        ]
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byHospital",
-                        "fields": [
-                            "doctorID",
-                            "hospitalID"
-                        ]
-                    }
                 }
             ]
         },
@@ -479,20 +473,6 @@ export const schema = {
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
-                },
-                "doctors": {
-                    "name": "doctors",
-                    "isArray": true,
-                    "type": {
-                        "model": "HospitalDoctor"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "hospital"
-                    }
                 }
             },
             "syncable": true,
@@ -509,6 +489,13 @@ export const schema = {
             "fields": {
                 "id": {
                     "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "hospitalDoctorID": {
+                    "name": "hospitalDoctorID",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
@@ -537,6 +524,15 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byWaitList",
+                        "fields": [
+                            "hospitalDoctorID"
+                        ]
+                    }
                 }
             ]
         }
@@ -574,5 +570,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "a6138b16f01a151138af5c5ad8c7e929"
+    "version": "25bb868109c7624076ce0db00f4d87d5"
 };

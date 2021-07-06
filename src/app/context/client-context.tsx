@@ -40,7 +40,7 @@ const ContextProvider: IContextProvider = (props) => {
 		const passport = dataForm.identification.passport ? IdentificationTypes.PASAPORTE : null;
 		const identification = dataForm.identification.id ? IdentificationTypes.CEDULA : null;
 
- 		const femenine = dataForm.gender.femenine ? SexType.FEMENINO : null;
+		const femenine = dataForm.gender.femenine ? SexType.FEMENINO : null;
 		const masculine = dataForm.gender.masculine ? SexType.MASCULINO : null;
 
 		const clientObj: Client = {
@@ -58,8 +58,6 @@ const ContextProvider: IContextProvider = (props) => {
 			BloodType: dataForm.BloodType,
 			company: dataForm.company,
 		};
-
-	
 
 		DataStore.save(new Client(clientObj))
 			.then((res) => {

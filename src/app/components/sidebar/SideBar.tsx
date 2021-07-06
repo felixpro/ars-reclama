@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import Dropdown from './Dropdown';
+import SideBarDropdown from './SideBarDropdown';
+
 import arsLogo from '../../../assets/images/logo_arsreclama.svg';
 
 interface Ipath {
@@ -57,8 +59,10 @@ const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
 					</Link>
 				</div>
 				<nav>
-					<div className="pt-20 pb-8">
-						<Dropdown />
+					<div className="pt-20 pb-28">
+						<div className="flex justify-center items-center">
+							<SideBarDropdown />
+						</div>
 					</div>
 					<ul className="flex  justify-center flex-col ">
 						<li className="">

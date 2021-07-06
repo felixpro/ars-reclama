@@ -20,7 +20,7 @@ const Dropdown = () => {
 
 
 	const HospitalsArray = useContext(HospitalsContext).hospitals;
-	const {doctors, updateActualDoctor} = useContext(DoctorsContext);
+	const {doctors, updateActualDoctor, doctors} = useContext(DoctorsContext);
 
 	useEffect(() => {
 		// Validate logged user
@@ -74,7 +74,6 @@ const Dropdown = () => {
 						options={options}
 						dropdownRenderer={dropdownRenderer}
 						searchable={false}
-						
 					/>
 				</div>
 			</div>
