@@ -27,7 +27,7 @@ const WaitingListItem: React.FC<WaitingListItemProps> = (props) => {
 			(waitingListItem) =>
 				waitingListItem.status === 'CONSULTA' || waitingListItem.status === 'ESPERA'
 		)
-		.sort((a, b) => a.positionNumber.toString().localeCompare(b.positionNumber.toString()));
+		.sort((a, b) => a.positionNumber - b.positionNumber);
 
 	if (props.status === 'ESPERA') {
 		orderBackgroundColor = '#3F48AD';
@@ -59,7 +59,7 @@ const WaitingListItem: React.FC<WaitingListItemProps> = (props) => {
 		const result: JSX.Element[] = [];
 		totalItems.forEach((item) => {
 			result.push(
-				<option className="outline-none" key={item.id}>
+				<option className="outline-none" key={item.id} value={item.positionNumber}>
 					{get0PrefixValue(item.positionNumber)}
 				</option>
 			);
@@ -67,11 +67,8 @@ const WaitingListItem: React.FC<WaitingListItemProps> = (props) => {
 		return result;
 	};
 
-	const handlePositionChange = (value: string) => {
-		waitingListsContext.updateWaitingItemPositionNumber(
-			props.waitingItemID,
-			Number.parseInt(value)
-		);
+	const handlePositionChange = (value: number) => {
+		waitingListsContext.updateWaitingItemPositionNumber(props.waitingItemID, value);
 	};
 
 	return (
@@ -92,8 +89,10 @@ const WaitingListItem: React.FC<WaitingListItemProps> = (props) => {
 							style={{
 								backgroundColor: orderBackgroundColor,
 							}}
-							value={get0PrefixValue(props.positionNumber)}
-							onChange={(event) => handlePositionChange(event.target.value)}
+							value={props.positionNumber}
+							onChange={(event) =>
+								handlePositionChange(Number.parseInt(event.target.value))
+							}
 						>
 							{generateOptions()}
 						</select>
@@ -136,6 +135,7 @@ const WaitingListItem: React.FC<WaitingListItemProps> = (props) => {
 					type="image"
 					alt=""
 					src={removeICon}
+					className={props.status === 'ESPERA' ? '' : 'invisible'}
 					onClick={() => props.onTerminada(props.waitingItemID)}
 				/>
 			</div>

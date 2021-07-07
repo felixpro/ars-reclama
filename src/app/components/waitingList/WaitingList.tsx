@@ -12,10 +12,10 @@ const WaitingListC = () => {
 
 	const inProcessWaitingItems = waitingListsContext.waitingListItems
 		.filter((waitingListItem) => waitingListItem.status === 'CONSULTA')
-		.sort((a, b) => a.positionNumber.toString().localeCompare(b.positionNumber.toString()));
+		.sort((a, b) => a.positionNumber - b.positionNumber);
 	const pendingWaitingItems = waitingListsContext.waitingListItems
 		.filter((waitingListItem) => waitingListItem.status === 'ESPERA')
-		.sort((a, b) => a.positionNumber.toString().localeCompare(b.positionNumber.toString()));
+		.sort((a, b) => a.positionNumber - b.positionNumber);
 
 	const generateWaitingListTestData = async () => {
 		await DataStore.save(
