@@ -1,29 +1,47 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { HospitalsContext } from '../../context/hospital-context';
-import { DoctorsContext } from '../../context/doctor-context';
+import React, { useState, useEffect } from 'react';
 
 import checked from '../../../assets/images/active_check.svg';
 import check from '../../../assets/images/check.svg';
+import arroUp from '../../../assets/images/arrow_upBlue.svg';
+import arroDown from '../../../assets/images/arrow_downBlue.svg';
 
-const SideBarDropdown = () => {
+import classnames from 'classnames';
+
+import styles from './DropDownIcon.module.css';
+
+interface IDropDownIcon {
+	inputName: string;
+	options: [];
+	setdropdownIconValue: () => void;
+	effectFunction: () => void;
+}
+
+const DropDownIcon: React.FC<IDropDownIcon> = ({
+	inputName,
+	options,
+	setdropdownIconValue,
+	effectFunction,
+}) => {
 	const [optionSelected, SetOptionSelected] = useState({ name: 'Seleccionar...', id: '' });
-	const [toggleInput, SetToggleInput] = useState(false);
-
-	const { doctors, actualDoctor, fetchDoctors, setActualDoctor } = useContext(DoctorsContext);
+	const [toggleInput, setToggleInput] = useState(false);
 
 	const handleDropDown = () => {
-		SetToggleInput(false);
+		setToggleInput(false);
 	};
 
 	const handleSelectAction = (data: string, id: string): void => {
-		const doctorSelected = doctors.filter((doctor) => doctor.id === optionSelected.id);
-		handleDropDown();
+		const doctorSelected = options.filter((option) => option.id === optionSelected.id);
 		SetOptionSelected({ name: data, id: id });
-		console.log('doctorSelected', doctorSelected[0]);
+		setdropdownIconValue(doctorSelected[0]);
+		handleDropDown();
 	};
 
 	useEffect(() => {
-		fetchDoctors();
+		setdropdownIconValue(optionSelected);
+	}, [optionSelected]);
+
+	useEffect(() => {
+		effectFunction();
 	}, []);
 
 	return (
@@ -32,7 +50,7 @@ const SideBarDropdown = () => {
 				tab-index="0"
 				onBlur={() => {
 					setTimeout(function () {
-						SetToggleInput(false);
+						setToggleInput(true);
 					}, 400);
 				}}
 			>
@@ -42,29 +60,14 @@ const SideBarDropdown = () => {
 							<div className="flex justify-center items-center">
 								<input
 									type="text"
-									name="insuranceSelected"
+									name={inputName}
 									value={optionSelected.name}
 									className="raleway-font font-bold text-azulMarino-default w-40 absolute h-9 ml-16 pl-4 pr-6 input_insurance "
-									onClick={() => SetToggleInput(toggleInput ? false : true)}
+									onClick={() => setToggleInput(toggleInput ? true : true)}
 								/>
 							</div>
-
-							<div className="flex items-center pt-1">
-								<svg
-									width="11"
-									height="7"
-									viewBox="0 0 11 7"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg"
-								>
-									<path
-										d="M1.59822 1.58224L5.51493 5.25879L9.43164 1.58224"
-										stroke="#3F48AD"
-										strokeWidth="2"
-										strokeLinecap="round"
-										strokeLinejoin="round"
-									/>
-								</svg>
+							<div className="flex items-center ">
+								<img src={toggleInput ? arroUp : arroDown} alt="" />
 							</div>
 						</div>
 					</div>
@@ -72,11 +75,14 @@ const SideBarDropdown = () => {
 				<div className="flex justify-center">
 					{toggleInput ? (
 						<div className="w-48 z-10 absolute rounded-lg pl-4 pr-4 pb-4 pt-16 mt-1.5 bg-white-section shadow-sm drop-button-container">
-							{doctors &&
-								doctors.map((option) => (
+							{options &&
+								options.map((option) => (
 									<div key={option.id}>
 										<button
-											className="flex items-center w-full  hover:bg-white-section pl-3.5 h-11 flex items-centers rounded-lg"
+											className={classnames(
+												' flex items-center w-full  hover:bg-white-section pl-3.5 h-11 flex items-centers rounded-lg',
+												styles.dialog
+											)}
 											onClick={() =>
 												handleSelectAction(option.name, option.id)
 											}
@@ -102,4 +108,4 @@ const SideBarDropdown = () => {
 	);
 };
 
-export default SideBarDropdown;
+export default DropDownIcon;

@@ -17,12 +17,12 @@ interface DoctorContextProps {
 export const DoctorsContext = React.createContext<Partial<DoctorContextProps>>({
 	doctors: [],
 	createDoctor: () => null,
-	fetchDoctors:  () => null
+	fetchDoctors: () => null,
 });
 
 const ContextProvider: React.FC = (props) => {
 	const [doctors, setDoctors] = useState<Doctor[]>([]);
-	const [actualDoctor, setActualDoctor] = useState <React.SetStateAction<Doctor | undefined>>();
+	const [actualDoctor, setActualDoctor] = useState<React.SetStateAction<Doctor | undefined>>();
 
 	const createDoctor = () => {
 		DataStore.save(

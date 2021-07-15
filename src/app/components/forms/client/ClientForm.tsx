@@ -129,8 +129,14 @@ function ClientForm({ onCloseModal }) {
 			/^[a-zA-Z0-9 \s,._ )('-]{3,}$/,
 			'Solo puntos, comas y guiones permitidos'
 		),
-		affiliateNumber: Yup.string().matches(/^[a-zA-Z0-9 \s,._ )('-]{3,}$/, 'Solo puntos y comas permitidos'),
-		contractNumber: Yup.string().matches(/^[a-zA-Z0-9 \s,._ )('-]{3,}$/, 'Solo puntos y comas permitidos'),		
+		affiliateNumber: Yup.string().matches(
+			/^[a-zA-Z0-9 \s,._ )('-]{3,}$/,
+			'Solo puntos y comas permitidos'
+		),
+		contractNumber: Yup.string().matches(
+			/^[a-zA-Z0-9 \s,._ )('-]{3,}$/,
+			'Solo puntos y comas permitidos'
+		),
 	});
 
 	return (
@@ -141,7 +147,7 @@ function ClientForm({ onCloseModal }) {
 				// update inputs that Formik cannot extract values
 				const objValue = JSON.parse(JSON.stringify(values));
 				const formValue = { ...JSON.parse(JSON.stringify(values)), ...untrackedValues };
-				createClient(formValue)
+				createClient(formValue);
 			}}
 		>
 			<div className="client-form  pr-0 pl-24 pt-14 pb-14 2lg:pr-11 2lg:pl-20  1/2xl:pr-16 1/2xl:pl-24 ">

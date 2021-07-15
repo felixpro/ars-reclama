@@ -43,7 +43,7 @@ type HospitalDoctor @model {
 	hospitalID: ID!
 	doctor: Doctor @connection(fields: ["doctorID"])
 	hospital: Hospital @connection(fields: ["doctorID"])
-	waitList: [WaitList] @connection(keyName: "byWaitList", fields: ["id"])
+	waitLists: [WaitList] @connection(keyName: "byWaitList", fields: ["id"])
 	clients: [HospitalDoctorCliente] @connection(keyName: "byHospitalDoctor", fields: ["id"])
 }
 

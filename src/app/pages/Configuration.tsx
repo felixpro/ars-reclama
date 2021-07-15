@@ -8,7 +8,6 @@ const Configuration = () => {
 	const { createHospital, actualHospital } = useContext(HospitalsContext);
 	const { createHospitalDoctor } = useContext(RelationsContext);
 
-
 	return (
 		<div>
 			<button onClick={() => createHospital()}>Create hospital</button>
@@ -19,9 +18,7 @@ const Configuration = () => {
 			<br />
 			<br />
 			<br />
-			<button onClick={() => createHospitalDoctor()}>
-				Create relation HospitalDoctor
-			</button>
+			<button onClick={() => createHospitalDoctor()}>Create relation HospitalDoctor</button>
 		</div>
 	);
 };

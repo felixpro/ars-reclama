@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Insurance } from '../../models';
 
-
 interface InsuranceContextProps {
 	Insurances: Insurance[];
 	createHospitals: () => Promise<void>;
@@ -22,7 +21,7 @@ export const InsurancesContext = React.createContext<Partial<InsuranceContextPro
 
 const InsurancesProvider: React.FC = (props) => {
 	const [insurances, setInsurances] = useState<Insurance[]>([]);
-	
+
 	const createInsurance = async () => {
 		return null;
 	};

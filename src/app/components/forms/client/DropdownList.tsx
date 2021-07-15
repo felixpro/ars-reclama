@@ -41,7 +41,7 @@ const DropdownList = ({ SetFormsValues, formsValues }) => {
 			...formsValues,
 			insuranceSelected: optionSelected.name,
 		});
-	}, [])
+	}, []);
 
 	DropdownList.handleClickOutside = () => SetToggleInput(false);
 

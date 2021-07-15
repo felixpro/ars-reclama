@@ -6,7 +6,7 @@ import { Hospital } from '../../models';
 interface HospitalContextProps {
 	hospitals: Hospital[];
 	createHospital: () => void;
-	actualHospital: Hospital ;
+	actualHospital: Hospital;
 }
 
 const hospitalsData = [
