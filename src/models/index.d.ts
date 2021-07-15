@@ -1,8 +1,20 @@
 import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
 
+export enum IdentificationTypes {
+  CEDULA = "CEDULA",
+  PASAPORTE = "PASAPORTE"
+}
+
 export enum SexType {
   FEMENINO = "FEMENINO",
   MASCULINO = "MASCULINO"
+}
+
+export enum AffiliateTypes {
+  PRINCIPAL = "PRINCIPAL",
+  TITULAR = "TITULAR",
+  DEPENDIENTE = "DEPENDIENTE",
+  PARENTESCO = "PARENTESCO"
 }
 
 export enum WaitListStatus {
@@ -14,27 +26,82 @@ export enum WaitListStatus {
 
 export declare class Client {
   readonly id: string;
-  readonly identificationCard?: string;
-  readonly passport?: string;
-  readonly affiliateNumber?: number;
+  readonly identificationName?: IdentificationTypes | keyof typeof IdentificationTypes;
+  readonly identificationData?: string;
   readonly name?: string;
   readonly cellphoneNumber?: string;
   readonly email?: string;
-  readonly contractNumber?: number;
   readonly bornDate?: string;
-  readonly sex?: SexType | keyof typeof SexType;
+  readonly gender?: SexType | keyof typeof SexType;
   readonly phoneNumber?: string;
-  readonly admissionDate?: string;
   readonly addressStreet?: string;
-  readonly addressNumber?: number;
-  readonly neighborhood?: string;
   readonly city?: string;
+  readonly sector?: string;
+  readonly BloodType?: string;
+  readonly company?: string;
+  readonly Insurances?: (Insurance | null)[];
+  readonly HospitalDoctors?: (HospitalDoctorCliente | null)[];
   constructor(init: ModelInit<Client>);
   static copyOf(source: Client, mutator: (draft: MutableModel<Client>) => MutableModel<Client> | void): Client;
 }
 
+export declare class Insurance {
+  readonly id: string;
+  readonly clientID?: string;
+  readonly name: string;
+  readonly contractNumber?: number;
+  readonly affiliateNumber?: number;
+  readonly affiliateType?: AffiliateTypes | keyof typeof AffiliateTypes;
+  constructor(init: ModelInit<Insurance>);
+  static copyOf(source: Insurance, mutator: (draft: MutableModel<Insurance>) => MutableModel<Insurance> | void): Insurance;
+}
+
+export declare class HospitalDoctorCliente {
+  readonly id: string;
+  readonly client: Client;
+  readonly hospitalDoctor: HospitalDoctor;
+  constructor(init: ModelInit<HospitalDoctorCliente>);
+  static copyOf(source: HospitalDoctorCliente, mutator: (draft: MutableModel<HospitalDoctorCliente>) => MutableModel<HospitalDoctorCliente> | void): HospitalDoctorCliente;
+}
+
+export declare class HospitalDoctor {
+  readonly id: string;
+  readonly doctorID: string;
+  readonly hospitalID: string;
+  readonly doctor?: Doctor;
+  readonly hospital?: Hospital;
+  readonly waitList?: (WaitList | null)[];
+  readonly clients?: (HospitalDoctorCliente | null)[];
+  constructor(init: ModelInit<HospitalDoctor>);
+  static copyOf(source: HospitalDoctor, mutator: (draft: MutableModel<HospitalDoctor>) => MutableModel<HospitalDoctor> | void): HospitalDoctor;
+}
+
+export declare class Doctor {
+  readonly id: string;
+  readonly name: string;
+  readonly specialty?: string;
+  readonly exequator?: string;
+  readonly email?: string;
+  readonly title?: string;
+  readonly phone?: string;
+  readonly password?: string;
+  constructor(init: ModelInit<Doctor>);
+  static copyOf(source: Doctor, mutator: (draft: MutableModel<Doctor>) => MutableModel<Doctor> | void): Doctor;
+}
+
+export declare class Hospital {
+  readonly id: string;
+  readonly name: string;
+  readonly phone?: string;
+  readonly pssCode?: string;
+  readonly rnc?: string;
+  constructor(init: ModelInit<Hospital>);
+  static copyOf(source: Hospital, mutator: (draft: MutableModel<Hospital>) => MutableModel<Hospital> | void): Hospital;
+}
+
 export declare class WaitList {
   readonly id: string;
+  readonly hospitalDoctorID: string;
   readonly status?: WaitListStatus | keyof typeof WaitListStatus;
   readonly positionNumber?: number;
   constructor(init: ModelInit<WaitList>);

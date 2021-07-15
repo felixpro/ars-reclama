@@ -1,12 +1,14 @@
-import React from 'react';
-import SideBar from '../components/sidebar/SideBar';
-import Clients from '../components/clients/Clients';
+import React, { useState } from 'react';
 
-function Home() {
+function Home({ handlePath }) {
+	const [dropdownValue, setDropdownValue] = useState();
+
+	const [dropdownIconValue, setdropdownIconValue] = useState();
+
 	return (
-		<div className=" bg-green-content">
-			<SideBar />
-			<Clients />
+		<div>
+			<button onClick={() => handlePath(null, 'Lucas Jhon')}>add client path</button>
+			<h1>Home</h1>
 		</div>
 	);
 }

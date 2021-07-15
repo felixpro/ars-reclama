@@ -1,35 +1,100 @@
 type Client @model {
-  id: ID!
-  identificationCard: String
-  passport: String
-  affiliateNumber: Int
-  name: String
-  cellphoneNumber: String
-  email: String
-  contractNumber: Int
-  bornDate: String
-  sex: SexType
-  phoneNumber: String
-  admissionDate: String
-  addressStreet: String
-  addressNumber: Int
-  neighborhood: String
-  city: String
+	id: ID!
+	identificationName: IdentificationTypes
+	identificationData: String
+	name: String
+	cellphoneNumber: String
+	email: String
+	bornDate: String
+	gender: SexType
+	phoneNumber: String
+	addressStreet: String
+	city: String
+	sector: String
+	BloodType: String
+	company: String
+	Insurances: [Insurance] @connection(keyName: "byInsurance", fields: ["id"])
+	HospitalDoctors: [HospitalDoctorCliente] @connection(keyName: "byClient", fields: ["id"])
+
 }
 
-type WaitList @model {
+type Doctor @model {
+	id: ID!
+	name: String!
+	specialty: String
+	exequator: String
+	email: String
+	title: String
+	phone: String
+	password: String
+}
+
+type Hospital @model {
+	id: ID!
+	name: String!
+	phone: String
+	pssCode: String
+	rnc: String
+}
+
+type HospitalDoctor @model {
+	id: ID!
+	doctorID: ID!
+	hospitalID: ID!
+	doctor: Doctor @connection(fields: ["doctorID"])
+	hospital: Hospital @connection(fields: ["doctorID"])
+	waitLists: [WaitList] @connection(keyName: "byWaitList", fields: ["id"])
+	clients: [HospitalDoctorCliente] @connection(keyName: "byHospitalDoctor", fields: ["id"])
+}
+
+
+type HospitalDoctorCliente
+  @model(queries: null)
+  @key(name: "byClient", fields: ["clientID", "hospitalDoctorID"])
+  @key(name: "byHospitalDoctor", fields: ["hospitalDoctorID", "clientID"]) {
   id: ID!
-  client: Client
-  status: WaitListStatus
-  positionNumber: Int
+  clientID: ID!
+  hospitalDoctorID: ID!
+  client: Client! @connection(fields: ["clientID"])
+  hospitalDoctor: HospitalDoctor! @connection(fields: ["hospitalDoctorID"])
+}
+
+type WaitList @model 
+	@key(name: "byWaitList", fields: ["hospitalDoctorID"]) {
+	id: ID!
+	hospitalDoctorID: ID!
+	client: Client
+	status: WaitListStatus
+	positionNumber: Int
+}
+
+type Insurance @model @key(name: "byInsurance", fields: ["clientID"]) {
+	id: ID!
+	clientID: ID
+	name: String!
+	contractNumber: Int
+	affiliateNumber: Int
+	affiliateType: AffiliateTypes
 }
 
 enum WaitListStatus {
-  CONSULTA
-  ESPERA
+	CONSULTA
+	ESPERA
 }
 
 enum SexType {
-  FEMENINO
-  MASCULINO
+	FEMENINO
+	MASCULINO
+}
+
+enum AffiliateTypes {
+	PRINCIPAL
+	TITULAR
+	DEPENDIENTE
+	PARENTESCO
+}
+
+enum IdentificationTypes {
+	CEDULA
+	PASAPORTE
 }
