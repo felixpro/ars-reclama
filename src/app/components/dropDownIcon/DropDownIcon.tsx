@@ -50,7 +50,7 @@ const DropDownIcon: React.FC<IDropDownIcon> = ({
 				tab-index="0"
 				onBlur={() => {
 					setTimeout(function () {
-						setToggleInput(true);
+						setToggleInput(false);
 					}, 400);
 				}}
 			>
