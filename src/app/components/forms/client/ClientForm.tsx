@@ -1,16 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react';
-import SearchResult from './SearchResult';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import MaskedInput from 'react-text-mask';
 
 import { ClientsContext } from '../../../context/client-context';
+import { DoctorsContext } from '../../../context/doctor-context';
+
 import DropdownList from './DropdownList';
 import AffiliateDropdown from './AffiliateDropdown';
 import IdInput from './IdInput';
 
 function ClientForm({ onCloseModal }) {
 	const { createClient } = useContext(ClientsContext);
+	const { actualDoctor } = useContext(DoctorsContext);
 
 	const [untrackedValues, SetUntrackedValues] = useState({
 		identification: { passport: false, id: true },
@@ -568,7 +570,7 @@ function ClientForm({ onCloseModal }) {
 					<div className="flex justify-between pt-16">
 						<div className="flex items-center">
 							<p className="raleway-font text-base">
-								<b>Agregando a:</b> Dr. Dario Contreras
+								<b>Agregando a:</b> {actualDoctor && actualDoctor.name}
 							</p>
 						</div>
 						<div className="flex">

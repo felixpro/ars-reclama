@@ -6,7 +6,7 @@ import { Doctor } from '../../models';
 interface DoctorContextProps {
 	doctors: Doctor[];
 	actualDoctor: Doctor;
-	setActualDoctor: React.Dispatch<React.SetStateAction<Doctor | undefined>>;
+	setActualDoctor: (dropdownIconValue: Doctor) => void;
 	createDoctor: () => void;
 	fetchDoctors: () => void;
 	deleteDoctor: (id: string) => void;
@@ -19,6 +19,7 @@ export const DoctorsContext = React.createContext<Partial<DoctorContextProps>>({
 	createDoctor: () => null,
 	fetchDoctors: () => null,
 });
+
 
 const ContextProvider: React.FC = (props) => {
 	const [doctors, setDoctors] = useState<Doctor[]>([]);

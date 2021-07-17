@@ -1,7 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Dropdown from './Dropdown';
-import SideBarDropdown from './SideBarDropdown';
+import { DoctorsContext } from '../../context/doctor-context';
+
+import DropDownIcon from '../DropDownIcon';
 
 import arsLogo from '../../../assets/images/logo_arsreclama.svg';
 
@@ -18,6 +19,9 @@ interface ISideBar {
 }
 
 const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
+	const { doctors, fetchDoctors, setActualDoctor } = useContext(DoctorsContext);
+	const [dropdownIconValue, setdropdownIconValue] = useState();
+
 	const handleClick = (path: React.SetStateAction<Ipath>): void => {
 		SetPagePath(path);
 		SetsidebarToggle(false);
@@ -27,6 +31,10 @@ const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
 	window.onresize = function () {
 		SetsidebarToggle(false);
 	};
+
+	useEffect(() => {
+		setActualDoctor(dropdownIconValue);
+	}, [dropdownIconValue]);
 
 	return (
 		<div className="relative min-h-screen flex sidebar-container ">
@@ -61,7 +69,12 @@ const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
 				<nav>
 					<div className="pt-20 pb-28">
 						<div className="flex justify-center items-center">
-							<SideBarDropdown />
+							<DropDownIcon
+								options={doctors}
+								setdropdownIconValue={setdropdownIconValue}
+								inputName="apellido"
+								effectFunction={fetchDoctors}
+							/>
 						</div>
 					</div>
 					<ul className="flex  justify-center flex-col ">
