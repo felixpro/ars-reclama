@@ -10,15 +10,17 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "identificationCard": {
-                    "name": "identificationCard",
+                "identificationName": {
+                    "name": "identificationName",
                     "isArray": false,
-                    "type": "String",
+                    "type": {
+                        "enum": "IdentificationTypes"
+                    },
                     "isRequired": false,
                     "attributes": []
                 },
-                "passport": {
-                    "name": "passport",
+                "identificationData": {
+                    "name": "identificationData",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -35,7 +37,7 @@ export const schema = {
                     "name": "name",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": true,
+                    "isRequired": false,
                     "attributes": []
                 },
                 "cellphoneNumber": {
@@ -66,8 +68,8 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "sex": {
-                    "name": "sex",
+                "gender": {
+                    "name": "gender",
                     "isArray": false,
                     "type": {
                         "enum": "SexType"
@@ -103,13 +105,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "neighborhood": {
-                    "name": "neighborhood",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "city": {
                     "name": "city",
                     "isArray": false,
@@ -117,33 +112,26 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "bloodType": {
-                    "name": "bloodType",
+                "sector": {
+                    "name": "sector",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "healthInsuranceId": {
-                    "name": "healthInsuranceId",
+                "BloodType": {
+                    "name": "BloodType",
                     "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
+                    "type": "String",
+                    "isRequired": false,
                     "attributes": []
                 },
-                "healthInsurance": {
-                    "name": "healthInsurance",
+                "company": {
+                    "name": "company",
                     "isArray": false,
-                    "type": {
-                        "model": "HealthInsurance"
-                    },
+                    "type": "String",
                     "isRequired": false,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "HAS_ONE",
-                        "associatedWith": "id",
-                        "targetName": "healthInsuranceId"
-                    }
+                    "attributes": []
                 },
                 "profileImage": {
                     "name": "profileImage",
@@ -151,6 +139,34 @@ export const schema = {
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
+                },
+                "Insurances": {
+                    "name": "Insurances",
+                    "isArray": true,
+                    "type": {
+                        "model": "Insurance"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "clientID"
+                    }
+                },
+                "HospitalDoctors": {
+                    "name": "HospitalDoctors",
+                    "isArray": true,
+                    "type": {
+                        "model": "HospitalDoctorCliente"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "client"
+                    }
                 }
             },
             "syncable": true,
@@ -162,8 +178,239 @@ export const schema = {
                 }
             ]
         },
-        "HealthInsurance": {
-            "name": "HealthInsurance",
+        "Insurance": {
+            "name": "Insurance",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "clientID": {
+                    "name": "clientID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "contractNumber": {
+                    "name": "contractNumber",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "affiliateNumber": {
+                    "name": "affiliateNumber",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "affiliateType": {
+                    "name": "affiliateType",
+                    "isArray": false,
+                    "type": {
+                        "enum": "AffiliateTypes"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "imageName": {
+                    "name": "imageName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "Insurances",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byInsurance",
+                        "fields": [
+                            "clientID"
+                        ]
+                    }
+                }
+            ]
+        },
+        "HospitalDoctorCliente": {
+            "name": "HospitalDoctorCliente",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "client": {
+                    "name": "client",
+                    "isArray": false,
+                    "type": {
+                        "model": "Client"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "clientID"
+                    }
+                },
+                "hospitalDoctor": {
+                    "name": "hospitalDoctor",
+                    "isArray": false,
+                    "type": {
+                        "model": "HospitalDoctor"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "hospitalDoctorID"
+                    }
+                }
+            },
+            "syncable": true,
+            "pluralName": "HospitalDoctorClientes",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {
+                        "queries": null
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byClient",
+                        "fields": [
+                            "clientID",
+                            "hospitalDoctorID"
+                        ]
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byHospitalDoctor",
+                        "fields": [
+                            "hospitalDoctorID",
+                            "clientID"
+                        ]
+                    }
+                }
+            ]
+        },
+        "HospitalDoctor": {
+            "name": "HospitalDoctor",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "doctorID": {
+                    "name": "doctorID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "hospitalID": {
+                    "name": "hospitalID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "doctor": {
+                    "name": "doctor",
+                    "isArray": false,
+                    "type": {
+                        "model": "Doctor"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": "id",
+                        "targetName": "doctorID"
+                    }
+                },
+                "hospital": {
+                    "name": "hospital",
+                    "isArray": false,
+                    "type": {
+                        "model": "Hospital"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": "id",
+                        "targetName": "doctorID"
+                    }
+                },
+                "waitLists": {
+                    "name": "waitLists",
+                    "isArray": true,
+                    "type": {
+                        "model": "WaitList"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "hospitalDoctorID"
+                    }
+                },
+                "clients": {
+                    "name": "clients",
+                    "isArray": true,
+                    "type": {
+                        "model": "HospitalDoctorCliente"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "hospitalDoctor"
+                    }
+                }
+            },
+            "syncable": true,
+            "pluralName": "HospitalDoctors",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                }
+            ]
+        },
+        "Doctor": {
+            "name": "Doctor",
             "fields": {
                 "id": {
                     "name": "id",
@@ -179,8 +426,43 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "imageName": {
-                    "name": "imageName",
+                "specialty": {
+                    "name": "specialty",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "exequator": {
+                    "name": "exequator",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "email": {
+                    "name": "email",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "title": {
+                    "name": "title",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "phone": {
+                    "name": "phone",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "password": {
+                    "name": "password",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -188,7 +470,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "HealthInsurances",
+            "pluralName": "Doctors",
             "attributes": [
                 {
                     "type": "model",
@@ -196,11 +478,66 @@ export const schema = {
                 }
             ]
         },
-        "WaitingList": {
-            "name": "WaitingList",
+        "Hospital": {
+            "name": "Hospital",
             "fields": {
                 "id": {
                     "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "phone": {
+                    "name": "phone",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "pssCode": {
+                    "name": "pssCode",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "rnc": {
+                    "name": "rnc",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "Hospitals",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                }
+            ]
+        },
+        "WaitList": {
+            "name": "WaitList",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "hospitalDoctorID": {
+                    "name": "hospitalDoctorID",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
@@ -229,11 +566,20 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "WaitingLists",
+            "pluralName": "WaitLists",
             "attributes": [
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byWaitList",
+                        "fields": [
+                            "hospitalDoctorID"
+                        ]
+                    }
                 }
             ]
         },
@@ -254,13 +600,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "clientID": {
-                    "name": "clientID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
                 "client": {
                     "name": "client",
                     "isArray": false,
@@ -270,8 +609,7 @@ export const schema = {
                     "isRequired": false,
                     "attributes": [],
                     "association": {
-                        "connectionType": "HAS_ONE",
-                        "associatedWith": "id",
+                        "connectionType": "BELONGS_TO",
                         "targetName": "clientID"
                     }
                 },
@@ -312,11 +650,27 @@ export const schema = {
         }
     },
     "enums": {
+        "IdentificationTypes": {
+            "name": "IdentificationTypes",
+            "values": [
+                "CEDULA",
+                "PASAPORTE"
+            ]
+        },
         "SexType": {
             "name": "SexType",
             "values": [
                 "FEMENINO",
                 "MASCULINO"
+            ]
+        },
+        "AffiliateTypes": {
+            "name": "AffiliateTypes",
+            "values": [
+                "PRINCIPAL",
+                "TITULAR",
+                "DEPENDIENTE",
+                "PARENTESCO"
             ]
         },
         "WaitingListItemStatus": {
@@ -326,8 +680,15 @@ export const schema = {
                 "ESPERA",
                 "TERMINADA"
             ]
+        },
+        "WaitListStatus": {
+            "name": "WaitListStatus",
+            "values": [
+                "CONSULTA",
+                "ESPERA"
+            ]
         }
     },
     "nonModels": {},
-    "version": "4be480c892f8e9c40f411bfaa04e75e5"
+    "version": "70b66940f69742de3e062cff60ec9fc0"
 };

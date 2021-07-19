@@ -1,12 +1,15 @@
-import React from 'react';
-import SideBar from '../components/sidebar/SideBar';
+import React, { useState } from 'react';
 import Clients from '../components/clients/Clients';
 import WaitingList from '../components/waitingList/WaitingList';
 
-function Home() {
+function Home({ handlePath }) {
+	const [dropdownValue, setDropdownValue] = useState();
+
+	const [dropdownIconValue, setdropdownIconValue] = useState();
+
 	return (
 		<div className=" bg-green-content">
-			<SideBar />
+			<button onClick={() => handlePath(null, 'Lucas Jhon')}>add client path</button>
 			<div className="flex flex-row">
 				<Clients />
 				<WaitingList />

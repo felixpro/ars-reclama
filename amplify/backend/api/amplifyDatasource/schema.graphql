@@ -1,30 +1,75 @@
 type Client @model {
-  id: ID!
-  identificationCard: String
-  passport: String
-  affiliateNumber: Int
-  name: String!
-  cellphoneNumber: String
-  email: String
-  contractNumber: Int
-  bornDate: String
-  sex: SexType
-  phoneNumber: String
-  admissionDate: String
-  addressStreet: String
-  addressNumber: Int
-  neighborhood: String
-  city: String
-  bloodType: String
-  healthInsuranceId: ID!
-  healthInsurance: HealthInsurance @connection(fields: ["healthInsuranceId"])
-  profileImage: String
+	id: ID!
+	identificationName: IdentificationTypes
+	identificationData: String
+	affiliateNumber: Int
+	name: String
+	cellphoneNumber: String
+	email: String
+	contractNumber: Int
+	bornDate: String
+	gender: SexType
+	phoneNumber: String
+	admissionDate: String
+	addressStreet: String
+	addressNumber: Int
+	city: String
+	sector: String
+	BloodType: String
+	company: String
+	profileImage: String
+	Insurances: [Insurance] @connection(keyName: "byInsurance", fields: ["id"])
+	HospitalDoctors: [HospitalDoctorCliente] @connection(keyName: "byClient", fields: ["id"])
+
 }
 
-type WaitingList @model {
+type Doctor @model {
+	id: ID!
+	name: String!
+	specialty: String
+	exequator: String
+	email: String
+	title: String
+	phone: String
+	password: String
+}
+
+type Hospital @model {
+	id: ID!
+	name: String!
+	phone: String
+	pssCode: String
+	rnc: String
+}
+
+type HospitalDoctor @model {
+	id: ID!
+	doctorID: ID!
+	hospitalID: ID!
+	doctor: Doctor @connection(fields: ["doctorID"])
+	hospital: Hospital @connection(fields: ["doctorID"])
+	waitLists: [WaitList] @connection(keyName: "byWaitList", fields: ["id"])
+	clients: [HospitalDoctorCliente] @connection(keyName: "byHospitalDoctor", fields: ["id"])
+}
+
+
+type HospitalDoctorCliente
+  @model(queries: null)
+  @key(name: "byClient", fields: ["clientID", "hospitalDoctorID"])
+  @key(name: "byHospitalDoctor", fields: ["hospitalDoctorID", "clientID"]) {
   id: ID!
-  createdAt: String
-  items: [WaitingListItem] @connection(keyName: "byWaitingList", fields: ["id"])
+  clientID: ID!
+  hospitalDoctorID: ID!
+  client: Client! @connection(fields: ["clientID"])
+  hospitalDoctor: HospitalDoctor! @connection(fields: ["hospitalDoctorID"])
+}
+
+type WaitList @model 
+	@key(name: "byWaitList", fields: ["hospitalDoctorID"]) {
+	id: ID!
+	hospitalDoctorID: ID!
+	createdAt: String
+  	items: [WaitingListItem] @connection(keyName: "byWaitingList", fields: ["id"])
 }
 
 type WaitingListItem @model
@@ -37,10 +82,14 @@ type WaitingListItem @model
   positionNumber: Int!
 }
 
-type HealthInsurance @model {
-  id: ID!
-  name: String!
-  imageName: String
+type Insurance @model @key(name: "byInsurance", fields: ["clientID"]) {
+	id: ID!
+	clientID: ID
+	name: String!
+	contractNumber: Int
+	affiliateNumber: Int
+	affiliateType: AffiliateTypes
+	imageName: String
 }
 
 enum WaitingListItemStatus {
@@ -49,7 +98,24 @@ enum WaitingListItemStatus {
   TERMINADA
 }
 
+enum WaitListStatus {
+	CONSULTA
+	ESPERA
+}
+
 enum SexType {
-  FEMENINO
-  MASCULINO
+	FEMENINO
+	MASCULINO
+}
+
+enum AffiliateTypes {
+	PRINCIPAL
+	TITULAR
+	DEPENDIENTE
+	PARENTESCO
+}
+
+enum IdentificationTypes {
+	CEDULA
+	PASAPORTE
 }
