@@ -19,12 +19,18 @@ const AffiliateTypes = {
   "PARENTESCO": "PARENTESCO"
 };
 
+const WaitingListItemStatus = {
+  "CONSULTA": "CONSULTA",
+  "ESPERA": "ESPERA",
+  "TERMINADA": "TERMINADA"
+};
+
 const WaitListStatus = {
   "CONSULTA": "CONSULTA",
   "ESPERA": "ESPERA"
 };
 
-const { Client, Insurance, HospitalDoctorCliente, HospitalDoctor, Doctor, Hospital, WaitList } = initSchema(schema);
+const { Client, Insurance, HospitalDoctorCliente, HospitalDoctor, Doctor, Hospital, WaitList, WaitingListItem } = initSchema(schema);
 
 export {
   Client,
@@ -34,8 +40,10 @@ export {
   Doctor,
   Hospital,
   WaitList,
+  WaitingListItem,
   IdentificationTypes,
   SexType,
   AffiliateTypes,
+  WaitingListItemStatus,
   WaitListStatus
 };

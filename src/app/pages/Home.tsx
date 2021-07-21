@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Clients from '../components/clients/Clients';
+import WaitingList from '../components/waitingList/WaitingList';
 
 function Home({ handlePath }) {
 	const [dropdownValue, setDropdownValue] = useState();
@@ -6,9 +8,12 @@ function Home({ handlePath }) {
 	const [dropdownIconValue, setdropdownIconValue] = useState();
 
 	return (
-		<div>
+		<div className=" bg-green-content">
 			<button onClick={() => handlePath(null, 'Lucas Jhon')}>add client path</button>
-			<h1>Home</h1>
+			<div className="flex flex-row">
+				<Clients />
+				<WaitingList />
+			</div>
 		</div>
 	);
 }

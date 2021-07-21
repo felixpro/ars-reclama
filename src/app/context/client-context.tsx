@@ -1,28 +1,17 @@
 import React, { useState, useContext } from 'react';
 import { DataStore } from '@aws-amplify/datastore';
-import { Client } from '../../models';
+import { Client, HealthInsurance } from '../../models';
 import { Insurance } from '../../models';
-
+import { ClientType } from './types';
 import { ClientDoctor } from '../../models';
 import { DoctorsContext } from './doctor-context';
 
 import { IdentificationTypes } from '../../models';
 import { SexType } from '../../models';
 
-const clientArray = [
-	{ id: 45764, name: 'Felix Pujols', insurance: '402-263-6462-4' },
-	{ id: 45864, name: 'Javier Rudoz', insurance: '268-998-789-2' },
-	{ id: 45654, name: 'Denis  Lutors', insurance: '458-9847-4' },
-	{ id: 45264, name: 'Rauld mendez', insurance: '235-5865-6' },
-	{ id: 45614, name: 'Lucas Deibi ', insurance: '402-263-65462-4' },
-	{ id: 45064, name: 'Randy Duffer ', insurance: '486-998-789-2' },
-	{ id: 4564, name: 'Perris Chanlca', insurance: '268-947-4' },
-	{ id: 46564, name: 'Brandis Dopberman', insurance: '285-5865-6' },
-];
-
 interface ClientContextProps {
-	clients: Client[];
-	fetchClients: () => void;
+	clients: ClientType[];
+	fetchClients: (filterText?: string) => void;
 	createClient: (clientData: Record<string, unknown>) => void;
 	deleteClient: (id: string) => void;
 	updateClient: (id: string) => void;
@@ -32,7 +21,7 @@ interface ClientContextProps {
 export const ClientsContext = React.createContext<Partial<ClientContextProps>>({});
 
 const ContextProvider: IContextProvider = (props) => {
-	const [clients, setClients] = useState<Client[]>([]);
+	const [clients, setClients] = useState<ClientType[]>([]);
 
 	// const { actualDoctor, updateActualDoctor } = useContext(DoctorsContext);
 
@@ -55,7 +44,7 @@ const ContextProvider: IContextProvider = (props) => {
 			addressStreet: dataForm.addressStreet,
 			city: dataForm.city,
 			sector: dataForm.sector,
-			BloodType: dataForm.BloodType,
+			bloodType: dataForm.BloodType,
 			company: dataForm.company,
 		};
 
@@ -87,15 +76,31 @@ const ContextProvider: IContextProvider = (props) => {
 			});
 	};
 
-	const fetchClients = (): void => {
-		DataStore.query(Client)
-			.then((res) => {
-				setClients(res);
-				console.log('Clientes encontrados correctamente', res);
-			})
-			.catch((error) => {
-				console.log('Error al encontrar clientes', error);
+	const fetchClients = async (filterText?: string) => {
+		try {
+			let clients = await DataStore.query(Client);
+			const filterTextValue = filterText ? filterText.trim() : '';
+			if (filterTextValue.length) {
+				clients = clients.filter((client) =>
+					client.name?.toLowerCase().includes(filterTextValue.toLocaleLowerCase())
+				);
+			}
+			clients.forEach(async (client) => {
+				const healthInsurance = await DataStore.query(
+					HealthInsurance,
+					client.healthInsuranceId
+				);
+				const transformedClient: ClientType = {
+					id: client.id,
+					name: client.name,
+					healthInsuranceId: client.healthInsuranceId,
+					healthInsurance: healthInsurance ? healthInsurance.name : '',
+				};
+				setClients((clients) => clients.concat(transformedClient));
 			});
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	const fetchClient = (id: string): void => {
@@ -120,7 +125,7 @@ const ContextProvider: IContextProvider = (props) => {
 	return (
 		<ClientsContext.Provider
 			value={{
-				clients: clientArray,
+				clients: clients,
 				createClient: createClient,
 				fetchClients: fetchClients,
 				deleteClient: deleteClient,

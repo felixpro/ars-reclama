@@ -36,6 +36,47 @@
 	font-style: normal;
 }
 
+@font-face {
+    font-family: 'Raleway-Bold';
+    src: url("../src/assets/fonts/Raleway-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Raleway-Regular';
+    src: url("../src/assets/fonts/Raleway-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Raleway-SemiBold';
+    src: url("../src/assets/fonts/Raleway-SemiBold.ttf") format("truetype");
+}
+
+@layer utilities {
+    .w-427 {
+        width: 427px;
+    }
+    .m-42 {
+        margin: 42px;
+    }
+    .ml-42 {
+        margin-left: 42px;
+    }
+    .mr-42 {
+        margin-right: 42px;
+    }
+    .mr-107 {
+        margin-right: 107px;
+    }
+    .section-cell {
+        display: flex;
+        flex-direction: row;
+        padding-left: 2.25rem;
+        padding-top: 1.25rem;
+        padding-right: 2rem;
+        padding-bottom: 1.25rem;
+    }
+}
+
 body {
 	background-color: #e5e5e5;
 }

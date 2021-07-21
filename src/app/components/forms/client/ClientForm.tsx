@@ -29,7 +29,7 @@ function ClientForm({ onCloseModal }) {
 		addressStreet: '',
 		city: '',
 		sector: '',
-		BloodType: '',
+		bloodType: '',
 		company: '',
 		affiliateNumber: '',
 		contractNumber: '',
@@ -528,7 +528,7 @@ function ClientForm({ onCloseModal }) {
 											onKeyUp={(e) =>
 												SetFormsValues({
 													...formsValues,
-													BloodType: e.target.value,
+													bloodType: e.target.value,
 												})
 											}
 											placeholder="Ej: B+"

@@ -23,3 +23,6 @@ amplify-build-config.json
 amplify-gradle-config.json
 amplifytools.xcconfig
 .secret-*
+src/models/index.d.ts
+src/models/index.js
+src/models/schema.js

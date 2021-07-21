@@ -4,7 +4,7 @@ import ClientContextProvider from './app/context/client-context';
 import HospitalContextProvider from './app/context/hospital-context';
 import DoctorContextProvider from './app/context/doctor-context';
 import RelationsProvider from './app/context/relations-context';
-
+import WaitingListsContextProvider from './app/context/waiting-list-context';
 import Home from './app/pages/Home';
 
 import Clients from './app/pages/Clients';
@@ -39,47 +39,48 @@ export const App = () => {
 			<DoctorContextProvider>
 				<ClientContextProvider>
 					<RelationsProvider>
-						<Router>
-							<div className="relative min-h-screen flex">
-								<div
-									className={` absolute -left-60 2sm:static  duration-500 ease-in-out  2sm:transform-none ${
-										sidebarToggle ? 'transform translate-x-60' : ''
-									}`}
-								>
-									<SideBar
-										sidebarToggle={sidebarToggle}
-										SetsidebarToggle={SetsidebarToggle}
-										SetPagePath={SetPagePath}
-										pagePath={pagePath}
-									/>
-								</div>
+						<WaitingListsContextProvider>
+							<Router>
+								<div className="relative min-h-screen flex">
+									<div
+										className={` absolute -left-60 2sm:static  duration-500 ease-in-out  2sm:transform-none ${sidebarToggle ? 'transform translate-x-60' : ''
+											}`}
+									>
+										<SideBar
+											sidebarToggle={sidebarToggle}
+											SetsidebarToggle={SetsidebarToggle}
+											SetPagePath={SetPagePath}
+											pagePath={pagePath}
+										/>
+									</div>
 
-								<div className=" flex-1">
-									<NavBar
-										SetsidebarToggle={SetsidebarToggle}
-										sidebarToggle={sidebarToggle}
-										pagePath={pagePath}
-									/>
-									<Switch>
-										<Route exact path="/">
-											<Home handlePath={handlePath} />
-										</Route>
-										<Route path="/Clients">
-											<Clients handlePath={handlePath} />
-										</Route>
-										<Route path="/Configuration">
-											<Configuration />
-										</Route>
-										<Route path="/Medicine">
-											<Medicine />
-										</Route>
-										<Route path="/Help">
-											<Help />
-										</Route>
-									</Switch>
+									<div className=" flex-1">
+										<NavBar
+											SetsidebarToggle={SetsidebarToggle}
+											sidebarToggle={sidebarToggle}
+											pagePath={pagePath}
+										/>
+										<Switch>
+											<Route exact path="/">
+												<Home handlePath={handlePath} />
+											</Route>
+											<Route path="/Clients">
+												<Clients handlePath={handlePath} />
+											</Route>
+											<Route path="/Configuration">
+												<Configuration />
+											</Route>
+											<Route path="/Medicine">
+												<Medicine />
+											</Route>
+											<Route path="/Help">
+												<Help />
+											</Route>
+										</Switch>
+									</div>
 								</div>
-							</div>
-						</Router>
+							</Router>
+						</WaitingListsContextProvider>
 					</RelationsProvider>
 				</ClientContextProvider>
 			</DoctorContextProvider>

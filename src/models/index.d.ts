@@ -17,6 +17,12 @@ export enum AffiliateTypes {
   PARENTESCO = "PARENTESCO"
 }
 
+export enum WaitingListItemStatus {
+  CONSULTA = "CONSULTA",
+  ESPERA = "ESPERA",
+  TERMINADA = "TERMINADA"
+}
+
 export enum WaitListStatus {
   CONSULTA = "CONSULTA",
   ESPERA = "ESPERA"
@@ -28,17 +34,22 @@ export declare class Client {
   readonly id: string;
   readonly identificationName?: IdentificationTypes | keyof typeof IdentificationTypes;
   readonly identificationData?: string;
+  readonly affiliateNumber?: number;
   readonly name?: string;
   readonly cellphoneNumber?: string;
   readonly email?: string;
+  readonly contractNumber?: number;
   readonly bornDate?: string;
   readonly gender?: SexType | keyof typeof SexType;
   readonly phoneNumber?: string;
+  readonly admissionDate?: string;
   readonly addressStreet?: string;
+  readonly addressNumber?: number;
   readonly city?: string;
   readonly sector?: string;
-  readonly BloodType?: string;
+  readonly bloodType?: string;
   readonly company?: string;
+  readonly profileImage?: string;
   readonly Insurances?: (Insurance | null)[];
   readonly HospitalDoctors?: (HospitalDoctorCliente | null)[];
   constructor(init: ModelInit<Client>);
@@ -52,6 +63,7 @@ export declare class Insurance {
   readonly contractNumber?: number;
   readonly affiliateNumber?: number;
   readonly affiliateType?: AffiliateTypes | keyof typeof AffiliateTypes;
+  readonly imageName?: string;
   constructor(init: ModelInit<Insurance>);
   static copyOf(source: Insurance, mutator: (draft: MutableModel<Insurance>) => MutableModel<Insurance> | void): Insurance;
 }
@@ -70,7 +82,7 @@ export declare class HospitalDoctor {
   readonly hospitalID: string;
   readonly doctor?: Doctor;
   readonly hospital?: Hospital;
-  readonly waitList?: (WaitList | null)[];
+  readonly waitLists?: (WaitList | null)[];
   readonly clients?: (HospitalDoctorCliente | null)[];
   constructor(init: ModelInit<HospitalDoctor>);
   static copyOf(source: HospitalDoctor, mutator: (draft: MutableModel<HospitalDoctor>) => MutableModel<HospitalDoctor> | void): HospitalDoctor;
@@ -102,8 +114,18 @@ export declare class Hospital {
 export declare class WaitList {
   readonly id: string;
   readonly hospitalDoctorID: string;
-  readonly status?: WaitListStatus | keyof typeof WaitListStatus;
-  readonly positionNumber?: number;
+  readonly createdAt?: string;
+  readonly items?: (WaitingListItem | null)[];
   constructor(init: ModelInit<WaitList>);
   static copyOf(source: WaitList, mutator: (draft: MutableModel<WaitList>) => MutableModel<WaitList> | void): WaitList;
+}
+
+export declare class WaitingListItem {
+  readonly id: string;
+  readonly waitingListID: string;
+  readonly client?: Client;
+  readonly status: WaitingListItemStatus | keyof typeof WaitingListItemStatus;
+  readonly positionNumber: number;
+  constructor(init: ModelInit<WaitingListItem>);
+  static copyOf(source: WaitingListItem, mutator: (draft: MutableModel<WaitingListItem>) => MutableModel<WaitingListItem> | void): WaitingListItem;
 }
