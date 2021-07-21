@@ -28,7 +28,7 @@ const ContextProvider: React.FC = (props) => {
 	const createDoctor = () => {
 		DataStore.save(
 			new Doctor({
-				name: 'Lorem Daniel',
+				name: 'Felix Daniel',
 				specialty: 'Cirujano',
 				exequator: '4e744d7',
 				email: 'Robert@gmail.com',
@@ -39,6 +39,7 @@ const ContextProvider: React.FC = (props) => {
 		)
 			.then((res) => {
 				console.log('Doctor creado correctamente', res);
+				fetchDoctors();
 			})
 			.catch((error) => {
 				console.log('Error al crear el doctor', error);
