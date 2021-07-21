@@ -119,8 +119,8 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "BloodType": {
-                    "name": "BloodType",
+                "bloodType": {
+                    "name": "bloodType",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -690,5 +690,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "70b66940f69742de3e062cff60ec9fc0"
+    "version": "249ba67330f2470de1fd992f890b811b"
 };

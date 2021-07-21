@@ -15,7 +15,7 @@ type Client @model {
 	addressNumber: Int
 	city: String
 	sector: String
-	BloodType: String
+	bloodType: String
 	company: String
 	profileImage: String
 	Insurances: [Insurance] @connection(keyName: "byInsurance", fields: ["id"])
@@ -62,6 +62,7 @@ type HospitalDoctorCliente
   hospitalDoctorID: ID!
   client: Client! @connection(fields: ["clientID"])
   hospitalDoctor: HospitalDoctor! @connection(fields: ["hospitalDoctorID"])
+  lastHealthInsurranceID: ID!
 }
 
 type WaitList @model 

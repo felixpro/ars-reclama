@@ -47,7 +47,7 @@ export declare class Client {
   readonly addressNumber?: number;
   readonly city?: string;
   readonly sector?: string;
-  readonly BloodType?: string;
+  readonly bloodType?: string;
   readonly company?: string;
   readonly profileImage?: string;
   readonly Insurances?: (Insurance | null)[];

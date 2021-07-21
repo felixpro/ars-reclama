@@ -44,7 +44,7 @@ const ContextProvider: IContextProvider = (props) => {
 			addressStreet: dataForm.addressStreet,
 			city: dataForm.city,
 			sector: dataForm.sector,
-			BloodType: dataForm.BloodType,
+			bloodType: dataForm.BloodType,
 			company: dataForm.company,
 		};
 
