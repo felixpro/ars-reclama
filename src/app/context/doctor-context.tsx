@@ -6,7 +6,7 @@ import { Doctor } from '../../models';
 interface DoctorContextProps {
 	doctors: Doctor[];
 	actualDoctor: Doctor;
-	setActualDoctor: React.Dispatch<React.SetStateAction<Doctor | undefined>>;
+	setActualDoctor: (dropdownIconValue: Doctor) => void;
 	createDoctor: () => void;
 	fetchDoctors: () => void;
 	deleteDoctor: (id: string) => void;
@@ -20,6 +20,7 @@ export const DoctorsContext = React.createContext<Partial<DoctorContextProps>>({
 	fetchDoctors: () => null,
 });
 
+
 const ContextProvider: React.FC = (props) => {
 	const [doctors, setDoctors] = useState<Doctor[]>([]);
 	const [actualDoctor, setActualDoctor] = useState<React.SetStateAction<Doctor | undefined>>();
@@ -27,7 +28,7 @@ const ContextProvider: React.FC = (props) => {
 	const createDoctor = () => {
 		DataStore.save(
 			new Doctor({
-				name: 'Lorem Daniel',
+				name: 'Felix Daniel',
 				specialty: 'Cirujano',
 				exequator: '4e744d7',
 				email: 'Robert@gmail.com',
@@ -38,6 +39,7 @@ const ContextProvider: React.FC = (props) => {
 		)
 			.then((res) => {
 				console.log('Doctor creado correctamente', res);
+				fetchDoctors();
 			})
 			.catch((error) => {
 				console.log('Error al crear el doctor', error);

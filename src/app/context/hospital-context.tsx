@@ -5,16 +5,11 @@ import { Hospital } from '../../models';
 
 interface HospitalContextProps {
 	hospitals: Hospital[];
-	createHospital: () => void;
 	actualHospital: Hospital;
+	createHospital: () => void;
+	fetchHospitals: () => void;
+	setActualHospital: React.Dispatch<React.SetStateAction<Hospital | undefined>>;
 }
-
-const hospitalsData = [
-	{ label: 'La trinidad', value: '0' },
-	{ label: 'La altagracia', value: '1' },
-	{ label: 'Los monglares', value: '2' },
-	{ label: 'Los faroles', value: '3' },
-];
 
 const exampleHospital = {
 	name: 'Dario Contreras',
@@ -34,18 +29,33 @@ const HospitalsProvider: React.FC = (props) => {
 			.then((res) => {
 				console.log('Hospital creado correctamente', res);
 				setActualHospital(res);
+				fetchHospitals();
 			})
 			.catch((error) => {
 				console.log('Error al crear el Hospital', error);
 			});
 	};
 
+	const fetchHospitals = (): void => {
+		// fetch all the doctors that the secretary belongs
+		DataStore.query(Hospital)
+			.then((res) => {
+				setHospitals(res);
+				console.log('Hospitales');
+			})
+			.catch((error) => {
+				console.log('Error al buscar hospitales', error);
+			});
+	};
+
 	return (
 		<HospitalsContext.Provider
 			value={{
-				hospitals: hospitalsData,
-				createHospital: createHospital,
+				hospitals: hospitals,
 				actualHospital: actualHospital,
+				setActualHospital: setActualHospital,
+				createHospital: createHospital,
+				fetchHospitals: fetchHospitals,
 			}}
 		>
 			{props.children}

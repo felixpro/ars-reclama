@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { AffiliateTypes } from '../../../../models';
-import { Field, ErrorMessage } from 'formik';
+import { Field } from 'formik';
 
-const DropdownList = ({ SetFormsValues, formsValues }) => {
+interface IAffiliateDropdown {
+	SetFormsValues: any;
+	formsValues: [];
+}
+
+const AffiliateDropdown: React.FC<IAffiliateDropdown> = ({ SetFormsValues, formsValues }) => {
 	const [optionSelected, SetOptionSelected] = useState({ name: 'Ej: Principal' });
 	const [toggleInput, SetToggleInput] = useState(false);
 
@@ -97,4 +102,4 @@ const DropdownList = ({ SetFormsValues, formsValues }) => {
 	);
 };
 
-export default DropdownList;
+export default AffiliateDropdown;

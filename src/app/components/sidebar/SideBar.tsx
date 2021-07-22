@@ -1,7 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Dropdown from './Dropdown';
-import SideBarDropdown from './SideBarDropdown';
+import { DoctorsContext } from '../../context/doctor-context';
+import { HospitalsContext } from '../../context/hospital-context';
+
+import DropDownIcon from '../DropDownIcon';
 
 import arsLogo from '../../../assets/images/logo_arsreclama.svg';
 
@@ -18,6 +20,13 @@ interface ISideBar {
 }
 
 const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
+	const { doctors, fetchDoctors, setActualDoctor } = useContext(DoctorsContext);
+	const { hospitals, fetchHospitals, setActualHospital } = useContext(HospitalsContext);
+
+	const [dropdownIconValue, setdropdownIconValue] = useState();
+
+	const [isDoctor, setIsDoctor] = useState(true);
+
 	const handleClick = (path: React.SetStateAction<Ipath>): void => {
 		SetPagePath(path);
 		SetsidebarToggle(false);
@@ -27,6 +36,10 @@ const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
 	window.onresize = function () {
 		SetsidebarToggle(false);
 	};
+
+	useEffect(() => {
+		isDoctor ? setActualDoctor(dropdownIconValue) : setActualHospital(dropdownIconValue);
+	}, [dropdownIconValue]);
 
 	return (
 		<div className="relative min-h-screen flex sidebar-container ">
@@ -58,10 +71,21 @@ const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
 						<img src={arsLogo} alt="arsreclama" />
 					</Link>
 				</div>
+				<div className="pt-20 top-11 relative bottom">
+					<p className="text-center">
+						Selecciona el
+						{isDoctor ? <span> doctor </span> : <span> hospital </span>}
+					</p>
+				</div>
 				<nav>
-					<div className="pt-20 pb-28">
+					<div className=" pb-28">
 						<div className="flex justify-center items-center">
-							<SideBarDropdown />
+							<DropDownIcon
+								options={isDoctor ? doctors : hospitals}
+								setdropdownIconValue={setdropdownIconValue}
+								inputName="apellido"
+								effectFunction={isDoctor ? fetchDoctors : fetchHospitals}
+							/>
 						</div>
 					</div>
 					<ul className="flex  justify-center flex-col ">
