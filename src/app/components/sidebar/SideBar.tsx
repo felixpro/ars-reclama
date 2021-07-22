@@ -1,6 +1,7 @@
 import React, { FC, useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { DoctorsContext } from '../../context/doctor-context';
+import { HospitalsContext } from '../../context/hospital-context';
 
 import DropDownIcon from '../DropDownIcon';
 
@@ -20,7 +21,11 @@ interface ISideBar {
 
 const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
 	const { doctors, fetchDoctors, setActualDoctor } = useContext(DoctorsContext);
+	const { hospitals, fetchHospitals, setActualHospital } = useContext(HospitalsContext);
+
 	const [dropdownIconValue, setdropdownIconValue] = useState();
+
+	const [isDoctor, setIsDoctor] = useState(true);
 
 	const handleClick = (path: React.SetStateAction<Ipath>): void => {
 		SetPagePath(path);
@@ -33,7 +38,7 @@ const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
 	};
 
 	useEffect(() => {
-		setActualDoctor(dropdownIconValue);
+		isDoctor ? setActualDoctor(dropdownIconValue) : setActualHospital(dropdownIconValue);
 	}, [dropdownIconValue]);
 
 	return (
@@ -66,14 +71,20 @@ const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
 						<img src={arsLogo} alt="arsreclama" />
 					</Link>
 				</div>
+				<div className="pt-20 top-11 relative bottom">
+					<p className="text-center">
+						Selecciona el
+						{isDoctor ? <span> doctor </span> : <span> hospital </span>}
+					</p>
+				</div>
 				<nav>
-					<div className="pt-20 pb-28">
+					<div className=" pb-28">
 						<div className="flex justify-center items-center">
 							<DropDownIcon
-								options={doctors}
+								options={isDoctor ? doctors : hospitals}
 								setdropdownIconValue={setdropdownIconValue}
 								inputName="apellido"
-								effectFunction={fetchDoctors}
+								effectFunction={isDoctor ? fetchDoctors : fetchHospitals}
 							/>
 						</div>
 					</div>
