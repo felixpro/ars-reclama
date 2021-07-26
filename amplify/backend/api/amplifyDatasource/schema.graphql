@@ -2,8 +2,8 @@ type Client @model {
 	id: ID!
 	identificationName: IdentificationTypes
 	identificationData: String
-	affiliateNumber: Int
-	name: String
+	affiliateNumber: Int!
+	name: String!
 	cellphoneNumber: String
 	email: String
 	contractNumber: Int
@@ -18,9 +18,6 @@ type Client @model {
 	bloodType: String
 	company: String
 	profileImage: String
-	Insurances: [Insurance] @connection(keyName: "byInsurance", fields: ["id"])
-	HospitalDoctors: [HospitalDoctorCliente] @connection(keyName: "byClient", fields: ["id"])
-
 }
 
 type Doctor @model {
@@ -46,22 +43,13 @@ type HospitalDoctor @model {
 	id: ID!
 	doctorID: ID!
 	hospitalID: ID!
-	doctor: Doctor @connection(fields: ["doctorID"])
-	hospital: Hospital @connection(fields: ["doctorID"])
-	waitLists: [WaitList] @connection(keyName: "byWaitList", fields: ["id"])
-	clients: [HospitalDoctorCliente] @connection(keyName: "byHospitalDoctor", fields: ["id"])
 }
 
 
-type HospitalDoctorCliente
-  @model(queries: null)
-  @key(name: "byClient", fields: ["clientID", "hospitalDoctorID"])
-  @key(name: "byHospitalDoctor", fields: ["hospitalDoctorID", "clientID"]) {
+type HospitalDoctorCliente @model {
   id: ID!
   clientID: ID!
   hospitalDoctorID: ID!
-  client: Client! @connection(fields: ["clientID"])
-  hospitalDoctor: HospitalDoctor! @connection(fields: ["hospitalDoctorID"])
   lastHealthInsurranceID: ID!
 }
 
@@ -81,11 +69,11 @@ type WaitingListItem @model
   client: Client @connection(fields: ["clientID"])
   status: WaitingListItemStatus!
   positionNumber: Int!
+  lastHealthInsurranceID: ID!
 }
 
-type Insurance @model @key(name: "byInsurance", fields: ["clientID"]) {
+type Insurance @model {
 	id: ID!
-	clientID: ID
 	name: String!
 	contractNumber: Int
 	affiliateNumber: Int

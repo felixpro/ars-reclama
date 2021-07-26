@@ -7,6 +7,8 @@ import { HospitalsContext } from './hospital-context';
 
 interface InsuranceContextProps {
 	createHospitalDoctor: () => void;
+	setActualHospitalDoctor: (hospitalDoctor: HospitalDoctor) => void;
+	actualHospitalDoctor: HospitalDoctor;
 }
 
 export const RelationsContext = React.createContext<Partial<InsuranceContextProps>>({});
@@ -14,6 +16,7 @@ export const RelationsContext = React.createContext<Partial<InsuranceContextProp
 const RelationsProvider: React.FC = (props) => {
 	const { actualDoctor } = useContext(DoctorsContext);
 	const { actualHospital } = useContext(HospitalsContext);
+	const [actualHospitalDoctor, setActualHospitalDoctor] = useState<HospitalDoctor>();
 
 	const createHospitalDoctor = () => {
 		if (actualDoctor && actualHospital) {
@@ -24,6 +27,7 @@ const RelationsProvider: React.FC = (props) => {
 				})
 			)
 				.then((res) => {
+					setActualHospitalDoctor(res);
 					console.log('Relacion HospitalDoctor Creada correctamente', res);
 				})
 				.catch((error) => {
@@ -38,6 +42,8 @@ const RelationsProvider: React.FC = (props) => {
 		<RelationsContext.Provider
 			value={{
 				createHospitalDoctor: createHospitalDoctor,
+				actualHospitalDoctor: actualHospitalDoctor,
+				setActualHospitalDoctor: setActualHospitalDoctor
 			}}
 		>
 			{props.children}

@@ -12,6 +12,12 @@ const SexType = {
   "MASCULINO": "MASCULINO"
 };
 
+const WaitingListItemStatus = {
+  "CONSULTA": "CONSULTA",
+  "ESPERA": "ESPERA",
+  "TERMINADA": "TERMINADA"
+};
+
 const AffiliateTypes = {
   "PRINCIPAL": "PRINCIPAL",
   "TITULAR": "TITULAR",
@@ -19,31 +25,25 @@ const AffiliateTypes = {
   "PARENTESCO": "PARENTESCO"
 };
 
-const WaitingListItemStatus = {
-  "CONSULTA": "CONSULTA",
-  "ESPERA": "ESPERA",
-  "TERMINADA": "TERMINADA"
-};
-
 const WaitListStatus = {
   "CONSULTA": "CONSULTA",
   "ESPERA": "ESPERA"
 };
 
-const { Client, Insurance, HospitalDoctorCliente, HospitalDoctor, Doctor, Hospital, WaitList, WaitingListItem } = initSchema(schema);
+const { Client, Doctor, Hospital, HospitalDoctor, HospitalDoctorCliente, WaitList, WaitingListItem, Insurance } = initSchema(schema);
 
 export {
   Client,
-  Insurance,
-  HospitalDoctorCliente,
-  HospitalDoctor,
   Doctor,
   Hospital,
+  HospitalDoctor,
+  HospitalDoctorCliente,
   WaitList,
   WaitingListItem,
+  Insurance,
   IdentificationTypes,
   SexType,
-  AffiliateTypes,
   WaitingListItemStatus,
+  AffiliateTypes,
   WaitListStatus
 };

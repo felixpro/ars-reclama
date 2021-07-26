@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { DataStore } from '@aws-amplify/datastore';
-import { Client, HealthInsurance } from '../../models';
+import { Client, HealthInsurance, HospitalDoctorCliente } from '../../models';
 import { Insurance } from '../../models';
 import { ClientType } from './types';
 import { ClientDoctor } from '../../models';
 import { DoctorsContext } from './doctor-context';
+import { RelationsContext } from './relations-context'
 
 import { IdentificationTypes } from '../../models';
 import { SexType } from '../../models';
@@ -20,8 +21,9 @@ interface ClientContextProps {
 
 export const ClientsContext = React.createContext<Partial<ClientContextProps>>({});
 
-const ContextProvider: IContextProvider = (props) => {
+const ContextProvider: React.FC = (props) => {
 	const [clients, setClients] = useState<ClientType[]>([]);
+	const relationsContext = useContext(RelationsContext);
 
 	// const { actualDoctor, updateActualDoctor } = useContext(DoctorsContext);
 
@@ -78,7 +80,8 @@ const ContextProvider: IContextProvider = (props) => {
 
 	const fetchClients = async (filterText?: string) => {
 		try {
-			let clients = await DataStore.query(Client);
+			const hospitalDoctorClients = (await DataStore.query(HospitalDoctorCliente)).filter(hdc => hdc.hospitalDoctorID === relationsContext.actualHospitalDoctor?.id);
+			let clients = (await DataStore.query(Client)).filter(cl => hospitalDoctorClients.filter(hdc => hdc.clientID === cl.id).length > 0);
 			const filterTextValue = filterText ? filterText.trim() : '';
 			if (filterTextValue.length) {
 				clients = clients.filter((client) =>
@@ -86,14 +89,13 @@ const ContextProvider: IContextProvider = (props) => {
 				);
 			}
 			clients.forEach(async (client) => {
-				const healthInsurance = await DataStore.query(
-					HealthInsurance,
-					client.healthInsuranceId
-				);
+				const hospitalDoctorCliente = hospitalDoctorClients.filter(hdc => hdc.clientID === client.id)[0];
+
+				const healthInsurance = await DataStore.query(Insurance, hospitalDoctorCliente.lastHealthInsurranceID);
 				const transformedClient: ClientType = {
 					id: client.id,
 					name: client.name,
-					healthInsuranceId: client.healthInsuranceId,
+					healthInsuranceId: hospitalDoctorCliente.lastHealthInsurranceID,
 					healthInsurance: healthInsurance ? healthInsurance.name : '',
 				};
 				setClients((clients) => clients.concat(transformedClient));

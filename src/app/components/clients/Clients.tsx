@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ClientsContext } from '../../context/client-context';
+import { RelationsContext } from '../../context/relations-context';
 import { WaitingListsContext } from '../../context/waiting-list-context';
 import addIcon from '../../../assets/images/icono_agregar.svg';
 import SearchInput from '../searchInput/SearchInput';
 import ClientC from './client/Client';
-import { Client, HealthInsurance } from '../../../models';
+import { Client, HealthInsurance, HospitalDoctor, HospitalDoctorCliente, Insurance } from '../../../models';
 import defaultClientImage from '../../../assets/images/img_cliente.svg';
 import { DataStore } from '@aws-amplify/datastore';
 
@@ -12,6 +13,7 @@ const Clients = () => {
 	const clientsContext = useContext(ClientsContext);
 	const waitingListsContext = useContext(WaitingListsContext);
 	const [filterText, setFilterText] = useState('');
+	const { actualHospitalDoctor, setActualHospitalDoctor } = useContext(RelationsContext);
 
 	const handleEditClient = (client: Client) => {
 		//TO-DO
@@ -27,49 +29,71 @@ const Clients = () => {
 
 	const generateHealthInsurranceData = () => {
 		DataStore.save(
-			new HealthInsurance({
+			new Insurance({
 				name: 'ARS Humano',
 			})
 		);
 		DataStore.save(
-			new HealthInsurance({
+			new Insurance({
 				name: 'ARS SeNaSa',
 			})
 		);
 	};
 
-	const generateTestData = () => {
-		DataStore.save(
+	const generateTestData = async () => {
+		const client = await DataStore.save(
 			new Client({
 				name: 'Abbie Wilson',
 				bloodType: 'O+',
-				healthInsuranceId: '0262ef94-aaf4-47df-b78d-bc34b7bfa94f',
+				affiliateNumber: 1
 			})
 		);
-		DataStore.save(
+		await DataStore.save(
+			new HospitalDoctorCliente({
+				clientID: client.id,
+				hospitalDoctorID: 'fe18f512-f3c2-48b1-abcc-c376197f19e8',
+				lastHealthInsurranceID: '3e445319-96c2-42a4-b41f-fc541305368e'
+			})
+		);
+		const client2 = await DataStore.save(
 			new Client({
 				name: 'Francis Pujols',
 				bloodType: 'A+',
-				healthInsuranceId: 'e6748dcc-f8c5-4f49-b761-4567ba78d407',
+				affiliateNumber: 2
 			})
 		);
-		DataStore.save(
+		await DataStore.save(
+			new HospitalDoctorCliente({
+				clientID: client2.id,
+				hospitalDoctorID: 'fe18f512-f3c2-48b1-abcc-c376197f19e8',
+				lastHealthInsurranceID: '3e4e0f75-81f0-49bf-8ca9-a761cfd7e51e'
+			})
+		);
+		const client3 = await DataStore.save(
 			new Client({
 				name: 'Felix Pujols',
 				bloodType: 'O+',
-				healthInsuranceId: '0262ef94-aaf4-47df-b78d-bc34b7bfa94f',
+				affiliateNumber: 3
 			})
 		);
+		await DataStore.save(
+			new HospitalDoctorCliente({
+				clientID: client3.id,
+				hospitalDoctorID: 'fe18f512-f3c2-48b1-abcc-c376197f19e8',
+				lastHealthInsurranceID: '3e445319-96c2-42a4-b41f-fc541305368e'
+			})
+		)
 	};
 
 	useEffect(() => {
 		//generateTestData();
-		//generateHealthInsurranceData();
+		//generateHealthInsurranceData()
 	}, []);
 
 	useEffect(() => {
 		const timeOut = setTimeout(() => {
-			clientsContext?.fetchClients(filterText);
+			if (actualHospitalDoctor)
+				clientsContext?.fetchClients(filterText);
 		}, 500);
 
 		return () => {
@@ -89,13 +113,18 @@ const Clients = () => {
 		);
 	});
 
+	const handleLogin = async () => {
+		const firstHospitalDoctor = (await DataStore.query(HospitalDoctor))[0];
+		setActualHospitalDoctor(firstHospitalDoctor);
+	}
+
 	return (
 		<div className="flex flex-col rounded-lg border-0 bg-white-section w-427 h-screen ml-42 my-6 overflow-y-auto">
 			<div className="section-cell border-b-2" style={{ borderBottomColor: '#EDF3F1' }}>
 				<span className="mr-107" style={{ fontFamily: 'Raleway-Bold', fontSize: '19px' }}>
 					Clientes
 				</span>
-				<img alt="" src={addIcon} className="mr-4" />
+				<img alt="" src={addIcon} className="mr-4" onClick={() => handleLogin()} />
 				<SearchInput onChange={handleSearchInput} />
 			</div>
 			{clients}
