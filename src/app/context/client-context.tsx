@@ -88,6 +88,7 @@ const ContextProvider: React.FC = (props) => {
 					client.name?.toLowerCase().includes(filterTextValue.toLocaleLowerCase())
 				);
 			}
+			setClients([]);
 			clients.forEach(async (client) => {
 				const hospitalDoctorCliente = hospitalDoctorClients.filter(hdc => hdc.clientID === client.id)[0];
 
