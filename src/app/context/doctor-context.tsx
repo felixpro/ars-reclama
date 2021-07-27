@@ -39,6 +39,7 @@ const ContextProvider: React.FC = (props) => {
 		)
 			.then((res) => {
 				console.log('Doctor creado correctamente', res);
+				setActualDoctor(res);
 				fetchDoctors();
 			})
 			.catch((error) => {

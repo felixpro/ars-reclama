@@ -35,10 +35,11 @@ export const App = () => {
 	};
 
 	return (
-		<HospitalContextProvider>
-			<DoctorContextProvider>
-				<ClientContextProvider>
-					<RelationsProvider>
+		<RelationsProvider>
+			<HospitalContextProvider>
+				<DoctorContextProvider>
+					<ClientContextProvider>
+
 						<WaitingListsContextProvider>
 							<Router>
 								<div className="relative min-h-screen flex">
@@ -81,9 +82,10 @@ export const App = () => {
 								</div>
 							</Router>
 						</WaitingListsContextProvider>
-					</RelationsProvider>
-				</ClientContextProvider>
-			</DoctorContextProvider>
-		</HospitalContextProvider>
+
+					</ClientContextProvider>
+				</DoctorContextProvider>
+			</HospitalContextProvider>
+		</RelationsProvider>
 	);
 };
