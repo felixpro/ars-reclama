@@ -290,6 +290,13 @@ export const schema = {
                     "type": "ID",
                     "isRequired": true,
                     "attributes": []
+                },
+                "lastWaitingListID": {
+                    "name": "lastWaitingListID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -578,5 +585,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "e5712a9cde9c3da4a0dd380a492dd7e6"
+    "version": "4114b53aaba37af60eb0a35e9d937f71"
 };

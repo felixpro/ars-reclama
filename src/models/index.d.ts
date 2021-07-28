@@ -81,6 +81,7 @@ export declare class HospitalDoctor {
   readonly id: string;
   readonly doctorID: string;
   readonly hospitalID: string;
+  readonly lastWaitingListID: string;
   constructor(init: ModelInit<HospitalDoctor>);
   static copyOf(source: HospitalDoctor, mutator: (draft: MutableModel<HospitalDoctor>) => MutableModel<HospitalDoctor> | void): HospitalDoctor;
 }

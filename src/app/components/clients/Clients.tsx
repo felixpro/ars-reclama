@@ -85,7 +85,7 @@ const Clients = () => {
 
 	useEffect(() => {
 		//generateTestData();
-		//generateHealthInsurranceData()
+		generateHealthInsurranceData()
 	}, []);
 
 	useEffect(() => {
