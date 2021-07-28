@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import classnames from 'classnames';
+import styles from './DropDown.module.css'
 
 interface IDropDown {
 	setDropdownValue: () => void;
@@ -48,7 +50,10 @@ const Dropdown: React.FC<IDropDown> = ({
 							name={inputName}
 							value={optionSelected.name}
 							placeholder={placeholder}
-							className=" w-40 absolute h-14 ml-6 pr-11 input_insurance text-center"
+							className={classnames(
+								' w-40 absolute h-14 ml-6 pr-11 input_insurance text-center',
+								styles.input_insurance
+							)}
 							onClick={() => SetToggleInput(toggleInput ? false : true)}
 							onChange={() => null}
 						/>
@@ -72,9 +77,14 @@ const Dropdown: React.FC<IDropDown> = ({
 					</div>
 				</div>
 			</div>
-			<div className=" z-10">
+			<div className="z-10">
 				{toggleInput ? (
-					<div className=" max-h-60 absolute rounded-lg border-2 border-harp-default bg-greyWhite-default pl-4 pr-4 pb-4 pt-4 mt-1.5 overflow-x-hidden overflow-y-scroll insurance_container ">
+					<div
+						className={classnames(
+							styles.insurance_container,
+							' max-h-60 absolute rounded-lg border-2 border-harp-default bg-greyWhite-default pl-4 pr-4 pb-4 pt-4 mt-1.5 overflow-x-hidden overflow-y-scroll'
+						)}
+					>
 						{options.map((option) => (
 							<div key={option.id}>
 								<button

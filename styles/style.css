@@ -204,22 +204,4 @@ input {
 }
 
 
-/*Insurance input dropdown*/
-.insurance_container::-webkit-scrollbar {
-	width: 8px;
-	border-radius: 20px !important;
-}
-.insurance_container::-webkit-scrollbar-track {
-	background: transparent;
-}
-.insurance_container::-webkit-scrollbar-thumb {
-	background: #c4c4c4;
-	border-radius: 20px !important;
-
-}
-
-.input_insurance {
-	background: transparent;
-}
-
 

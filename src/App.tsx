@@ -39,7 +39,6 @@ export const App = () => {
 			<HospitalContextProvider>
 				<DoctorContextProvider>
 					<ClientContextProvider>
-
 						<WaitingListsContextProvider>
 							<Router>
 								<div className="relative min-h-screen flex">
@@ -54,7 +53,6 @@ export const App = () => {
 											pagePath={pagePath}
 										/>
 									</div>
-
 									<div className=" flex-1">
 										<NavBar
 											SetsidebarToggle={SetsidebarToggle}
