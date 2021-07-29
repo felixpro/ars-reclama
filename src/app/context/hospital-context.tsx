@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { DataStore } from '@aws-amplify/datastore';
+import { RelationsContext } from './relations-context';
 
 import { Hospital } from '../../models';
+import { useContext } from 'react';
 
 interface HospitalContextProps {
 	hospitals: Hospital[];
-	actualHospital: Hospital;
 	createHospital: () => void;
 	fetchHospitals: () => void;
-	setActualHospital: React.Dispatch<React.SetStateAction<Hospital | undefined>>;
 }
 
 const exampleHospital = {
@@ -22,7 +22,7 @@ export const HospitalsContext = React.createContext<Partial<HospitalContextProps
 
 const HospitalsProvider: React.FC = (props) => {
 	const [hospitals, setHospitals] = useState<Hospital[]>([]);
-	const [actualHospital, setActualHospital] = useState<Hospital>();
+	const { setActualHospital } = useContext(RelationsContext);
 
 	const createHospital = (): void => {
 		DataStore.save(new Hospital(exampleHospital))
@@ -52,8 +52,6 @@ const HospitalsProvider: React.FC = (props) => {
 		<HospitalsContext.Provider
 			value={{
 				hospitals: hospitals,
-				actualHospital: actualHospital,
-				setActualHospital: setActualHospital,
 				createHospital: createHospital,
 				fetchHospitals: fetchHospitals,
 			}}

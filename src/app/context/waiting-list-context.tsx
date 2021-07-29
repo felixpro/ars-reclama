@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { WaitingListItem, WaitList, Client, HealthInsurance, WaitingListItemStatus } from '../../models';
+import { WaitingListItem, WaitList, Client, Insurance, HospitalDoctorCliente, WaitingListItemStatus } from '../../models';
 import { WaitingListItemType } from '../context/types';
 import { DataStore } from '@aws-amplify/datastore';
 import { RelationsContext } from './relations-context';
@@ -21,8 +21,7 @@ export const WaitingListsContext = React.createContext<Partial<WaitingListContex
 
 const ContextProvider: React.FC = (props) => {
 	const [waitingListItems, setWaitingListItems] = useState<WaitingListItemType[]>([]);
-	const [actualWaitingList, setActualWaitingList] = useState<WaitList>();
-	const relationsContext = useContext(RelationsContext);
+	const { actualHospitalDoctor, actualWaitingList, setActualWaitingList } = useContext(RelationsContext);
 
 	const getWaitingListItems = async (
 		clientFilter?: string
@@ -34,8 +33,9 @@ const ContextProvider: React.FC = (props) => {
 			setWaitingListItems([]);
 			waitingItems.forEach(async (waitingItem) => {
 				const client = await DataStore.query(Client, waitingItem.clientID);
+				const hospitalDoctorCliente = (await DataStore.query(HospitalDoctorCliente)).filter(hdc => hdc.hospitalDoctorID === actualHospitalDoctor?.id && hdc.clientID === client?.id)[0];
 				const healthInsurance = client
-					? await DataStore.query(HealthInsurance, client.healthInsuranceId)
+					? await DataStore.query(Insurance, hospitalDoctorCliente.lastHealthInsurranceID)
 					: null;
 				if (healthInsurance && client) {
 					if (
@@ -73,10 +73,8 @@ const ContextProvider: React.FC = (props) => {
 			positionNumber: waitingItems.length + 1,
 		});
 		await DataStore.save(newWaitingItem);
-		const clientHealthInsurance = await DataStore.query(
-			HealthInsurance,
-			client.healthInsuranceId
-		);
+		const hospitalDoctorCliente = (await DataStore.query(HospitalDoctorCliente)).filter(hdc => hdc.hospitalDoctorID === actualHospitalDoctor?.id && hdc.clientID === client.id)[0];
+		const clientHealthInsurance = await DataStore.query(Insurance, hospitalDoctorCliente.lastHealthInsurranceID);
 		const transformedWaitingItem: WaitingListItemType = {
 			id: newWaitingItem.id,
 			status: newWaitingItem.status,
@@ -226,14 +224,14 @@ const ContextProvider: React.FC = (props) => {
 	};
 
 	const upsertCurrentWaitingList = async () => {
-		if (relationsContext.actualHospitalDoctor) {
-			const currentWaitingList = await DataStore.query(WaitList, relationsContext.actualHospitalDoctor.lastWaitingListID);
+		if (actualHospitalDoctor) {
+			const currentWaitingList = await DataStore.query(WaitList, actualHospitalDoctor.lastWaitingListID);
 			if (currentWaitingList && currentWaitingList.createdAt === getDateString(new Date())) {
 				setActualWaitingList(currentWaitingList);
 			} else {
 				const newWaitingList = await DataStore.save(
 					new WaitList({
-						hospitalDoctorID: relationsContext.actualHospitalDoctor.id,
+						hospitalDoctorID: actualHospitalDoctor.id,
 						createdAt: getDateString(new Date())
 					})
 				);

@@ -349,63 +349,6 @@ export const schema = {
                 }
             ]
         },
-        "WaitList": {
-            "name": "WaitList",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "hospitalDoctorID": {
-                    "name": "hospitalDoctorID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "createdAt": {
-                    "name": "createdAt",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "items": {
-                    "name": "items",
-                    "isArray": true,
-                    "type": {
-                        "model": "WaitingListItem"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "waitingListID"
-                    }
-                }
-            },
-            "syncable": true,
-            "pluralName": "WaitLists",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byWaitList",
-                        "fields": [
-                            "hospitalDoctorID"
-                        ]
-                    }
-                }
-            ]
-        },
         "WaitingListItem": {
             "name": "WaitingListItem",
             "fields": {
@@ -430,20 +373,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "client": {
-                    "name": "client",
-                    "isArray": false,
-                    "type": {
-                        "model": "Client"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "HAS_ONE",
-                        "associatedWith": "id",
-                        "targetName": "clientID"
-                    }
-                },
                 "status": {
                     "name": "status",
                     "isArray": false,
@@ -459,13 +388,6 @@ export const schema = {
                     "type": "Int",
                     "isRequired": true,
                     "attributes": []
-                },
-                "lastHealthInsurranceID": {
-                    "name": "lastHealthInsurranceID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
                 }
             },
             "syncable": true,
@@ -474,15 +396,6 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byWaitingList",
-                        "fields": [
-                            "waitingListID"
-                        ]
-                    }
                 }
             ]
         },
@@ -584,6 +497,33 @@ export const schema = {
             ]
         }
     },
-    "nonModels": {},
-    "version": "4114b53aaba37af60eb0a35e9d937f71"
+    "nonModels": {
+        "WaitList": {
+            "name": "WaitList",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "hospitalDoctorID": {
+                    "name": "hospitalDoctorID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            }
+        }
+    },
+    "version": "2bd0536f9134c44bc3a93266375e4cde"
 };

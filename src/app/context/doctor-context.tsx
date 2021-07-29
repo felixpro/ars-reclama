@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { DataStore } from '@aws-amplify/datastore';
-
+import { RelationsContext } from './relations-context';
 import { Doctor } from '../../models';
+import { useContext } from 'react';
 
 interface DoctorContextProps {
 	doctors: Doctor[];
-	actualDoctor: Doctor;
-	setActualDoctor: (dropdownIconValue: Doctor) => void;
 	createDoctor: () => void;
 	fetchDoctors: () => void;
 	deleteDoctor: (id: string) => void;
@@ -14,16 +13,11 @@ interface DoctorContextProps {
 	updateActualDoctor: (id: string) => void;
 }
 
-export const DoctorsContext = React.createContext<Partial<DoctorContextProps>>({
-	doctors: [],
-	createDoctor: () => null,
-	fetchDoctors: () => null,
-});
-
+export const DoctorsContext = React.createContext<Partial<DoctorContextProps>>({});
 
 const ContextProvider: React.FC = (props) => {
 	const [doctors, setDoctors] = useState<Doctor[]>([]);
-	const [actualDoctor, setActualDoctor] = useState<React.SetStateAction<Doctor | undefined>>();
+	const { setActualDoctor } = useContext(RelationsContext);
 
 	const createDoctor = () => {
 		DataStore.save(
@@ -63,10 +57,8 @@ const ContextProvider: React.FC = (props) => {
 		<DoctorsContext.Provider
 			value={{
 				doctors: doctors,
-				actualDoctor: actualDoctor,
 				createDoctor: createDoctor,
 				fetchDoctors: fetchDoctors,
-				setActualDoctor: setActualDoctor,
 			}}
 		>
 			{props.children}

@@ -39,7 +39,6 @@ export const App = () => {
 			<HospitalContextProvider>
 				<DoctorContextProvider>
 					<ClientContextProvider>
-
 						<WaitingListsContextProvider>
 							<Router>
 								<div className="relative min-h-screen flex">

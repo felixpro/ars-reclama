@@ -59,15 +59,12 @@ type WaitList {
 	createdAt: String
 }
 
-type WaitingListItem @model
-  @key(name: "byWaitingList", fields: ["waitingListID"]) {
+type WaitingListItem @model {
   id: ID!
   waitingListID: ID!
   clientID: ID!
-  client: Client @connection(fields: ["clientID"])
   status: WaitingListItemStatus!
   positionNumber: Int!
-  lastHealthInsurranceID: ID!
 }
 
 type Insurance @model {
