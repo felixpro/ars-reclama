@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ClientsContext } from '../../../context/client-context';
-import MaskedInput from 'react-text-mask';
 
 function SearchResult({ idInputValue, keyUpQuantity }) {
 	const { clients } = useContext(ClientsContext);

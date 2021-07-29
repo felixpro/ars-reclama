@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import { AffiliateTypes } from '../../../../models';
 
-import styles from './ClientForm.module.css'
+import styles from './ClientForm.module.css';
 
 interface IAffiliateDropdown {
 	SetFormsValues: any;
@@ -74,12 +74,7 @@ const AffiliateDropdown: React.FC<IAffiliateDropdown> = ({ SetFormsValues, forms
 			</div>
 			<div className=" z-10">
 				{toggleInput ? (
-					<div
-						className={classNames(
-							styles.insurance_container,
-							'w-56 max-h-60 absolute rounded-lg border-2 border-harp-default bg-greyWhite-default pl-4 pr-2 pb-4 pt-4 mt-1.5 overflow-x-hidden overflow-y-scroll'
-						)}
-					>
+					<div className="w-56 max-h-60 absolute rounded-lg border-2 border-harp-default insurance_container bg-greyWhite-default pl-4 pr-2 pb-4 pt-4 mt-1.5 overflow-x-hidden overflow-y-scroll">
 						<button
 							className="flex items-center w-full justify-between hover:bg-white-section pl-3.5 h-11 flex items-centers rounded-lg"
 							onClick={() => handleSelectAction(AffiliateTypes.PRINCIPAL)}

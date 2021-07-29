@@ -1,6 +1,6 @@
 import React from 'react';
 import Search from './Search';
-import Modal from './Modal';
+import ModalNavbar from './ModalNavbar';
 
 interface Ipath {
 	principal: string;
@@ -68,7 +68,7 @@ const NavBar: React.FC<INavbar> = ({ SetsidebarToggle, sidebarToggle, pagePath }
 				</div>
 			</div>
 			<div className="flex ">
-				<Modal />
+				<ModalNavbar />
 				<Search />
 			</div>
 		</div>

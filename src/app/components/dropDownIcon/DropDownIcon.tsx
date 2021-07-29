@@ -53,6 +53,7 @@ const DropDownIcon: React.FC<IDropDownIcon> = ({
 						setToggleInput(false);
 					}, 400);
 				}}
+				onChange={() => null}
 			>
 				<div className=" flex justify-center ">
 					<div>
@@ -64,6 +65,7 @@ const DropDownIcon: React.FC<IDropDownIcon> = ({
 									value={optionSelected.name}
 									className="raleway-font font-bold text-azulMarino-default w-40 absolute h-9 ml-16 pl-4 pr-6 input_insurance "
 									onClick={() => setToggleInput(toggleInput ? true : true)}
+									onChange={() => null}
 								/>
 							</div>
 							<div className="flex items-center ">

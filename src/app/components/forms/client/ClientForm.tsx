@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { FC,  useState, useEffect, useContext } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import MaskedInput from 'react-text-mask';
@@ -10,7 +10,9 @@ import DropdownList from './DropdownList';
 import AffiliateDropdown from './AffiliateDropdown';
 import IdInput from './IdInput';
 
-function ClientForm({ onCloseModal }) {
+import { IclientForm } from './types.ts'
+
+const ClientForm: FC<IclientForm> = ({ onCloseModal }) => {
 	const { createClient } = useContext(ClientsContext);
 	const { actualDoctor } = useContext(DoctorsContext);
 
