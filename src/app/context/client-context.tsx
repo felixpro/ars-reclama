@@ -17,12 +17,16 @@ interface ClientContextProps {
 	deleteClient: (id: string) => void;
 	updateClient: (id: string) => void;
 	fetchClient: (id: string) => void;
+	setActualClient: React.Dispatch<React.SetStateAction<ClientType[]>>;
+	actualClient: ClientType[];
 }
 
 export const ClientsContext = React.createContext<Partial<ClientContextProps>>({});
 
 const ContextProvider: React.FC = (props) => {
 	const [clients, setClients] = useState<ClientType[]>([]);
+	const [actualClient, setActualClient] = useState<ClientType[]>([]);
+
 	const relationsContext = useContext(RelationsContext);
 
 	// const { actualDoctor, updateActualDoctor } = useContext(DoctorsContext);
@@ -129,10 +133,12 @@ const ContextProvider: React.FC = (props) => {
 		<ClientsContext.Provider
 			value={{
 				clients: clients,
+				actualClient: actualClient,
 				createClient: createClient,
 				fetchClients: fetchClients,
 				deleteClient: deleteClient,
 				updateClient: updateClient,
+				setActualClient: setActualClient,
 			}}
 		>
 			{props.children}

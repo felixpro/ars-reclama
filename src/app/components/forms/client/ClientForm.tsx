@@ -12,7 +12,7 @@ import IdInput from './IdInput';
 
 import { IclientForm } from './types.ts'
 
-const ClientForm: FC<IclientForm> = ({ onCloseModal }) => {
+const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient }) => {
 	const { createClient } = useContext(ClientsContext);
 	const { actualDoctor } = useContext(DoctorsContext);
 
@@ -607,6 +607,6 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal }) => {
 			</div>
 		</Formik>
 	);
-}
+};
 
 export default ClientForm;

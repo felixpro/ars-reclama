@@ -1,8 +1,9 @@
 import { SexType } from '../../../../models';
-
+import { Client } from '../../../../models';
 
 export interface IclientForm {
 	onCloseModal: boolean;
+	existingClient: Client | false;
 }
 
 export interface Iclient {
@@ -20,4 +21,8 @@ export interface Iclient {
 	id: string;
 	phoneNumber: string;
 	sector: string;
+}
+
+export interface IModalClientForm {
+	existingClient: Client | false;
 }

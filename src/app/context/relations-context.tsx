@@ -43,7 +43,7 @@ const RelationsProvider: React.FC = (props) => {
 			value={{
 				createHospitalDoctor: createHospitalDoctor,
 				actualHospitalDoctor: actualHospitalDoctor,
-				setActualHospitalDoctor: setActualHospitalDoctor
+				setActualHospitalDoctor: setActualHospitalDoctor,
 			}}
 		>
 			{props.children}
