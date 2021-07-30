@@ -43,8 +43,8 @@ type HospitalDoctor @model {
 	id: ID!
 	doctorID: ID!
 	hospitalID: ID!
+	lastWaitingListID: ID!
 }
-
 
 type HospitalDoctorCliente @model {
   id: ID!
@@ -53,23 +53,18 @@ type HospitalDoctorCliente @model {
   lastHealthInsurranceID: ID!
 }
 
-type WaitList @model 
-	@key(name: "byWaitList", fields: ["hospitalDoctorID"]) {
+type WaitList @model {
 	id: ID!
 	hospitalDoctorID: ID!
 	createdAt: String
-  	items: [WaitingListItem] @connection(keyName: "byWaitingList", fields: ["id"])
 }
 
-type WaitingListItem @model
-  @key(name: "byWaitingList", fields: ["waitingListID"]) {
+type WaitingListItem @model {
   id: ID!
   waitingListID: ID!
   clientID: ID!
-  client: Client @connection(fields: ["clientID"])
   status: WaitingListItemStatus!
   positionNumber: Int!
-  lastHealthInsurranceID: ID!
 }
 
 type Insurance @model {

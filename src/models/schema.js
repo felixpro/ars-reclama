@@ -290,6 +290,13 @@ export const schema = {
                     "type": "ID",
                     "isRequired": true,
                     "attributes": []
+                },
+                "lastWaitingListID": {
+                    "name": "lastWaitingListID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -365,20 +372,6 @@ export const schema = {
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
-                },
-                "items": {
-                    "name": "items",
-                    "isArray": true,
-                    "type": {
-                        "model": "WaitingListItem"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "waitingListID"
-                    }
                 }
             },
             "syncable": true,
@@ -387,15 +380,6 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byWaitList",
-                        "fields": [
-                            "hospitalDoctorID"
-                        ]
-                    }
                 }
             ]
         },
@@ -423,20 +407,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "client": {
-                    "name": "client",
-                    "isArray": false,
-                    "type": {
-                        "model": "Client"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "HAS_ONE",
-                        "associatedWith": "id",
-                        "targetName": "clientID"
-                    }
-                },
                 "status": {
                     "name": "status",
                     "isArray": false,
@@ -452,13 +422,6 @@ export const schema = {
                     "type": "Int",
                     "isRequired": true,
                     "attributes": []
-                },
-                "lastHealthInsurranceID": {
-                    "name": "lastHealthInsurranceID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
                 }
             },
             "syncable": true,
@@ -467,15 +430,6 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byWaitingList",
-                        "fields": [
-                            "waitingListID"
-                        ]
-                    }
                 }
             ]
         },
@@ -578,5 +532,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "e5712a9cde9c3da4a0dd380a492dd7e6"
+    "version": "2bd0536f9134c44bc3a93266375e4cde"
 };

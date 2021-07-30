@@ -1,22 +1,25 @@
 import React, { useState, useContext } from 'react';
 import { DataStore } from '@aws-amplify/datastore';
 
-import { HospitalDoctor } from '../../models';
-import { DoctorsContext } from './doctor-context';
-import { HospitalsContext } from './hospital-context';
+import { HospitalDoctor, Hospital, Doctor, WaitList } from '../../models';
 
 interface InsuranceContextProps {
 	createHospitalDoctor: () => void;
 	setActualHospitalDoctor: (hospitalDoctor: HospitalDoctor) => void;
 	actualHospitalDoctor: HospitalDoctor;
+	setActualHospital: (hospital: Hospital) => void;
+	setActualDoctor: (doctor: Doctor) => void;
+	actualWaitingList: WaitList;
+	setActualWaitingList: (waitingList: WaitList) => void;
 }
 
 export const RelationsContext = React.createContext<Partial<InsuranceContextProps>>({});
 
 const RelationsProvider: React.FC = (props) => {
-	const { actualDoctor } = useContext(DoctorsContext);
-	const { actualHospital } = useContext(HospitalsContext);
+	const [actualHospital, setActualHospital] = useState<Hospital>();
+	const [actualDoctor, setActualDoctor] = useState<Doctor>();
 	const [actualHospitalDoctor, setActualHospitalDoctor] = useState<HospitalDoctor>();
+	const [actualWaitingList, setActualWaitingList] = useState<WaitList>();
 
 	const createHospitalDoctor = () => {
 		if (actualDoctor && actualHospital) {
@@ -24,6 +27,7 @@ const RelationsProvider: React.FC = (props) => {
 				new HospitalDoctor({
 					doctorID: actualDoctor.id,
 					hospitalID: actualHospital.id,
+					lastWaitingListID: ''
 				})
 			)
 				.then((res) => {
@@ -43,7 +47,11 @@ const RelationsProvider: React.FC = (props) => {
 			value={{
 				createHospitalDoctor: createHospitalDoctor,
 				actualHospitalDoctor: actualHospitalDoctor,
-				setActualHospitalDoctor: setActualHospitalDoctor
+				setActualHospitalDoctor: setActualHospitalDoctor,
+				setActualHospital: setActualHospital,
+				setActualDoctor: setActualDoctor,
+				setActualWaitingList: setActualWaitingList,
+				actualWaitingList: actualWaitingList
 			}}
 		>
 			{props.children}

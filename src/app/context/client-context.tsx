@@ -5,7 +5,7 @@ import { Insurance } from '../../models';
 import { ClientType } from './types';
 import { ClientDoctor } from '../../models';
 import { DoctorsContext } from './doctor-context';
-import { RelationsContext } from './relations-context'
+import { RelationsContext } from './relations-context';
 
 import { IdentificationTypes } from '../../models';
 import { SexType } from '../../models';
