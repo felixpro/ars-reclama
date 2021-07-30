@@ -15,7 +15,7 @@ const Configuration = () => {
 	const handleLogin = async () => {
 		const firstHospitalDoctor = (await DataStore.query(HospitalDoctor))[0];
 		setActualHospitalDoctor(firstHospitalDoctor);
-		upsertCurrentWaitingList();
+		upsertCurrentWaitingList(firstHospitalDoctor);
 	}
 
 	return (

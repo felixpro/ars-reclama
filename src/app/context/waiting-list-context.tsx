@@ -14,7 +14,7 @@ interface WaitingListContextProps {
 		status: keyof typeof WaitingListItemStatus
 	) => void;
 	updateWaitingItemPositionNumber: (waitingListItemID: string, newPositionNumber: number) => void;
-	upsertCurrentWaitingList: () => void;
+	upsertCurrentWaitingList: (hospitalDoctor: HospitalDoctor) => void;
 }
 
 export const WaitingListsContext = React.createContext<Partial<WaitingListContextProps>>({});
@@ -223,20 +223,20 @@ const ContextProvider: React.FC = (props) => {
 		}
 	};
 
-	const upsertCurrentWaitingList = async () => {
-		if (actualHospitalDoctor) {
-			const currentWaitingList = await DataStore.query(WaitList, actualHospitalDoctor.lastWaitingListID);
+	const upsertCurrentWaitingList = async (hospitalDoctor: HospitalDoctor) => {
+		if (hospitalDoctor) {
+			const currentWaitingList = await DataStore.query(WaitList, hospitalDoctor.lastWaitingListID);
 			if (currentWaitingList && currentWaitingList.createdAt === getDateString(new Date())) {
 				setActualWaitingList(currentWaitingList);
 			} else {
 				const newWaitingList = await DataStore.save(
 					new WaitList({
-						hospitalDoctorID: actualHospitalDoctor.id,
+						hospitalDoctorID: hospitalDoctor.id,
 						createdAt: getDateString(new Date())
 					})
 				);
 				await DataStore.save(
-					HospitalDoctor.copyOf(actualHospitalDoctor, (updated) => {
+					HospitalDoctor.copyOf(hospitalDoctor, (updated) => {
 						updated.lastWaitingListID = newWaitingList.id
 					})
 				);
