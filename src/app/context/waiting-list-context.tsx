@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { WaitingListItem, WaitList, Client, Insurance, HospitalDoctorCliente, WaitingListItemStatus } from '../../models';
+import { WaitingListItem, WaitList, Client, Insurance, HospitalDoctorCliente, WaitingListItemStatus, HospitalDoctor } from '../../models';
 import { WaitingListItemType } from '../context/types';
 import { DataStore } from '@aws-amplify/datastore';
 import { RelationsContext } from './relations-context';
@@ -233,6 +233,11 @@ const ContextProvider: React.FC = (props) => {
 					new WaitList({
 						hospitalDoctorID: actualHospitalDoctor.id,
 						createdAt: getDateString(new Date())
+					})
+				);
+				await DataStore.save(
+					HospitalDoctor.copyOf(actualHospitalDoctor, (updated) => {
+						updated.lastWaitingListID = newWaitingList.id
 					})
 				);
 				setActualWaitingList(newWaitingList);

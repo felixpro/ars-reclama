@@ -28,12 +28,7 @@ export enum WaitListStatus {
   ESPERA = "ESPERA"
 }
 
-export declare class WaitList {
-  readonly id: string;
-  readonly hospitalDoctorID: string;
-  readonly createdAt?: string;
-  constructor(init: ModelInit<WaitList>);
-}
+
 
 export declare class Client {
   readonly id: string;
@@ -98,6 +93,14 @@ export declare class HospitalDoctorCliente {
   readonly lastHealthInsurranceID: string;
   constructor(init: ModelInit<HospitalDoctorCliente>);
   static copyOf(source: HospitalDoctorCliente, mutator: (draft: MutableModel<HospitalDoctorCliente>) => MutableModel<HospitalDoctorCliente> | void): HospitalDoctorCliente;
+}
+
+export declare class WaitList {
+  readonly id: string;
+  readonly hospitalDoctorID: string;
+  readonly createdAt?: string;
+  constructor(init: ModelInit<WaitList>);
+  static copyOf(source: WaitList, mutator: (draft: MutableModel<WaitList>) => MutableModel<WaitList> | void): WaitList;
 }
 
 export declare class WaitingListItem {

@@ -53,7 +53,7 @@ type HospitalDoctorCliente @model {
   lastHealthInsurranceID: ID!
 }
 
-type WaitList {
+type WaitList @model {
 	id: ID!
 	hospitalDoctorID: ID!
 	createdAt: String

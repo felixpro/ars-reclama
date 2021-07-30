@@ -349,6 +349,40 @@ export const schema = {
                 }
             ]
         },
+        "WaitList": {
+            "name": "WaitList",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "hospitalDoctorID": {
+                    "name": "hospitalDoctorID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "WaitLists",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                }
+            ]
+        },
         "WaitingListItem": {
             "name": "WaitingListItem",
             "fields": {
@@ -497,33 +531,6 @@ export const schema = {
             ]
         }
     },
-    "nonModels": {
-        "WaitList": {
-            "name": "WaitList",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "hospitalDoctorID": {
-                    "name": "hospitalDoctorID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "createdAt": {
-                    "name": "createdAt",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                }
-            }
-        }
-    },
+    "nonModels": {},
     "version": "2bd0536f9134c44bc3a93266375e4cde"
 };
