@@ -49,8 +49,8 @@ const Clients = () => {
 		await DataStore.save(
 			new HospitalDoctorCliente({
 				clientID: client.id,
-				hospitalDoctorID: 'fe18f512-f3c2-48b1-abcc-c376197f19e8',
-				lastHealthInsurranceID: '3e445319-96c2-42a4-b41f-fc541305368e'
+				hospitalDoctorID: '08e6cb06-b05e-4090-b21f-124d442b645a',
+				lastHealthInsurranceID: '0b41ed74-ab74-4a75-b11f-157355d93fc2'
 			})
 		);
 		const client2 = await DataStore.save(
@@ -63,8 +63,8 @@ const Clients = () => {
 		await DataStore.save(
 			new HospitalDoctorCliente({
 				clientID: client2.id,
-				hospitalDoctorID: 'fe18f512-f3c2-48b1-abcc-c376197f19e8',
-				lastHealthInsurranceID: '3e4e0f75-81f0-49bf-8ca9-a761cfd7e51e'
+				hospitalDoctorID: '08e6cb06-b05e-4090-b21f-124d442b645a',
+				lastHealthInsurranceID: '73f4661d-0203-4c9f-8477-ddef1fddbda2'
 			})
 		);
 		const client3 = await DataStore.save(
@@ -77,15 +77,15 @@ const Clients = () => {
 		await DataStore.save(
 			new HospitalDoctorCliente({
 				clientID: client3.id,
-				hospitalDoctorID: 'fe18f512-f3c2-48b1-abcc-c376197f19e8',
-				lastHealthInsurranceID: '3e445319-96c2-42a4-b41f-fc541305368e'
+				hospitalDoctorID: '08e6cb06-b05e-4090-b21f-124d442b645a',
+				lastHealthInsurranceID: '0b41ed74-ab74-4a75-b11f-157355d93fc2'
 			})
 		)
 	};
 
 	useEffect(() => {
 		//generateTestData();
-		//generateHealthInsurranceData()
+		//generateHealthInsurranceData();
 	}, []);
 
 	useEffect(() => {

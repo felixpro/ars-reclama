@@ -6,12 +6,12 @@ import DoctorContextProvider from './app/context/doctor-context';
 import RelationsProvider from './app/context/relations-context';
 import WaitingListsContextProvider from './app/context/waiting-list-context';
 import Home from './app/pages/Home';
-
 import Clients from './app/pages/Clients';
 import Configuration from './app/pages/Configuration';
 import Medicine from './app/pages/Medicine';
 import Help from './app/pages/Help';
-
+import { default as Amplify } from '@aws-amplify/core';
+import { default as awsConfig } from '../aws-exports';
 import SideBar from './app/components/sidebar/SideBar';
 import NavBar from './app/components/navbar/NavBar';
 
@@ -21,6 +21,8 @@ interface Ipath {
 }
 
 const pathInitialState = { principal: 'Inicio', path1: null };
+
+Amplify.configure(awsConfig);
 
 export const App = () => {
 	const [sidebarToggle, SetsidebarToggle] = useState(false);
@@ -43,8 +45,9 @@ export const App = () => {
 							<Router>
 								<div className="relative min-h-screen flex">
 									<div
-										className={` absolute -left-60 2sm:static  duration-500 ease-in-out  2sm:transform-none ${sidebarToggle ? 'transform translate-x-60' : ''
-											}`}
+										className={` absolute -left-60 2sm:static  duration-500 ease-in-out  2sm:transform-none ${
+											sidebarToggle ? 'transform translate-x-60' : ''
+										}`}
 									>
 										<SideBar
 											sidebarToggle={sidebarToggle}
@@ -80,7 +83,6 @@ export const App = () => {
 								</div>
 							</Router>
 						</WaitingListsContextProvider>
-
 					</ClientContextProvider>
 				</DoctorContextProvider>
 			</HospitalContextProvider>

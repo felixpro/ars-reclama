@@ -2,6 +2,7 @@ import React, { FC, useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { DoctorsContext } from '../../context/doctor-context';
 import { HospitalsContext } from '../../context/hospital-context';
+import { RelationsContext } from '../../context/relations-context';
 
 import DropDownIcon from '../DropDownIcon';
 
@@ -20,8 +21,9 @@ interface ISideBar {
 }
 
 const SideBar: FC<ISideBar> = ({ SetsidebarToggle, SetPagePath, pagePath }) => {
-	const { doctors, fetchDoctors, setActualDoctor } = useContext(DoctorsContext);
-	const { hospitals, fetchHospitals, setActualHospital } = useContext(HospitalsContext);
+	const { doctors, fetchDoctors } = useContext(DoctorsContext);
+	const { hospitals, fetchHospitals } = useContext(HospitalsContext);
+	const { setActualDoctor, setActualHospital } = useContext(RelationsContext);
 
 	const [dropdownIconValue, setdropdownIconValue] = useState();
 

@@ -25,43 +25,11 @@ const WaitingListC = () => {
 		);
 	};
 
-	const generateWaitingItemsTestData = () => {
-		DataStore.save(
-			new WaitingListItem({
-				waitingListID: '6a289135-e536-4aec-84b4-9cb495d46094',
-				clientID: 'ac93cf93-fc8e-467d-8719-efca6308ab4a',
-				status: 'CONSULTA',
-				positionNumber: 1,
-			})
-		);
-		DataStore.save(
-			new WaitingListItem({
-				waitingListID: '6a289135-e536-4aec-84b4-9cb495d46094',
-				clientID: 'a14f73b0-9586-4e93-8844-1d2aee7b64f7',
-				status: 'ESPERA',
-				positionNumber: 2,
-			})
-		);
-		DataStore.save(
-			new WaitingListItem({
-				waitingListID: '6a289135-e536-4aec-84b4-9cb495d46094',
-				clientID: '4390521a-ae82-4814-9f5f-13733b003088',
-				status: 'ESPERA',
-				positionNumber: 3,
-			})
-		);
-	};
-
 	useEffect(() => {
 		const timeOut = setTimeout(() => {
-			waitingListsContext.getWaitingListItemsByWaitingListId(
-				'6a289135-e536-4aec-84b4-9cb495d46094',
-				filterText
-			);
+			waitingListsContext.getWaitingListItems(filterText);
 			setLoading(false);
 		}, 500);
-
-		//generateWaitingItemsTestData();
 
 		return () => {
 			clearTimeout(timeOut);

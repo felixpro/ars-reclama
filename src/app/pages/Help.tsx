@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ModalClient from '../components/modalClient/ModalClient';
 
 const Help = () => {
-	return <h1>Ayuda</h1>;
+	const [modalState, setModalState] = useState(false);
+
+	return (
+		<div>
+			<button className="" onClick={() => setModalState(true)}>
+				edit
+			</button>
+			<ModalClient modalState={modalState} setModalState={setModalState} />
+		</div>
+	);
 };
 
 export default Help;

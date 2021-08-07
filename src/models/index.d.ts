@@ -81,6 +81,7 @@ export declare class HospitalDoctor {
   readonly id: string;
   readonly doctorID: string;
   readonly hospitalID: string;
+  readonly lastWaitingListID: string;
   constructor(init: ModelInit<HospitalDoctor>);
   static copyOf(source: HospitalDoctor, mutator: (draft: MutableModel<HospitalDoctor>) => MutableModel<HospitalDoctor> | void): HospitalDoctor;
 }
@@ -98,7 +99,6 @@ export declare class WaitList {
   readonly id: string;
   readonly hospitalDoctorID: string;
   readonly createdAt?: string;
-  readonly items?: (WaitingListItem | null)[];
   constructor(init: ModelInit<WaitList>);
   static copyOf(source: WaitList, mutator: (draft: MutableModel<WaitList>) => MutableModel<WaitList> | void): WaitList;
 }
@@ -107,10 +107,8 @@ export declare class WaitingListItem {
   readonly id: string;
   readonly waitingListID: string;
   readonly clientID: string;
-  readonly client?: Client;
   readonly status: WaitingListItemStatus | keyof typeof WaitingListItemStatus;
   readonly positionNumber: number;
-  readonly lastHealthInsurranceID: string;
   constructor(init: ModelInit<WaitingListItem>);
   static copyOf(source: WaitingListItem, mutator: (draft: MutableModel<WaitingListItem>) => MutableModel<WaitingListItem> | void): WaitingListItem;
 }
