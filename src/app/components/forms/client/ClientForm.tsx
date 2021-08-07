@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import MaskedInput from 'react-text-mask';
 
+import { RelationsContext } from '../../../context/relations-context';
 import { ClientsContext } from '../../../context/client-context';
 import { DoctorsContext } from '../../../context/doctor-context';
 
@@ -12,7 +13,8 @@ import IdInput from './IdInput';
 
 function ClientForm({ onCloseModal }) {
 	const { createClient } = useContext(ClientsContext);
-	const { actualDoctor } = useContext(DoctorsContext);
+	const { actualDoctor, fetchClients } = useContext(DoctorsContext);
+	const { actualClient } = useContext(RelationsContext);
 
 	const [untrackedValues, SetUntrackedValues] = useState({
 		identification: { passport: false, id: true },
@@ -147,13 +149,15 @@ function ClientForm({ onCloseModal }) {
 			validationSchema={validationSchema}
 			onSubmit={(values, { resetForm }) => {
 				// update inputs that Formik cannot extract values
-				const objValue = JSON.parse(JSON.stringify(values));
 				const formValue = { ...JSON.parse(JSON.stringify(values)), ...untrackedValues };
 				createClient(formValue);
+				fetchClients();
+				resetForm();
+				// onCloseModal(false)
 			}}
 		>
 			<div className="client-form  pr-0 pl-24 pt-14 pb-14 2lg:pr-11 2lg:pl-20  1/2xl:pr-16 1/2xl:pl-24 ">
-				<Form>
+				<Form onSubmit={onCloseModal}>
 					<div className="pb-9">
 						<div className="grid grid-cols-12">
 							<div className="col-span-6">
@@ -260,7 +264,6 @@ function ClientForm({ onCloseModal }) {
 														fill="#80868B"
 													/>
 												</svg>
-
 												<input
 													type="date"
 													name="bornDate"
@@ -574,10 +577,7 @@ function ClientForm({ onCloseModal }) {
 							</p>
 						</div>
 						<div className="flex">
-							<button
-								className="cancel border-2 border-greySnuff-default rounded-lg w-32 h-11 text-grayStorm-default raleway-font font-medium text-base"
-								onClick={() => onCloseModal(false)}
-							>
+							<button className="cancel border-2 border-greySnuff-default rounded-lg w-32 h-11 text-grayStorm-default raleway-font font-medium text-base">
 								CANCELAR
 							</button>
 							<button

@@ -1,5 +1,13 @@
 import React, { useState, useContext } from 'react';
-import { WaitingListItem, WaitList, Client, Insurance, HospitalDoctorCliente, WaitingListItemStatus, HospitalDoctor } from '../../models';
+import {
+	WaitingListItem,
+	WaitList,
+	Client,
+	Insurance,
+	HospitalDoctorCliente,
+	WaitingListItemStatus,
+	HospitalDoctor,
+} from '../../models';
 import { WaitingListItemType } from '../context/types';
 import { DataStore } from '@aws-amplify/datastore';
 import { RelationsContext } from './relations-context';
@@ -21,11 +29,11 @@ export const WaitingListsContext = React.createContext<Partial<WaitingListContex
 
 const ContextProvider: React.FC = (props) => {
 	const [waitingListItems, setWaitingListItems] = useState<WaitingListItemType[]>([]);
-	const { actualHospitalDoctor, actualWaitingList, setActualWaitingList } = useContext(RelationsContext);
+	const { actualHospitalDoctor, actualWaitingList, setActualWaitingList } = useContext(
+		RelationsContext
+	);
 
-	const getWaitingListItems = async (
-		clientFilter?: string
-	) => {
+	const getWaitingListItems = async (clientFilter?: string) => {
 		try {
 			const waitingItems = (await DataStore.query(WaitingListItem)).filter(
 				(wi) => wi.waitingListID === actualWaitingList?.id
@@ -33,7 +41,11 @@ const ContextProvider: React.FC = (props) => {
 			setWaitingListItems([]);
 			waitingItems.forEach(async (waitingItem) => {
 				const client = await DataStore.query(Client, waitingItem.clientID);
-				const hospitalDoctorCliente = (await DataStore.query(HospitalDoctorCliente)).filter(hdc => hdc.hospitalDoctorID === actualHospitalDoctor?.id && hdc.clientID === client?.id)[0];
+				const hospitalDoctorCliente = (await DataStore.query(HospitalDoctorCliente)).filter(
+					(hdc) =>
+						hdc.hospitalDoctorID === actualHospitalDoctor?.id &&
+						hdc.clientID === client?.id
+				)[0];
 				const healthInsurance = client
 					? await DataStore.query(Insurance, hospitalDoctorCliente.lastHealthInsurranceID)
 					: null;
@@ -73,8 +85,13 @@ const ContextProvider: React.FC = (props) => {
 			positionNumber: waitingItems.length + 1,
 		});
 		await DataStore.save(newWaitingItem);
-		const hospitalDoctorCliente = (await DataStore.query(HospitalDoctorCliente)).filter(hdc => hdc.hospitalDoctorID === actualHospitalDoctor?.id && hdc.clientID === client.id)[0];
-		const clientHealthInsurance = await DataStore.query(Insurance, hospitalDoctorCliente.lastHealthInsurranceID);
+		const hospitalDoctorCliente = (await DataStore.query(HospitalDoctorCliente)).filter(
+			(hdc) => hdc.hospitalDoctorID === actualHospitalDoctor?.id && hdc.clientID === client.id
+		)[0];
+		const clientHealthInsurance = await DataStore.query(
+			Insurance,
+			hospitalDoctorCliente.lastHealthInsurranceID
+		);
 		const transformedWaitingItem: WaitingListItemType = {
 			id: newWaitingItem.id,
 			status: newWaitingItem.status,
@@ -225,25 +242,28 @@ const ContextProvider: React.FC = (props) => {
 
 	const upsertCurrentWaitingList = async (hospitalDoctor: HospitalDoctor) => {
 		if (hospitalDoctor) {
-			const currentWaitingList = await DataStore.query(WaitList, hospitalDoctor.lastWaitingListID);
+			const currentWaitingList = await DataStore.query(
+				WaitList,
+				hospitalDoctor.lastWaitingListID
+			);
 			if (currentWaitingList && currentWaitingList.createdAt === getDateString(new Date())) {
 				setActualWaitingList(currentWaitingList);
 			} else {
 				const newWaitingList = await DataStore.save(
 					new WaitList({
 						hospitalDoctorID: hospitalDoctor.id,
-						createdAt: getDateString(new Date())
+						createdAt: getDateString(new Date()),
 					})
 				);
 				await DataStore.save(
 					HospitalDoctor.copyOf(hospitalDoctor, (updated) => {
-						updated.lastWaitingListID = newWaitingList.id
+						updated.lastWaitingListID = newWaitingList.id;
 					})
 				);
 				setActualWaitingList(newWaitingList);
 			}
 		}
-	}
+	};
 
 	return (
 		<WaitingListsContext.Provider
@@ -253,7 +273,7 @@ const ContextProvider: React.FC = (props) => {
 				addClientToCurrentWaitingList: addClientToCurrentWaitingList,
 				updateWaitingListItemStatus: updateWaitingListItemStatus,
 				updateWaitingItemPositionNumber: updateWaitingItemPositionNumber,
-				upsertCurrentWaitingList: upsertCurrentWaitingList
+				upsertCurrentWaitingList: upsertCurrentWaitingList,
 			}}
 		>
 			{props.children}

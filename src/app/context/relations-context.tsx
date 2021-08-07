@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { DataStore } from '@aws-amplify/datastore';
 
-import { HospitalDoctor, Hospital, Doctor, WaitList } from '../../models';
+import { HospitalDoctor, Hospital, Doctor, WaitList, Client } from '../../models';
 
 interface InsuranceContextProps {
 	createHospitalDoctor: () => void;
@@ -11,6 +11,8 @@ interface InsuranceContextProps {
 	setActualDoctor: (doctor: Doctor) => void;
 	actualWaitingList: WaitList;
 	setActualWaitingList: (waitingList: WaitList) => void;
+	actualClient: Client;
+	setActualClient: (client: Client) => void;
 }
 
 export const RelationsContext = React.createContext<Partial<InsuranceContextProps>>({});
@@ -18,6 +20,7 @@ export const RelationsContext = React.createContext<Partial<InsuranceContextProp
 const RelationsProvider: React.FC = (props) => {
 	const [actualHospital, setActualHospital] = useState<Hospital>();
 	const [actualDoctor, setActualDoctor] = useState<Doctor>();
+	const [actualClient, setActualClient] = useState<Client>();
 	const [actualHospitalDoctor, setActualHospitalDoctor] = useState<HospitalDoctor>();
 	const [actualWaitingList, setActualWaitingList] = useState<WaitList>();
 
@@ -45,13 +48,15 @@ const RelationsProvider: React.FC = (props) => {
 	return (
 		<RelationsContext.Provider
 			value={{
-				createHospitalDoctor: createHospitalDoctor,
+				actualClient: actualClient,
 				actualHospitalDoctor: actualHospitalDoctor,
+				actualWaitingList: actualWaitingList,
+				setActualClient: setActualClient,
+				createHospitalDoctor: createHospitalDoctor,
 				setActualHospitalDoctor: setActualHospitalDoctor,
 				setActualHospital: setActualHospital,
 				setActualDoctor: setActualDoctor,
 				setActualWaitingList: setActualWaitingList,
-				actualWaitingList: actualWaitingList
 			}}
 		>
 			{props.children}
