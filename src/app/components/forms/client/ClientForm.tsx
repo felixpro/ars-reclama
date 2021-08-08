@@ -13,7 +13,7 @@ import IdInput from './IdInput';
 
 import { IclientForm } from './types.ts'
 
-const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient }) => {
+const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClient }) => {
 	const { createClient } = useContext(ClientsContext);
 	const { actualDoctor, fetchClients } = useContext(DoctorsContext);
 	const { actualClient } = useContext(RelationsContext);
@@ -101,6 +101,26 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient }) => {
 		identificationRef.current.checked = true;
 	}, []);
 
+	useEffect(() => {
+      if (updateClient && actualClient ) {
+		  SetFormsValues({
+			  identificationData: actualClient.identificationData,
+		name: actualClient.name,
+		cellphoneNumber: actualClient.cellphoneNumber,
+		email: actualClient.email,
+		phoneNumber: actualClient.phoneNumber,
+		addressStreet: actualClient.addressStreet,
+		city: actualClient.city,
+		sector: actualClient.sector,
+		bloodType: actualClient.bloodType,
+		company: actualClient.company,
+		affiliateNumber: actualClient.affiliateNumber,
+		contractNumber: actualClient.contractNumber,
+		  })
+	  }
+	}, [actualClient]);
+
+
 	const validationSchema = Yup.object({
 		name: Yup.string()
 			.required('Campo requerido')
@@ -155,11 +175,11 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient }) => {
 				createClient(formValue);
 				fetchClients();
 				resetForm();
-				// onCloseModal(false)
+				onCloseModal();
 			}}
 		>
 			<div className="client-form  pr-0 pl-24 pt-14 pb-14 2lg:pr-11 2lg:pl-20  1/2xl:pr-16 1/2xl:pl-24 ">
-				<Form onSubmit={onCloseModal}>
+				<Form>
 					<div className="pb-9">
 						<div className="grid grid-cols-12">
 							<div className="col-span-6">

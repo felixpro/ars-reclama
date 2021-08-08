@@ -11,7 +11,7 @@ import Configuration from './app/pages/Configuration';
 import Medicine from './app/pages/Medicine';
 import Help from './app/pages/Help';
 import { default as Amplify } from '@aws-amplify/core';
-import { default as awsConfig } from '../aws-exports';
+import { default as awsConfig } from './aws-exports';
 import SideBar from './app/components/sidebar/SideBar';
 import NavBar from './app/components/navbar/NavBar';
 

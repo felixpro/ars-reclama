@@ -26,11 +26,11 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "affiliateNumber": {
-                    "name": "affiliateNumber",
+                "actualInssurance": {
+                    "name": "actualInssurance",
                     "isArray": false,
-                    "type": "Int",
-                    "isRequired": true,
+                    "type": "String",
+                    "isRequired": false,
                     "attributes": []
                 },
                 "name": {
@@ -54,13 +54,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "contractNumber": {
-                    "name": "contractNumber",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "bornDate": {
                     "name": "bornDate",
                     "isArray": false,
@@ -79,13 +72,6 @@ export const schema = {
                 },
                 "phoneNumber": {
                     "name": "phoneNumber",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "admissionDate": {
-                    "name": "admissionDate",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -532,5 +518,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "2bd0536f9134c44bc3a93266375e4cde"
+    "version": "3bc50dee53fb600fa4b68e5754199a8b"
 };

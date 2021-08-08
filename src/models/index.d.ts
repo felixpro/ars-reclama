@@ -34,15 +34,13 @@ export declare class Client {
   readonly id: string;
   readonly identificationName?: IdentificationTypes | keyof typeof IdentificationTypes;
   readonly identificationData?: string;
-  readonly affiliateNumber: number;
+  readonly actualInssurance?: string;
   readonly name: string;
   readonly cellphoneNumber?: string;
   readonly email?: string;
-  readonly contractNumber?: number;
   readonly bornDate?: string;
   readonly gender?: SexType | keyof typeof SexType;
   readonly phoneNumber?: string;
-  readonly admissionDate?: string;
   readonly addressStreet?: string;
   readonly addressNumber?: number;
   readonly city?: string;

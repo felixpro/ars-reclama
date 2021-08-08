@@ -2,15 +2,13 @@ type Client @model {
 	id: ID!
 	identificationName: IdentificationTypes
 	identificationData: String
-	affiliateNumber: Int!
+	actualInssurance: String
 	name: String!
 	cellphoneNumber: String
 	email: String
-	contractNumber: Int
 	bornDate: String
 	gender: SexType
 	phoneNumber: String
-	admissionDate: String
 	addressStreet: String
 	addressNumber: Int
 	city: String

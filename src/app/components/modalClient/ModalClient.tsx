@@ -4,7 +4,7 @@ import { Modal } from 'react-responsive-modal';
 
 import ClientForm from '../forms/client/ClientForm';
 
-const ModalClient = ({ modalState, setModalState }) => {
+const ModalClient = ({ modalState, setModalState, updateClient }) => {
 	const onCloseModal = () => setModalState(false);
 	return (
 		<div className="">
@@ -17,7 +17,7 @@ const ModalClient = ({ modalState, setModalState }) => {
 					modal: 'customModal',
 				}}
 			>
-				<ClientForm onCloseModal={onCloseModal} />
+				<ClientForm onCloseModal={onCloseModal} updateClient={updateClient} />
 			</Modal>
 		</div>
 	);

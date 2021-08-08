@@ -41,6 +41,7 @@ const ContextProvider: React.FC = (props) => {
 		const clientObj: Client = {
 			identificationName: passport || identification,
 			identificationData: dataForm.identificationData,
+			actualInssurance: dataForm.insuranceSelected,
 			name: dataForm.name,
 			cellphoneNumber: dataForm.cellphoneNumber,
 			email: dataForm.email,
@@ -52,6 +53,7 @@ const ContextProvider: React.FC = (props) => {
 			sector: dataForm.sector,
 			bloodType: dataForm.BloodType,
 			company: dataForm.company,
+			profileImage: '', 
 		};
 
 		DataStore.save(new Client(clientObj))
@@ -62,6 +64,7 @@ const ContextProvider: React.FC = (props) => {
 					contractNumber: parseInt(dataForm.contractNumber),
 					affiliateNumber: parseInt(dataForm.affiliateNumber),
 					affiliateType: dataForm.affiliateType,
+					imageName: '',
 				};
 				// Create insurance
 				DataStore.save(new Insurance(insuranceData))
