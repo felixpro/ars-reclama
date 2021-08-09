@@ -32,28 +32,25 @@ const ContextProvider: React.FC = (props) => {
 	// const { actualDoctor, updateActualDoctor } = useContext(DoctorsContext);
 
 	const createClient = (dataForm): void => {
-		const passport = dataForm.identification.passport ? IdentificationTypes.PASAPORTE : null;
-		const identification = dataForm.identification.id ? IdentificationTypes.CEDULA : null;
 
-		const femenine = dataForm.gender.femenine ? SexType.FEMENINO : null;
-		const masculine = dataForm.gender.masculine ? SexType.MASCULINO : null;
-
-		const clientObj: Client = {
-			identificationName: passport || identification,
+		const clientObj = {
+			identificationName: dataForm.idCard
+				? IdentificationTypes.CEDULA
+				: IdentificationTypes.PASAPORTE,
 			identificationData: dataForm.identificationData,
 			actualInssurance: dataForm.insuranceSelected,
 			name: dataForm.name,
 			cellphoneNumber: dataForm.cellphoneNumber,
 			email: dataForm.email,
 			bornDate: dataForm.bornDate,
-			gender: femenine || masculine,
+			gender: dataForm.gender,
 			phoneNumber: dataForm.phoneNumber,
 			addressStreet: dataForm.addressStreet,
 			city: dataForm.city,
 			sector: dataForm.sector,
-			bloodType: dataForm.BloodType,
+			bloodType: dataForm.bloodType,
 			company: dataForm.company,
-			profileImage: '', 
+			profileImage: '',
 		};
 
 		DataStore.save(new Client(clientObj))
@@ -64,7 +61,6 @@ const ContextProvider: React.FC = (props) => {
 					contractNumber: parseInt(dataForm.contractNumber),
 					affiliateNumber: parseInt(dataForm.affiliateNumber),
 					affiliateType: dataForm.affiliateType,
-					imageName: '',
 				};
 				// Create insurance
 				DataStore.save(new Insurance(insuranceData))

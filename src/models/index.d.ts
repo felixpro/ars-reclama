@@ -113,11 +113,11 @@ export declare class WaitingListItem {
 
 export declare class Insurance {
   readonly id: string;
+  readonly clientID?: string;
   readonly name: string;
   readonly contractNumber?: number;
   readonly affiliateNumber?: number;
   readonly affiliateType?: AffiliateTypes | keyof typeof AffiliateTypes;
-  readonly imageName?: string;
   constructor(init: ModelInit<Insurance>);
   static copyOf(source: Insurance, mutator: (draft: MutableModel<Insurance>) => MutableModel<Insurance> | void): Insurance;
 }

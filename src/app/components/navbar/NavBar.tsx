@@ -25,7 +25,6 @@ const NavBar: React.FC<INavbar> = ({ SetsidebarToggle, sidebarToggle, pagePath }
 	const { actualClient } = useContext(RelationsContext);
 	const [modalState, setModalState] = useState(false);
 
-
 	return (
 		<div className="flex justify-between items-center pr-10 bg-white-section pt-3.5 pb-3.5 2sm:ml-0.5 mb-0.5">
 			<div className="flex items-center">
@@ -83,7 +82,11 @@ const NavBar: React.FC<INavbar> = ({ SetsidebarToggle, sidebarToggle, pagePath }
 					</svg>
 					NUEVO CLIENTE
 				</button>
-				<ModalClient modalState={modalState} setModalState={setModalState} />
+				<ModalClient
+					modalState={modalState}
+					setModalState={setModalState}
+					updateClient={false}
+				/>
 				<Search />
 			</div>
 		</div>

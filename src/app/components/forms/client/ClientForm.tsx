@@ -17,12 +17,12 @@ import { IclientForm } from './types.ts';
 const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClient }) => {
 	const { createClient } = useContext(ClientsContext);
 	const { actualDoctor, fetchClients } = useContext(DoctorsContext);
-	const { actualClient, actualInsurance} = useContext(RelationsContext);
+	const { actualClient, actualInsurance } = useContext(RelationsContext);
 
 	const [untrackedValues, SetUntrackedValues] = useState({
-		idCard: false,
+		idCard: true,
 		bornDate: '',
-		actualInssurance: '',
+		insuranceSelected: '',
 		affiliateType: '',
 	});
 
@@ -116,25 +116,25 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 				gender: actualClient.gender,
 			});
 			SetUntrackedValues({
-				idCard: actualClient.identificationName === IdentificationTypes.CEDULA? true : false,
-				actualInssurance: actualInsurance.actualInssurance,
+				idCard:
+					actualClient.identificationName === IdentificationTypes.CEDULA ? true : false,
+				insuranceSelected: actualInsurance.name,
 				affiliateType: actualInsurance.affiliateType,
 				bornDate: actualClient.bornDate,
 			});
 
-		     // Validate actual identification type
+			// Validate actual identification type
 			if (actualClient.identificationName === IdentificationTypes.CEDULA) {
 				idRef.current.checked = true;
-			}else {
-			  passportRef.current.checked = true;
+			} else {
+				passportRef.current.checked = true;
 			}
-			    // Validate actual gender type
+			// Validate actual gender type
 			if (actualClient.gender === SexType.FEMENINO) {
-			    femenineRef.current.checked = true;
-			}else {
-		     	masculineRef.current.checked = true;
+				femenineRef.current.checked = true;
+			} else {
+				masculineRef.current.checked = true;
 			}
-
 		} else {
 			// identification true as default
 			idRef.current.checked = true;
@@ -193,10 +193,11 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 			onSubmit={(values, { resetForm }) => {
 				// update inputs that Formik cannot extract values
 				const formValue = { ...JSON.parse(JSON.stringify(values)), ...untrackedValues };
+				console.log("Antes de crear", formValue);
 				createClient(formValue);
-				fetchClients();
-				resetForm();
-				onCloseModal();
+				// fetchClients();
+				// resetForm();
+				// onCloseModal();
 			}}
 		>
 			<div className="client-form  pr-0 pl-24 pt-14 pb-14 2lg:pr-11 2lg:pl-20  1/2xl:pr-16 1/2xl:pl-24 ">
@@ -213,6 +214,7 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 									<InsurancesDropDown
 										SetUntrackedValues={SetUntrackedValues}
 										untrackedValues={untrackedValues}
+										updateClient={updateClient}
 									/>
 								</div>
 							</div>
@@ -250,7 +252,9 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 												className="input-id"
 												ref={passportRef}
 												onClick={() =>
-													handleCheckboxIdRef(IdentificationTypes.PASAPORTE)
+													handleCheckboxIdRef(
+														IdentificationTypes.PASAPORTE
+													)
 												}
 											/>
 											<span className="checkbox-custom"></span>
@@ -383,7 +387,7 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 								</label>
 							</div>
 
-							{untrackedValues.actualInssurance === 'Sin seguro' ? null : (
+							{untrackedValues.actualInsurance === 'Sin seguro' ? null : (
 								<div className="col-span-3  pt-8 2lg:pt-14 control">
 									<label>
 										<p className="text-base OpenSansLight pb-1">
@@ -407,7 +411,7 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 									</label>
 								</div>
 							)}
-							{untrackedValues.actualInssurance === 'Sin seguro' ? null : (
+							{untrackedValues.actualInsurance === 'Sin seguro' ? null : (
 								<div className="col-span-3  pt-8 2lg:pt-14 ">
 									<div>
 										<p className="text-base OpenSansLight pb-1">
@@ -423,7 +427,7 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 									</div>
 								</div>
 							)}
-							{untrackedValues.actualInssurance === 'Sin seguro' ? null : (
+							{untrackedValues.actualInsurance === 'Sin seguro' ? null : (
 								<div className="col-span-3  pt-8 2lg:pt-14 ">
 									<div>
 										<label>
@@ -642,7 +646,7 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 										fill="white"
 									/>
 								</svg>
-								{updateClient? <span>ACTUALIZAR</span> : <span>GUARDAR</span> }
+								{updateClient ? <span>ACTUALIZAR</span> : <span>GUARDAR</span>}
 							</button>
 						</div>
 					</div>

@@ -72,7 +72,6 @@ type Insurance @model {
 	contractNumber: Int
 	affiliateNumber: Int
 	affiliateType: AffiliateTypes
-	imageName: String
 }
 
 enum WaitingListItemStatus {

@@ -429,6 +429,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "clientID": {
+                    "name": "clientID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "name": {
                     "name": "name",
                     "isArray": false,
@@ -456,13 +463,6 @@ export const schema = {
                     "type": {
                         "enum": "AffiliateTypes"
                     },
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "imageName": {
-                    "name": "imageName",
-                    "isArray": false,
-                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 }
@@ -518,5 +518,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "3bc50dee53fb600fa4b68e5754199a8b"
+    "version": "af814de5509a3e66640c71168e815d8b"
 };

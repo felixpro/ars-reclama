@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { DataStore } from '@aws-amplify/datastore';
+
 import onClickOutside from 'react-onclickoutside';
 import { Field, ErrorMessage } from 'formik';
 
-import { AffiliateTypes } from '../../../../models';
+import { Insurance } from '../../../../models';
 import { RelationsContext } from '../../../context/relations-context';
-
 
 const options = [
 	{ name: 'Sin seguro' },
@@ -23,36 +24,35 @@ const options = [
 	{ name: 'ARS RESERVAS' },
 ];
 
-const InsurancesDropDown = ({ SetUntrackedValues, untrackedValues }) => {
+const InsurancesDropDown = ({ SetUntrackedValues, untrackedValues, updateClient }) => {
 	const { actualClient } = useContext(RelationsContext);
 
 	const [optionSelected, SetOptionSelected] = useState({ name: 'Sin seguro' });
 	const [toggleInput, SetToggleInput] = useState(false);
 
-
 	const handleDropDown = () => {
 		SetToggleInput(false);
 	};
 
-	const handleSelectAction = (data: string): void => {
-     
-
-		SetOptionSelected({ name: data });
-		SetUntrackedValues({
-			...untrackedValues,
-			actualInssurance: data,
+	const handleSelectAction = async (data: string): void => {
+		DataStore.query(Insurance).then((res) => {
+			const insurances = res.filter((c) => c.clientID === actualClient.id);
+			SetOptionSelected({ name: data });
+			handleDropDown();
 		});
-		handleDropDown();
 	};
 
 	useEffect(() => {
-		if (actualClient) {
-			handleSelectAction(actualClient.actualInssurance)
-		}
 		SetUntrackedValues({
 			...untrackedValues,
-			actualInssurance: actualClient.actualInssurance,
+			actualInsurance: optionSelected.name,
 		});
+	}, [optionSelected]);
+
+	useEffect(() => {
+		if (actualClient && updateClient) {
+			handleSelectAction(actualClient.actualInssurance);
+		}
 	}, []);
 
 	InsurancesDropDown.handleClickOutside = () => SetToggleInput(false);
@@ -65,7 +65,7 @@ const InsurancesDropDown = ({ SetUntrackedValues, untrackedValues }) => {
 						<div className="flex justify-center items-center w-32">
 							<Field
 								type="text"
-								name="actualInssurance"
+								name="actualInsurance"
 								value={optionSelected.name}
 								className=" w-40 absolute h-14 ml-6 pr-11 input_insurance text-center"
 								onClick={() => SetToggleInput(toggleInput ? false : true)}
@@ -91,7 +91,7 @@ const InsurancesDropDown = ({ SetUntrackedValues, untrackedValues }) => {
 						</div>
 					</div>
 					<p className="text-red-default text-sm OpenSansRegular pt-1.5">
-						<ErrorMessage name="actualInssurance" />
+						<ErrorMessage name="actualInsurance" />
 					</p>
 				</div>
 			</div>
