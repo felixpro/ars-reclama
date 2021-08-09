@@ -1,6 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import onClickOutside from 'react-onclickoutside';
 import { Field, ErrorMessage } from 'formik';
+
+import { AffiliateTypes } from '../../../../models';
+import { RelationsContext } from '../../../context/relations-context';
+
 
 const options = [
 	{ name: 'Sin seguro' },
@@ -19,31 +23,39 @@ const options = [
 	{ name: 'ARS RESERVAS' },
 ];
 
-const DropdownList = ({ SetFormsValues, formsValues }) => {
+const InsurancesDropDown = ({ SetUntrackedValues, untrackedValues }) => {
+	const { actualClient } = useContext(RelationsContext);
+
 	const [optionSelected, SetOptionSelected] = useState({ name: 'Sin seguro' });
 	const [toggleInput, SetToggleInput] = useState(false);
+
 
 	const handleDropDown = () => {
 		SetToggleInput(false);
 	};
 
 	const handleSelectAction = (data: string): void => {
+     
+
 		SetOptionSelected({ name: data });
-		SetFormsValues({
-			...formsValues,
-			insuranceSelected: data,
+		SetUntrackedValues({
+			...untrackedValues,
+			actualInssurance: data,
 		});
 		handleDropDown();
 	};
 
 	useEffect(() => {
-		SetFormsValues({
-			...formsValues,
-			insuranceSelected: optionSelected.name,
+		if (actualClient) {
+			handleSelectAction(actualClient.actualInssurance)
+		}
+		SetUntrackedValues({
+			...untrackedValues,
+			actualInssurance: actualClient.actualInssurance,
 		});
 	}, []);
 
-	DropdownList.handleClickOutside = () => SetToggleInput(false);
+	InsurancesDropDown.handleClickOutside = () => SetToggleInput(false);
 
 	return (
 		<div>
@@ -53,7 +65,7 @@ const DropdownList = ({ SetFormsValues, formsValues }) => {
 						<div className="flex justify-center items-center w-32">
 							<Field
 								type="text"
-								name="insuranceSelected"
+								name="actualInssurance"
 								value={optionSelected.name}
 								className=" w-40 absolute h-14 ml-6 pr-11 input_insurance text-center"
 								onClick={() => SetToggleInput(toggleInput ? false : true)}
@@ -79,7 +91,7 @@ const DropdownList = ({ SetFormsValues, formsValues }) => {
 						</div>
 					</div>
 					<p className="text-red-default text-sm OpenSansRegular pt-1.5">
-						<ErrorMessage name="insuranceSelected" />
+						<ErrorMessage name="actualInssurance" />
 					</p>
 				</div>
 			</div>
@@ -104,7 +116,7 @@ const DropdownList = ({ SetFormsValues, formsValues }) => {
 };
 
 const clickOutsideConfig = {
-	handleClickOutside: () => DropdownList.handleClickOutside,
+	handleClickOutside: () => InsurancesDropDown.handleClickOutside,
 };
 
-export default onClickOutside(DropdownList, clickOutsideConfig);
+export default onClickOutside(InsurancesDropDown, clickOutsideConfig);

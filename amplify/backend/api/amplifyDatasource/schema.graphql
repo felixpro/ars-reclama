@@ -67,6 +67,7 @@ type WaitingListItem @model {
 
 type Insurance @model {
 	id: ID!
+	clientID: ID
 	name: String!
 	contractNumber: Int
 	affiliateNumber: Int

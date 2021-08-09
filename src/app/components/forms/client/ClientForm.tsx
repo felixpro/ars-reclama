@@ -1,28 +1,28 @@
-import React, { FC,  useState, useEffect, useContext } from 'react';
+import React, { FC, useState, useEffect, useContext } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import MaskedInput from 'react-text-mask';
+import { IdentificationTypes, SexType } from '../../../../models';
 
 import { RelationsContext } from '../../../context/relations-context';
 import { ClientsContext } from '../../../context/client-context';
 import { DoctorsContext } from '../../../context/doctor-context';
 
-import DropdownList from './DropdownList';
+import InsurancesDropDown from './InsurancesDropDown';
 import AffiliateDropdown from './AffiliateDropdown';
 import IdInput from './IdInput';
 
-import { IclientForm } from './types.ts'
+import { IclientForm } from './types.ts';
 
 const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClient }) => {
 	const { createClient } = useContext(ClientsContext);
 	const { actualDoctor, fetchClients } = useContext(DoctorsContext);
-	const { actualClient } = useContext(RelationsContext);
+	const { actualClient, actualInsurance} = useContext(RelationsContext);
 
 	const [untrackedValues, SetUntrackedValues] = useState({
-		identification: { passport: false, id: true },
-		gender: { femenine: false, masculine: false },
+		idCard: false,
 		bornDate: '',
-		insuranceSelected: '',
+		actualInssurance: '',
 		affiliateType: '',
 	});
 
@@ -39,23 +39,24 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 		company: '',
 		affiliateNumber: '',
 		contractNumber: '',
+		gender: '',
 	});
 
 	// Handle ID checkboxs
-	const identificationRef: React.useRef<HTMLDivElement> = React.createRef();
+	const idRef: React.useRef<HTMLDivElement> = React.createRef();
 	const passportRef: React.useRef<HTMLDivElement> = React.createRef();
-	const handleCheckboxRef = (target: string) => {
-		if (target === 'identification') {
+	const handleCheckboxIdRef = (target: string) => {
+		if (target === IdentificationTypes.CEDULA) {
 			passportRef.current.checked = false;
 			SetUntrackedValues({
 				...untrackedValues,
-				identification: { passport: false, id: true },
+				idCard: true,
 			});
-		} else if (target === 'passport') {
-			identificationRef.current.checked = false;
+		} else if (target === IdentificationTypes.PASAPORTE) {
+			idRef.current.checked = false;
 			SetUntrackedValues({
 				...untrackedValues,
-				identification: { passport: true, id: false },
+				idCard: false,
 			});
 		}
 	};
@@ -66,15 +67,15 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 	const handleCheckboxGenderRef = (target: string) => {
 		if (target === 'M') {
 			femenineRef.current.checked = false;
-			SetUntrackedValues({
-				...untrackedValues,
-				gender: { femenine: false, masculine: true },
+			SetFormsValues({
+				...formsValues,
+				gender: SexType.MASCULINO,
 			});
 		} else if (target === 'F') {
 			masculineRef.current.checked = false;
-			SetUntrackedValues({
-				...untrackedValues,
-				gender: { femenine: true, masculine: false },
+			SetFormsValues({
+				...formsValues,
+				gender: SexType.FEMENINO,
 			});
 		}
 	};
@@ -97,29 +98,48 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 	];
 
 	useEffect(() => {
-		// identification true as default
-		identificationRef.current.checked = true;
+		// UpdateForm values
+		if (updateClient && actualClient) {
+			SetFormsValues({
+				identificationData: actualClient.identificationData,
+				name: actualClient.name,
+				cellphoneNumber: actualClient.cellphoneNumber,
+				email: actualClient.email,
+				phoneNumber: actualClient.phoneNumber,
+				addressStreet: actualClient.addressStreet,
+				city: actualClient.city,
+				sector: actualClient.sector,
+				bloodType: actualClient.bloodType,
+				company: actualClient.company,
+				affiliateNumber: actualInsurance.affiliateNumber,
+				contractNumber: actualInsurance.contractNumber,
+				gender: actualClient.gender,
+			});
+			SetUntrackedValues({
+				idCard: actualClient.identificationName === IdentificationTypes.CEDULA? true : false,
+				actualInssurance: actualInsurance.actualInssurance,
+				affiliateType: actualInsurance.affiliateType,
+				bornDate: actualClient.bornDate,
+			});
+
+		     // Validate actual identification type
+			if (actualClient.identificationName === IdentificationTypes.CEDULA) {
+				idRef.current.checked = true;
+			}else {
+			  passportRef.current.checked = true;
+			}
+			    // Validate actual gender type
+			if (actualClient.gender === SexType.FEMENINO) {
+			    femenineRef.current.checked = true;
+			}else {
+		     	masculineRef.current.checked = true;
+			}
+
+		} else {
+			// identification true as default
+			idRef.current.checked = true;
+		}
 	}, []);
-
-	useEffect(() => {
-      if (updateClient && actualClient ) {
-		  SetFormsValues({
-			  identificationData: actualClient.identificationData,
-		name: actualClient.name,
-		cellphoneNumber: actualClient.cellphoneNumber,
-		email: actualClient.email,
-		phoneNumber: actualClient.phoneNumber,
-		addressStreet: actualClient.addressStreet,
-		city: actualClient.city,
-		sector: actualClient.sector,
-		bloodType: actualClient.bloodType,
-		company: actualClient.company,
-		affiliateNumber: actualClient.affiliateNumber,
-		contractNumber: actualClient.contractNumber,
-		  })
-	  }
-	}, [actualClient]);
-
 
 	const validationSchema = Yup.object({
 		name: Yup.string()
@@ -168,6 +188,7 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 	return (
 		<Formik
 			initialValues={formsValues}
+			enableReinitialize
 			validationSchema={validationSchema}
 			onSubmit={(values, { resetForm }) => {
 				// update inputs that Formik cannot extract values
@@ -189,9 +210,9 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 							</div>
 							<div className="col-span-6">
 								<div className="flex justify-end">
-									<DropdownList
-										SetFormsValues={SetUntrackedValues}
-										formsValues={untrackedValues}
+									<InsurancesDropDown
+										SetUntrackedValues={SetUntrackedValues}
+										untrackedValues={untrackedValues}
 									/>
 								</div>
 							</div>
@@ -202,17 +223,16 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 							<div className="col-span-3  pt-8 2lg:pt-14 ">
 								<div className="relative top-0.5">
 									<div className="flex pb-2">
-										<label
-											htmlFor="identification"
-											className="checkbox-label flex"
-										>
+										<label htmlFor="id" className="checkbox-label flex">
 											<input
 												type="checkbox"
-												id="identification"
-												name="identification"
+												id="id"
+												name="id"
 												className="input-id "
-												ref={identificationRef}
-												onClick={() => handleCheckboxRef('identification')}
+												ref={idRef}
+												onClick={() =>
+													handleCheckboxIdRef(IdentificationTypes.CEDULA)
+												}
 											/>
 											<span className="checkbox-custom"></span>
 											<p className="pl-1.5 OpenSansRegular">
@@ -229,7 +249,9 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 												name="passport"
 												className="input-id"
 												ref={passportRef}
-												onClick={() => handleCheckboxRef('passport')}
+												onClick={() =>
+													handleCheckboxIdRef(IdentificationTypes.PASAPORTE)
+												}
 											/>
 											<span className="checkbox-custom"></span>
 											<p className="pl-1.5 OpenSansRegular">Pasaporte</p>
@@ -286,7 +308,7 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 														fill="#80868B"
 													/>
 												</svg>
-												<input
+												<Field
 													type="date"
 													name="bornDate"
 													onChange={(e) =>
@@ -295,6 +317,7 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 															bornDate: e.target.value,
 														})
 													}
+													value={untrackedValues.bornDate}
 													className="bg-white-lilac h-full w-full flex justify-center OpenSansRegular text-sm"
 												/>
 											</div>
@@ -360,7 +383,7 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 								</label>
 							</div>
 
-							{untrackedValues.insuranceSelected === 'Sin seguro' ? null : (
+							{untrackedValues.actualInssurance === 'Sin seguro' ? null : (
 								<div className="col-span-3  pt-8 2lg:pt-14 control">
 									<label>
 										<p className="text-base OpenSansLight pb-1">
@@ -384,7 +407,7 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 									</label>
 								</div>
 							)}
-							{untrackedValues.insuranceSelected === 'Sin seguro' ? null : (
+							{untrackedValues.actualInssurance === 'Sin seguro' ? null : (
 								<div className="col-span-3  pt-8 2lg:pt-14 ">
 									<div>
 										<p className="text-base OpenSansLight pb-1">
@@ -400,7 +423,7 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 									</div>
 								</div>
 							)}
-							{untrackedValues.insuranceSelected === 'Sin seguro' ? null : (
+							{untrackedValues.actualInssurance === 'Sin seguro' ? null : (
 								<div className="col-span-3  pt-8 2lg:pt-14 ">
 									<div>
 										<label>
@@ -551,7 +574,7 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 										</p>
 										<Field
 											type="text"
-											name="BloodType"
+											name="bloodType"
 											onKeyUp={(e) =>
 												SetFormsValues({
 													...formsValues,
@@ -619,7 +642,7 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 										fill="white"
 									/>
 								</svg>
-								GUARDAR
+								{updateClient? <span>ACTUALIZAR</span> : <span>GUARDAR</span> }
 							</button>
 						</div>
 					</div>

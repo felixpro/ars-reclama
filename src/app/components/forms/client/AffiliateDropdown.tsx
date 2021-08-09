@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Field } from 'formik';
 import classNames from 'classnames';
 
 import { AffiliateTypes } from '../../../../models';
+import { RelationsContext } from '../../../context/relations-context';
 
 import styles from './ClientForm.module.css';
 
@@ -14,6 +15,9 @@ interface IAffiliateDropdown {
 const AffiliateDropdown: React.FC<IAffiliateDropdown> = ({ SetFormsValues, formsValues }) => {
 	const [optionSelected, SetOptionSelected] = useState({ name: 'Ej: Principal' });
 	const [toggleInput, SetToggleInput] = useState(false);
+
+	const { actualInsurance } = useContext(RelationsContext);
+
 
 	const handleDropDown = () => {
 		SetToggleInput(false);
@@ -31,6 +35,12 @@ const AffiliateDropdown: React.FC<IAffiliateDropdown> = ({ SetFormsValues, forms
 	function capitalizeFirstLetter(string: string) {
 		return string[0].toUpperCase() + string.slice(1);
 	}
+
+	useEffect(() => {
+		SetOptionSelected({
+			name: actualInsurance.affiliateType,
+		})
+	}, [])
 
 	return (
 		<div>

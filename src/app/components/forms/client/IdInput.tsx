@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import onClickOutside from 'react-onclickoutside';
 import MaskedInput from 'react-text-mask';
 
@@ -48,6 +48,10 @@ const IdInput = ({ SetFormsValues, formsValues, untrackedValues }) => {
 		SetKeyUpQuantity(realQuantity.length);
 	};
 
+   useEffect(() => {
+	   
+   }, [untrackedValues.idCard])
+
 	return (
 		<div>
 			<div>
@@ -56,7 +60,7 @@ const IdInput = ({ SetFormsValues, formsValues, untrackedValues }) => {
 					render={({ field }) => (
 						<MaskedInput
 							{...field}
-							mask={untrackedValues.identification.passport ? passportMask : idMask}
+							mask={untrackedValues.idCard ? idMask : passportMask}
 							placeholder="Ej: 453-4847840-5"
 							type="text"
 							onKeyUp={(e) => handleKeyUp(e.target.value)}

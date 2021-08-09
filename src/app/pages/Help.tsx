@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ModalClient from '../components/modalClient/ModalClient';
 
 const Help = () => {
-	const [modalState, setModalState] = useState(false);
+	const [modalState, setModalState] = useState(true);
 
 	return (
 		<div>
