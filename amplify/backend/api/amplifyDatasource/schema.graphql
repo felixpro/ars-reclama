@@ -2,7 +2,7 @@ type Client @model {
 	id: ID!
 	identificationName: IdentificationTypes
 	identificationData: String
-	actualInssurance: String
+	actualInsurance: String
 	name: String!
 	cellphoneNumber: String
 	email: String
@@ -10,7 +10,6 @@ type Client @model {
 	gender: SexType
 	phoneNumber: String
 	addressStreet: String
-	addressNumber: Int
 	city: String
 	sector: String
 	bloodType: String
@@ -69,8 +68,8 @@ type Insurance @model {
 	id: ID!
 	clientID: ID
 	name: String!
-	contractNumber: Int
-	affiliateNumber: Int
+	contractNumber: String
+	affiliateNumber: String
 	affiliateType: AffiliateTypes
 }
 

@@ -17,28 +17,24 @@ interface ClientContextProps {
 	deleteClient: (id: string) => void;
 	updateClient: (id: string) => void;
 	fetchClient: (id: string) => void;
-	setActualClient: React.Dispatch<React.SetStateAction<ClientType[]>>;
-	actualClient: ClientType[];
 }
 
 export const ClientsContext = React.createContext<Partial<ClientContextProps>>({});
 
 const ContextProvider: React.FC = (props) => {
 	const [clients, setClients] = useState<ClientType[]>([]);
-	const [actualClient, setActualClient] = useState<ClientType[]>([]);
 
 	const relationsContext = useContext(RelationsContext);
 
 	// const { actualDoctor, updateActualDoctor } = useContext(DoctorsContext);
 
 	const createClient = (dataForm): void => {
-
 		const clientObj = {
 			identificationName: dataForm.idCard
 				? IdentificationTypes.CEDULA
 				: IdentificationTypes.PASAPORTE,
 			identificationData: dataForm.identificationData,
-			actualInssurance: dataForm.insuranceSelected,
+			actualInsurance: dataForm.actualInsurance,
 			name: dataForm.name,
 			cellphoneNumber: dataForm.cellphoneNumber,
 			email: dataForm.email,
@@ -57,9 +53,9 @@ const ContextProvider: React.FC = (props) => {
 			.then((res) => {
 				const insuranceData: Insurance = {
 					clientID: res.id,
-					name: dataForm.insuranceSelected,
-					contractNumber: parseInt(dataForm.contractNumber),
-					affiliateNumber: parseInt(dataForm.affiliateNumber),
+					name: dataForm.actualInsurance,
+					contractNumber: dataForm.contractNumber,
+					affiliateNumber: dataForm.affiliateNumber,
 					affiliateType: dataForm.affiliateType,
 				};
 				// Create insurance
@@ -83,8 +79,12 @@ const ContextProvider: React.FC = (props) => {
 
 	const fetchClients = async (filterText?: string) => {
 		try {
-			const hospitalDoctorClients = (await DataStore.query(HospitalDoctorCliente)).filter(hdc => hdc.hospitalDoctorID === relationsContext.actualHospitalDoctor?.id);
-			let clients = (await DataStore.query(Client)).filter(cl => hospitalDoctorClients.filter(hdc => hdc.clientID === cl.id).length > 0);
+			const hospitalDoctorClients = (await DataStore.query(HospitalDoctorCliente)).filter(
+				(hdc) => hdc.hospitalDoctorID === relationsContext.actualHospitalDoctor?.id
+			);
+			let clients = (await DataStore.query(Client)).filter(
+				(cl) => hospitalDoctorClients.filter((hdc) => hdc.clientID === cl.id).length > 0
+			);
 			const filterTextValue = filterText ? filterText.trim() : '';
 			if (filterTextValue.length) {
 				clients = clients.filter((client) =>
@@ -93,9 +93,14 @@ const ContextProvider: React.FC = (props) => {
 			}
 			setClients([]);
 			clients.forEach(async (client) => {
-				const hospitalDoctorCliente = hospitalDoctorClients.filter(hdc => hdc.clientID === client.id)[0];
+				const hospitalDoctorCliente = hospitalDoctorClients.filter(
+					(hdc) => hdc.clientID === client.id
+				)[0];
 
-				const healthInsurance = await DataStore.query(Insurance, hospitalDoctorCliente.lastHealthInsurranceID);
+				const healthInsurance = await DataStore.query(
+					Insurance,
+					hospitalDoctorCliente.lastHealthInsurranceID
+				);
 				const transformedClient: ClientType = {
 					id: client.id,
 					name: client.name,
@@ -109,10 +114,6 @@ const ContextProvider: React.FC = (props) => {
 		}
 	};
 
-	const fetchClient = (id: string): void => {
-		console.log('Console doctor');
-	};
-
 	const deleteClient = (id: string): void => {
 		DataStore.query(Client, id)
 			.then((res) => {
@@ -124,20 +125,70 @@ const ContextProvider: React.FC = (props) => {
 			.catch((error) => console.log('No se encontro cliente para eliminar', error));
 	};
 
-	const updateClient = (): void => {
-		console.log('Console doctor');
+	const updateClient = async (dataForm) => {
+		if (relationsContext.actualClient) {
+			await DataStore.query(Client, relationsContext.actualClient.id)
+				.then((original) => {
+					DataStore.save(
+						Client.copyOf(original, (updated) => {
+							updated.identificationName = dataForm.idCard
+								? IdentificationTypes.CEDULA
+								: IdentificationTypes.PASAPORTE;
+							updated.identificationData = dataForm.identificationData;
+							updated.name = dataForm.name;
+							updated.cellphoneNumber = dataForm.cellphoneNumber;
+							updated.actualInsurance = dataForm.actualInsurance;
+							updated.addressStreet = dataForm.addressStreet;
+							updated.bloodType = dataForm.bloodType;
+							updated.bornDate = dataForm.bornDate;
+							updated.city = dataForm.city;
+							updated.company = dataForm.company;
+							updated.email = dataForm.email;
+							updated.gender = dataForm.gender;
+							updated.profileImage = dataForm.profileImage;
+							updated.sector = dataForm.sector;
+							updated.bloodType = dataForm.bloodType;
+						})
+					).then(async (res) => {
+						const originalInsurance = await DataStore.query(
+							Insurance,
+							relationsContext.actualInsurance.id
+						);
+
+						DataStore.save(
+							Insurance.copyOf(originalInsurance, (updated) => {
+								updated.name = dataForm.actualInsurance;
+								updated.contractNumber = dataForm.contractNumber;
+								updated.affiliateNumber = dataForm.affiliateNumber;
+								updated.affiliateType = dataForm.affiliateType;
+							})
+						)
+							.then((res) => {
+								console.log('Seguro Actualizado correctamente', res);
+							})
+							.catch((err) => {
+								console.log(err, 'Error al actualizar seguro');
+							});
+
+						console.log('Cliente actualizado correctamente', res);
+					});
+				})
+				.catch((err) => {
+					console.log('Error al buscar cliente', err);
+				});
+		} else {
+			console.log('No hay un cliente seleccionado, error al actualizar cliente');
+		}
 	};
 
 	return (
 		<ClientsContext.Provider
 			value={{
 				clients: clients,
-				actualClient: actualClient,
 				createClient: createClient,
 				fetchClients: fetchClients,
 				deleteClient: deleteClient,
 				updateClient: updateClient,
-				setActualClient: setActualClient,
 			}}
 		>
 			{props.children}

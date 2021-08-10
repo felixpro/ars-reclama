@@ -34,7 +34,7 @@ export declare class Client {
   readonly id: string;
   readonly identificationName?: IdentificationTypes | keyof typeof IdentificationTypes;
   readonly identificationData?: string;
-  readonly actualInssurance?: string;
+  readonly actualInsurance?: string;
   readonly name: string;
   readonly cellphoneNumber?: string;
   readonly email?: string;
@@ -42,7 +42,6 @@ export declare class Client {
   readonly gender?: SexType | keyof typeof SexType;
   readonly phoneNumber?: string;
   readonly addressStreet?: string;
-  readonly addressNumber?: number;
   readonly city?: string;
   readonly sector?: string;
   readonly bloodType?: string;
@@ -115,8 +114,8 @@ export declare class Insurance {
   readonly id: string;
   readonly clientID?: string;
   readonly name: string;
-  readonly contractNumber?: number;
-  readonly affiliateNumber?: number;
+  readonly contractNumber?: string;
+  readonly affiliateNumber?: string;
   readonly affiliateType?: AffiliateTypes | keyof typeof AffiliateTypes;
   constructor(init: ModelInit<Insurance>);
   static copyOf(source: Insurance, mutator: (draft: MutableModel<Insurance>) => MutableModel<Insurance> | void): Insurance;

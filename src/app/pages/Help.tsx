@@ -9,7 +9,11 @@ const Help = () => {
 			<button className="" onClick={() => setModalState(true)}>
 				edit
 			</button>
-			<ModalClient modalState={modalState} setModalState={setModalState} updateClient={true} />
+			<ModalClient
+				modalState={modalState}
+				setModalState={setModalState}
+				updatingStatus={true}
+			/>
 		</div>
 	);
 };

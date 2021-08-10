@@ -9,6 +9,7 @@ export interface IclientForm {
 export interface Iclient {
 	identificationName: string;
 	identificationData: string;
+	actualInsurance: string;
 	name: string;
 	cellphoneNumber: string;
 	email: string;

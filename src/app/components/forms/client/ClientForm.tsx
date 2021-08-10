@@ -14,15 +14,14 @@ import IdInput from './IdInput';
 
 import { IclientForm } from './types.ts';
 
-const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClient }) => {
-	const { createClient } = useContext(ClientsContext);
-	const { actualDoctor, fetchClients } = useContext(DoctorsContext);
-	const { actualClient, actualInsurance } = useContext(RelationsContext);
+const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updatingStatus }) => {
+	const { createClient, fetchClients, updateClient } = useContext(ClientsContext);
+	const { actualClient, actualInsurance, actualDoctor } = useContext(RelationsContext);
 
-	const [untrackedValues, SetUntrackedValues] = useState({
+	const [untrackedValues, setUntrackedValues] = useState({
 		idCard: true,
 		bornDate: '',
-		insuranceSelected: '',
+		actualInsurance: '',
 		affiliateType: '',
 	});
 
@@ -48,13 +47,13 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 	const handleCheckboxIdRef = (target: string) => {
 		if (target === IdentificationTypes.CEDULA) {
 			passportRef.current.checked = false;
-			SetUntrackedValues({
+			setUntrackedValues({
 				...untrackedValues,
 				idCard: true,
 			});
 		} else if (target === IdentificationTypes.PASAPORTE) {
 			idRef.current.checked = false;
-			SetUntrackedValues({
+			setUntrackedValues({
 				...untrackedValues,
 				idCard: false,
 			});
@@ -99,7 +98,7 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 
 	useEffect(() => {
 		// UpdateForm values
-		if (updateClient && actualClient) {
+		if (updatingStatus && actualClient) {
 			SetFormsValues({
 				identificationData: actualClient.identificationData,
 				name: actualClient.name,
@@ -115,10 +114,10 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 				contractNumber: actualInsurance.contractNumber,
 				gender: actualClient.gender,
 			});
-			SetUntrackedValues({
+			setUntrackedValues({
 				idCard:
 					actualClient.identificationName === IdentificationTypes.CEDULA ? true : false,
-				insuranceSelected: actualInsurance.name,
+				actualInsurance: actualInsurance.name,
 				affiliateType: actualInsurance.affiliateType,
 				bornDate: actualClient.bornDate,
 			});
@@ -193,11 +192,10 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 			onSubmit={(values, { resetForm }) => {
 				// update inputs that Formik cannot extract values
 				const formValue = { ...JSON.parse(JSON.stringify(values)), ...untrackedValues };
-				console.log("Antes de crear", formValue);
-				createClient(formValue);
-				// fetchClients();
-				// resetForm();
-				// onCloseModal();
+				updatingStatus ? updateClient(formValue) : createClient(formValue);
+				fetchClients();
+				resetForm();
+				onCloseModal();
 			}}
 		>
 			<div className="client-form  pr-0 pl-24 pt-14 pb-14 2lg:pr-11 2lg:pl-20  1/2xl:pr-16 1/2xl:pl-24 ">
@@ -212,9 +210,9 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 							<div className="col-span-6">
 								<div className="flex justify-end">
 									<InsurancesDropDown
-										SetUntrackedValues={SetUntrackedValues}
+										setUntrackedValues={setUntrackedValues}
 										untrackedValues={untrackedValues}
-										updateClient={updateClient}
+										updatingStatus={updatingStatus}
 									/>
 								</div>
 							</div>
@@ -316,7 +314,7 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 													type="date"
 													name="bornDate"
 													onChange={(e) =>
-														SetUntrackedValues({
+														setUntrackedValues({
 															...untrackedValues,
 															bornDate: e.target.value,
 														})
@@ -418,8 +416,9 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 											Tipo de Afiliado
 										</p>
 										<AffiliateDropdown
-											SetFormsValues={SetUntrackedValues}
-											formsValues={untrackedValues}
+											setUntrackedValues={setUntrackedValues}
+											untrackedValues={untrackedValues}
+											updatingStatus={updatingStatus}
 										/>
 										<p className="text-red-default text-sm OpenSansRegular pt-1.5">
 											<ErrorMessage name="affiliateType" />
@@ -646,7 +645,7 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updateClien
 										fill="white"
 									/>
 								</svg>
-								{updateClient ? <span>ACTUALIZAR</span> : <span>GUARDAR</span>}
+								{updatingStatus ? <span>ACTUALIZAR</span> : <span>GUARDAR</span>}
 							</button>
 						</div>
 					</div>

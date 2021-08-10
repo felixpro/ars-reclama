@@ -24,8 +24,8 @@ const options = [
 	{ name: 'ARS RESERVAS' },
 ];
 
-const InsurancesDropDown = ({ SetUntrackedValues, untrackedValues, updateClient }) => {
-	const { actualClient } = useContext(RelationsContext);
+const InsurancesDropDown = ({ setUntrackedValues, untrackedValues, updatingStatus }) => {
+	const { actualClient, actualInsurance } = useContext(RelationsContext);
 
 	const [optionSelected, SetOptionSelected] = useState({ name: 'Sin seguro' });
 	const [toggleInput, SetToggleInput] = useState(false);
@@ -35,23 +35,20 @@ const InsurancesDropDown = ({ SetUntrackedValues, untrackedValues, updateClient 
 	};
 
 	const handleSelectAction = async (data: string): void => {
-		DataStore.query(Insurance).then((res) => {
-			const insurances = res.filter((c) => c.clientID === actualClient.id);
-			SetOptionSelected({ name: data });
-			handleDropDown();
-		});
+		SetOptionSelected({ name: data });
+		handleDropDown();
 	};
 
 	useEffect(() => {
-		SetUntrackedValues({
+		setUntrackedValues({
 			...untrackedValues,
 			actualInsurance: optionSelected.name,
 		});
 	}, [optionSelected]);
 
 	useEffect(() => {
-		if (actualClient && updateClient) {
-			handleSelectAction(actualClient.actualInssurance);
+		if (actualClient && updatingStatus) {
+			handleSelectAction(actualInsurance.name);
 		}
 	}, []);
 

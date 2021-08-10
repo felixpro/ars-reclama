@@ -17,6 +17,7 @@ interface InsuranceContextProps {
 	actualHospitalDoctor: HospitalDoctor;
 	setActualHospital: (hospital: Hospital) => void;
 	setActualDoctor: (doctor: Doctor) => void;
+	actualDoctor: Doctor;
 	actualWaitingList: WaitList;
 	setActualWaitingList: (waitingList: WaitList) => void;
 	actualClient: Client;
@@ -30,29 +31,30 @@ const RelationsProvider: React.FC = (props) => {
 	const [actualHospital, setActualHospital] = useState<Hospital>();
 	const [actualDoctor, setActualDoctor] = useState<Doctor>();
 	const [actualClient, setActualClient] = useState<Client>({
-		actualInssurance: 'ARS SENASA',
-		addressStreet: 'Calle Primera',
-		bloodType: 'B+',
-		bornDate: '2021-08-18',
-		cellphoneNumber: '(456) 789-4113',
-		city: 'Santo Domingo',
-		company: 'Tesla',
-		email: 'felix@gmail.com',
-		gender: 'MASCULINO',
-		id: 'ee4bdfd9-8b8f-48fb-aadb-70122ac6103f',
-		identificationData: '45465465',
+		actualInsurance: 'ARS RESERVAS',
+		addressStreet: 'dfgsdfg',
+		bloodType: 'sdfgsdfgh',
+		bornDate: '2021-08-11',
+		cellphoneNumber: '(345) 345-345_',
+		city: 'sdfg',
+		company: 'sdfgsdfg',
+		email: 'dfgs@gmail.com',
+		gender: 'FEMENINO',
+		id: 'c75fe50c-3d6d-43d8-8dcb-2864275bc1e2',
+		identificationData: '456-456-4564-6',
 		identificationName: 'CEDULA',
-		name: 'Felix Pujols',
-		phoneNumber: '(825) 923-0184',
+		name: 'rtdgesdrfghsdfh',
+		phoneNumber: '(435) 353-53__',
 		profileImage: '',
-		sector: 'Cancino Adentro',
+		sector: 'sdfgsdfg',
 	});
 	const [actualInsurance, setActualInsurance] = useState<Insurance>({
-		clientID: actualClient.id,
-		name: 'ARS SENASA',
-		contractNumber: '4564654',
-		affiliateNumber: '456465465',
-		affiliateType: AffiliateTypes.PRINCIPAL,
+		affiliateNumber: '345345345345',
+		affiliateType: 'PRINCIPAL',
+		clientID: 'c75fe50c-3d6d-43d8-8dcb-2864275bc1e2',
+		contractNumber: '345345345',
+		id: 'b79d72b0-9d70-4129-9537-bd1776143171',
+		name: 'ARS RESERVAS',
 	});
 	const [actualHospitalDoctor, setActualHospitalDoctor] = useState<HospitalDoctor>();
 	const [actualWaitingList, setActualWaitingList] = useState<WaitList>();
@@ -85,6 +87,7 @@ const RelationsProvider: React.FC = (props) => {
 				actualInsurance: actualInsurance,
 				actualHospitalDoctor: actualHospitalDoctor,
 				actualWaitingList: actualWaitingList,
+				actualDoctor: actualDoctor,
 				setActualClient: setActualClient,
 				setActualInsurance: setActualInsurance,
 				createHospitalDoctor: createHospitalDoctor,

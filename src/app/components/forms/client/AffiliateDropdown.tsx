@@ -8,16 +8,32 @@ import { RelationsContext } from '../../../context/relations-context';
 import styles from './ClientForm.module.css';
 
 interface IAffiliateDropdown {
-	SetFormsValues: any;
-	formsValues: [];
+	setUntrackedValues: React.Dispatch<
+		React.SetStateAction<{
+			idCard: boolean;
+			bornDate: string;
+			actualInsurance: string;
+			affiliateType: string;
+		}>
+	>;
+	untrackedValues: {
+		idCard: boolean;
+		bornDate: string;
+		actualInsurance: string;
+		affiliateType: string;
+	};
+	updatingStatus: boolean;
 }
 
-const AffiliateDropdown: React.FC<IAffiliateDropdown> = ({ SetFormsValues, formsValues }) => {
+const AffiliateDropdown: React.FC<IAffiliateDropdown> = ({
+	setUntrackedValues,
+	untrackedValues,
+	updatingStatus,
+}) => {
 	const [optionSelected, SetOptionSelected] = useState({ name: 'Ej: Principal' });
 	const [toggleInput, SetToggleInput] = useState(false);
 
 	const { actualInsurance } = useContext(RelationsContext);
-
 
 	const handleDropDown = () => {
 		SetToggleInput(false);
@@ -25,8 +41,8 @@ const AffiliateDropdown: React.FC<IAffiliateDropdown> = ({ SetFormsValues, forms
 
 	const handleSelectAction = (data: string): void => {
 		SetOptionSelected({ name: data });
-		SetFormsValues({
-			...formsValues,
+		setUntrackedValues({
+			...untrackedValues,
 			affiliateType: data,
 		});
 		handleDropDown();
@@ -37,10 +53,12 @@ const AffiliateDropdown: React.FC<IAffiliateDropdown> = ({ SetFormsValues, forms
 	}
 
 	useEffect(() => {
-		SetOptionSelected({
-			name: actualInsurance.affiliateType,
-		})
-	}, [])
+		if (updatingStatus && actualInsurance) {
+			SetOptionSelected({
+				name: actualInsurance.affiliateType,
+			});
+		}
+	}, []);
 
 	return (
 		<div>
