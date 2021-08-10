@@ -31,30 +31,30 @@ const RelationsProvider: React.FC = (props) => {
 	const [actualHospital, setActualHospital] = useState<Hospital>();
 	const [actualDoctor, setActualDoctor] = useState<Doctor>();
 	const [actualClient, setActualClient] = useState<Client>({
-		actualInsurance: 'ARS RESERVAS',
-		addressStreet: 'dfgsdfg',
-		bloodType: 'sdfgsdfgh',
+		actualInsurance: 'META SALUD ARS',
+		addressStreet: 'wertygsdrtfghsd',
+		bloodType: 'B+',
 		bornDate: '2021-08-11',
-		cellphoneNumber: '(345) 345-345_',
-		city: 'sdfg',
-		company: 'sdfgsdfg',
-		email: 'dfgs@gmail.com',
+		cellphoneNumber: '(645) 674-5764',
+		city: 'sdfghdfghdfgh',
+		company: 'Tesla',
+		email: 'dgfhx@gmail.com',
 		gender: 'FEMENINO',
-		id: 'c75fe50c-3d6d-43d8-8dcb-2864275bc1e2',
-		identificationData: '456-456-4564-6',
+		id: '6fbea533-e136-4e5f-8774-beed3b152e47',
+		identificationData: '454-643-6465-4',
 		identificationName: 'CEDULA',
-		name: 'rtdgesdrfghsdfh',
-		phoneNumber: '(435) 353-53__',
+		name: 'rytuirtyu',
+		phoneNumber: '(435) 643-5634',
 		profileImage: '',
-		sector: 'sdfgsdfg',
+		sector: 'sdfhgsgh',
 	});
 	const [actualInsurance, setActualInsurance] = useState<Insurance>({
-		affiliateNumber: '345345345345',
+		affiliateNumber: '4345645645',
 		affiliateType: 'PRINCIPAL',
-		clientID: 'c75fe50c-3d6d-43d8-8dcb-2864275bc1e2',
-		contractNumber: '345345345',
-		id: 'b79d72b0-9d70-4129-9537-bd1776143171',
-		name: 'ARS RESERVAS',
+		clientID: '6fbea533-e136-4e5f-8774-beed3b152e47',
+		contractNumber: '45645645645',
+		id: '36346c72-5af6-4dcb-99a1-06f3d7af05e4',
+		name: 'META SALUD ARS',
 	});
 	const [actualHospitalDoctor, setActualHospitalDoctor] = useState<HospitalDoctor>();
 	const [actualWaitingList, setActualWaitingList] = useState<WaitList>();

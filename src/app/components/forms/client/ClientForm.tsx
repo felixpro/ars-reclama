@@ -13,9 +13,10 @@ import AffiliateDropdown from './AffiliateDropdown';
 import IdInput from './IdInput';
 
 import { IclientForm } from './types.ts';
+import delete_client from '../../../../assets/images/delete_client.svg';
 
 const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updatingStatus }) => {
-	const { createClient, fetchClients, updateClient } = useContext(ClientsContext);
+	const { createClient, fetchClients, updateClient, deleteClient } = useContext(ClientsContext);
 	const { actualClient, actualInsurance, actualDoctor } = useContext(RelationsContext);
 
 	const [untrackedValues, setUntrackedValues] = useState({
@@ -620,9 +621,26 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updatingSta
 
 					<div className="flex justify-between pt-16">
 						<div className="flex items-center">
-							<p className="raleway-font text-base">
-								<b>Agregando a:</b> {actualDoctor && actualDoctor.name}
-							</p>
+							<div className="raleway-font text-base">
+								{updatingStatus ? (
+									<button
+										className="flex"
+										onClick={() => deleteClient(actualClient.id)}
+									>
+										<img src={delete_client} alt="delete_client" />
+										<span className="pl-2 text-red-default font-medium">
+											Eliminar cliente
+										</span>
+									</button>
+								) : (
+									<div>
+										<b>Agregando a:</b>{' '}
+										<span>
+											{actualDoctor? <span>{actualDoctor.name}</span> : null}
+										</span>
+									</div>
+								)}
+							</div>
 						</div>
 						<div className="flex">
 							<button className="cancel border-2 border-greySnuff-default rounded-lg w-32 h-11 text-grayStorm-default raleway-font font-medium text-base">

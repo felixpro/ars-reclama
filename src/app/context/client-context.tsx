@@ -114,17 +114,6 @@ const ContextProvider: React.FC = (props) => {
 		}
 	};
 
-	const deleteClient = (id: string): void => {
-		DataStore.query(Client, id)
-			.then((res) => {
-				DataStore.delete(res)
-					.then((res) => console.log('Cliente eliminado correctamente', res))
-					.catch((error) => console.log('Error al eliminar el cliente', error));
-			})
-			.then((res) => console.log('Cliente a eliminar encontrado correctamente', res))
-			.catch((error) => console.log('No se encontro cliente para eliminar', error));
-	};
-
 	const updateClient = async (dataForm) => {
 		if (relationsContext.actualClient) {
 			await DataStore.query(Client, relationsContext.actualClient.id)
@@ -181,6 +170,15 @@ const ContextProvider: React.FC = (props) => {
 		}
 	};
 
+	const deleteClient = async (id: string): void => {
+		const client = await DataStore.query(Client, id);
+		console.log('Este es el cliente: ', client);
+		DataStore.delete(client)
+			.then((res) => {
+				console.log('Cliente eliminado correctamente', res);
+			})
+			.catch((error) => console.log('No se encontro cliente para eliminar', error));
+	};
 	return (
 		<ClientsContext.Provider
 			value={{
