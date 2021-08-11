@@ -23,7 +23,7 @@ const NavBar: React.FC<INavbar> = ({ SetsidebarToggle, sidebarToggle, pagePath }
 	};
 
 	const { actualClient } = useContext(RelationsContext);
-	const [modalState, setModalState] = useState(true);
+	const [modalState, setModalState] = useState(false);
 
 	return (
 		<div className="flex justify-between items-center pr-10 bg-white-section pt-3.5 pb-3.5 2sm:ml-0.5 mb-0.5">

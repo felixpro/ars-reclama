@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import ModalClient from '../components/modalClient/ModalClient';
+import { RelationsContext } from '../context/relations-context';
 
 const Help = () => {
-	const [modalState, setModalState] = useState(true);
+	const { setActualClientInsurance } = useContext(RelationsContext);
+
+	const [modalState, setModalState] = useState(false);
 
 	return (
 		<div>
@@ -14,6 +17,8 @@ const Help = () => {
 				setModalState={setModalState}
 				updatingStatus={true}
 			/>
+
+			<button onClick={() => setActualClientInsurance()}>Actualizar client state</button>
 		</div>
 	);
 };

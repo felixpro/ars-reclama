@@ -26,7 +26,24 @@ const ContextProvider: React.FC = (props) => {
 
 	const relationsContext = useContext(RelationsContext);
 
-	// const { actualDoctor, updateActualDoctor } = useContext(DoctorsContext);
+	const createInsurance = async (dataForm, clientID) => {
+		const insuranceData = {
+			clientID: clientID,
+			name: dataForm.actualInsurance,
+			contractNumber: dataForm.contractNumber,
+			affiliateNumber: dataForm.affiliateNumber,
+			affiliateType: dataForm.affiliateType,
+		};
+		DataStore.save(new Insurance(insuranceData))
+			.then((res) => {
+				console.log('Seguro creada correctamente', res);
+			})
+			.catch((error) => {
+				console.log('Fallo al crear Seguro', error);
+				// Delete client created withoutrelation
+				deleteClient(clientID);
+			});
+	};
 
 	const createClient = (dataForm): void => {
 		const clientObj = {
@@ -51,23 +68,7 @@ const ContextProvider: React.FC = (props) => {
 
 		DataStore.save(new Client(clientObj))
 			.then((res) => {
-				const insuranceData: Insurance = {
-					clientID: res.id,
-					name: dataForm.actualInsurance,
-					contractNumber: dataForm.contractNumber,
-					affiliateNumber: dataForm.affiliateNumber,
-					affiliateType: dataForm.affiliateType,
-				};
-				// Create insurance
-				DataStore.save(new Insurance(insuranceData))
-					.then((res) => {
-						console.log('Seguro creada correctamente', res);
-					})
-					.catch((error) => {
-						console.log('Fallo al crear Seguro', error);
-						// Delete client created withoutrelation
-						deleteClient(res.id);
-					});
+				createInsurance(dataForm, res.id);
 
 				console.log('Cliente creado correctamente', res);
 				// Create relation between clients and doctors
@@ -139,25 +140,35 @@ const ContextProvider: React.FC = (props) => {
 							updated.bloodType = dataForm.bloodType;
 						})
 					).then(async (res) => {
-						const originalInsurance = await DataStore.query(
-							Insurance,
-							relationsContext.actualInsurance.id
+						// Validate if the insurance submited already exist
+						const insurance = await DataStore.query(Insurance, (Ins) =>
+							Ins.clientID('contains', relationsContext.actualClient.id).name(
+								'contains',
+								dataForm.actualInsurance
+							)
 						);
 
-						DataStore.save(
-							Insurance.copyOf(originalInsurance, (updated) => {
-								updated.name = dataForm.actualInsurance;
-								updated.contractNumber = dataForm.contractNumber;
-								updated.affiliateNumber = dataForm.affiliateNumber;
-								updated.affiliateType = dataForm.affiliateType;
-							})
-						)
-							.then((res) => {
-								console.log('Seguro Actualizado correctamente', res);
-							})
-							.catch((err) => {
-								console.log(err, 'Error al actualizar seguro');
-							});
+						if (insurance.length >= 1) {
+							// Update Insurance
+							DataStore.save(
+								Insurance.copyOf(insurance[0], (updated) => {
+									updated.name = dataForm.actualInsurance;
+									updated.contractNumber = dataForm.contractNumber;
+									updated.affiliateNumber = dataForm.affiliateNumber;
+									updated.affiliateType = dataForm.affiliateType;
+								})
+							)
+								.then((res) => {
+									console.log('Seguro Actualizado correctamente', res);
+								})
+								.catch((err) => {
+									console.log(err, 'Error al actualizar seguro');
+								});
+						} else {
+							// Create Insurance
+							createInsurance(dataForm, relationsContext.actualClient.id);
+							console.log('Hora de crear seguro');
+						}
 
 						console.log('Cliente actualizado correctamente', res);
 					});
@@ -172,20 +183,20 @@ const ContextProvider: React.FC = (props) => {
 
 	const deleteClient = async (id: string): void => {
 		const client = await DataStore.query(Client, id);
-		console.log('Este es el cliente: ', client);
 		DataStore.delete(client)
 			.then((res) => {
 				console.log('Cliente eliminado correctamente', res);
 			})
 			.catch((error) => console.log('No se encontro cliente para eliminar', error));
 	};
+
 	return (
 		<ClientsContext.Provider
 			value={{
 				clients: clients,
 				createClient: createClient,
-				fetchClients: fetchClients,
 				deleteClient: deleteClient,
+				fetchClients: fetchClients,
 				updateClient: updateClient,
 			}}
 		>

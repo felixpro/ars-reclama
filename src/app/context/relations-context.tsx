@@ -23,6 +23,7 @@ interface InsuranceContextProps {
 	actualClient: Client;
 	setActualClient: (client: Client) => void;
 	actualInsurance: Insurance;
+	setActualClientInsurance: (clientID: string) => void;
 }
 
 export const RelationsContext = React.createContext<Partial<InsuranceContextProps>>({});
@@ -30,31 +31,14 @@ export const RelationsContext = React.createContext<Partial<InsuranceContextProp
 const RelationsProvider: React.FC = (props) => {
 	const [actualHospital, setActualHospital] = useState<Hospital>();
 	const [actualDoctor, setActualDoctor] = useState<Doctor>();
-	const [actualClient, setActualClient] = useState<Client>({
-		actualInsurance: 'META SALUD ARS',
-		addressStreet: 'wertygsdrtfghsd',
-		bloodType: 'B+',
-		bornDate: '2021-08-11',
-		cellphoneNumber: '(645) 674-5764',
-		city: 'sdfghdfghdfgh',
-		company: 'Tesla',
-		email: 'dgfhx@gmail.com',
-		gender: 'FEMENINO',
-		id: '6fbea533-e136-4e5f-8774-beed3b152e47',
-		identificationData: '454-643-6465-4',
-		identificationName: 'CEDULA',
-		name: 'rytuirtyu',
-		phoneNumber: '(435) 643-5634',
-		profileImage: '',
-		sector: 'sdfhgsgh',
-	});
+	const [actualClient, setActualClient] = useState<Client>();
 	const [actualInsurance, setActualInsurance] = useState<Insurance>({
-		affiliateNumber: '4345645645',
-		affiliateType: 'PRINCIPAL',
+		affiliateNumber: '111',
+		affiliateType: 'TITULAR',
 		clientID: '6fbea533-e136-4e5f-8774-beed3b152e47',
 		contractNumber: '45645645645',
 		id: '36346c72-5af6-4dcb-99a1-06f3d7af05e4',
-		name: 'META SALUD ARS',
+		name: 'ARS GMA',
 	});
 	const [actualHospitalDoctor, setActualHospitalDoctor] = useState<HospitalDoctor>();
 	const [actualWaitingList, setActualWaitingList] = useState<WaitList>();
@@ -80,6 +64,22 @@ const RelationsProvider: React.FC = (props) => {
 		}
 	};
 
+	const setActualClientInsurance = async (clientID) => {
+		await DataStore.query(Client)
+			.then((res) => {
+				const client = res[0];
+				setActualClient(client);
+				DataStore.query(Insurance, (c) => c.clientID('contains', client.id)).then((res) => {
+					console.log('Insurances del actualClient', res);
+				});
+
+				console.log('Cliente actualizado correctamente', client);
+			})
+			.catch((err) => {
+				console.log('Error al actulizar cliente actual', err);
+			});
+	};
+
 	return (
 		<RelationsContext.Provider
 			value={{
@@ -95,6 +95,7 @@ const RelationsProvider: React.FC = (props) => {
 				setActualHospital: setActualHospital,
 				setActualDoctor: setActualDoctor,
 				setActualWaitingList: setActualWaitingList,
+				setActualClientInsurance: setActualClientInsurance,
 			}}
 		>
 			{props.children}
