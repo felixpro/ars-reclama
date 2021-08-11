@@ -111,15 +111,15 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updatingSta
 				sector: actualClient.sector,
 				bloodType: actualClient.bloodType,
 				company: actualClient.company,
-				affiliateNumber: actualInsurance.affiliateNumber,
-				contractNumber: actualInsurance.contractNumber,
-				gender: actualClient.gender,
+				affiliateNumber: actualInsurance ?  actualInsurance.affiliateNumber : '',
+				contractNumber: actualInsurance ? actualInsurance.contractNumber : '',
+				gender: actualInsurance ? actualClient.gender : '',
 			});
 			setUntrackedValues({
 				idCard:
 					actualClient.identificationName === IdentificationTypes.CEDULA ? true : false,
-				actualInsurance: actualInsurance.name,
-				affiliateType: actualInsurance.affiliateType,
+				actualInsurance: actualInsurance ? actualInsurance.name : '',
+				affiliateType: actualInsurance ? actualInsurance.affiliateType : '',
 				bornDate: actualClient.bornDate,
 			});
 

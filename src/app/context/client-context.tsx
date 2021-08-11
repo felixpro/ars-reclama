@@ -36,6 +36,7 @@ const ContextProvider: React.FC = (props) => {
 		};
 		DataStore.save(new Insurance(insuranceData))
 			.then((res) => {
+				relationsContext.updateActualClientInsurance(clientID);
 				console.log('Seguro creada correctamente', res);
 			})
 			.catch((error) => {
@@ -147,8 +148,7 @@ const ContextProvider: React.FC = (props) => {
 								dataForm.actualInsurance
 							)
 						);
-
-						if (insurance.length >= 1) {
+						if (insurance[0]) {
 							// Update Insurance
 							DataStore.save(
 								Insurance.copyOf(insurance[0], (updated) => {
@@ -159,12 +159,15 @@ const ContextProvider: React.FC = (props) => {
 								})
 							)
 								.then((res) => {
+									relationsContext.updateActualClientInsurance(
+										relationsContext.actualClient.id
+									);
 									console.log('Seguro Actualizado correctamente', res);
 								})
 								.catch((err) => {
 									console.log(err, 'Error al actualizar seguro');
 								});
-						} else {
+						} else if (dataForm.actualInsurance !== 'Sin seguro') {
 							// Create Insurance
 							createInsurance(dataForm, relationsContext.actualClient.id);
 							console.log('Hora de crear seguro');

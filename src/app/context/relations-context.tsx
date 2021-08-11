@@ -23,7 +23,8 @@ interface InsuranceContextProps {
 	actualClient: Client;
 	setActualClient: (client: Client) => void;
 	actualInsurance: Insurance;
-	setActualClientInsurance: (clientID: string) => void;
+	updateActualClientInsurance: (clientID: string) => void;
+	setActualInsurance: (Insurance: Insurance) => void;
 }
 
 export const RelationsContext = React.createContext<Partial<InsuranceContextProps>>({});
@@ -32,14 +33,7 @@ const RelationsProvider: React.FC = (props) => {
 	const [actualHospital, setActualHospital] = useState<Hospital>();
 	const [actualDoctor, setActualDoctor] = useState<Doctor>();
 	const [actualClient, setActualClient] = useState<Client>();
-	const [actualInsurance, setActualInsurance] = useState<Insurance>({
-		affiliateNumber: '111',
-		affiliateType: 'TITULAR',
-		clientID: '6fbea533-e136-4e5f-8774-beed3b152e47',
-		contractNumber: '45645645645',
-		id: '36346c72-5af6-4dcb-99a1-06f3d7af05e4',
-		name: 'ARS GMA',
-	});
+	const [actualInsurance, setActualInsurance] = useState<Insurance>();
 	const [actualHospitalDoctor, setActualHospitalDoctor] = useState<HospitalDoctor>();
 	const [actualWaitingList, setActualWaitingList] = useState<WaitList>();
 
@@ -64,15 +58,17 @@ const RelationsProvider: React.FC = (props) => {
 		}
 	};
 
-	const setActualClientInsurance = async (clientID) => {
-		await DataStore.query(Client)
-			.then((res) => {
-				const client = res[0];
+	const updateActualClientInsurance = async (clientID) => {
+		 DataStore.query(Client, clientID)
+			.then(async (client) => {
 				setActualClient(client);
-				DataStore.query(Insurance, (c) => c.clientID('contains', client.id)).then((res) => {
-					console.log('Insurances del actualClient', res);
-				});
+				// Get the insurance that the client is using
+				const insurance = await DataStore.query(Insurance, (Ins) =>
+					Ins.clientID('contains', client.id).name('contains', client.actualInsurance)
+				);
+				setActualInsurance(insurance[0]);
 
+				console.log('Insurances del actualClient', insurance[0]);
 				console.log('Cliente actualizado correctamente', client);
 			})
 			.catch((err) => {
@@ -95,7 +91,7 @@ const RelationsProvider: React.FC = (props) => {
 				setActualHospital: setActualHospital,
 				setActualDoctor: setActualDoctor,
 				setActualWaitingList: setActualWaitingList,
-				setActualClientInsurance: setActualClientInsurance,
+				updateActualClientInsurance: updateActualClientInsurance,
 			}}
 		>
 			{props.children}

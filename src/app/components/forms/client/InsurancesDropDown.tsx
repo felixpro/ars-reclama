@@ -25,7 +25,7 @@ const options = [
 ];
 
 const InsurancesDropDown = ({ setUntrackedValues, untrackedValues, updatingStatus }) => {
-	const { actualClient, actualInsurance } = useContext(RelationsContext);
+	const { actualClient, actualInsurance, updateActualClientInsurance } = useContext(RelationsContext);
 
 	const [optionSelected, SetOptionSelected] = useState({ name: 'Sin seguro' });
 	const [toggleInput, SetToggleInput] = useState(false);
@@ -47,9 +47,12 @@ const InsurancesDropDown = ({ setUntrackedValues, untrackedValues, updatingStatu
 	}, [optionSelected]);
 
 	useEffect(() => {
-		if (actualClient && updatingStatus) {
-			handleSelectAction(actualInsurance.name);
-		}
+		(async () => {
+			if (actualClient && updatingStatus) {
+				updateActualClientInsurance(actualClient.id);
+				handleSelectAction(actualInsurance ? actualInsurance.name : 'Sin seguro');
+			}
+		})();
 	}, []);
 
 	InsurancesDropDown.handleClickOutside = () => SetToggleInput(false);
