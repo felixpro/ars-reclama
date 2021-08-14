@@ -59,16 +59,21 @@ const RelationsProvider: React.FC = (props) => {
 	};
 
 	const updateActualClientInsurance = async (clientID) => {
-		 DataStore.query(Client, clientID)
+		DataStore.query(Client, clientID)
 			.then(async (client) => {
 				setActualClient(client);
 				// Get the insurance that the client is using
 				const insurance = await DataStore.query(Insurance, (Ins) =>
-					Ins.clientID('contains', client.id).name('contains', client.actualInsurance)
-				);
-				setActualInsurance(insurance[0]);
+					Ins.clientID('contains', clientID).name('contains', client.actualInsurance)
+				)
+					.then((res) => {
+						setActualInsurance(res[0]);
+						console.log('Insurances del actualClient', insurance[0]);
+					})
+					.catch((err) => {
+						console.log('Error al conseguir el seguro o creado sin seguro', err);
+					});
 
-				console.log('Insurances del actualClient', insurance[0]);
 				console.log('Cliente actualizado correctamente', client);
 			})
 			.catch((err) => {
