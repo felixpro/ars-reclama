@@ -71,7 +71,7 @@ const RelationsProvider: React.FC = (props) => {
 						console.log('Insurances del actualClient', insurance[0]);
 					})
 					.catch((err) => {
-						console.log('Error al conseguir el seguro o creado sin seguro', err);
+						console.log('Error al conseguir el seguro', err);
 					});
 
 				console.log('Cliente actualizado correctamente', client);
