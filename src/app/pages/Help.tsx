@@ -17,11 +17,11 @@ const Help = () => {
 				setModalState={setModalState}
 				updatingStatus={true}
 			/>
-
+      <br/>
 			<button
-				onClick={() => updateActualClientInsurance('6fbea533-e136-4e5f-8774-beed3b152e47')}
+				onClick={() => updateActualClientInsurance('00ef6ac3-1f05-4052-97bf-37ad483007d1')}
 			>
-				Actualizar client state
+				Dale click a un cliente
 			</button>
 		</div>
 	);

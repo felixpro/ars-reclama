@@ -214,6 +214,8 @@ const ClientForm: FC<IclientForm> = ({ onCloseModal, existingClient, updatingSta
 										setUntrackedValues={setUntrackedValues}
 										untrackedValues={untrackedValues}
 										updatingStatus={updatingStatus}
+										SetFormsValues={SetFormsValues}
+										formsValues={formsValues}
 									/>
 								</div>
 							</div>

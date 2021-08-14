@@ -33,7 +33,7 @@ const AffiliateDropdown: React.FC<IAffiliateDropdown> = ({
 	const [optionSelected, SetOptionSelected] = useState({ name: 'Ej: Principal' });
 	const [toggleInput, SetToggleInput] = useState(false);
 
-	const { actualInsurance } = useContext(RelationsContext);
+	const { actualClient } = useContext(RelationsContext);
 
 	const handleDropDown = () => {
 		SetToggleInput(false);
@@ -53,12 +53,12 @@ const AffiliateDropdown: React.FC<IAffiliateDropdown> = ({
 	}
 
 	useEffect(() => {
-		if (updatingStatus && actualInsurance) {
+		if (updatingStatus && actualClient) {
 			SetOptionSelected({
-				name: actualInsurance.affiliateType,
+				name: untrackedValues.affiliateType,
 			});
 		}
-	}, []);
+	}, [untrackedValues.affiliateType]);
 
 	return (
 		<div>

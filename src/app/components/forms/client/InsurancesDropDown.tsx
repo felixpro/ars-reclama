@@ -24,7 +24,7 @@ const options = [
 	{ name: 'ARS RESERVAS' },
 ];
 
-const InsurancesDropDown = ({ setUntrackedValues, untrackedValues, updatingStatus }) => {
+const InsurancesDropDown = ({ setUntrackedValues, untrackedValues, updatingStatus, SetFormsValues, formsValues }) => {
 	const { actualClient, actualInsurance, updateActualClientInsurance } = useContext(RelationsContext);
 
 	const [optionSelected, SetOptionSelected] = useState({ name: 'Sin seguro' });
@@ -39,11 +39,37 @@ const InsurancesDropDown = ({ setUntrackedValues, untrackedValues, updatingStatu
 		handleDropDown();
 	};
 
-	useEffect(() => {
-		setUntrackedValues({
-			...untrackedValues,
-			actualInsurance: optionSelected.name,
-		});
+	useEffect( () => {
+		(async () => {
+			if (actualClient && updatingStatus) {
+
+			const insurance = await DataStore.query(Insurance, (Ins) =>
+				Ins.clientID('contains', actualClient.id).name('contains', optionSelected.name)
+			);
+			const dropdownInsurance = insurance[0];
+
+			console.log("Actualizar inpust con este insurane", [dropdownInsurance])
+
+			SetFormsValues({
+				...formsValues,
+				contractNumber: dropdownInsurance? dropdownInsurance.contractNumber : '',
+				affiliateNumber: dropdownInsurance? dropdownInsurance.affiliateNumber : '',
+			})
+
+			// analizar si, la selecion no es sinCLiente.
+			setUntrackedValues({
+				...untrackedValues,
+				actualInsurance: dropdownInsurance? dropdownInsurance.name : optionSelected.name,
+				affiliateType: dropdownInsurance? dropdownInsurance.affiliateType : 'Ej: Principal',
+			});
+		} else {
+			setUntrackedValues({
+				...untrackedValues,
+				actualInsurance: optionSelected.name,
+			});
+
+		}
+		})();
 	}, [optionSelected]);
 
 	useEffect(() => {
